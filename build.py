@@ -115,10 +115,11 @@ def write(path: str, content: str) -> None:
 
 def card(item: dict, section: str) -> str:
     href = local(f"{section}/{item['slug']}/")
-    image = f'<img src="{image_url(item["thumbnail"])}" alt="{e(item.get("thumbnail_alt", ""))}" loading="lazy">' if item.get("thumbnail") else '<span class="image-placeholder" aria-hidden="true">Y / S</span>'
-    meta = item.get("period", item.get("date", ""))
+    image = f'<a class="card-image" href="{href}"><img src="{image_url(item["thumbnail"])}" alt="{e(item.get("thumbnail_alt", ""))}" loading="lazy"></a>' if item.get("thumbnail") else ""
+    card_class = "card" if image else "card card-text"
+    meta = " · ".join(e(value) for value in [item.get("period", item.get("date", "")), item.get("category", "")] if value)
     count = f'<p class="meta">作品数：{e(item["work_count"])}</p>' if item.get("work_count") else ""
-    return f'<article class="card"><a class="card-image" href="{href}">{image}</a><div class="card-body"><p class="meta">{e(meta)}{(" · " + e(item.get("category", ""))) if item.get("category") else ""}</p><h3><a href="{href}">{e(item["title"])}</a></h3><p>{e(item.get("summary", ""))}</p>{count}</div></article>'
+    return f'<article class="{card_class}">{image}<div class="card-body"><p class="meta">{meta}</p><h3><a href="{href}">{e(item["title"])}</a></h3><p>{e(item.get("list_summary", item.get("summary", "")))}</p>{count}</div></article>'
 
 
 def youtube_frame(video_id: str, title: str) -> str:
@@ -147,6 +148,20 @@ def project_videos(videos: list[dict]) -> str:
         sections.append(f'<section class="project-video"><p class="kicker">{label} / {index + 1:02d}</p><h3>{e(video["title"])}</h3><p>{e(video.get("description", ""))}</p>{note}{player}<p class="outbound">{external(link_label, video["url"])}</p></section>')
     script = f'<script src="{local("assets/video-embed.js")}" defer></script>'
     return '<section class="project-videos" aria-labelledby="project-videos-title"><h2 id="project-videos-title">プロジェクトの動画</h2>' + "".join(sections) + "</section>" + script
+
+
+def featured_links(links: list[dict]) -> str:
+    if not links:
+        return ""
+    cards = "".join(f'<li><a href="{safe_url(link["url"])}" target="_blank" rel="noopener noreferrer"><strong>{e(link["label"])}</strong><span>{e(link["description"])}</span><span aria-hidden="true">↗</span></a></li>' for link in links)
+    return '<section class="gallery-links" aria-label="作品ギャラリー"><ul>' + cards + "</ul></section>"
+
+
+def highlights(items: list[dict]) -> str:
+    if not items:
+        return ""
+    cards = "".join(f'<li><p class="kicker">{e(item["series"])}</p><h3>{e(item["title"])}</h3><p>{e(item["description"])}</p></li>' for item in items)
+    return '<section class="work-highlights" aria-labelledby="work-highlights-title"><h2 id="work-highlights-title">代表的な作品</h2><ul>' + cards + "</ul></section>"
 
 
 def section_head(kicker: str, title: str, path: str = "") -> str:
@@ -191,7 +206,7 @@ def build() -> None:
     <section class="content-section">{section_head('Elsewhere', '外部リンク')}{social}</section>'''
     write("about", page("About", "澤本優哉のプロフィールと活動の記録。", "about/", about))
 
-    works_list = "".join(card(x, "works") for x in WORKS) if WORKS else '<p class="empty">公開できる制作物を準備中です。作品を確認後、ここに追加します。</p>'
+    works_list = "".join(card(x, "works") for x in sorted(WORKS, key=lambda x: x.get("sort", ""), reverse=True)) if WORKS else '<p class="empty">公開できる制作物を準備中です。作品を確認後、ここに追加します。</p>'
     write("works", page("Works", "澤本優哉の制作物。", "works/", f'<div class="page-heading"><p class="kicker">Works</p><h1>制作物</h1><p>形式や時期を問わず、公開できる作品を掲載します。</p></div><div class="card-grid listing">{works_list}</div>'))
     for item in WORKS:
         youtube_id = item.get("youtube_id")
@@ -208,10 +223,14 @@ def build() -> None:
         facts_html = "".join(f'<div><dt>{label}</dt><dd>{e(item[key])}</dd></div>' for label, key in facts if item.get(key))
         info = f'<dl class="work-facts">{facts_html}</dl>' if facts_html else ""
         video_gallery = project_videos(item.get("videos", []))
+        gallery_links = featured_links(item.get("featured_links", []))
+        work_highlights = highlights(item.get("highlights", []))
         article_links = related(item.get("article_ids", []), article_by_id, "writing")
         timeline_links = related(item.get("timeline_ids", []), timeline_by_id, "about")
+        related_html = f'<aside class="related"><h2>関連する記録</h2>{article_links}{timeline_links}</aside>' if article_links or timeline_links else ""
         body = markdown.markdown(item["body"], extensions=["extra", "sane_lists"])
-        detail = f'<div class="detail-heading"><a class="back" href="{local("works/")}">← Works</a><p class="meta">{e(item.get("period", ""))} · {e(item.get("category", ""))}</p><h1>{e(item["title"])}</h1><p class="lead">{e(item.get("summary", ""))}</p></div>{media}{link}{info}{video_gallery}<article class="prose">{body}</article><aside class="related"><h2>関連する記録</h2>{article_links}{timeline_links or "<p>関連する公開記録はありません。</p>"}</aside>'
+        heading_meta = " · ".join(e(value) for value in [item.get("period", ""), item.get("category", "")] if value)
+        detail = f'<div class="detail-heading"><a class="back" href="{local("works/")}">← Works</a><p class="meta">{heading_meta}</p><h1>{e(item["title"])}</h1><p class="lead">{e(item.get("summary", ""))}</p></div>{gallery_links}{media}{link}{info}{video_gallery}<article class="prose">{body}</article>{work_highlights}{related_html}'
         write(f'works/{item["slug"]}', page(item["title"], item.get("summary", ""), f'works/{item["slug"]}/', detail))
 
     writing_list = "".join(card(x, "writing") for x in WRITING) if WRITING else '<p class="empty">公開する記事を準備中です。</p>'

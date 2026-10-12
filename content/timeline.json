@@ -1,5 +1,14 @@
 [
   {
+    "id": "music-sketch-2025",
+    "period": "2025年",
+    "sort": "2025",
+    "title": "MusicSketchを開始",
+    "summary": "音楽から浮かんだ映像を鉛筆で描くMusicSketchを開始。映像制作やp5.jsを使った作品へと活動を広げた。",
+    "work_ids": ["sketches-of-sound-and-movement"],
+    "article_ids": []
+  },
+  {
     "id": "university-coop-videos-2014",
     "period": "2014年",
     "sort": "2014",
