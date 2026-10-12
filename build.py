@@ -117,7 +117,36 @@ def card(item: dict, section: str) -> str:
     href = local(f"{section}/{item['slug']}/")
     image = f'<img src="{image_url(item["thumbnail"])}" alt="{e(item.get("thumbnail_alt", ""))}" loading="lazy">' if item.get("thumbnail") else '<span class="image-placeholder" aria-hidden="true">Y / S</span>'
     meta = item.get("period", item.get("date", ""))
-    return f'<article class="card"><a class="card-image" href="{href}">{image}</a><div class="card-body"><p class="meta">{e(meta)}{(" · " + e(item.get("category", ""))) if item.get("category") else ""}</p><h3><a href="{href}">{e(item["title"])}</a></h3><p>{e(item.get("summary", ""))}</p></div></article>'
+    count = f'<p class="meta">作品数：{e(item["work_count"])}</p>' if item.get("work_count") else ""
+    return f'<article class="card"><a class="card-image" href="{href}">{image}</a><div class="card-body"><p class="meta">{e(meta)}{(" · " + e(item.get("category", ""))) if item.get("category") else ""}</p><h3><a href="{href}">{e(item["title"])}</a></h3><p>{e(item.get("summary", ""))}</p>{count}</div></article>'
+
+
+def youtube_frame(video_id: str, title: str) -> str:
+    if not re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id):
+        raise ValueError(f"Invalid YouTube ID: {video_id}")
+    return f'<div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/{video_id}" title="{e(title)}の動画" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>'
+
+
+def project_videos(videos: list[dict]) -> str:
+    if not videos:
+        return ""
+    sections = []
+    for index, video in enumerate(videos):
+        label = "代表動画" if index == 0 else "関連動画"
+        note = f'<p class="video-note">{e(video["note"])}</p>' if video.get("note") else ""
+        video_id = video["youtube_id"]
+        if not re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id):
+            raise ValueError(f"Invalid YouTube ID: {video_id}")
+        if video.get("availability_note"):
+            player = f'<p class="video-unavailable">{e(video["availability_note"])}</p>'
+        elif index == 0:
+            player = youtube_frame(video_id, video["title"])
+        else:
+            player = f'<div class="video-frame video-placeholder"><button class="video-activate" type="button" data-youtube-id="{video_id}" data-video-title="{e(video["title"])}の動画" aria-label="{e(video["title"])}を読み込む"><span aria-hidden="true">▶</span> 動画を読み込む</button></div>'
+        link_label = "YouTubeで公開状態を確認" if video.get("availability_note") else "YouTubeで動画を開く"
+        sections.append(f'<section class="project-video"><p class="kicker">{label} / {index + 1:02d}</p><h3>{e(video["title"])}</h3><p>{e(video.get("description", ""))}</p>{note}{player}<p class="outbound">{external(link_label, video["url"])}</p></section>')
+    script = f'<script src="{local("assets/video-embed.js")}" defer></script>'
+    return '<section class="project-videos" aria-labelledby="project-videos-title"><h2 id="project-videos-title">プロジェクトの動画</h2>' + "".join(sections) + "</section>" + script
 
 
 def section_head(kicker: str, title: str, path: str = "") -> str:
@@ -166,22 +195,23 @@ def build() -> None:
     write("works", page("Works", "澤本優哉の制作物。", "works/", f'<div class="page-heading"><p class="kicker">Works</p><h1>制作物</h1><p>形式や時期を問わず、公開できる作品を掲載します。</p></div><div class="card-grid listing">{works_list}</div>'))
     for item in WORKS:
         youtube_id = item.get("youtube_id")
-        if youtube_id and not re.fullmatch(r"[A-Za-z0-9_-]{11}", youtube_id):
-            raise ValueError(f"Invalid YouTube ID: {youtube_id}")
-        if youtube_id:
-            media = f'<div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/{youtube_id}" title="{e(item["title"])}の動画" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>'
-            link_label = "YouTubeで動画を開く"
+        if item.get("videos"):
+            media = ""
+            link = ""
+        elif youtube_id:
+            media = youtube_frame(youtube_id, item["title"])
+            link = f'<p class="outbound">{external("YouTubeで動画を開く", item["url"])}</p>' if item.get("url") else ""
         else:
             media = f'<figure class="feature-image"><img src="{image_url(item["thumbnail"])}" alt="{e(item.get("thumbnail_alt", ""))}"></figure>' if item.get("thumbnail") else ""
-            link_label = "作品を見る"
-        link = f'<p class="outbound">{external(link_label, item["url"])}</p>' if item.get("url") else ""
-        facts = [("制作時期", "period"), ("カテゴリ", "category"), ("動画の長さ", "duration"), ("使用ソフト", "software"), ("担当", "role")]
+            link = f'<p class="outbound">{external("作品を見る", item["url"])}</p>' if item.get("url") else ""
+        facts = [("制作時期", "period"), ("カテゴリ", "category"), ("作品数", "work_count"), ("関連組織", "organization"), ("動画の長さ", "duration"), ("使用ソフト", "software"), ("担当", "role")]
         facts_html = "".join(f'<div><dt>{label}</dt><dd>{e(item[key])}</dd></div>' for label, key in facts if item.get(key))
         info = f'<dl class="work-facts">{facts_html}</dl>' if facts_html else ""
+        video_gallery = project_videos(item.get("videos", []))
         article_links = related(item.get("article_ids", []), article_by_id, "writing")
         timeline_links = related(item.get("timeline_ids", []), timeline_by_id, "about")
         body = markdown.markdown(item["body"], extensions=["extra", "sane_lists"])
-        detail = f'<div class="detail-heading"><a class="back" href="{local("works/")}">← Works</a><p class="meta">{e(item.get("period", ""))} · {e(item.get("category", ""))}</p><h1>{e(item["title"])}</h1><p class="lead">{e(item.get("summary", ""))}</p></div>{media}{link}{info}<article class="prose">{body}</article><aside class="related"><h2>関連する記録</h2>{article_links}{timeline_links or "<p>関連する公開記録はありません。</p>"}</aside>'
+        detail = f'<div class="detail-heading"><a class="back" href="{local("works/")}">← Works</a><p class="meta">{e(item.get("period", ""))} · {e(item.get("category", ""))}</p><h1>{e(item["title"])}</h1><p class="lead">{e(item.get("summary", ""))}</p></div>{media}{link}{info}{video_gallery}<article class="prose">{body}</article><aside class="related"><h2>関連する記録</h2>{article_links}{timeline_links or "<p>関連する公開記録はありません。</p>"}</aside>'
         write(f'works/{item["slug"]}', page(item["title"], item.get("summary", ""), f'works/{item["slug"]}/', detail))
 
     writing_list = "".join(card(x, "writing") for x in WRITING) if WRITING else '<p class="empty">公開する記事を準備中です。</p>'

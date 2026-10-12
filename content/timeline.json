@@ -1,5 +1,14 @@
 [
   {
+    "id": "university-coop-videos-2014",
+    "period": "2014年",
+    "sort": "2014",
+    "title": "大学生協の映像制作",
+    "summary": "福島大学1年生のとき、新入生向け説明会の待ち時間に着目してCM上映を提案。PowerDirectorを使い、大学生協の紹介動画を複数制作した。",
+    "work_ids": ["university-coop-videos-2014"],
+    "article_ids": []
+  },
+  {
     "id": "newspaper-club-introduction-2013",
     "period": "2013年度",
     "sort": "2013",
