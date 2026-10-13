@@ -208,7 +208,7 @@ def build() -> None:
     write("", page("", SITE["description"], "", home))
 
     timeline_parts = []
-    for item in sorted(TIMELINE, key=lambda x: x.get("sort", ""), reverse=True):
+    for item in sorted(TIMELINE, key=lambda x: x.get("order", 0), reverse=True):
         links = related(item.get("work_ids", []), work_by_id, "works") + related(item.get("article_ids", []), article_by_id, "writing")
         timeline_parts.append(f'<li id="timeline-{e(item["id"])}" class="timeline-item"><span class="meta">{e(item.get("period", ""))}</span><div><h3>{e(item["title"])}</h3><p>{e(item.get("summary", ""))}</p>{links}</div></li>')
     timeline_html = '<ol class="timeline">' + "".join(timeline_parts) + "</ol>" if timeline_parts else '<p class="empty">公開する記録を確認中です。</p>'
@@ -270,8 +270,9 @@ def build() -> None:
         tags = "".join(f'<li>{e(t)}</li>' for t in item.get("tags", []))
         updated = f' · 更新 {e(item["updated"])}' if item.get("updated") else ""
         related_works = related(item.get("work_ids", []), work_by_id, "works")
+        related_articles = related(item.get("article_ids", []), article_by_id, "writing")
         hero = f'<figure class="article-hero"><img src="{image_url(item["hero_image"])}" alt="{e(item.get("hero_image_alt", ""))}"><figcaption>{e(item.get("hero_caption", ""))}</figcaption></figure>' if item.get("hero_image") else ""
-        related_html = f'<aside class="related"><h2>関連する作品</h2>{related_works}</aside>' if related_works else ""
+        related_html = f'<aside class="related"><h2>関連する記事・作品</h2>{related_articles}{related_works}</aside>' if related_articles or related_works else ""
         series = series_by_id.get(item.get("series_id"))
         back_path = f'writing/{series["slug"]}/' if series else 'writing/'
         back_label = series["title"] if series else 'Writing'
