@@ -41,6 +41,8 @@ $env:SITE_BASE_PATH = "/"
 
 手仕事などの写真付き記事では、`period` に制作時期、`published` に公開日を別々に設定できます。公開を確認した画像を `assets/images/` に置き、記事の `thumbnail` と `hero_image` にその `assets/` から始まるパスを設定すると、一覧と記事冒頭に表示されます。`thumbnail_alt`、`hero_image_alt`、`hero_caption` で画像の説明を指定できます。実例は `content/writing/mel-chan-knitted-vest.md` を参照してください。後続の記事へのリンクは、公開された記事ができてから本文に追加してください。
 
+記事の途中に複数の写真を置くときは、`gallery_images` に各画像の `src`、`alt`、`caption` を設定し、本文の挿入位置に `<!-- image-gallery -->` を一行で置きます。画像の出典や加工の有無が分かる説明を添えてください。実例は `content/writing/support-center-halloween-craft-2026.md` にあります。
+
 ### 「支援センター巡り」に記事を追加する
 
 `content/writing/support-center-halloween-craft-2026.md` を手本に、`content/writing/` に新しい Markdown ファイルを作ります。冒頭の JSON に一意の `id`、`series_id: "support-center-visits"`、公開日 `published`、訪問日 `visit_date`（`YYYY-MM-DD`）、本人が確認した呼称の `center`、`activity`、短い `summary` を設定してください。任意の `play_type` には「制作遊び」などの一語を入れられます。記事を追加すると、`/writing/support-center-visits/` のシリーズ一覧に訪問日順で表示されます。シリーズ名や説明は `content/series.json` で変更できます。

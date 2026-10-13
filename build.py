@@ -260,6 +260,13 @@ def build() -> None:
         write(f'writing/{series["slug"]}', page(series["title"], series["description"], f'writing/{series["slug"]}/', series_body))
     for item in WRITING:
         body = markdown.markdown(item["body"], extensions=["extra", "sane_lists"])
+        gallery_items = item.get("gallery_images", [])
+        if gallery_items:
+            gallery = "".join(f'<figure><img src="{image_url(photo["src"])}" alt="{e(photo["alt"])}" loading="lazy"><figcaption>{e(photo["caption"])}</figcaption></figure>' for photo in gallery_items)
+            gallery_html = f'<section class="article-gallery" aria-label="制作物の写真">{gallery}</section>'
+            if body.count("<!-- image-gallery -->") != 1:
+                raise ValueError(f"Place one image-gallery marker in: {item['slug']}")
+            body = body.replace("<!-- image-gallery -->", gallery_html)
         tags = "".join(f'<li>{e(t)}</li>' for t in item.get("tags", []))
         updated = f' · 更新 {e(item["updated"])}' if item.get("updated") else ""
         related_works = related(item.get("work_ids", []), work_by_id, "works")
