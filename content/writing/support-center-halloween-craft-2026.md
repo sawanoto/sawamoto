@@ -1,9 +1,9 @@
 ---
-{"id":"support-center-halloween-craft-2026","title":"豊の支援センターでハロウィンの制作遊び","published":"2026-10-14","period":"2026年10月13日","category":"支援センター巡り","tags":["制作遊び"],"summary":"牛乳パックを建物に見立てた工作。娘が両面テープを剥がして飾りを貼る様子と、指先を使う遊びについて調べたこと。","series_id":"support-center-visits","visit_date":"2026-10-13","center":"豊の支援センター","activity":"ハロウィンの制作遊び","play_type":"制作遊び","work_ids":[]}
+{"id":"support-center-halloween-craft-2026","title":"鳥谷野支援センターでハロウィンの制作遊び","published":"2026-10-14","period":"2026年10月13日","category":"支援センター巡り","tags":["制作遊び"],"summary":"牛乳パックを建物に見立てた工作。娘が両面テープを剥がして飾りを貼る様子と、指先を使う遊びについて調べたこと。","series_id":"support-center-visits","visit_date":"2026-10-13","center":"鳥谷野支援センター","activity":"ハロウィンの制作遊び","play_type":"制作遊び","work_ids":[]}
 ---
 ## ハロウィンの制作遊び
 
-2026年10月13日、豊の支援センターへ行った。
+2026年10月13日、鳥谷野支援センターへ行った。
 
 この日の活動は、ハロウィンの制作遊びだった。
 
