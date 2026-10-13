@@ -22,6 +22,7 @@ ORIGIN = "https://sawanoto.github.io"
 SITE = json.loads((CONTENT / "site.json").read_text(encoding="utf-8"))
 TIMELINE = json.loads((CONTENT / "timeline.json").read_text(encoding="utf-8"))
 BOOKS = json.loads((CONTENT / "books.json").read_text(encoding="utf-8"))
+SERIES = json.loads((CONTENT / "series.json").read_text(encoding="utf-8"))
 
 
 def e(value: object) -> str:
@@ -69,12 +70,25 @@ def data_files(folder: str) -> list[dict]:
 
 WORKS = data_files("works")
 WRITING = data_files("writing")
+series_by_id = {x["id"]: x for x in SERIES}
 work_by_id = {x["id"]: x for x in WORKS}
 article_by_id = {x["id"]: x for x in WRITING}
 timeline_by_id = {x["id"]: x for x in TIMELINE}
 for items in (WORKS, WRITING, TIMELINE):
     if len({x["id"] for x in items}) != len(items):
         raise ValueError("Duplicate content ID")
+if len(series_by_id) != len(SERIES):
+    raise ValueError("Duplicate series ID")
+if {x["slug"] for x in SERIES} & {x["slug"] for x in WRITING}:
+    raise ValueError("Series and article slugs must be distinct")
+for series in SERIES:
+    if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", series["slug"]):
+        raise ValueError(f"Use an ASCII series slug: {series['slug']}")
+for item in WRITING:
+    if item.get("series_id") and item["series_id"] not in series_by_id:
+        raise ValueError(f"Unknown series ID: {item['series_id']}")
+    if item.get("series_id") and not all(item.get(x) for x in ("visit_date", "center", "activity")):
+        raise ValueError(f"Series article needs visit_date, center and activity: {item['slug']}")
 
 
 def related(ids: list[str], collection: dict, section: str) -> str:
@@ -234,7 +248,16 @@ def build() -> None:
         write(f'works/{item["slug"]}', page(item["title"], item.get("summary", ""), f'works/{item["slug"]}/', detail))
 
     writing_list = "".join(card(x, "writing") for x in sorted(WRITING, key=lambda x: x.get("published", ""), reverse=True)) if WRITING else '<p class="empty">公開する記事を準備中です。</p>'
-    write("writing", page("Writing", "澤本優哉の文章と考察。", "writing/", f'<div class="page-heading"><p class="kicker">Writing</p><h1>文章・考察</h1><p>制作の記録や、日々考えたことを文章で残します。</p></div><div class="card-grid listing">{writing_list}</div>'))
+    series_links = "".join(f'<li><a href="{local(f"writing/{series["slug"]}/")}"><strong>{e(series["title"])}</strong><span>{e(series["description"])}</span><span aria-hidden="true">→</span></a></li>' for series in SERIES if any(x.get("series_id") == series["id"] for x in WRITING))
+    series_html = f'<section class="writing-series"><h2>連載</h2><ul>{series_links}</ul></section>' if series_links else ""
+    write("writing", page("Writing", "澤本優哉の文章と考察。", "writing/", f'<div class="page-heading"><p class="kicker">Writing</p><h1>文章・考察</h1><p>制作の記録や、日々考えたことを文章で残します。</p></div>{series_html}<div class="card-grid listing">{writing_list}</div>'))
+    for series in SERIES:
+        entries = sorted((x for x in WRITING if x.get("series_id") == series["id"]), key=lambda x: x.get("visit_date", x.get("published", "")), reverse=True)
+        if not entries:
+            continue
+        rows = "".join(f'<li><p class="meta">{e(item.get("visit_date", ""))} · {e(item.get("center", ""))}</p><h2><a href="{local(f"writing/{item["slug"]}/")}">{e(item.get("activity", item["title"]))}</a></h2><p>{e(item.get("summary", ""))}</p></li>' for item in entries)
+        series_body = f'<div class="page-heading"><a class="back" href="{local("writing/")}">← Writing</a><p class="kicker">Series</p><h1>{e(series["title"])}</h1><p>{e(series["description"])}</p></div><ol class="series-list">{rows}</ol>'
+        write(f'writing/{series["slug"]}', page(series["title"], series["description"], f'writing/{series["slug"]}/', series_body))
     for item in WRITING:
         body = markdown.markdown(item["body"], extensions=["extra", "sane_lists"])
         tags = "".join(f'<li>{e(t)}</li>' for t in item.get("tags", []))
@@ -242,7 +265,11 @@ def build() -> None:
         related_works = related(item.get("work_ids", []), work_by_id, "works")
         hero = f'<figure class="article-hero"><img src="{image_url(item["hero_image"])}" alt="{e(item.get("hero_image_alt", ""))}"><figcaption>{e(item.get("hero_caption", ""))}</figcaption></figure>' if item.get("hero_image") else ""
         related_html = f'<aside class="related"><h2>関連する作品</h2>{related_works}</aside>' if related_works else ""
-        detail = f'<div class="detail-heading"><a class="back" href="{local("writing/")}">← Writing</a><p class="meta">{e(item.get("published", ""))}{updated} · {e(item.get("category", ""))} · {e(item.get("period", ""))}</p><h1>{e(item["title"])}</h1><p class="lead">{e(item.get("summary", ""))}</p><ul class="chips">{tags}</ul></div>{hero}<article class="prose">{body}</article>{related_html}'
+        series = series_by_id.get(item.get("series_id"))
+        back_path = f'writing/{series["slug"]}/' if series else 'writing/'
+        back_label = series["title"] if series else 'Writing'
+        visit_facts = f'<dl class="work-facts visit-facts"><div><dt>訪問日</dt><dd>{e(item["visit_date"])}</dd></div><div><dt>場所</dt><dd>{e(item["center"])}</dd></div><div><dt>活動</dt><dd>{e(item["activity"])}</dd></div></dl>' if series and all(item.get(x) for x in ("visit_date", "center", "activity")) else ""
+        detail = f'<div class="detail-heading"><a class="back" href="{local(back_path)}">← {e(back_label)}</a><p class="meta">{e(item.get("published", ""))}{updated} · {e(item.get("category", ""))} · {e(item.get("period", ""))}</p><h1>{e(item["title"])}</h1><p class="lead">{e(item.get("summary", ""))}</p><ul class="chips">{tags}</ul></div>{hero}{visit_facts}<article class="prose">{body}</article>{related_html}'
         write(f'writing/{item["slug"]}', page(item["title"], item.get("summary", ""), f'writing/{item["slug"]}/', detail))
 
     # Books stays off the navigation until a real, approved item is added.
@@ -250,7 +277,7 @@ def build() -> None:
         cards = "".join(f'<article class="book"><h2>{e(x["title"])}</h2><p>{e(x.get("summary", ""))}</p>{external("販売ページ", x["url"])}</article>' for x in BOOKS)
         write("books", page("Books", "澤本優哉の書籍と販売作品。", "books/", f'<div class="page-heading"><p class="kicker">Books</p><h1>書籍・販売</h1></div>{cards}'))
 
-    paths = ["", "about/", "works/", "writing/"] + [f'works/{x["slug"]}/' for x in WORKS] + [f'writing/{x["slug"]}/' for x in WRITING] + (["books/"] if BOOKS else [])
+    paths = ["", "about/", "works/", "writing/"] + [f'works/{x["slug"]}/' for x in WORKS] + [f'writing/{x["slug"]}/' for x in WRITING] + [f'writing/{x["slug"]}/' for x in SERIES if any(y.get("series_id") == x["id"] for y in WRITING)] + (["books/"] if BOOKS else [])
     urls = "".join(f'<url><loc>{xml_escape(ORIGIN + local(x))}</loc></url>' for x in paths)
     (OUT / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>', encoding="utf-8")
     (OUT / "robots.txt").write_text(f'User-agent: *\nAllow: /\nSitemap: {ORIGIN + local("sitemap.xml")}\n', encoding="utf-8")
