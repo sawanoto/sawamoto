@@ -116,7 +116,7 @@ def write(path: str, content: str) -> None:
 def card(item: dict, section: str) -> str:
     href = local(f"{section}/{item['slug']}/")
     image = f'<a class="card-image" href="{href}"><img src="{image_url(item["thumbnail"])}" alt="{e(item.get("thumbnail_alt", ""))}" loading="lazy"></a>' if item.get("thumbnail") else ""
-    card_class = "card" if image else "card card-text"
+    card_class = ("card card-writing-image" if section == "writing" else "card") if image else "card card-text"
     meta = " · ".join(e(value) for value in [item.get("period", item.get("date", "")), item.get("category", "")] if value)
     count = f'<p class="meta">作品数：{e(item["work_count"])}</p>' if item.get("work_count") else ""
     return f'<article class="{card_class}">{image}<div class="card-body"><p class="meta">{meta}</p><h3><a href="{href}">{e(item["title"])}</a></h3><p>{e(item.get("list_summary", item.get("summary", "")))}</p>{count}</div></article>'
@@ -233,14 +233,16 @@ def build() -> None:
         detail = f'<div class="detail-heading"><a class="back" href="{local("works/")}">← Works</a><p class="meta">{heading_meta}</p><h1>{e(item["title"])}</h1><p class="lead">{e(item.get("summary", ""))}</p></div>{gallery_links}{media}{link}{info}{video_gallery}<article class="prose">{body}</article>{work_highlights}{related_html}'
         write(f'works/{item["slug"]}', page(item["title"], item.get("summary", ""), f'works/{item["slug"]}/', detail))
 
-    writing_list = "".join(card(x, "writing") for x in WRITING) if WRITING else '<p class="empty">公開する記事を準備中です。</p>'
+    writing_list = "".join(card(x, "writing") for x in sorted(WRITING, key=lambda x: x.get("published", ""), reverse=True)) if WRITING else '<p class="empty">公開する記事を準備中です。</p>'
     write("writing", page("Writing", "澤本優哉の文章と考察。", "writing/", f'<div class="page-heading"><p class="kicker">Writing</p><h1>文章・考察</h1><p>制作の記録や、日々考えたことを文章で残します。</p></div><div class="card-grid listing">{writing_list}</div>'))
     for item in WRITING:
         body = markdown.markdown(item["body"], extensions=["extra", "sane_lists"])
         tags = "".join(f'<li>{e(t)}</li>' for t in item.get("tags", []))
         updated = f' · 更新 {e(item["updated"])}' if item.get("updated") else ""
         related_works = related(item.get("work_ids", []), work_by_id, "works")
-        detail = f'<div class="detail-heading"><a class="back" href="{local("writing/")}">← Writing</a><p class="meta">{e(item.get("published", ""))}{updated} · {e(item.get("category", ""))}</p><h1>{e(item["title"])}</h1><p class="lead">{e(item.get("summary", ""))}</p><ul class="chips">{tags}</ul></div><article class="prose">{body}</article><aside class="related"><h2>関連する作品</h2>{related_works or "<p>関連する公開作品はありません。</p>"}</aside>'
+        hero = f'<figure class="article-hero"><img src="{image_url(item["hero_image"])}" alt="{e(item.get("hero_image_alt", ""))}"><figcaption>{e(item.get("hero_caption", ""))}</figcaption></figure>' if item.get("hero_image") else ""
+        related_html = f'<aside class="related"><h2>関連する作品</h2>{related_works}</aside>' if related_works else ""
+        detail = f'<div class="detail-heading"><a class="back" href="{local("writing/")}">← Writing</a><p class="meta">{e(item.get("published", ""))}{updated} · {e(item.get("category", ""))} · {e(item.get("period", ""))}</p><h1>{e(item["title"])}</h1><p class="lead">{e(item.get("summary", ""))}</p><ul class="chips">{tags}</ul></div>{hero}<article class="prose">{body}</article>{related_html}'
         write(f'writing/{item["slug"]}', page(item["title"], item.get("summary", ""), f'writing/{item["slug"]}/', detail))
 
     # Books stays off the navigation until a real, approved item is added.

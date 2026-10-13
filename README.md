@@ -37,7 +37,9 @@ $env:SITE_BASE_PATH = "/"
 
 複数の動画を一つのプロジェクトとして掲載する場合は、同じ作品ファイルに `videos` 配列を追加します。各要素に `title`、`youtube_id`、`url`、`description`、必要なら `note` を設定します。先頭が代表動画になり、ほかの動画は閲覧者が「動画を読み込む」を押したときだけプレーヤーを読み込みます。公開されていない動画には `availability_note` を設定すると、再生ボタンの代わりにその説明を表示します。すべての動画に YouTube への直接リンクが表示されます。任意の `work_count` と `organization` は作品情報として表示されます。Works 一覧にはそのプロジェクトを一件として表示し、`thumbnail` には代表動画の画像を指定できます。実例は `content/works/university-coop-videos-2014.md` を参照してください。
 
-記事ファイルは `period` の代わりに `published`（`YYYY-MM-DD`）、任意の `updated`、`tags`、`work_ids` を設定します。作品と年表の `sort` は並び順用の文字列で、確認できる精度の年（`YYYY`）や年月日（`YYYY-MM-DD`）を設定できます。年表の各項目には `id`、`period`、`sort`、`title`、`summary`、`work_ids`、`article_ids` を設定します。各 ID はその種類の中で一意にし、関連 ID は実在する公開コンテンツを指してください。未公開コンテンツへの関連 ID はビルドエラーになります。
+記事ファイルは `published`（`YYYY-MM-DD`）、任意の制作時期 `period`、`updated`、`tags`、`work_ids` を設定します。作品と年表の `sort` は並び順用の文字列で、確認できる精度の年（`YYYY`）や年月日（`YYYY-MM-DD`）を設定できます。年表の各項目には `id`、`period`、`sort`、`title`、`summary`、`work_ids`、`article_ids` を設定します。各 ID はその種類の中で一意にし、関連 ID は実在する公開コンテンツを指してください。未公開コンテンツへの関連 ID はビルドエラーになります。
+
+手仕事などの写真付き記事では、`period` に制作時期、`published` に公開日を別々に設定できます。公開を確認した画像を `assets/images/` に置き、記事の `thumbnail` と `hero_image` にその `assets/` から始まるパスを設定すると、一覧と記事冒頭に表示されます。`thumbnail_alt`、`hero_image_alt`、`hero_caption` で画像の説明を指定できます。実例は `content/writing/mel-chan-knitted-vest.md` を参照してください。後続の記事へのリンクは、公開された記事ができてから本文に追加してください。
 
 外部 URL は `http` / `https` のみ許可します。Markdown 本文は自分で確認した文章とリンクだけを入れてください。画像は公開を許可されたものだけを `assets/` などに配置してください。
 
