@@ -194,6 +194,8 @@ def build() -> None:
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy(asset, target)
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
+    verification_file = "google9f55b9147023d4f7.html"
+    shutil.copyfile(ROOT / verification_file, OUT / verification_file)
 
     recent_works = sorted(WORKS, key=lambda x: x.get("sort", x.get("date", "")), reverse=True)[:3]
     recent_articles = sorted(WRITING, key=lambda x: x.get("published", ""), reverse=True)[:3]
