@@ -57,6 +57,8 @@ $env:SITE_BASE_PATH = "/"
 2. GitHub リポジトリの **Settings → Pages → Build and deployment → Source** で **GitHub Actions** を選びます。
 3. `.github/workflows/pages.yml` がビルドして公開します。URL は `https://sawanoto.github.io/sawamoto/` です。
 
+Codex Cloud での変更は検証ブランチと PR で確認し、本人が承認した後に `main` へマージします。マージすると GitHub Pages の公開ワークフローが動きます。
+
 公開前に氏名以外の個人情報、作品の権利・公開許可、リンク先、画像の公開許可、各文章の事実関係を確認してください。非公開原稿や資料はこのリポジトリに置かないでください。`.private/` はローカル退避用で Git の対象外ですが、秘密情報の保管場所として長期利用しないでください。
 
 ## 構成
