@@ -287,7 +287,11 @@ def build() -> None:
         cards = "".join(f'<article class="book"><h2>{e(x["title"])}</h2><p>{e(x.get("summary", ""))}</p>{external("販売ページ", x["url"])}</article>' for x in BOOKS)
         write("books", page("Books", "澤本優哉の書籍と販売作品。", "books/", f'<div class="page-heading"><p class="kicker">Books</p><h1>書籍・販売</h1></div>{cards}'))
 
-    paths = ["", "about/", "works/", "writing/"] + [f'works/{x["slug"]}/' for x in WORKS] + [f'writing/{x["slug"]}/' for x in WRITING] + [f'writing/{x["slug"]}/' for x in SERIES if any(y.get("series_id") == x["id"] for y in WRITING)] + (["books/"] if BOOKS else [])
+    # Use pages actually written to dist, so the sitemap cannot list missing pages.
+    paths = []
+    for file in sorted(OUT.rglob("index.html")):
+        folder = file.relative_to(OUT).parent.as_posix()
+        paths.append("" if folder == "." else f"{folder}/")
     urls = "".join(f'<url><loc>{xml_escape(ORIGIN + local(x))}</loc></url>' for x in paths)
     (OUT / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>', encoding="utf-8")
     (OUT / "robots.txt").write_text(f'User-agent: *\nAllow: /\nSitemap: {ORIGIN + local("sitemap.xml")}\n', encoding="utf-8")
