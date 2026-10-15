@@ -35,6 +35,10 @@ $env:SITE_BASE_PATH = "/"
 
 動画作品では `youtube_id` に YouTube URL の動画 ID を設定すると、詳細ページに動画を埋め込めます。`url` は埋め込みが再生できない場合の外部リンクとして表示されます。`duration`、`software`、`role` は任意の制作情報です。サムネイルには YouTube の `https://img.youtube.com/vi/動画ID/hqdefault.jpg` も指定できます。
 
+LifeSketch作品は `url` に単独ページ、`interactive_url` に `https://sawanoto.github.io/LifeSketch/` 以下の埋め込み表示用URLを指定できます。作品詳細では「作品を読み込む」を押した後にiframeを作り、単独ページへのリンクも表示します。作品の公開後にリンク先を確認してください。
+
+LifeSketchの記事内にも作品を埋め込むときは、記事のメタデータに `interactive_url` を指定し、本文の表示したい位置に `<!-- interactive-work -->` を一行で置きます。外部作品はボタンを押すまで読み込みません。
+
 複数の動画を一つのプロジェクトとして掲載する場合は、同じ作品ファイルに `videos` 配列を追加します。各要素に `title`、`youtube_id`、`url`、`description`、必要なら `note` を設定します。先頭が代表動画になり、ほかの動画は閲覧者が「動画を読み込む」を押したときだけプレーヤーを読み込みます。公開されていない動画には `availability_note` を設定すると、再生ボタンの代わりにその説明を表示します。すべての動画に YouTube への直接リンクが表示されます。任意の `work_count` と `organization` は作品情報として表示されます。Works 一覧にはそのプロジェクトを一件として表示し、`thumbnail` には代表動画の画像を指定できます。実例は `content/works/university-coop-videos-2014.md` を参照してください。
 
 記事ファイルは `published`（`YYYY-MM-DD`）、任意の制作時期 `period`、`updated`、`tags`、`work_ids` を設定します。作品と年表の `sort` は並び順用の文字列で、確認できる精度の年（`YYYY`）や年月日（`YYYY-MM-DD`）を設定できます。年表の各項目には `id`、`period`、`sort`、`title`、`summary`、`work_ids`、`article_ids` を設定します。各 ID はその種類の中で一意にし、関連 ID は実在する公開コンテンツを指してください。未公開コンテンツへの関連 ID はビルドエラーになります。

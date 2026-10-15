@@ -143,6 +143,18 @@ def youtube_frame(video_id: str, title: str) -> str:
     return f'<div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/{video_id}" title="{e(title)}の動画" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>'
 
 
+def interactive_work(url: str, title: str) -> str:
+    parsed = urlparse(url)
+    if (parsed.scheme, parsed.netloc) != ("https", "sawanoto.github.io") or not parsed.path.startswith("/LifeSketch/"):
+        raise ValueError(f"LifeSketch embed must use the public LifeSketch URL: {url}")
+    return (
+        '<div class="interactive-placeholder" data-interactive-url="' + e(url) + '" data-interactive-title="' + e(title) + '">'
+        '<p>作品をページ内で遊べます。読み込み後、作品内のパイプをタップすると音が鳴ります。</p>'
+        '<button class="interactive-activate" type="button">作品を読み込む</button>'
+        '</div><script src="' + local("assets/interactive-embed.js") + '" defer></script>'
+    )
+
+
 def project_videos(videos: list[dict]) -> str:
     if not videos:
         return ""
@@ -230,6 +242,9 @@ def build() -> None:
         if item.get("videos"):
             media = ""
             link = ""
+        elif item.get("interactive_url"):
+            media = interactive_work(item["interactive_url"], item["title"])
+            link = f'<p class="outbound">{external("作品を別のページで開く", item["url"])}</p>'
         elif youtube_id:
             media = youtube_frame(youtube_id, item["title"])
             link = f'<p class="outbound">{external("YouTubeで動画を開く", item["url"])}</p>' if item.get("url") else ""
@@ -263,6 +278,10 @@ def build() -> None:
         write(f'writing/{series["slug"]}', page(series["title"], series["description"], f'writing/{series["slug"]}/', series_body))
     for item in WRITING:
         body = markdown.markdown(item["body"], extensions=["extra", "sane_lists"])
+        if item.get("interactive_url"):
+            if body.count("<!-- interactive-work -->") != 1:
+                raise ValueError(f"Place one interactive-work marker in: {item['slug']}")
+            body = body.replace("<!-- interactive-work -->", interactive_work(item["interactive_url"], item["title"]))
         gallery_items = item.get("gallery_images", [])
         if gallery_items:
             gallery = "".join(f'<figure><img src="{image_url(photo["src"])}" alt="{e(photo["alt"])}" loading="lazy"><figcaption>{e(photo["caption"])}</figcaption></figure>' for photo in gallery_items)
