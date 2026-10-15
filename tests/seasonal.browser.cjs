@@ -14,6 +14,9 @@ async function routeLocal(context) {
     const url = new URL(route.request().url());
     // No server or external network needed: serve generated files via Playwright.
     if (url.origin !== origin) return route.abort();
+    if (url.pathname === '/review.html') {
+      return route.fulfill({body:fs.readFileSync(path.resolve(__dirname, '../.private/seasonal-preview.html')), contentType:types['.html']});
+    }
     let relative = decodeURIComponent(url.pathname.replace(/^\/sawamoto\//, ''));
     if (!relative || relative.endsWith('/')) relative += 'index.html';
     const file = path.resolve(root, relative);
@@ -48,6 +51,17 @@ async function routeLocal(context) {
       await page.goto(`${origin}${article}?themeMonth=${month}`);
       assert.equal(await page.locator('.prose').count(),1);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `article overflow month ${month}, width ${width}`);
+    }
+  }
+  // The downloadable review file must work too, including its month/width controls.
+  await page.goto(`${origin}/review.html`);
+  for (const width of ['1280','390','320']) {
+    await page.locator('#width').selectOption(width);
+    for (let month=1;month<=12;month++) {
+      await page.locator('#month').selectOption(String(month));
+      const themed = page.frameLocator('#preview').locator(`html[data-theme-month="${month}"]`);
+      await themed.waitFor();
+      assert.equal(await themed.evaluate(el => el.scrollWidth > el.clientWidth), false, `review overflow month ${month}, width ${width}`);
     }
   }
   // Tokyo midnight while the browser is configured to another time zone.

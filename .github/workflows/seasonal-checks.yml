@@ -6,6 +6,7 @@ on:
       - build.py
       - content/**
       - tests/seasonal*.cjs
+      - scripts/seasonal-preview.py
       - .github/workflows/seasonal-checks.yml
   workflow_dispatch:
 permissions:

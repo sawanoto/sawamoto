@@ -134,6 +134,7 @@ node --test --test-isolation=none tests/seasonal.test.cjs
 npm install --no-save --package-lock=false playwright
 npx playwright install chromium
 python build.py
+python scripts/seasonal-preview.py
 node tests/seasonal.browser.cjs
 ```
 
