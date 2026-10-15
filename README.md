@@ -73,3 +73,71 @@ Codex Cloud での変更は検証ブランチと PR で確認し、本人が承�
 - `.github/workflows/pages.yml`：Pages 公開
 
 今後は実際の作品・記事を追加したうえで、カテゴリ絞り込み、OGP画像、Books のナビゲーションなどを検討できます。
+
+## 毎月の季節デザイン
+
+ヘッダーの小さなSVGと淡い背景・アクセント色が、日本時間（`Asia/Tokyo`）の月に合わせて切り替わります。毎年繰り返し使え、月替わりの再ビルド・再デプロイは不要です。JavaScriptが無効なら、従来の標準デザインを表示します。装飾にアニメーションはなく、読み上げやキーボード操作の対象にもなりません。
+
+12か月の色とイラストは **`assets/seasonal.js` の `THEMES`** だけで管理します。共通の配置は `assets/seasonal.css`、全ページへの読み込みと装飾の置き場所は `build.py` の共通テンプレートにあります。外部画像・外部API・Cookie・ローカルストレージは使いません。
+
+| 月 | テーマ | 公開後の確認用URL |
+| --- | --- | --- |
+| 1 | お正月 | https://sawanoto.github.io/sawamoto/?themeMonth=1 |
+| 2 | 雪と冬 | https://sawanoto.github.io/sawamoto/?themeMonth=2 |
+| 3 | 春の芽吹き | https://sawanoto.github.io/sawamoto/?themeMonth=3 |
+| 4 | 桜 | https://sawanoto.github.io/sawamoto/?themeMonth=4 |
+| 5 | 新緑 | https://sawanoto.github.io/sawamoto/?themeMonth=5 |
+| 6 | 梅雨と紫陽花 | https://sawanoto.github.io/sawamoto/?themeMonth=6 |
+| 7 | 七夕 | https://sawanoto.github.io/sawamoto/?themeMonth=7 |
+| 8 | 夏とひまわり | https://sawanoto.github.io/sawamoto/?themeMonth=8 |
+| 9 | 月見 | https://sawanoto.github.io/sawamoto/?themeMonth=9 |
+| 10 | ハロウィン | https://sawanoto.github.io/sawamoto/?themeMonth=10 |
+| 11 | 紅葉 | https://sawanoto.github.io/sawamoto/?themeMonth=11 |
+| 12 | クリスマス | https://sawanoto.github.io/sawamoto/?themeMonth=12 |
+
+`themeMonth` はそのURLだけに適用される開発者用プレビューです。通常ページに選択UIは出ません。指定を外せば現在の日本時間の月へ戻ります。`1`〜`12` 以外の値は無視します。記事ページにも `?themeMonth=10` などを付けて確認できます。ページを移動した先にもプレビューを適用したい場合は、移動先URLにも指定してください。
+
+開いたままのページは、次の月の1日午前0時（日本時間）に切り替えます。タイマーは最長1時間ごとにも日付を確認し、端末の時刻変更に対応します。タブが非表示だったり端末が休止していたりした場合は、復帰時・再表示時・ページへのフォーカス時にも更新します。ブラウザーがバックグラウンドで処理を止めている間は実行できませんが、再表示時には現在の月になります。
+
+### マージ前にローカルで確認する
+
+この変更のブランチをチェックアウトして、既存のPython環境で次を実行します（bashの例）。本番URLの変更は不要です。
+
+```bash
+SITE_BASE_PATH=/ python build.py
+python -m http.server 8000 --directory dist
+```
+
+`http://localhost:8000/?themeMonth=10` を開き、数字を `1`〜`12` に変えて確認してください。スマートフォン幅は390px・320px、PC幅は1280pxを目安に確認できます。本番用に戻すときは `SITE_BASE_PATH` を指定せず `python build.py` を実行してください。
+
+ブラウザーで手軽に見比べたい場合は、ビルド後に次を実行すると、月と画面幅を選べる確認専用HTMLも作れます。この選択UIは公開サイトには入りません。
+
+```bash
+python scripts/seasonal-preview.py
+```
+
+出力された `.private/seasonal-preview.html` をブラウザーで開いてください。生成済みトップページにCSSとテーマのスクリプトを埋め込むため、ローカルHTTPサーバーは不要です。ページ内のリンクは公開サイトへ移動します。
+
+### 自動検証
+
+切り替えのロジックはNode.jsの標準機能だけで検証できます。
+
+```bash
+node --test --test-isolation=none tests/seasonal.test.cjs
+```
+
+12か月の配色（通常文字のコントラスト比4.5以上）、プレビューの不正値、日本時間の全月の境界、年越し、複数年での繰り返し、再表示・時計変更などを検証します。`--test-isolation=none` に対応するNode.js 22.8以降を使ってください。
+
+実ブラウザー検証には任意の開発用依存 `playwright` とChromiumが必要です。
+
+```bash
+npm install --no-save --package-lock=false playwright
+npx playwright install chromium
+python build.py
+python scripts/seasonal-preview.py
+node tests/seasonal.browser.cjs
+```
+
+システムのChromiumを使う場合は `CHROMIUM_PATH=/usr/bin/chromium node tests/seasonal.browser.cjs` のように指定できます。サイトにnpm依存は追加されず、本番ビルドは従来どおりPythonだけです。ブラウザー検証は、生成したファイルをPlaywright内で配信するためローカルHTTPサーバーは不要です。全12か月のPC・モバイル配置、記事の横はみ出し、JavaScript無効時、別タイムゾーンの端末での日本時間の月替わりを確認し、`.private/seasonal-screenshots/` にスクリーンショットを出力します。
+
+PRではGitHub Actionsの **Check seasonal themes** も同じ検証を実行します。実行結果の **Artifacts → seasonal-theme-preview** をダウンロードすると、確認専用HTMLとPC・スマートフォン各月のスクリーンショットを取得できます。テストに失敗した場合も、その時点で生成できた確認ファイルを保存します。公開・デプロイは行いません。
