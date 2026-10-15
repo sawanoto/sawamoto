@@ -1,5 +1,5 @@
 ---
-{"id":"support-center-watching-over-2026","title":"すぐに叱らず、そばで見守る — 支援センターで学んだこと","published":"2026-10-15","period":"2026年10月14日","category":"支援センター巡り","tags":["子ども同士の関わり","見守り"],"summary":"イベントのない日に娘と支援センターへ。おもちゃの取り合いで先生がそばで見守る姿から、本で読んだことの実践を学んだ。","series_id":"support-center-visits","visit_date":"2026-10-14","center":"さくら子育て支援センター","activity":"自由遊び・子ども同士の関わり","play_type":"自由遊び","work_ids":[],"article_ids":["support-center-quick-information-exchange-2026"]}
+{"id":"support-center-watching-over-2026","title":"すぐに叱らず、そばで見守る — 支援センターで学んだこと","published":"2026-10-15","period":"2026年10月14日","category":"支援センター巡り","tags":["子ども同士の関わり","見守り"],"summary":"イベントのない日に娘と支援センターへ。おもちゃの取り合いで先生がそばで見守る姿から、本で読んだことの実践を学んだ。","series_id":"support-center-visits","visit_date":"2026-10-14","center":"さくら子育て支援センター","activity":"自由遊び・子ども同士の関わり","play_type":"自由遊び","work_ids":[],"article_ids":["support-center-quick-information-exchange-2026","support-center-music-therapy-2026"]}
 ---
 ## イベントのない日の支援センター
 
