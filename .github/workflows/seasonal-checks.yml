@@ -24,6 +24,7 @@ jobs:
           node-version: '24'
       - run: pip install -r requirements.txt
       - run: python build.py
+      - run: python scripts/seasonal-preview.py
       - run: node --test --test-isolation=none tests/seasonal.test.cjs
       - run: npm install --no-save --package-lock=false playwright
       - run: npx playwright install --with-deps chromium
@@ -31,7 +32,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: seasonal-theme-screenshots
-          path: .private/seasonal-screenshots/
+          name: seasonal-theme-preview
+          path: .private/
           if-no-files-found: ignore
           retention-days: 14

@@ -138,3 +138,5 @@ node tests/seasonal.browser.cjs
 ```
 
 システムのChromiumを使う場合は `CHROMIUM_PATH=/usr/bin/chromium node tests/seasonal.browser.cjs` のように指定できます。サイトにnpm依存は追加されず、本番ビルドは従来どおりPythonだけです。ブラウザー検証は、生成したファイルをPlaywright内で配信するためローカルHTTPサーバーは不要です。全12か月のPC・モバイル配置、記事の横はみ出し、JavaScript無効時、別タイムゾーンの端末での日本時間の月替わりを確認し、`.private/seasonal-screenshots/` にスクリーンショットを出力します。
+
+PRではGitHub Actionsの **Check seasonal themes** も同じ検証を実行します。実行結果の **Artifacts → seasonal-theme-preview** をダウンロードすると、確認専用HTMLとPC・スマートフォン各月のスクリーンショットを取得できます。テストに失敗した場合も、その時点で生成できた確認ファイルを保存します。公開・デプロイは行いません。
