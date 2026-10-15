@@ -55,6 +55,12 @@
 
 大人にとっては「今はタンバリンを叩く時間」でも、娘にとっては「これを誰かに渡してみたい時間」だったのかもしれない。短い活動の中に、それぞれ違う時間が流れているように感じた。
 
+記事を書くにあたり調べてみると、遊びを切り替えることにも、いくつかの力が必要だと分かった。自分のしたい動きをいったん抑えること、注意を別のことへ向けること、指示を覚えておくこと。これらは実行機能の働きに関わる。[ハーバード大学の18〜36か月児向け資料（2014年）](https://developingchild.harvard.edu/wp-content/uploads/2024/10/Executive-Function-Activities-for-18-to-36-month-olds.pdf)でも、この時期の遊びでは大人の繰り返しの声かけが必要で、注意が長く続かないこともあると説明している。私が何気なく求めた「今は叩こう」も、娘にはいくつもの切り替えを求める声だったのかもしれない。
+
+[Hughesら（2023年）](https://doi.org/10.1016/j.infbeh.2022.101782)は197家族を14か月時と24か月時に調べ、早い時期の実行機能が後の感情調整を予測する関係を報告した。ただし、その関係が見られたのは母子の遊びで、父子では同じ結果にならなかった。感情調整と実行機能は同じものではなく、子どもの個人差や関わる相手、場面も考える必要がある。娘の「嫌だ」を、そのまま抑制の弱さや能力の不足と受け取ることはできない。
+
+一方で、自分で始めた遊びにも目を向けたい。[Colliverら（2022年）](https://doi.org/10.1016/j.ecresq.2021.11.011)がオーストラリアの子ども2,213人を追った研究では、2〜3歳と4〜5歳の静かな自由遊びの時間が、それぞれ2年後の自己調整の良好さと関連していた。以前の自己調整などを考慮しても関連は残ったが、観察研究なので、自由遊びが原因で能力を伸ばしたとは言い切れない。日常の遊び時間を調べた研究で、この場のタンバリンのやり取りを評価したものでもない。集団で一緒に取り組む経験と、娘が自分で見つけた遊び。その両方を見ながら、無理なく参加できる形を探したいと思った。
+
 ## 棒の音と、鈴の聞こえ方
 
 長さが異なり、音階が書かれた棒状の楽器を使う体験もあった。子どもたちは仰向けになり、先生が近くの床に棒状の楽器を打ち付けて、音を鳴らしていた。
@@ -62,6 +68,12 @@
 長さによって音の高さが変わる楽器だったようだが、私には音階の違いがあまりはっきり分からなかった。子どもには違いが分かるのだろうか、と気になった。楽器の正式な名前は確認していない。
 
 床を通して振動を感じる意味もあったのかもしれない。ただ、目的について詳しい説明を聞いたわけではないので、これは私がその様子から考えたことにとどまる。
+
+この場面を振り返り、音の高さとは別に、右耳と左耳で聞く意味も調べた。[Carlini、Bordeau、Ambardの総説（2024年）](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2024.1408073/full)によると、音が左右の耳へ届くわずかな時間のずれが「両耳間時間差（ITD）」、左右の耳に届く音の強さ、つまり音圧レベルの違いが「両耳間レベル差（ILD）」という。脳はこうした違いを、音がどこから来たかを判断する「音源定位」の手がかりにする。左右で別の音楽を流さなくても、一つの音源と頭の位置関係から違いが生まれる。耳の形や部屋の反響なども手がかりになるので、二つの差だけですべてが決まるわけではない。
+
+両耳からの情報は、脳幹から先の左右にまたがる経路で処理される。[Purvesら編の教科書（2001年）](https://www.ncbi.nlm.nih.gov/books/NBK10820/)も、その両側性のつながりを説明している。「右耳の音は左脳だけへ行く」と分けられる仕組みではない。
+
+聞く力の発達も一様ではない。[Lovettら（2012年）](https://doi.org/10.1044/1092-4388%282011/11-0096%29)が、聴力が正常な1歳半〜7.9歳の子ども56人を調べた研究では、音の動きを追う課題、左右を区別する課題、位置を答える課題で、大人に近い成績となる年齢が異なっていた。幼児の聞こえ方を、大人と同じとも、何も分からないとも決められないのだと思った。ただ、今回の活動は左右の耳へ別々の音を聞かせる実験ではなく、定位の正確さも測っていない。これらは聞く仕組みの補足であり、この活動が定位能力や右脳・左脳を鍛えたという根拠にはならない。音階を聞き分けることとも、別の話である。
 
 以前の活動でも登場した鈴を使う体験もあった。みっちゃん先生からは、音の周波数によって聞こえ方や心地よさが異なることや、幼児と高齢者では聞こえやすい音に違いがあることなどの話があった、と記憶している。
 
@@ -77,6 +89,14 @@
 
 ただ、先生がどの発達理論を念頭に置いて話していたのかは聞いていない。今回、娘が初めて物を手放せるようになった、という話でもない。既にできる動作を、こうした遊びの中で使うことにはどんな意味があるのか。私自身がもう少し知りたいと思った問いとして、残しておきたい。
 
+記事を書くにあたり、その問いを少し調べてみた。[小児の微細運動を解説した医学書の章](https://accesspediatrics.mhmedical.com/content.aspx?bookid=1312&sectionid=71766211)では、物を意図した時と場所で手放す動作を「随意的リリース（voluntary release）」と呼び、その出現を乳児期に位置づけている。2歳の娘にとっては、手放すことの初めての獲得というより、できる動作を別の場面で使う経験、と考える方が自然だろう。
+
+それとは別に、貼る位置を見ながら手を運ぶ動作には「目と手の協応」が含まれる。[英国NHSのAlder Hey小児病院の資料](https://www.alderhey.nhs.uk/conditions/patient-information-leaflets/fine-motor-skills-five-steps-to-function/)も、見た位置へ手を伸ばし、物を持ち、所定の場所で離すことを協応の一部として説明している。手を開けることと、狙った場所に置くために動きを合わせることは、分けて考えられる。ただし、これは動作を理解するための資料で、今回のマグネット遊びの発達効果を実証した研究ではない。
+
+「自分が動かすと、物の状態が変わる」という面もある。[Verschoorら（2010年）](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2010.00201/full)の9・12・18か月児を対象とした実験では、自分のボタン操作で生じた音や映像を再び示すと、操作とは無関係に生じたものより早くボタンに反応した。行動と結果を結びつけた証拠だが、磁石の仕組みや抽象的な因果関係を理解したという結果ではない。ボードに貼る遊びも行動と結果を確かめる機会として見られそうだ、というのは、ここから私が考えたことだ。
+
+さらに「自分と外界の区別」は、手放す運動や行動と結果の学習と同じ概念ではない。[Rochatの総説（2019年）](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2019.00414/full)は、新生児が自分の手と他者の指で頬を触られたときに異なる反応をする研究などから、早期の身体と外界の区別を論じている。これは言葉で説明できる自己理解とも別であり、マグネットを離すことで初めて自分と外界を区別できるようになる、とは言えない。先生の話を特定の理論に当てはめる答えは出なかったけれど、一つの「貼る」に、運動、見ること、結果を知ることという異なる見方があるのは面白い。
+
 ## 帰り道の「楽しかったねー」
 
 活動が終わると、娘はすぐに帰りたがる。それでも帰りには、「楽しかったねー」と話してくれる。
@@ -90,3 +110,18 @@
 手の込んだ教材を用意し、声や動きで楽しませてくださったみっちゃん先生。準備から駐車場の案内、会場での対応、活動の補助まで支えてくださった先生方。親子でこうした時間を過ごせたことに、改めて感謝いたします。
 
 私はつい、みんなと同じようにできたか、うまく参加できたかを気にしてしまう。でも、その見方だけでは分からない時間が娘にはあったのだと思う。帰りに聞いた「楽しかったねー」も、この日の大事な記録として覚えておきたい。
+
+## 参考資料
+
+研究・資料の確認日：2026年10月15日。以下は記事作成時の補足であり、先生の説明の出典や、当日の活動の効果を確認したものではない。
+
+- Center on the Developing Child at Harvard University（2014）[Executive Function Activities for 18- to 36-month-olds](https://developingchild.harvard.edu/wp-content/uploads/2024/10/Executive-Function-Activities-for-18-to-36-month-olds.pdf)。年齢別活動ガイドの4〜5頁。注意・抑制・ルールに従う遊びと大人の援助について参照した。介入実験ではない。
+- Hughes, C., Foley, S., Browne, W., McHarg, G., & Devine, R. T.（2023）[Developmental links between executive function and emotion regulation in early toddlerhood](https://doi.org/10.1016/j.infbeh.2022.101782). *Infant Behavior and Development*, 71, 101782。[大学公開の原著本文](https://www.pure.ed.ac.uk/ws/portalfiles/portal/332530002/HughesEtalIBD2022DevelopmentalLinksBetweenExecutiveFunction_published.pdf)を確認。197家族の14・24か月時の縦断研究で、関連が母子場面に限られた点も参照した。
+- Colliver, Y., Brown, J. E., Harrison, L. J., & Humburg, P.（2022）[Free play predicts self-regulation years later: Longitudinal evidence from a large Australian sample of toddlers and preschoolers](https://doi.org/10.1016/j.ecresq.2021.11.011). *Early Childhood Research Quarterly*, 59, 148–161。[著者所属大学掲載の抄録](https://researchers.mq.edu.au/en/publications/free-play-predicts-self-regulation-years-later-longitudinal-evide/)で対象・方法・結果を確認。2,213人の観察研究で、因果効果としては扱っていない。
+- Carlini, A., Bordeau, C., & Ambard, M.（2024）[Auditory localization: a comprehensive practical review](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2024.1408073/full). *Frontiers in Psychology*, 15, 1408073。指定された[PMC掲載版](https://pmc.ncbi.nlm.nih.gov/articles/PMC11267622/)と同じ総説の出版社本文で、ITD・ILDなどの定位手がかりを確認した。幼児への活動効果を検証した研究ではない。
+- Purves, D. ほか編（2001）[Integrating Information from the Two Ears](https://www.ncbi.nlm.nih.gov/books/NBK10820/). *Neuroscience*, 2nd edition。教科書の公開検索表示で両側性の経路の説明を確認。本文ページは閲覧制限があり、数値などの詳しい説明には用いていない。
+- Lovett, R. E. S., Kitterick, P. T., Huang, S., & Summerfield, A. Q.（2012）[The Developmental Trajectory of Spatial Listening Skills in Normal-Hearing Children](https://doi.org/10.1044/1092-4388%282011/11-0096%29). *Journal of Speech, Language, and Hearing Research*, 55, 865–878。出版社公開の抄録で、56人・1歳半〜7.9歳という対象と課題ごとの発達差を確認した。
+- McGraw Hill Medical掲載 [Fine Motor Development](https://accesspediatrics.mhmedical.com/content.aspx?bookid=1312&sectionid=71766211). *Beyond the NICU: Comprehensive Care of the High-Risk Infant*, 第45章。公開部分の「Patterns of development」で随意的リリースの定義と発達の説明を参照した。原著研究ではない。
+- Alder Hey Children's NHS Foundation Trust [Fine Motor Skills Five Steps to Function](https://www.alderhey.nhs.uk/conditions/patient-information-leaflets/fine-motor-skills-five-steps-to-function/)。小児の手の動きに関する資料の「Hand-eye coordination」を参照。公開ページで発表年は確認できなかった。
+- Verschoor, S., Weidema, M., Biro, S., & Hommel, B.（2010）[Where Do Action Goals Come from? Evidence for Spontaneous Action–Effect Binding in Infants](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2010.00201/full). *Frontiers in Psychology*, 1, 201。9・12・18か月児の計65人を分析した実験。行動と結果の連合について参照し、因果関係の概念的理解とは区別した。
+- Rochat, P.（2019）[Self-Unity as Ground Zero of Learning and Development](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2019.00414/full). *Frontiers in Psychology*, 10, 414。新生児・乳児研究を論じた総説。早期の身体と外界の区別についての議論を参照した。
