@@ -35,7 +35,7 @@ $env:SITE_BASE_PATH = "/"
 
 動画作品では `youtube_id` に YouTube URL の動画 ID を設定すると、詳細ページに動画を埋め込めます。`url` は埋め込みが再生できない場合の外部リンクとして表示されます。`duration`、`software`、`role` は任意の制作情報です。サムネイルには YouTube の `https://img.youtube.com/vi/動画ID/hqdefault.jpg` も指定できます。
 
-LifeSketch作品は `url` に単独ページ、`interactive_url` に `https://sawanoto.github.io/MovingSketch/LifeSketch/` 以下の埋め込み表示用URLを指定できます。作品詳細では「作品を読み込む」を押した後にiframeを作り、単独ページへのリンクも表示します。作品の公開後にリンク先を確認してください。
+LifeSketch作品は `url` に単独ページ、`interactive_url` に `https://sawanoto.github.io/LifeSketch/` 以下の埋め込み表示用URLを指定できます。作品詳細では「作品を読み込む」を押した後にiframeを作り、単独ページへのリンクも表示します。作品の公開後にリンク先を確認してください。
 
 LifeSketchの記事内にも作品を埋め込むときは、記事のメタデータに `interactive_url` を指定し、本文の表示したい位置に `<!-- interactive-work -->` を一行で置きます。外部作品はボタンを押すまで読み込みません。
 

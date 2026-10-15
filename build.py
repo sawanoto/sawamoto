@@ -145,7 +145,7 @@ def youtube_frame(video_id: str, title: str) -> str:
 
 def interactive_work(url: str, title: str) -> str:
     parsed = urlparse(url)
-    if (parsed.scheme, parsed.netloc) != ("https", "sawanoto.github.io") or not parsed.path.startswith("/MovingSketch/LifeSketch/"):
+    if (parsed.scheme, parsed.netloc) != ("https", "sawanoto.github.io") or not parsed.path.startswith("/LifeSketch/"):
         raise ValueError(f"LifeSketch embed must use the public LifeSketch URL: {url}")
     return (
         '<div class="interactive-placeholder" data-interactive-url="' + e(url) + '" data-interactive-title="' + e(title) + '">'
