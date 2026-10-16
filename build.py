@@ -60,6 +60,10 @@ def data_files(folder: str) -> list[dict]:
         if not match:
             raise ValueError(f"Missing JSON front matter: {file}")
         item = json.loads(match.group(1))
+        if "draft" in item and type(item["draft"]) is not bool:
+            raise ValueError(f"draft must be a JSON boolean: {file}")
+        if item.get("draft", False):
+            continue
         item["body"] = match.group(2)
         item["slug"] = file.stem
         if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", item["slug"]):
