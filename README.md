@@ -47,6 +47,18 @@ LifeSketchの記事内にも作品を埋め込むときは、記事のメタデ�
 
 記事の途中に複数の写真を置くときは、`gallery_images` に各画像の `src`、`alt`、`caption` を設定し、本文の挿入位置に `<!-- image-gallery -->` を一行で置きます。画像の出典や加工の有無が分かる説明を添えてください。実例は `content/writing/support-center-halloween-craft-2026.md` にあります。
 
+### 記事を下書きとして保存する
+
+`content/writing/*.md` の冒頭の JSON に `"draft":true` を設定すると、本文を GitHub 上で何度でも修正しながら保存できます。執筆日は `written`（`YYYY-MM-DD`）に記録し、公開日 `published` は公開時に設定します。実例は `content/writing/while-clouds-change-color.md` です。
+
+ビルドは `draft: true` の記事・作品を読み込み時に除外します。個別ページ、トップ、一覧、シリーズ、関連リンク、サイトマップの公開対象にならず、原稿の Markdown も `dist/` にコピーしません。RSS は現在生成していません。毎回 `dist/` を作り直すため、公開済み記事を下書きに戻した場合も以前のページは残りません。公開コンテンツから下書きの ID を参照するとビルドエラーになります。
+
+修正中は必ず `"draft":true` を維持してください。公開すると決めたら、内容を確認して `"draft":false` に変更し、`published` に公開日を追加し、必要に応じて `summary` を記入します。ビルドを確認し、公開用 PR をレビューして `main` にマージしたときだけ Pages に反映します。日付が来ても下書きは自動公開されません。既存記事との互換性のため、`draft` のない記事は従来どおり公開対象です。`draft` に文字列や数値など JSON の真偽値以外を指定すると、誤公開を避けるためビルドが失敗します。
+
+ここでいう非公開は公式サイトへの非掲載を意味します。GitHub のリポジトリや PR を閲覧できる人は下書きも読めます。
+
+下書きの回帰テストは `python -m unittest discover -s tests -p 'test_*.py'` で実行します。
+
 ### 「支援センター巡り」に記事を追加する
 
 `content/writing/support-center-halloween-craft-2026.md` を手本に、`content/writing/` に新しい Markdown ファイルを作ります。冒頭の JSON に一意の `id`、`series_id: "support-center-visits"`、公開日 `published`、訪問日 `visit_date`（`YYYY-MM-DD`）、本人が確認した呼称の `center`、`activity`、短い `summary` を設定してください。任意の `play_type` には「制作遊び」などの一語を入れられます。記事を追加すると、`/writing/support-center-visits/` のシリーズ一覧に訪問日順で表示されます。シリーズ名や説明は `content/series.json` で変更できます。
@@ -63,7 +75,7 @@ LifeSketchの記事内にも作品を埋め込むときは、記事のメタデ�
 
 Codex Cloud での変更は検証ブランチと PR で確認し、本人が承認した後に `main` へマージします。マージすると GitHub Pages の公開ワークフローが動きます。
 
-公開前に氏名以外の個人情報、作品の権利・公開許可、リンク先、画像の公開許可、各文章の事実関係を確認してください。非公開原稿や資料はこのリポジトリに置かないでください。`.private/` はローカル退避用で Git の対象外ですが、秘密情報の保管場所として長期利用しないでください。
+公開前に氏名以外の個人情報、作品の権利・公開許可、リンク先、画像の公開許可、各文章の事実関係を確認してください。GitHub 上でも非公開にする必要のある原稿や資料はこのリポジトリに置かないでください。`.private/` はローカル退避用で Git の対象外ですが、秘密情報の保管場所として長期利用しないでください。
 
 ## 構成
 
