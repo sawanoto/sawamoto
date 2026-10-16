@@ -1,5 +1,5 @@
 ---
-{"id":"jomopia-miyahata-acorns","title":"縄文遺跡で、どんぐりを拾う。ジョーもぴあ宮畑の一日","category":"支援センター巡り","tags":["外遊び","どんぐり拾い","子ども同士の関わり"],"summary":"2歳の娘と、瀬上支援センターの屋外イベントでジョーもぴあ宮畑へ。かけっこに、どんぐり拾いに、小学生とのブランコ。青空の下でたっぷり遊びながら、縄文時代の親子もこんなふうだったのかな、と想像した一日です。","series_id":"support-center-visits","visit_date":"未確認","center":"瀬上支援センター（会場：ジョーもぴあ宮畑）","activity":"フルーツもぎ取りかけっこ・外遊び","play_type":"外遊び","work_ids":[],"article_ids":["support-center-watching-over-2026"]}
+{"id":"jomopia-miyahata-acorns","title":"縄文遺跡で、どんぐりを拾う。ジョーもぴあ宮畑の一日","category":"支援センター巡り","tags":["外遊び","どんぐり拾い","子ども同士の関わり"],"summary":"2歳の娘と、瀬上支援センターの屋外イベントでジョーもぴあ宮畑へ。かけっこに、どんぐり拾いに、小学生とのブランコ。青空の下でたっぷり遊びながら、縄文時代の親子もこんなふうだったのかな、と想像した一日です。","series_id":"support-center-visits","visit_date":"未確認","center":"瀬上支援センター（会場：ジョーもぴあ宮畑）","activity":"フルーツもぎ取りかけっこ・外遊び","play_type":"外遊び","work_ids":["lifesketch-jomon-room"],"article_ids":["support-center-watching-over-2026"],"thumbnail":"assets/images/dogu-marpan.jpg","thumbnail_alt":"三つの目があり、片手を上げた茶色い土偶マーパンのイラスト","hero_image":"assets/images/dogu-marpan.jpg","hero_image_alt":"三つの目があり、片手を上げた茶色い土偶マーパンのイラスト","hero_caption":"今回の体験に合わせて制作した「土偶マーパン」のイラスト。"}
 ---
 
 ## まずは、集合場所を間違えました
@@ -123,5 +123,7 @@
 実際にどんな遊びをしていたのかは知りませんが、娘を見ていると、ついそんな想像をしてしまいます。
 
 外でたっぷり遊んで、遠い昔の親子のことまで考えてしまった一日でした。
+
+土偶のマーパンが登場する[LifeSketchの第2作品「縄文の部屋」](https://sawanoto.github.io/LifeSketch/002_jomon-room/)も、よかったら触ってみてください。
 
 楽しい遊びを準備して、子どもたちを温かく見守ってくださった瀬上支援センターの先生方、ありがとうございました。また娘と参加したいです。
