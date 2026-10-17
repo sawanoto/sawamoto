@@ -234,8 +234,14 @@ def build() -> None:
         items = "".join(f'<li>{e(item)}</li>' for item in group["items"])
         hobby_groups.append(f'<div class="hobby-group"><h3>{e(group["category"])}</h3><ul class="chips">{items}</ul></div>')
     hobbies = f'<section class="content-section" id="hobbies">{section_head("Hobbies", "趣味")}<p class="section-copy">現在楽しんでいることや、過去に取り組んだこと。</p><div class="hobby-grid">{"".join(hobby_groups)}</div></section>' if hobby_groups else ""
+    qualification_groups = []
+    for group in SITE.get("qualifications", []):
+        items = "".join(f'<li>{e(item)}</li>' for item in group["items"])
+        qualification_groups.append(f'<div class="hobby-group"><h3>{e(group["category"])}</h3><ul class="chips">{items}</ul></div>')
+    qualifications = f'<section class="content-section" id="qualifications">{section_head("Qualifications", "資格・検定")}<div class="hobby-grid">{"".join(qualification_groups)}</div></section>' if qualification_groups else ""
     about = f'''<div class="page-heading"><p class="kicker">About</p><h1>澤本優哉について</h1><p>{e(SITE['about'])}</p></div>
     {hobbies}
+    {qualifications}
     <section class="content-section">{section_head('Interests', '現在の関心')}<ul class="chips">{interests}</ul></section>
     <section class="content-section" id="timeline">{section_head('Timeline', '活動の記録')}{timeline_html}</section>
     <section class="content-section">{section_head('Elsewhere', '外部リンク')}{social}</section>'''
