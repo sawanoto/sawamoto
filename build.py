@@ -241,10 +241,10 @@ def build() -> None:
     qualifications = f'<section class="content-section" id="qualifications">{section_head("Qualifications", "資格・検定")}<div class="hobby-grid">{"".join(qualification_groups)}</div></section>' if qualification_groups else ""
     about = f'''<div class="page-heading"><p class="kicker">About</p><h1>澤本優哉について</h1><p>{e(SITE['about'])}</p></div>
     {hobbies}
-    {qualifications}
     <section class="content-section">{section_head('Interests', '現在の関心')}<ul class="chips">{interests}</ul></section>
     <section class="content-section" id="timeline">{section_head('Timeline', '活動の記録')}{timeline_html}</section>
-    <section class="content-section">{section_head('Elsewhere', '外部リンク')}{social}</section>'''
+    <section class="content-section">{section_head('Elsewhere', '外部リンク')}{social}</section>
+    {qualifications}'''
     write("about", page("About", "澤本優哉のプロフィールと活動の記録。", "about/", about))
 
     works_list = "".join(card(x, "works") for x in sorted(WORKS, key=lambda x: x.get("sort", ""), reverse=True)) if WORKS else '<p class="empty">公開できる制作物を準備中です。作品を確認後、ここに追加します。</p>'
