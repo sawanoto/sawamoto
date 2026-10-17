@@ -218,8 +218,11 @@ def build() -> None:
     recent_articles = sorted(WRITING, key=lambda x: x.get("published", ""), reverse=True)[:3]
     works_home = "".join(card(x, "works") for x in recent_works) if recent_works else '<p class="empty">公開できる制作物を準備中です。</p>'
     writing_home = "".join(card(x, "writing") for x in recent_articles) if recent_articles else '<p class="empty">記事を準備中です。</p>'
+    sketch_links = work_by_id["sketches-of-sound-and-movement"].get("featured_links", [])
+    home_galleries = featured_links(sorted(sketch_links, key=lambda link: "MovingSketch" not in link["label"]))
     home = f'''<section class="hero"><p class="kicker">Personal site</p><h1>{e(SITE['name'])}<span>{e(SITE['name_en'])}</span></h1>
     <p class="lead">{e(SITE['description'])}</p><p class="intro">{e(SITE['intro'])}</p>
+    {home_galleries}
     <a class="button" href="{local('about/')}">澤本優哉について <span aria-hidden="true">→</span></a></section>
     <section class="home-section">{section_head('01 / Works', '制作物', 'works/')}<div class="card-grid">{works_home}</div></section>
     <section class="home-section">{section_head('02 / Writing', '文章・考察', 'writing/')}<div class="card-grid">{writing_home}</div></section>
