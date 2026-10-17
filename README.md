@@ -17,6 +17,8 @@ $env:SITE_BASE_PATH = "/"
 ## 更新する
 
 - サイト名、トップの説明、About、関心、外部リンク：`content/site.json`。説明文は仮文なので自由に更新できます。
+- Aboutの「好きなもの」は `content/site.json` の `likes`、「普段の過ごし方」は `daily_life`、「最近気になっていること」は `interests` で編集します。一覧は配列の項目を追加・削除し、文章は文字列を変更して再ビルドしてください。
+- Aboutの制作物紹介は今回は追加していません。今後は `content/works/` や `content/writing/` の実在する作品・記事と、公開済みの画像を選んで紹介できます。編み物の既存記事は `content/writing/mel-chan-knitted-vest.md`。写真の加工については同記事の注記を維持してください。
 - Aboutの趣味一覧：`content/site.json` の `hobbies`。各カテゴリの `category` が見出し、`items` が趣味名の配列です。項目を追加・削除し、ビルドすると反映されます。現在・過去の趣味をまとめて掲載します。
 - Aboutの資格・検定一覧：`content/site.json` の `qualifications`。各分野の `category` が見出し、`items` が資格・検定名の配列です。取得済みの項目を追加・修正し、ビルドすると反映されます。
 - 年表：`content/timeline.json`。本人が確認し、公開可能な項目だけ追加してください。
