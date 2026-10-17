@@ -17,6 +17,7 @@ $env:SITE_BASE_PATH = "/"
 ## 更新する
 
 - サイト名、トップの説明、About、関心、外部リンク：`content/site.json`。説明文は仮文なので自由に更新できます。
+- Aboutの趣味一覧：`content/site.json` の `hobbies`。各カテゴリの `category` が見出し、`items` が趣味名の配列です。項目を追加・削除し、ビルドすると反映されます。現在・過去の趣味をまとめて掲載します。
 - 年表：`content/timeline.json`。本人が確認し、公開可能な項目だけ追加してください。
 - 作品：`content/works/` に英数字とハイフンのファイル名で `.md` を追加します。
 - 記事：`content/writing/` に同様の `.md` を追加します。本文は通常の Markdown なので、後の再編集や電子書籍化に再利用できます。
