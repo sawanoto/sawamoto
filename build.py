@@ -228,6 +228,7 @@ def build() -> None:
         timeline_parts.append(f'<li id="timeline-{e(item["id"])}" class="timeline-item"><span class="meta">{e(item.get("period", ""))}</span><div><h3>{e(item["title"])}</h3><p>{e(item.get("summary", ""))}</p>{links}</div></li>')
     timeline_html = '<ol class="timeline">' + "".join(timeline_parts) + "</ol>" if timeline_parts else '<p class="empty">公開する記録を確認中です。</p>'
     social = '<ul class="link-list">' + "".join(f'<li>{external(x["label"], x["url"])}</li>' for x in SITE.get("links", [])) + "</ul>" if SITE.get("links") else '<p class="empty">公開中の外部リンクはありません。</p>'
+    likes = "".join(f'<li>{e(x)}</li>' for x in SITE.get("likes", []))
     interests = "".join(f'<li>{e(x)}</li>' for x in SITE.get("interests", []))
     hobby_groups = []
     for group in SITE.get("hobbies", []):
@@ -240,8 +241,10 @@ def build() -> None:
         qualification_groups.append(f'<div class="hobby-group"><h3>{e(group["category"])}</h3><ul class="chips">{items}</ul></div>')
     qualifications = f'<section class="content-section" id="qualifications">{section_head("Qualifications", "資格・検定")}<div class="hobby-grid">{"".join(qualification_groups)}</div></section>' if qualification_groups else ""
     about = f'''<div class="page-heading"><p class="kicker">About</p><h1>澤本優哉について</h1><p>{e(SITE['about'])}</p></div>
+    <section class="content-section" id="likes">{section_head('Favorites', '好きなもの')}<ul class="chips">{likes}</ul>
+    <div class="hobby-group about-daily-life" id="daily-life"><h3>普段の過ごし方</h3><p class="section-copy">{e(SITE.get('daily_life', ''))}</p></div></section>
+    <section class="content-section" id="interests">{section_head('Interests', '最近気になっていること')}<ul class="chips">{interests}</ul></section>
     {hobbies}
-    <section class="content-section">{section_head('Interests', '現在の関心')}<ul class="chips">{interests}</ul></section>
     <section class="content-section" id="timeline">{section_head('Timeline', '活動の記録')}{timeline_html}</section>
     <section class="content-section">{section_head('Elsewhere', '外部リンク')}{social}</section>
     {qualifications}'''
