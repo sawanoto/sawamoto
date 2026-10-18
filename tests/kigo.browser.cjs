@@ -34,7 +34,7 @@ async function routeLocal(context) {
     const details = widget.locator('details');
     const summary = widget.locator('summary');
     assert.equal(await widget.locator('time').textContent(), '十月十八日');
-    assert.equal(await widget.locator('[data-kigo=term]').textContent(), '秋深し');
+    assert.equal(await widget.locator('.kigo-term').textContent(), '秋深し');
     await summary.focus();
     await page.keyboard.press('Enter');
     assert.equal(await details.getAttribute('open'), '');
@@ -49,12 +49,12 @@ async function routeLocal(context) {
     await summary.click();
     assert.equal(await details.getAttribute('open'), null);
     await page.reload();
-    assert.equal(await widget.locator('[data-kigo=term]').textContent(), '秋深し');
+    assert.equal(await widget.locator('.kigo-term').textContent(), '秋深し');
     // Every real leap-year date, rendered using a non-Japan browser time zone.
     for (const [key, entry] of Object.entries(data)) {
       await page.clock.setSystemTime(new Date(`2024-${key}T03:00:00Z`));
       await page.evaluate(() => window.dispatchEvent(new Event('pageshow')));
-      assert.equal(await widget.locator('[data-kigo=term]').textContent(), entry.term, key);
+      assert.equal(await widget.locator('.kigo-term').textContent(), entry.term, key);
       assert.equal(await widget.locator('time').getAttribute('datetime'), `2024-${key}`);
     }
     // Rollover while open: ordinary day, leap/non-leap February, month and year.
@@ -68,7 +68,7 @@ async function routeLocal(context) {
       await summary.click();
       await page.clock.runFor(1100);
       assert.equal(await widget.locator('time').getAttribute('datetime'), after);
-      assert.equal(await widget.locator('[data-kigo=term]').textContent(), data[after.slice(5)].term);
+      assert.equal(await widget.locator('.kigo-term').textContent(), data[after.slice(5)].term);
       assert.equal(await details.getAttribute('open'), null);
     }
     // Resuming after sleep, going back from BFCache, and focus all refresh immediately.
@@ -86,13 +86,19 @@ async function routeLocal(context) {
       for (const month of [1,2,3,4,5,6,7,8,9,10,11,12]) {
         await page.clock.setSystemTime(new Date(`2026-${String(month).padStart(2,'0')}-06T03:00:00Z`));
         await page.goto(`${origin}/sawamoto/`);
+        const heroBefore = await page.locator('.hero').boundingBox();
         await summary.click();
         assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `${width}/${month}`);
-        const nav = await page.locator('.header nav').boundingBox();
+        const mark = await page.locator('.seasonal-mark').boundingBox();
         const box = await widget.boundingBox();
         const hero = await page.locator('.hero').boundingBox();
-        assert.ok(box.y >= nav.y + nav.height, 'widget must stay below navigation');
-        assert.ok(width <= 600 ? hero.y >= box.y + box.height : hero.x + hero.width <= box.x, 'content columns must not overlap');
+        const header = await page.locator('.header').boundingBox();
+        const panel = await widget.locator('.kigo-detail').boundingBox();
+        assert.ok(box.x >= mark.x + mark.width, 'word sits beside seasonal illustration');
+        assert.ok(box.y < mark.y + mark.height && mark.y < box.y + box.height, 'word stays on illustration row');
+        assert.equal(hero.y, heroBefore.y, 'opening details must not push down the hero');
+        assert.ok(panel.y >= header.y + header.height, 'details open below navigation');
+        assert.ok(panel.x >= 0 && panel.x + panel.width <= width, 'panel fits viewport');
       }
       await page.clock.setSystemTime(new Date('2026-10-18T03:00:00Z'));
       await page.goto(`${origin}/sawamoto/`);
@@ -100,6 +106,20 @@ async function routeLocal(context) {
       await summary.click();
       await page.screenshot({path:path.join(shots, `${width}-open.png`)});
     }
+    // Longest words must remain in the header on the smallest screen too.
+    await page.setViewportSize({width:320,height:640});
+    for (const key of ['03-06','04-26','06-30']) {
+      await page.clock.setSystemTime(new Date(`2026-${key}T03:00:00Z`));
+      await page.goto(`${origin}/sawamoto/`);
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),false);
+      const heroBefore = await page.locator('.hero').boundingBox();
+      await summary.click();
+      assert.equal((await page.locator('.hero').boundingBox()).y,heroBefore.y);
+      await widget.getByRole('button',{name:'閉じる',exact:true}).click();
+    }
+    await summary.click();
+    await page.mouse.click(5,160);
+    assert.equal(await details.getAttribute('open'),null,'outside tap closes details');
     await page.goto(`${origin}/sawamoto/about/`);
     assert.equal(await widget.count(),0);
     assert.equal(await page.locator('script[src$="/kigo.js"],link[href$="/kigo.css"],#kigo-data').count(),0);

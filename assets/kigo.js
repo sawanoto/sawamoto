@@ -40,6 +40,9 @@
     summary.focus();
   }
   widget.querySelector('.kigo-close').addEventListener('click', close);
+  document.addEventListener('pointerdown', event => {
+    if (details.open && !widget.contains(event.target)) details.open = false;
+  });
   widget.addEventListener('keydown', event => {
     if (event.key === 'Escape' && details.open) { event.preventDefault(); close(); }
   });
