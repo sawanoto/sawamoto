@@ -1,5 +1,5 @@
 ---
-{"id":"lifesketch-jomon-room","title":"LifeSketch 002｜縄文の部屋 / Jomon Room","category":"インタラクティブ作品","summary":"部屋の物に触れると、少しずつ物が消えて余白が生まれる作品。中央には土偶のマーパンがいます。","url":"https://sawanoto.github.io/LifeSketch/002_jomon-room/","featured_links":[{"label":"LifeSketch Gallery","description":"シリーズの作品を見る","url":"https://sawanoto.github.io/LifeSketch/"}],"article_ids":["jomopia-miyahata-acorns"],"timeline_ids":[]}
+{"id":"lifesketch-jomon-room","title":"LifeSketch 002｜縄文の部屋 / Jomon Room","category":"インタラクティブ作品","summary":"部屋の物に触れると、少しずつ物が消えて余白が生まれる作品。中央には土偶のマーパンがいます。","url":"https://sawanoto.github.io/LifeSketch/002_jomon-room/","featured_links":[{"label":"LIFESketchGallery","description":"シリーズの作品を見る","url":"https://sawanoto.github.io/LifeSketch/"}],"article_ids":["jomopia-miyahata-acorns"],"timeline_ids":[]}
 ---
 ## 触って、少しずつへらしてみる
 
