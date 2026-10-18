@@ -219,7 +219,9 @@ def build() -> None:
     works_home = "".join(card(x, "works") for x in recent_works) if recent_works else '<p class="empty">公開できる制作物を準備中です。</p>'
     writing_home = "".join(card(x, "writing") for x in recent_articles) if recent_articles else '<p class="empty">記事を準備中です。</p>'
     sketch_links = work_by_id["sketches-of-sound-and-movement"].get("featured_links", [])
-    home_galleries = featured_links(sorted(sketch_links, key=lambda link: "MovingSketch" not in link["label"]))
+    home_links = sorted(sketch_links, key=lambda link: "MovingSketch" not in link["label"])
+    home_links += work_by_id["lifesketch-doremi-pipes"].get("featured_links", [])
+    home_galleries = featured_links(home_links)
     home = f'''<section class="hero"><p class="kicker">Personal site</p><h1>{e(SITE['name'])}<span>{e(SITE['name_en'])}</span></h1>
     <p class="lead">{e(SITE['description'])}</p><p class="intro">{e(SITE['intro'])}</p>
     {home_galleries}
