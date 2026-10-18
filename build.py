@@ -12,6 +12,8 @@ from xml.sax.saxutils import escape as xml_escape
 
 import markdown
 
+from kigo import load_kigo
+
 ROOT = Path(__file__).parent
 CONTENT = ROOT / "content"
 OUT = ROOT / "dist"
@@ -113,6 +115,11 @@ def page(title: str, description: str, path: str, body: str) -> str:
     if BOOKS:
         nav.append(("Books", "books/"))
     nav_html = "".join(f'<a href="{local(p)}" {"aria-current=\"page\"" if p == path else ""}>{label}</a>' for label, p in nav)
+    kigo_assets = (f'<link rel="stylesheet" href="{local("assets/kigo.css")}">'
+                   f'<script src="{local("assets/kigo.js")}" defer></script>') if path == "" else ""
+    seasonal_mark = '<span class="seasonal-mark" hidden aria-hidden="true"></span>'
+    if path == "":
+        seasonal_mark = f'<div class="brand-seasonal">{seasonal_mark}{kigo_widget()}</div>'
     return f'''<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f8f7f3"><title>{e(full_title)}</title><meta name="description" content="{e(description)}">
@@ -120,10 +127,26 @@ def page(title: str, description: str, path: str, body: str) -> str:
 <meta property="og:title" content="{e(full_title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{url}">
 <meta property="og:site_name" content="{e(SITE['name'])}"><link rel="stylesheet" href="{local('assets/style.css')}">
 <link rel="stylesheet" href="{local('assets/seasonal.css')}"><script src="{local('assets/seasonal.js')}" defer></script>
-</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
-<div class="brand-lockup"><a class="brand" href="{local('')}">{e(SITE['name'])}<small>{e(SITE['name_en'])}</small></a><span class="seasonal-mark" hidden aria-hidden="true"></span></div>
+{kigo_assets}</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
+<div class="brand-lockup"><a class="brand" href="{local('')}">{e(SITE['name'])}<small>{e(SITE['name_en'])}</small></a>{seasonal_mark}</div>
 <nav aria-label="メインナビゲーション">{nav_html}</nav></header><main id="main">{body}</main>
 <footer class="footer"><span>{e(SITE['name'])} / {e(SITE['name_en'])}</span><a href="#main">上へ戻る ↑</a></footer></div></body></html>'''
+
+
+def kigo_widget() -> str:
+    # Embed validated local data; no runtime fetch, API or third-party service.
+    data = json.dumps(load_kigo(CONTENT / "kigo.json"), ensure_ascii=False).replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
+    return f'''<aside class="daily-kigo" aria-label="今日の季語" hidden>
+    <details><summary title="今日の季語を読む"><span class="kigo-label">今日の季語：</span>
+    <span class="kigo-term" data-kigo="term"></span></summary>
+    <div class="kigo-detail"><p class="kigo-detail-label">今日の季語</p><time></time>
+    <p class="kigo-detail-term" data-kigo="term"></p><p class="kigo-reading" data-kigo="reading"></p>
+    <dl><dt>季節</dt><dd data-kigo="season"></dd>
+    <dt>意味・由来</dt><dd data-kigo="summary"></dd><dt>言葉の情景</dt><dd data-kigo="scene"></dd></dl>
+    <p class="kigo-source"><a data-kigo="source" href="https://kigosai.sub.jp/kigoken3.html" target="_blank" rel="noopener noreferrer">参考：きごさい歳時記 ↗</a></p>
+    <button class="kigo-close" type="button">閉じる</button></div></details></aside>
+    <script id="kigo-data" type="application/json">{data}</script>
+'''
 
 
 def write(path: str, content: str) -> None:

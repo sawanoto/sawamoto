@@ -1,0 +1,24 @@
+/* The homepage word sits beside the existing seasonal illustration. */
+.brand-seasonal{display:flex;align-items:center;gap:.65rem;min-width:0}
+.header:has(.daily-kigo){position:relative}
+.daily-kigo{flex:none;min-width:0;overflow-wrap:anywhere}
+.daily-kigo[hidden]{display:none}
+.daily-kigo summary{display:flex;align-items:center;min-height:44px;max-width:7em;cursor:pointer;list-style:none;border-radius:2px}
+.daily-kigo summary::-webkit-details-marker{display:none}
+.daily-kigo summary:focus-visible,.kigo-close:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.daily-kigo .kigo-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.daily-kigo .kigo-term{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:1rem;line-height:1.65;letter-spacing:.06em;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:.3em}
+.daily-kigo details[open] .kigo-term{color:var(--accent)}
+.kigo-detail{position:absolute;z-index:20;right:0;top:calc(100% + .5rem);width:min(21rem,calc(100vw - 36px));max-height:min(70dvh,34rem);overflow-y:auto;overscroll-behavior:contain;padding:1.25rem 1.5rem;background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 24px #24292314;border-radius:3px;font-size:.82rem;line-height:1.9;animation:kigo-in .15s ease-out}
+.kigo-detail-label{margin:0;color:var(--muted);font-size:.7rem;letter-spacing:.12em}
+.daily-kigo time{display:block;margin:.3rem 0;color:var(--muted);font-size:.78rem}
+.kigo-detail-term{margin:.45rem 0 .1rem;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:1.8rem;line-height:1.5;font-weight:500;letter-spacing:.09em}
+.kigo-reading{margin:0;color:var(--muted);font-size:.75rem;letter-spacing:.12em}
+.kigo-detail dl{margin:0}
+.kigo-detail dt{font-size:.72rem;color:var(--muted);margin-top:.8rem}
+.kigo-detail dd{margin:.2rem 0 0}
+.kigo-source{font-size:.7rem;color:var(--muted)}
+.kigo-close{font:inherit;font-size:.75rem;min-height:44px;padding:.4rem 1rem;background:transparent;color:var(--ink);border:1px solid var(--line);cursor:pointer;border-radius:2px}
+@keyframes kigo-in{from{opacity:0}to{opacity:1}}
+@media(max-width:700px){.brand-lockup:has(.daily-kigo){gap:.5rem}.brand-seasonal{gap:.35rem}.daily-kigo summary{max-width:6em}.daily-kigo .kigo-term{font-size:.82rem}}
+@media(prefers-reduced-motion:reduce){.kigo-detail{animation:none}}
