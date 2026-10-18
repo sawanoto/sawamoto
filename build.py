@@ -242,9 +242,10 @@ def build() -> None:
     works_home = "".join(card(x, "works") for x in recent_works) if recent_works else '<p class="empty">公開できる制作物を準備中です。</p>'
     writing_home = "".join(card(x, "writing") for x in recent_articles) if recent_articles else '<p class="empty">記事を準備中です。</p>'
     sketch_links = work_by_id["sketches-of-sound-and-movement"].get("featured_links", [])
-    home_links = sorted(sketch_links, key=lambda link: "MovingSketch" not in link["label"])
-    home_links += work_by_id["lifesketch-doremi-pipes"].get("featured_links", [])
+    life_links = work_by_id["lifesketch-doremi-pipes"].get("featured_links", [])
+    home_links = [link for link in sketch_links if "MovingSketch" in link["label"]] + life_links
     home_galleries = featured_links(home_links)
+    about_galleries = featured_links(sketch_links + life_links)
     home = f'''<section class="hero"><p class="kicker">Personal site</p><h1>{e(SITE['name'])}<span>{e(SITE['name_en'])}</span></h1>
     <p class="lead">{e(SITE['description'])}</p><p class="intro">{e(SITE['intro'])}</p>
     {home_galleries}
@@ -278,7 +279,7 @@ def build() -> None:
     <section class="content-section" id="interests">{section_head('Interests', '最近気になっていること')}<ul class="chips">{interests}</ul></section>
     {hobbies}
     <section class="content-section" id="timeline">{section_head('Timeline', '活動の記録')}{timeline_html}</section>
-    <section class="content-section">{section_head('Elsewhere', '外部リンク')}{social}</section>
+    <section class="content-section">{section_head('Elsewhere', '外部リンク')}{about_galleries}{social}</section>
     {qualifications}'''
     write("about", page("About", "澤本優哉のプロフィールと活動の記録。", "about/", about))
 
