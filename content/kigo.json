@@ -1,0 +1,2930 @@
+{
+  "01-01": {
+    "term": "元日",
+    "reading": "がんじつ",
+    "season": "新年",
+    "summary": "一年の最初の日。一月一日をいう。",
+    "scene": "新しい暦を開き、年の始まりを迎える朝。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-02": {
+    "term": "初夢",
+    "reading": "はつゆめ",
+    "season": "新年",
+    "summary": "新年に初めて見る夢。いつの夜の夢とするかには諸説ある。",
+    "scene": "目覚めてから夢の内容を思い返す正月の朝。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-03": {
+    "term": "初詣",
+    "reading": "はつもうで",
+    "season": "新年",
+    "summary": "年が明けて初めて神社や寺に参詣すること。",
+    "scene": "社寺の参道に人が集まり、新年の無事を祈る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-04": {
+    "term": "初仕事",
+    "reading": "はつしごと",
+    "season": "新年",
+    "summary": "新年になって初めて行う仕事。",
+    "scene": "道具を整え、新しい気持ちで仕事に向かう。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-05": {
+    "term": "寒の内",
+    "reading": "かんのうち",
+    "season": "冬",
+    "summary": "小寒から立春の前日までの寒さの厳しい期間。",
+    "scene": "冷たい空気の中で冬の日々を過ごす。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-06": {
+    "term": "寒晴",
+    "reading": "かんばれ",
+    "season": "冬",
+    "summary": "寒中に空が晴れわたること。",
+    "scene": "冷えた空気を通して青空がくっきり見える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-07": {
+    "term": "七草",
+    "reading": "ななくさ",
+    "season": "新年",
+    "summary": "一月七日に春の七草を入れた粥を食べる習わし。",
+    "scene": "若菜を刻む音が正月の台所に響く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-08": {
+    "term": "寒月",
+    "reading": "かんげつ",
+    "season": "冬",
+    "summary": "寒中の月。冷えた夜空にかかる月をいう。",
+    "scene": "澄んだ光が冬の屋根や道を照らす。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-09": {
+    "term": "風花",
+    "reading": "かざはな",
+    "season": "冬",
+    "summary": "晴れた空からちらちらと舞い落ちる雪。",
+    "scene": "青空の下を、風に運ばれた雪片が漂う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-10": {
+    "term": "寒稽古",
+    "reading": "かんげいこ",
+    "season": "冬",
+    "summary": "寒中に武道や芸事などの稽古をすること。",
+    "scene": "冷たい朝の道場に掛け声が響く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-11": {
+    "term": "鏡開",
+    "reading": "かがみびらき",
+    "season": "新年",
+    "summary": "供えた鏡餅を下げて食べる正月の行事。一般に一月十一日で、地域差もある。",
+    "scene": "割った餅を雑煮や汁粉に入れていただく。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-12": {
+    "term": "雪晴",
+    "reading": "ゆきばれ",
+    "season": "冬",
+    "summary": "雪がやんで空が晴れること。",
+    "scene": "積もった雪が日を受けてまぶしく輝く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-13": {
+    "term": "氷柱",
+    "reading": "つらら",
+    "season": "冬",
+    "summary": "軒先などで、したたる水が凍って垂れ下がったもの。",
+    "scene": "屋根の端に透明な氷の棒が並ぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-14": {
+    "term": "寒卵",
+    "reading": "かんたまご",
+    "season": "冬",
+    "summary": "寒中に産まれた鶏の卵。",
+    "scene": "寒い季節の食卓に卵を供する。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-15": {
+    "term": "小正月",
+    "reading": "こしょうがつ",
+    "season": "新年",
+    "summary": "一月十五日を中心とする正月行事。元日を中心とする大正月に対する呼び名。",
+    "scene": "餅花などを飾り、その年の豊作を願う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-16": {
+    "term": "雪兎",
+    "reading": "ゆきうさぎ",
+    "season": "冬",
+    "summary": "雪を丸め、兎の形に作ったもの。",
+    "scene": "葉を耳に見立てた小さな兎が庭先に座る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-17": {
+    "term": "冬深し",
+    "reading": "ふゆふかし",
+    "season": "冬",
+    "summary": "冬が深まり、寒さが厳しくなったころ。",
+    "scene": "戸外の気配が静まり、冬の深さを感じる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-18": {
+    "term": "寒の水",
+    "reading": "かんのみず",
+    "season": "冬",
+    "summary": "寒中の冷たい水。",
+    "scene": "手をひたすと、身にしみるように冷たい。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-19": {
+    "term": "樹氷",
+    "reading": "じゅひょう",
+    "season": "冬",
+    "summary": "過冷却の霧の粒などが樹木に付着して凍ったもの。",
+    "scene": "山の木々が白い氷をまとって立つ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-20": {
+    "term": "厳寒",
+    "reading": "げんかん",
+    "season": "冬",
+    "summary": "冬の非常に厳しい寒さ。",
+    "scene": "外へ出ると顔や指先に冷たさが刺す。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-21": {
+    "term": "雪見",
+    "reading": "ゆきみ",
+    "season": "冬",
+    "summary": "降る雪や積もった雪の景色を眺めて楽しむこと。",
+    "scene": "窓の向こうで庭が静かに白くなる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-22": {
+    "term": "寒造",
+    "reading": "かんづくり",
+    "season": "冬",
+    "summary": "寒中に酒などを仕込むこと。",
+    "scene": "冷え込む季節の蔵で仕込みが進む。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-23": {
+    "term": "霧氷",
+    "reading": "むひょう",
+    "season": "冬",
+    "summary": "霧の水滴や水蒸気が凍り、木や物の表面に付いた氷。",
+    "scene": "枝先まで白く縁取られた朝の景色。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-24": {
+    "term": "吹雪",
+    "reading": "ふぶき",
+    "season": "冬",
+    "summary": "強い風とともに雪が激しく吹き付けること。",
+    "scene": "舞う雪で遠くの景色が見えなくなる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-25": {
+    "term": "氷",
+    "reading": "こおり",
+    "season": "冬",
+    "summary": "水が凍ったもの。季語では冬の池や水辺の氷を思わせる。",
+    "scene": "池の表面を薄い氷が覆う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-26": {
+    "term": "雪達磨",
+    "reading": "ゆきだるま",
+    "season": "冬",
+    "summary": "雪を丸めて作る人形。",
+    "scene": "庭に大小の雪玉を重ねた姿が立つ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-27": {
+    "term": "寒紅",
+    "reading": "かんべに",
+    "season": "冬",
+    "summary": "寒中に作られたり、用いられたりする口紅。",
+    "scene": "寒い朝、鏡に向かって紅をさす。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-28": {
+    "term": "日脚伸ぶ",
+    "reading": "ひあしのぶ",
+    "season": "冬",
+    "summary": "冬至を過ぎて、昼の時間が少しずつ長くなること。",
+    "scene": "夕方の窓に、以前より長く光が残る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-29": {
+    "term": "春待つ",
+    "reading": "はるまつ",
+    "season": "冬",
+    "summary": "寒い日々の中で春の訪れを待ち望むこと。",
+    "scene": "枝のつぼみを見て暖かい日を思う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-30": {
+    "term": "春隣",
+    "reading": "はるとなり",
+    "season": "冬",
+    "summary": "冬も終わりに近づき、春がすぐそこに感じられること。",
+    "scene": "冷たい風の中に日差しの明るさを見つける。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "01-31": {
+    "term": "探梅",
+    "reading": "たんばい",
+    "season": "冬",
+    "summary": "早咲きの梅を探して訪ね歩くこと。",
+    "scene": "まだ寒い野道で、一輪の梅を探す。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-01": {
+    "term": "寒梅",
+    "reading": "かんばい",
+    "season": "冬",
+    "summary": "寒中に花を咲かせる梅。",
+    "scene": "冷たい枝に早咲きの花がほころぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-02": {
+    "term": "冬尽く",
+    "reading": "ふゆつく",
+    "season": "冬",
+    "summary": "冬が終わること。季節の移り変わりをいう。",
+    "scene": "寒さの中にも春へ向かう気配を感じる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-03": {
+    "term": "春近し",
+    "reading": "はるちかし",
+    "season": "冬",
+    "summary": "冬の終わりに春が近いと感じること。",
+    "scene": "つぼみや光の中に次の季節を見いだす。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-04": {
+    "term": "早春",
+    "reading": "そうしゅん",
+    "season": "春",
+    "summary": "春の初めのころ。まだ寒さを残す時期。",
+    "scene": "冷たい空気と明るくなった日差しが交わる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-05": {
+    "term": "春寒",
+    "reading": "はるさむ",
+    "season": "春",
+    "summary": "暦の上では春になっても残る寒さ。",
+    "scene": "春を迎えてなお襟元を合わせる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-06": {
+    "term": "余寒",
+    "reading": "よかん",
+    "season": "春",
+    "summary": "立春を過ぎても残っている寒さ。",
+    "scene": "日差しは春めいても、風は冷たい。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-07": {
+    "term": "薄氷",
+    "reading": "うすらい",
+    "season": "春",
+    "summary": "春先に水面を薄く覆う氷。",
+    "scene": "池の縁に、割れそうな氷が張る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-08": {
+    "term": "針供養",
+    "reading": "はりくよう",
+    "season": "春",
+    "summary": "折れたり古くなった針を供養する行事。二月八日に行う地域があり、十二月の地域もある。",
+    "scene": "柔らかな豆腐や蒟蒻に針を納める。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-09": {
+    "term": "下萌",
+    "reading": "したもえ",
+    "season": "春",
+    "summary": "枯草などの下から草の芽が萌え出ること。",
+    "scene": "茶色の地面に小さな緑がのぞく。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-10": {
+    "term": "猫柳",
+    "reading": "ねこやなぎ",
+    "season": "春",
+    "summary": "早春に柔らかな毛のある花穂を付ける柳。",
+    "scene": "水辺の枝先に銀色の花穂が並ぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-11": {
+    "term": "紅梅",
+    "reading": "こうばい",
+    "season": "春",
+    "summary": "紅色の花が咲く梅。",
+    "scene": "寒さの残る庭に紅い花が灯る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-12": {
+    "term": "春浅し",
+    "reading": "はるあさし",
+    "season": "春",
+    "summary": "春になってまだ日が浅く、寒さの残るころ。",
+    "scene": "芽吹きの少ない野に淡い日が差す。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-13": {
+    "term": "蕗の薹",
+    "reading": "ふきのとう",
+    "season": "春",
+    "summary": "春先に地上に出るフキの花のつぼみ。",
+    "scene": "土の間から淡い緑のつぼみがのぞく。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-14": {
+    "term": "梅",
+    "reading": "うめ",
+    "season": "春",
+    "summary": "早春に香りのある花を咲かせる木。季語では主にその花。",
+    "scene": "まだ寒い庭で、枝からほのかな香りが届く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-15": {
+    "term": "鶯",
+    "reading": "うぐいす",
+    "season": "春",
+    "summary": "春のさえずりで親しまれる鳥。",
+    "scene": "藪の奥から澄んだ声が聞こえる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-16": {
+    "term": "冴返る",
+    "reading": "さえかえる",
+    "season": "春",
+    "summary": "春になって緩んだ寒さが再び厳しくなること。",
+    "scene": "暖かな日のあとに、鋭い冷気が戻る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-17": {
+    "term": "春の雪",
+    "reading": "はるのゆき",
+    "season": "春",
+    "summary": "春になってから降る雪。",
+    "scene": "芽吹きを待つ枝に柔らかな雪が積もる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-18": {
+    "term": "白魚",
+    "reading": "しらうお",
+    "season": "春",
+    "summary": "春の味覚として親しまれる、小さく半透明の魚。",
+    "scene": "透き通るような魚体に春の水辺を思う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-19": {
+    "term": "春めく",
+    "reading": "はるめく",
+    "season": "春",
+    "summary": "風や光、景色などに春らしさが感じられること。",
+    "scene": "道端の色や空気の柔らかさに気づく。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-20": {
+    "term": "猫の恋",
+    "reading": "ねこのこい",
+    "season": "春",
+    "summary": "春の繁殖期に猫が相手を求めて鳴くこと。",
+    "scene": "夜の路地に猫の声が響く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-21": {
+    "term": "椿",
+    "reading": "つばき",
+    "season": "春",
+    "summary": "艶のある葉を持つ常緑樹。季語では主に春の花。",
+    "scene": "緑の葉の間に厚みのある花が咲く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-22": {
+    "term": "春光",
+    "reading": "しゅんこう",
+    "season": "春",
+    "summary": "春の日差しや、春らしい明るい景色。",
+    "scene": "窓辺や水面に柔らかな光が満ちる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-23": {
+    "term": "木の芽",
+    "reading": "このめ",
+    "season": "春",
+    "summary": "春に芽吹く木々の芽。料理では山椒の若芽もいう。",
+    "scene": "枝先に小さな芽が膨らみ始める。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-24": {
+    "term": "麦踏",
+    "reading": "むぎふみ",
+    "season": "春",
+    "summary": "麦の苗を踏んで根張りなどを促す農作業。",
+    "scene": "まだ低い麦の列を人がゆっくり歩く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-25": {
+    "term": "霞",
+    "reading": "かすみ",
+    "season": "春",
+    "summary": "遠くの景色が白くぼんやりと見える春の大気の様子。",
+    "scene": "山の輪郭が淡くほどける。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-26": {
+    "term": "いぬふぐり",
+    "reading": "いぬふぐり",
+    "season": "春",
+    "summary": "春に小さな花を咲かせる草。オオイヌノフグリもこの名で詠まれる。",
+    "scene": "日だまりの地面に小花が広がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-27": {
+    "term": "春の水",
+    "reading": "はるのみず",
+    "season": "春",
+    "summary": "春になって柔らかく豊かに感じられる水。",
+    "scene": "流れや池の面に明るい光が揺れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-28": {
+    "term": "東風",
+    "reading": "こち",
+    "season": "春",
+    "summary": "春に東から吹く風。",
+    "scene": "枝や衣の裾に、春の風が触れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "02-29": {
+    "term": "風光る",
+    "reading": "かぜひかる",
+    "season": "春",
+    "summary": "春の日差しの中で吹く風を、光の感覚でとらえた言葉。",
+    "scene": "揺れる草や水面に日がきらめく。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-01": {
+    "term": "春の空",
+    "reading": "はるのそら",
+    "season": "春",
+    "summary": "明るく穏やかに感じられる春の空。",
+    "scene": "淡い青に柔らかな雲が浮かぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-02": {
+    "term": "雛あられ",
+    "reading": "ひなあられ",
+    "season": "春",
+    "summary": "雛祭に供える、米などで作った小さな菓子。",
+    "scene": "雛壇の前に色とりどりの菓子を供える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-03": {
+    "term": "雛祭",
+    "reading": "ひなまつり",
+    "season": "春",
+    "summary": "三月三日、雛人形を飾り子どもの健やかな成長を願う行事。",
+    "scene": "桃の花や菱餅とともに雛を飾る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-04": {
+    "term": "春雨",
+    "reading": "はるさめ",
+    "season": "春",
+    "summary": "春にしっとりと降る雨。",
+    "scene": "細かな雨が庭や道を柔らかくぬらす。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-05": {
+    "term": "草の芽",
+    "reading": "くさのめ",
+    "season": "春",
+    "summary": "春になって地面から出る草の芽。",
+    "scene": "土を押し上げて小さな緑が現れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-06": {
+    "term": "地虫穴を出づ",
+    "reading": "じむしあなをいづ",
+    "season": "春",
+    "summary": "土中で冬を過ごした虫が地上へ出てくること。",
+    "scene": "暖まった土の間で虫が動き始める。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-07": {
+    "term": "水温む",
+    "reading": "みずぬるむ",
+    "season": "春",
+    "summary": "春になり、水の冷たさが緩んだと感じられること。",
+    "scene": "小川の流れにも柔らかな光が宿る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-08": {
+    "term": "土筆",
+    "reading": "つくし",
+    "season": "春",
+    "summary": "スギナの胞子茎。春に地面から伸びる。",
+    "scene": "土手の草の間に小さな頭が並ぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-09": {
+    "term": "沈丁花",
+    "reading": "じんちょうげ",
+    "season": "春",
+    "summary": "春先に強い香りのある花を咲かせる常緑低木。",
+    "scene": "姿が見える前に、庭から香りが届く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-10": {
+    "term": "囀",
+    "reading": "さえずり",
+    "season": "春",
+    "summary": "繁殖期の鳥が複雑で美しい声で鳴くこと。",
+    "scene": "朝の枝々から鳥の声が重なる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-11": {
+    "term": "春泥",
+    "reading": "しゅんでい",
+    "season": "春",
+    "summary": "雪解けや春の雨でぬかるんだ土。",
+    "scene": "靴の底に柔らかな泥が付く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-12": {
+    "term": "菜の花",
+    "reading": "なのはな",
+    "season": "春",
+    "summary": "菜類の黄色い花。春の野や畑を彩る。",
+    "scene": "畑一面に黄色い花が揺れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-13": {
+    "term": "蝶",
+    "reading": "ちょう",
+    "season": "春",
+    "summary": "春の野を飛ぶ蝶。季語としては春に分類される。",
+    "scene": "花の上をひらひらと羽が移る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-14": {
+    "term": "菫",
+    "reading": "すみれ",
+    "season": "春",
+    "summary": "春に紫色などの小さな花を咲かせる草。",
+    "scene": "道端や石垣の下に花がうつむく。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-15": {
+    "term": "春の山",
+    "reading": "はるのやま",
+    "season": "春",
+    "summary": "芽吹きや花で色合いが柔らかくなる春の山。",
+    "scene": "遠い山肌に淡い色が重なる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-16": {
+    "term": "蒲公英",
+    "reading": "たんぽぽ",
+    "season": "春",
+    "summary": "春に黄色い花を咲かせるキク科の草。",
+    "scene": "野道の足元に丸い黄色が明るい。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-17": {
+    "term": "燕",
+    "reading": "つばめ",
+    "season": "春",
+    "summary": "春に渡ってくる鳥。軒先などに巣を作る。",
+    "scene": "低く飛ぶ姿が町や田畑を横切る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-18": {
+    "term": "春の海",
+    "reading": "はるのうみ",
+    "season": "春",
+    "summary": "春の穏やかでのどかに感じられる海。",
+    "scene": "ゆっくり寄せる波に日差しが広がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-19": {
+    "term": "彼岸桜",
+    "reading": "ひがんざくら",
+    "season": "春",
+    "summary": "春の彼岸ごろに花を咲かせる早咲きの桜。",
+    "scene": "まだ花の少ない野に淡い桜色が見える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-20": {
+    "term": "山笑ふ",
+    "reading": "やまわらう",
+    "season": "春",
+    "summary": "芽吹きや花で春の山が明るくなる様子を表す言葉。",
+    "scene": "山全体が柔らかな色を帯びて見える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-21": {
+    "term": "春分",
+    "reading": "しゅんぶん",
+    "season": "春",
+    "summary": "二十四節気の一つ。昼と夜の長さがほぼ等しくなるころで、日付は年によって異なる。",
+    "scene": "日が長くなり、春の歩みを感じる時期。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-22": {
+    "term": "辛夷",
+    "reading": "こぶし",
+    "season": "春",
+    "summary": "早春、葉が出る前に白い花を咲かせる木。",
+    "scene": "裸の枝に大きな白い花が開く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-23": {
+    "term": "春雷",
+    "reading": "しゅんらい",
+    "season": "春",
+    "summary": "春に鳴る雷。",
+    "scene": "穏やかな季節の空を急な音が渡る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-24": {
+    "term": "蓬",
+    "reading": "よもぎ",
+    "season": "春",
+    "summary": "春に香りのある若葉を伸ばす草。草餅などに用いる。",
+    "scene": "土手の若葉を摘むと青い香りが立つ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-25": {
+    "term": "雪柳",
+    "reading": "ゆきやなぎ",
+    "season": "春",
+    "summary": "細い枝に小さな白い花を密に咲かせる低木。",
+    "scene": "しなる枝が白い花で覆われる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-26": {
+    "term": "春休",
+    "reading": "はるやすみ",
+    "season": "春",
+    "summary": "学年の終わりから新学年までの学校の休み。",
+    "scene": "校庭が静まり、子どもたちが町へ出る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-27": {
+    "term": "連翹",
+    "reading": "れんぎょう",
+    "season": "春",
+    "summary": "春、枝いっぱいに黄色い花を咲かせる低木。",
+    "scene": "生垣に鮮やかな黄色が連なる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-28": {
+    "term": "桜貝",
+    "reading": "さくらがい",
+    "season": "春",
+    "summary": "淡い桜色をした薄い二枚貝。",
+    "scene": "波打ち際の砂に小さな薄紅色を見つける。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-29": {
+    "term": "朧月",
+    "reading": "おぼろづき",
+    "season": "春",
+    "summary": "春の夜、霞んで輪郭がぼんやり見える月。",
+    "scene": "柔らかな月の光が町を包む。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-30": {
+    "term": "初桜",
+    "reading": "はつざくら",
+    "season": "春",
+    "summary": "その年に初めて咲いた桜、または初めて見る桜。",
+    "scene": "まだまばらな枝に一輪を見つける。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "03-31": {
+    "term": "春の宵",
+    "reading": "はるのよい",
+    "season": "春",
+    "summary": "春の日暮れから夜に入るころ。",
+    "scene": "明るさの残る空の下をゆっくり歩く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-01": {
+    "term": "四月馬鹿",
+    "reading": "しがつばか",
+    "season": "春",
+    "summary": "四月一日のエイプリルフール。罪のない嘘を楽しむ習慣。",
+    "scene": "軽い冗談を交わして春の一日を過ごす。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-02": {
+    "term": "桜",
+    "reading": "さくら",
+    "season": "春",
+    "summary": "春を代表する花木。季語では主に咲いている花をいう。",
+    "scene": "枝を覆う花が淡い色の雲のように広がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-03": {
+    "term": "花曇",
+    "reading": "はなぐもり",
+    "season": "春",
+    "summary": "桜が咲くころの、薄く曇った空模様。",
+    "scene": "柔らかな曇り空の下に桜が咲く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-04": {
+    "term": "花冷",
+    "reading": "はなびえ",
+    "season": "春",
+    "summary": "桜の花が咲くころに戻ってくる寒さ。",
+    "scene": "花見の道で思わず上着を合わせる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-05": {
+    "term": "夜桜",
+    "reading": "よざくら",
+    "season": "春",
+    "summary": "夜に眺める桜の花。",
+    "scene": "暗がりの中で花の色が浮かび上がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-06": {
+    "term": "花の雨",
+    "reading": "はなのあめ",
+    "season": "春",
+    "summary": "桜の花に降りかかる雨。",
+    "scene": "ぬれた花びらから雫が落ちる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-07": {
+    "term": "入学",
+    "reading": "にゅうがく",
+    "season": "春",
+    "summary": "新しく学校に入ること。日本では主に四月に行われる。",
+    "scene": "新しい鞄を持ち、校門をくぐる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-08": {
+    "term": "灌仏会",
+    "reading": "かんぶつえ",
+    "season": "春",
+    "summary": "釈迦の誕生を祝う四月八日の仏教行事。",
+    "scene": "花で飾った御堂で誕生仏に甘茶を注ぐ。",
+    "source": "https://kigosai.sub.jp/001/archives/1960"
+  },
+  "04-09": {
+    "term": "花見",
+    "reading": "はなみ",
+    "season": "春",
+    "summary": "主に桜の花を眺めて楽しむこと。",
+    "scene": "咲く枝を見上げながら春の道を歩く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-10": {
+    "term": "春昼",
+    "reading": "しゅんちゅう",
+    "season": "春",
+    "summary": "のどかに感じられる春の昼。",
+    "scene": "柔らかな日差しの中で時間がゆっくり流れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-11": {
+    "term": "春愁",
+    "reading": "しゅんしゅう",
+    "season": "春",
+    "summary": "春にふと覚える、理由のはっきりしない物思いや憂い。",
+    "scene": "明るい景色を見ながらも心が静かに沈む。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-12": {
+    "term": "山桜",
+    "reading": "やまざくら",
+    "season": "春",
+    "summary": "山に自生する桜。花と若葉が一緒に現れるものも多い。",
+    "scene": "山肌に花の白と若葉の赤みが混じる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-13": {
+    "term": "春風",
+    "reading": "はるかぜ",
+    "season": "春",
+    "summary": "春に吹く穏やかな風。",
+    "scene": "開けた窓から柔らかな空気が入る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-14": {
+    "term": "桜餅",
+    "reading": "さくらもち",
+    "season": "春",
+    "summary": "桜の葉で包んだ餅菓子。関東風と関西風などがある。",
+    "scene": "葉の香りとともに春の菓子を味わう。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-15": {
+    "term": "春眠",
+    "reading": "しゅんみん",
+    "season": "春",
+    "summary": "春の心地よい眠り。",
+    "scene": "朝の柔らかな光の中でまどろむ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-16": {
+    "term": "八重桜",
+    "reading": "やえざくら",
+    "season": "春",
+    "summary": "花びらが幾重にも重なる桜。",
+    "scene": "枝にふっくらとした花房が付く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-17": {
+    "term": "花筏",
+    "reading": "はないかだ",
+    "season": "春",
+    "summary": "散った桜の花びらが水面に集まり、流れる様子。",
+    "scene": "川面を薄紅の花びらが連なってゆく。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-18": {
+    "term": "若草",
+    "reading": "わかくさ",
+    "season": "春",
+    "summary": "春に新しく生えた柔らかな草。",
+    "scene": "野原をみずみずしい緑が覆う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-19": {
+    "term": "春の夢",
+    "reading": "はるのゆめ",
+    "season": "春",
+    "summary": "春の夜に見る夢。はかないもののたとえにもなる。",
+    "scene": "暖かな寝床で淡い夢を見て目覚める。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-20": {
+    "term": "穀雨",
+    "reading": "こくう",
+    "season": "春",
+    "summary": "二十四節気の一つ。穀物を育てる雨の降るころで、日付は年によって異なる。",
+    "scene": "田畑に春の雨がしっとり染み込む時期。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-21": {
+    "term": "躑躅",
+    "reading": "つつじ",
+    "season": "春",
+    "summary": "春に赤や白、桃色などの花を咲かせる低木。",
+    "scene": "生垣や山道が鮮やかな花で彩られる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-22": {
+    "term": "藤",
+    "reading": "ふじ",
+    "season": "春",
+    "summary": "春に紫色や白い花房を垂らすつる性の木。",
+    "scene": "棚から長い花房が風に揺れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-23": {
+    "term": "春惜しむ",
+    "reading": "はるおしむ",
+    "season": "春",
+    "summary": "過ぎてゆく春を名残惜しく思うこと。",
+    "scene": "散り残る花や暮れる野を見つめる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-24": {
+    "term": "菜種梅雨",
+    "reading": "なたねづゆ",
+    "season": "春",
+    "summary": "菜の花が咲くころに続く長雨。",
+    "scene": "春の畑や町が雨にぬれ続ける。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-25": {
+    "term": "蕨",
+    "reading": "わらび",
+    "season": "春",
+    "summary": "春に巻いた若芽を伸ばすシダ植物。若芽を山菜とする。",
+    "scene": "山の斜面に曲がった芽が頭を出す。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-26": {
+    "term": "春深し",
+    "reading": "はるふかし",
+    "season": "春",
+    "summary": "春が十分に深まったころ。",
+    "scene": "花や緑が満ち、日差しにも暖かさが増す。",
+    "source": "https://kigosai.sub.jp/001/archives/2012"
+  },
+  "04-27": {
+    "term": "蒲公英の絮",
+    "reading": "たんぽぽのわた",
+    "season": "春",
+    "summary": "タンポポの種に付く白い綿毛。",
+    "scene": "丸い綿毛が風にほどけて飛ぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-28": {
+    "term": "牡丹",
+    "reading": "ぼたん",
+    "season": "春",
+    "summary": "晩春、大きく華やかな花を咲かせる木。",
+    "scene": "幾重もの花びらが庭にゆったり開く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-29": {
+    "term": "夏近し",
+    "reading": "なつちかし",
+    "season": "春",
+    "summary": "春の終わりに夏の近さを感じること。",
+    "scene": "濃くなる緑や日差しに次の季節を思う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "04-30": {
+    "term": "行く春",
+    "reading": "ゆくはる",
+    "season": "春",
+    "summary": "過ぎ去ろうとする春。",
+    "scene": "花の時期が終わり、野の色が変わってゆく。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-01": {
+    "term": "茶摘",
+    "reading": "ちゃつみ",
+    "season": "春",
+    "summary": "茶の若芽を摘み取ること。春の新茶の収穫を表す。",
+    "scene": "茶畑で柔らかな芽を手に取る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-02": {
+    "term": "八十八夜",
+    "reading": "はちじゅうはちや",
+    "season": "春",
+    "summary": "立春から数えて八十八日目。日付は年により五月一日または二日などとなる。",
+    "scene": "茶畑や田畑に春から夏への移りを感じる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-03": {
+    "term": "新緑",
+    "reading": "しんりょく",
+    "season": "夏",
+    "summary": "木々の若葉のみずみずしい緑。",
+    "scene": "日差しを透かした葉が明るく輝く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-04": {
+    "term": "鯉幟",
+    "reading": "こいのぼり",
+    "season": "夏",
+    "summary": "端午の節句に立てる鯉の形の幟。",
+    "scene": "五月の空を大きな鯉が泳ぐ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-05": {
+    "term": "端午",
+    "reading": "たんご",
+    "season": "夏",
+    "summary": "五月五日の節句。菖蒲や武者人形などに無事な成長を願う。",
+    "scene": "菖蒲湯や幟に節句の風景が広がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-06": {
+    "term": "初夏",
+    "reading": "しょか",
+    "season": "夏",
+    "summary": "夏の初め。立夏を迎えるころからの季節。",
+    "scene": "若葉に光が満ち、風が爽やかに通る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-07": {
+    "term": "薫風",
+    "reading": "くんぷう",
+    "season": "夏",
+    "summary": "若葉の香りを運んでくるような初夏の風。",
+    "scene": "緑の間を吹き抜ける風を深く吸う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-08": {
+    "term": "若葉",
+    "reading": "わかば",
+    "season": "夏",
+    "summary": "芽吹いたばかりの、柔らかく若い木の葉。",
+    "scene": "光を透かす薄い葉が枝先で揺れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-09": {
+    "term": "新茶",
+    "reading": "しんちゃ",
+    "season": "夏",
+    "summary": "その年の初めに摘んだ芽で作った茶。",
+    "scene": "湯飲みから若々しい茶の香りが立つ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-10": {
+    "term": "筍",
+    "reading": "たけのこ",
+    "season": "夏",
+    "summary": "竹の地下茎から出る若い芽。",
+    "scene": "土を押し上げ、太い芽が伸び始める。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-11": {
+    "term": "夏めく",
+    "reading": "なつめく",
+    "season": "夏",
+    "summary": "風景や空気が夏らしくなること。",
+    "scene": "日差しや服装に夏の気配が増す。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-12": {
+    "term": "青葉",
+    "reading": "あおば",
+    "season": "夏",
+    "summary": "青々と茂った木の葉。",
+    "scene": "重なる葉が日を受けて揺れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-13": {
+    "term": "卯の花",
+    "reading": "うのはな",
+    "season": "夏",
+    "summary": "ウツギの白い花。初夏に枝を白く彩る。",
+    "scene": "垣根に小さな白い花が群れ咲く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-14": {
+    "term": "夏の朝",
+    "reading": "なつのあさ",
+    "season": "夏",
+    "summary": "明るく、早く訪れる夏の朝。",
+    "scene": "日の昇るころから鳥や町の音が動き出す。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-15": {
+    "term": "時鳥",
+    "reading": "ほととぎす",
+    "season": "夏",
+    "summary": "初夏に渡ってきて特徴的な声で鳴く鳥。",
+    "scene": "夜や明け方の空に鋭い声が響く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-16": {
+    "term": "蚕豆",
+    "reading": "そらまめ",
+    "season": "夏",
+    "summary": "初夏に実る、太い莢を付ける豆。",
+    "scene": "厚い莢から緑の豆を取り出す。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-17": {
+    "term": "柏餅",
+    "reading": "かしわもち",
+    "season": "夏",
+    "summary": "餡入りの餅を柏の葉で包んだ菓子。端午の節句に食べる。",
+    "scene": "葉の形を眺めながら初夏の菓子を味わう。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-18": {
+    "term": "薄暑",
+    "reading": "はくしょ",
+    "season": "夏",
+    "summary": "初夏に少し汗ばむほどの軽い暑さ。",
+    "scene": "外を歩くと日差しの強さを感じる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-19": {
+    "term": "麦の秋",
+    "reading": "むぎのあき",
+    "season": "夏",
+    "summary": "麦が熟して収穫を迎える初夏。秋という字でも夏の季語。",
+    "scene": "黄金色の麦畑を風が渡る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-20": {
+    "term": "夏蜜柑",
+    "reading": "なつみかん",
+    "season": "夏",
+    "summary": "初夏に食べごろを迎える大きな柑橘。",
+    "scene": "厚い皮をむくと爽やかな香りが立つ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-21": {
+    "term": "小満",
+    "reading": "しょうまん",
+    "season": "夏",
+    "summary": "二十四節気の一つ。草木などが成長して天地に満ちてゆくころ。日付は年によって異なる。",
+    "scene": "緑が勢いを増し、畑の作物も育つ時期。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-22": {
+    "term": "芍薬",
+    "reading": "しゃくやく",
+    "season": "夏",
+    "summary": "初夏に大きな花を咲かせる多年草。",
+    "scene": "すっと伸びた茎の先で華やかな花が開く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-23": {
+    "term": "緑陰",
+    "reading": "りょくいん",
+    "season": "夏",
+    "summary": "青葉の茂る木が作る日陰。",
+    "scene": "強い日差しを避け、木陰でひと息つく。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-24": {
+    "term": "青嵐",
+    "reading": "あおあらし",
+    "season": "夏",
+    "summary": "青葉のころに吹く強い風。",
+    "scene": "茂った枝葉が大きく揺れ、葉裏が返る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-25": {
+    "term": "豆飯",
+    "reading": "まめめし",
+    "season": "夏",
+    "summary": "主に実エンドウを炊き込んだ御飯。",
+    "scene": "白い飯に若い豆の緑が点々と映える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-26": {
+    "term": "翡翠",
+    "reading": "かわせみ",
+    "season": "夏",
+    "summary": "水辺で魚を捕る、青緑色の羽を持つ鳥。",
+    "scene": "川岸の枝から鮮やかな鳥が水へ飛ぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-27": {
+    "term": "夏木立",
+    "reading": "なつこだち",
+    "season": "夏",
+    "summary": "葉が青々と茂った夏の木立。",
+    "scene": "重なる枝葉が日差しを遮り、木陰を作る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-28": {
+    "term": "杜若",
+    "reading": "かきつばた",
+    "season": "夏",
+    "summary": "初夏の湿地に紫色などの花を咲かせる植物。",
+    "scene": "水辺の葉の間に涼しげな花が立つ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-29": {
+    "term": "走り梅雨",
+    "reading": "はしりづゆ",
+    "season": "夏",
+    "summary": "本格的な梅雨に先立って降る、梅雨めいた雨。",
+    "scene": "湿り気を帯びた曇り空が続く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-30": {
+    "term": "青梅",
+    "reading": "あおうめ",
+    "season": "夏",
+    "summary": "まだ熟しきらず青い梅の実。",
+    "scene": "葉の間に丸い緑の実が付く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "05-31": {
+    "term": "万緑",
+    "reading": "ばんりょく",
+    "season": "夏",
+    "summary": "見渡す限りに満ちる、夏の草木の緑。",
+    "scene": "山も庭も幾重もの緑で埋まる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-01": {
+    "term": "更衣",
+    "reading": "ころもがえ",
+    "season": "夏",
+    "summary": "季節に合わせて衣服を替えること。夏の季語では夏服への替えをいう。",
+    "scene": "軽い衣服に袖を通し、季節の変化を感じる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-02": {
+    "term": "単衣",
+    "reading": "ひとえ",
+    "season": "夏",
+    "summary": "裏地を付けずに仕立てた着物。",
+    "scene": "軽い布が風を通し、夏の身支度になる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-03": {
+    "term": "紫陽花",
+    "reading": "あじさい",
+    "season": "夏",
+    "summary": "梅雨のころに青や紫、白などの花を咲かせる低木。",
+    "scene": "雨にぬれた花房が庭で色を深める。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-04": {
+    "term": "花菖蒲",
+    "reading": "はなしょうぶ",
+    "season": "夏",
+    "summary": "初夏の水辺などに大きな花を咲かせるアヤメ科の植物。",
+    "scene": "葉の間から紫や白の花が立ち上がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-05": {
+    "term": "蛍",
+    "reading": "ほたる",
+    "season": "夏",
+    "summary": "暗がりで光を放つ昆虫。主に初夏の水辺で親しまれる。",
+    "scene": "川辺の闇に小さな光が浮かぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-06": {
+    "term": "芒種",
+    "reading": "ぼうしゅ",
+    "season": "夏",
+    "summary": "二十四節気の一つ。芒のある穀物の種をまく時期に由来する。日付は年によって異なる。",
+    "scene": "田畑の作業が進むころの景色を思う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-07": {
+    "term": "梅雨",
+    "reading": "つゆ",
+    "season": "夏",
+    "summary": "初夏から夏にかけて続く雨の多い季節。",
+    "scene": "雨音が日々の暮らしに重なる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-08": {
+    "term": "蝸牛",
+    "reading": "かたつむり",
+    "season": "夏",
+    "summary": "殻を背負ってゆっくり移動する陸生の巻貝。",
+    "scene": "雨上がりの葉の上を静かにはう。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-09": {
+    "term": "梅雨晴",
+    "reading": "つゆばれ",
+    "season": "夏",
+    "summary": "梅雨の最中に一時的に晴れること。",
+    "scene": "久しぶりの日差しに、ぬれた葉が光る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-10": {
+    "term": "田植",
+    "reading": "たうえ",
+    "season": "夏",
+    "summary": "水田に稲の苗を植えること。",
+    "scene": "水面に細い苗の列が伸びてゆく。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-11": {
+    "term": "雨蛙",
+    "reading": "あまがえる",
+    "season": "夏",
+    "summary": "草木の上などにいる小さな蛙。雨のころの声でも親しまれる。",
+    "scene": "葉にとまる緑の姿や雨前の鳴き声。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-12": {
+    "term": "青田",
+    "reading": "あおた",
+    "season": "夏",
+    "summary": "稲が青々と育っている田。",
+    "scene": "風が稲の葉を順に揺らして渡る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-13": {
+    "term": "十薬",
+    "reading": "どくだみ",
+    "season": "夏",
+    "summary": "ドクダミの別名。初夏に白い総苞片を付ける。",
+    "scene": "日陰の庭に白い十字のような姿が並ぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-14": {
+    "term": "枇杷",
+    "reading": "びわ",
+    "season": "夏",
+    "summary": "初夏に黄橙色に熟す果実。",
+    "scene": "葉の陰に柔らかな色の実がまとまる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-15": {
+    "term": "蜘蛛",
+    "reading": "くも",
+    "season": "夏",
+    "summary": "糸を出す節足動物。季語では夏の活動する姿をいう。",
+    "scene": "軒や木の間に張られた網が光る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-16": {
+    "term": "水馬",
+    "reading": "あめんぼ",
+    "season": "夏",
+    "summary": "細長い脚で水面をすべる昆虫。",
+    "scene": "池の表面に小さな波紋が広がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-17": {
+    "term": "梅の実",
+    "reading": "うめのみ",
+    "season": "夏",
+    "summary": "初夏に大きく育ち、熟す梅の果実。",
+    "scene": "収穫した実をざるに広げる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-18": {
+    "term": "梔子の花",
+    "reading": "くちなしのはな",
+    "season": "夏",
+    "summary": "初夏から夏に白く香りの強い花を咲かせる。",
+    "scene": "夕方の庭に甘い香りが漂う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-19": {
+    "term": "鮎",
+    "reading": "あゆ",
+    "season": "夏",
+    "summary": "清流にすむ魚。夏の味覚としても親しまれる。",
+    "scene": "浅い流れの石の間を魚影が走る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-20": {
+    "term": "南風",
+    "reading": "みなみかぜ",
+    "season": "夏",
+    "summary": "夏に南から吹く風。",
+    "scene": "開けた窓から暖かな風が通り抜ける。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-21": {
+    "term": "夏至",
+    "reading": "げし",
+    "season": "夏",
+    "summary": "二十四節気の一つ。北半球で昼の時間が一年で最も長いころ。日付は年によって異なる。",
+    "scene": "夕方になっても明るい空が残る時期。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-22": {
+    "term": "短夜",
+    "reading": "みじかよ",
+    "season": "夏",
+    "summary": "夏の短い夜。",
+    "scene": "眠りについたと思う間に空が白み始める。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-23": {
+    "term": "合歓の花",
+    "reading": "ねむのはな",
+    "season": "夏",
+    "summary": "夏に淡紅色の糸のような花を咲かせる木。",
+    "scene": "ふわりとした花が枝先を彩る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-24": {
+    "term": "金魚",
+    "reading": "きんぎょ",
+    "season": "夏",
+    "summary": "観賞用に飼う魚。夏の涼味を感じさせる季語。",
+    "scene": "水の中で赤い尾がゆっくり揺れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-25": {
+    "term": "昼顔",
+    "reading": "ひるがお",
+    "season": "夏",
+    "summary": "昼間に淡紅色の漏斗形の花を開くつる草。",
+    "scene": "草むらの間に柔らかな花が開く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-26": {
+    "term": "青柿",
+    "reading": "あおがき",
+    "season": "夏",
+    "summary": "熟す前の緑色の柿の実。",
+    "scene": "葉と同じ色の小さな実が枝に付く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-27": {
+    "term": "夏草",
+    "reading": "なつくさ",
+    "season": "夏",
+    "summary": "夏に勢いよく生い茂る草。",
+    "scene": "空き地や土手が濃い緑に包まれる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-28": {
+    "term": "滝",
+    "reading": "たき",
+    "season": "夏",
+    "summary": "崖などから落下する水流。季語では涼しさを感じさせる夏の景。",
+    "scene": "水音と飛沫が山の空気を冷やす。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-29": {
+    "term": "冷奴",
+    "reading": "ひややっこ",
+    "season": "夏",
+    "summary": "冷やした豆腐に薬味などを添えた料理。",
+    "scene": "暑い日の食卓に白い豆腐を盛る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "06-30": {
+    "term": "夏越の祓",
+    "reading": "なごしのはらえ",
+    "season": "夏",
+    "summary": "六月末に行う、半年のけがれを祓う神事。",
+    "scene": "社に設けた茅の輪をくぐる人が続く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-01": {
+    "term": "半夏生",
+    "reading": "はんげしょう",
+    "season": "夏",
+    "summary": "夏至から約十一日後に当たる雑節。日付は年によって異なる。",
+    "scene": "田植えの区切りを意識した昔の暮らしを思う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-02": {
+    "term": "夕立",
+    "reading": "ゆうだち",
+    "season": "夏",
+    "summary": "夏の午後から夕方に急に降る強い雨。",
+    "scene": "黒い雲が広がり、道を大粒の雨が打つ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-03": {
+    "term": "風鈴",
+    "reading": "ふうりん",
+    "season": "夏",
+    "summary": "風で鳴る小さな鈴。夏の涼を感じる道具。",
+    "scene": "窓辺で短冊が揺れ、澄んだ音がする。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-04": {
+    "term": "団扇",
+    "reading": "うちわ",
+    "season": "夏",
+    "summary": "手であおいで風を起こす道具。",
+    "scene": "夕方の縁側でゆっくり風を送る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-05": {
+    "term": "浴衣",
+    "reading": "ゆかた",
+    "season": "夏",
+    "summary": "夏に着る、主に木綿の単衣の着物。",
+    "scene": "湯上がりや夕涼みの肌に軽い布が触れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-06": {
+    "term": "百合",
+    "reading": "ゆり",
+    "season": "夏",
+    "summary": "夏に大きく目立つ花を咲かせる球根植物。",
+    "scene": "山道や庭で花が横向きに開く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-07": {
+    "term": "夏座敷",
+    "reading": "なつざしき",
+    "season": "夏",
+    "summary": "風通しをよくし、涼しくしつらえた夏の座敷。",
+    "scene": "障子や襖を開け、風の通る畳の部屋で過ごす。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-08": {
+    "term": "炎天",
+    "reading": "えんてん",
+    "season": "夏",
+    "summary": "焼けつくように日が照る夏の空や日中。",
+    "scene": "照り返す道の上で空気が熱を帯びる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-09": {
+    "term": "朝凪",
+    "reading": "あさなぎ",
+    "season": "夏",
+    "summary": "海辺などで、朝に風がやみ穏やかになること。",
+    "scene": "朝の水面が静かに広がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-10": {
+    "term": "泳ぎ",
+    "reading": "およぎ",
+    "season": "夏",
+    "summary": "水に入り、泳ぐこと。",
+    "scene": "水をかく音と飛沫が夏の日に広がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-11": {
+    "term": "蝉",
+    "reading": "せみ",
+    "season": "夏",
+    "summary": "夏に大きな声で鳴く昆虫。",
+    "scene": "木立から幾重もの鳴き声が降ってくる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-12": {
+    "term": "日傘",
+    "reading": "ひがさ",
+    "season": "夏",
+    "summary": "強い日差しを遮るために差す傘。",
+    "scene": "道を歩く人の頭上に小さな影が移る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-13": {
+    "term": "蓮の花",
+    "reading": "はすのはな",
+    "season": "夏",
+    "summary": "夏、水面から伸びた茎に咲く蓮の花。",
+    "scene": "朝の池に大きな花が開く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-14": {
+    "term": "氷水",
+    "reading": "こおりみず",
+    "season": "夏",
+    "summary": "氷を入れた飲み水。また、かき氷をいうこともある。",
+    "scene": "冷たい器に水滴が付く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-15": {
+    "term": "海水浴",
+    "reading": "かいすいよく",
+    "season": "夏",
+    "summary": "海で泳いだり水に入ったりして楽しむこと。",
+    "scene": "砂浜と波打ち際に人が集まる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-16": {
+    "term": "木下闇",
+    "reading": "こしたやみ",
+    "season": "夏",
+    "summary": "葉の茂った木々の下にできる、昼でも暗い場所。",
+    "scene": "日なたから木立に入ると深い影に包まれる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-17": {
+    "term": "打水",
+    "reading": "うちみず",
+    "season": "夏",
+    "summary": "涼を得たりほこりを抑えたりするため、道や庭に水をまくこと。",
+    "scene": "夕方の石や土に水が染み、色が濃くなる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-18": {
+    "term": "夕涼",
+    "reading": "ゆうすずみ",
+    "season": "夏",
+    "summary": "夏の夕方、戸外などで涼むこと。",
+    "scene": "日が落ちた庭先で風を待つ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-19": {
+    "term": "兜虫",
+    "reading": "かぶとむし",
+    "season": "夏",
+    "summary": "雄が角を持つ大型の甲虫。",
+    "scene": "夜の木の幹に甲虫が集まる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-20": {
+    "term": "空蝉",
+    "reading": "うつせみ",
+    "season": "夏",
+    "summary": "蝉が羽化したあとに残る抜け殻。",
+    "scene": "葉や幹に薄茶色の殻がしがみついている。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-21": {
+    "term": "雲の峰",
+    "reading": "くものみね",
+    "season": "夏",
+    "summary": "山の峰のように高く盛り上がる夏の雲。",
+    "scene": "青空に白い雲が大きく立ち上がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-22": {
+    "term": "大暑",
+    "reading": "たいしょ",
+    "season": "夏",
+    "summary": "二十四節気の一つ。一年で特に暑さの厳しいころ。日付は年によって異なる。",
+    "scene": "強い日差しと熱気に包まれる時期。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-23": {
+    "term": "向日葵",
+    "reading": "ひまわり",
+    "season": "夏",
+    "summary": "夏に大きな黄色い花を咲かせる植物。",
+    "scene": "背の高い茎の上に明るい花が並ぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-24": {
+    "term": "涼風",
+    "reading": "すずかぜ",
+    "season": "夏",
+    "summary": "暑い中で涼しく感じられる風。",
+    "scene": "夕方の肌を心地よい風がなでる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-25": {
+    "term": "天道虫",
+    "reading": "てんとうむし",
+    "season": "夏",
+    "summary": "丸い体を持つ小さな甲虫。",
+    "scene": "草の葉を小さな虫が歩き、先端から飛ぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-26": {
+    "term": "百日紅",
+    "reading": "さるすべり",
+    "season": "夏",
+    "summary": "夏に長く花を咲かせる、滑らかな幹の木。",
+    "scene": "暑い庭で紅や白の花が房をなす。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-27": {
+    "term": "心太",
+    "reading": "ところてん",
+    "season": "夏",
+    "summary": "テングサなどから作る、細く突き出した食品。",
+    "scene": "透き通る細い筋を酢などで涼しく食べる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-28": {
+    "term": "熱帯夜",
+    "reading": "ねったいや",
+    "season": "夏",
+    "summary": "夜間の最低気温が二十五度以上になる夜。",
+    "scene": "日が落ちても部屋や道に熱が残る。",
+    "source": "https://kigosai.sub.jp/kigo500c/814.html"
+  },
+  "07-29": {
+    "term": "夏の月",
+    "reading": "なつのつき",
+    "season": "夏",
+    "summary": "夏の夜空にかかる月。",
+    "scene": "昼の熱が残る町を月が照らす。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "07-30": {
+    "term": "夕焼",
+    "reading": "ゆうやけ",
+    "season": "夏",
+    "summary": "夕方、西の空が赤く染まること。季語では夏に分類される。",
+    "scene": "日の長い季節の空が、広く茜色に染まる。",
+    "source": "https://kigosai.sub.jp/001/archives/2048"
+  },
+  "07-31": {
+    "term": "夏惜しむ",
+    "reading": "なつおしむ",
+    "season": "夏",
+    "summary": "去ってゆく夏を名残惜しく思うこと。",
+    "scene": "長い日や水辺の遊びを思い返す。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-01": {
+    "term": "極暑",
+    "reading": "ごくしょ",
+    "season": "夏",
+    "summary": "きわめて厳しい暑さ。",
+    "scene": "外へ出ると全身を熱気が包む。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-02": {
+    "term": "汗",
+    "reading": "あせ",
+    "season": "夏",
+    "summary": "暑さなどで体から出る汗。",
+    "scene": "額の汗をぬぐいながら道を歩く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-03": {
+    "term": "昼寝",
+    "reading": "ひるね",
+    "season": "夏",
+    "summary": "昼間にひと休みして眠ること。夏の生活の季語。",
+    "scene": "風の通る部屋で短い眠りにつく。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-04": {
+    "term": "納涼",
+    "reading": "のうりょう",
+    "season": "夏",
+    "summary": "暑さを避けて涼しさを楽しむこと。",
+    "scene": "水辺や夕方の戸外で涼を得る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-05": {
+    "term": "水中花",
+    "reading": "すいちゅうか",
+    "season": "夏",
+    "summary": "水に入れると開く、紙などで作った造花。",
+    "scene": "ガラスの器の中で彩りが広がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-06": {
+    "term": "夏の果",
+    "reading": "なつのはて",
+    "season": "夏",
+    "summary": "夏が終わろうとするころ。",
+    "scene": "強い日差しの中にも季節の区切りを思う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-07": {
+    "term": "秋隣",
+    "reading": "あきどなり",
+    "season": "夏",
+    "summary": "夏の終わりに秋の近さが感じられること。",
+    "scene": "夕風や虫の声に次の季節を感じる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-08": {
+    "term": "新涼",
+    "reading": "しんりょう",
+    "season": "秋",
+    "summary": "秋の初めに感じる新鮮な涼しさ。",
+    "scene": "暑さのあと、朝の空気が肌に心地よい。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-09": {
+    "term": "秋立つ",
+    "reading": "あきたつ",
+    "season": "秋",
+    "summary": "暦の上で秋になること。立秋を迎える意。",
+    "scene": "夏の景色の中に秋の始まりを意識する。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-10": {
+    "term": "残暑",
+    "reading": "ざんしょ",
+    "season": "秋",
+    "summary": "立秋を過ぎても残っている暑さ。",
+    "scene": "秋という暦の言葉に反して日差しが強い。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-11": {
+    "term": "秋の蝉",
+    "reading": "あきのせみ",
+    "season": "秋",
+    "summary": "秋になっても鳴いている蝉。",
+    "scene": "夏の余韻のような声が木立に残る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-12": {
+    "term": "蜩",
+    "reading": "ひぐらし",
+    "season": "秋",
+    "summary": "朝夕に澄んだ声で鳴く蝉。秋の季語として扱われる。",
+    "scene": "薄暗くなる林に、かなかなという声が響く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-13": {
+    "term": "迎火",
+    "reading": "むかえび",
+    "season": "秋",
+    "summary": "盆に祖先の霊を迎えるためにたく火。八月十三日に行う地域が多い。",
+    "scene": "家の前に小さな火をたいて迎える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-14": {
+    "term": "盆",
+    "reading": "ぼん",
+    "season": "秋",
+    "summary": "祖先の霊を迎えて供養する行事。八月を中心に、七月などに行う地域もある。",
+    "scene": "供物を整え、家族が集まって故人を思う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-15": {
+    "term": "墓参",
+    "reading": "はかまいり",
+    "season": "秋",
+    "summary": "墓を訪れて故人をしのぶこと。盆の墓参は秋の季語。",
+    "scene": "墓を清め、花や水を供える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-16": {
+    "term": "送り火",
+    "reading": "おくりび",
+    "season": "秋",
+    "summary": "盆に迎えた祖先の霊を送る火。八月十六日に行う地域が多い。",
+    "scene": "暮れるころに火を見送り、盆の終わりを思う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-17": {
+    "term": "朝顔",
+    "reading": "あさがお",
+    "season": "秋",
+    "summary": "朝に漏斗形の花を開くつる草。伝統的な季語分類は秋。",
+    "scene": "朝の垣根で青や紅の花が開く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-18": {
+    "term": "桐一葉",
+    "reading": "きりひとは",
+    "season": "秋",
+    "summary": "桐の葉が一枚落ちることに、秋の訪れを感じる言葉。",
+    "scene": "広い葉がふと地面に落ちる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-19": {
+    "term": "秋めく",
+    "reading": "あきめく",
+    "season": "秋",
+    "summary": "空や風、景色が秋らしくなること。",
+    "scene": "雲の高さや朝の空気の変化に気づく。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-20": {
+    "term": "法師蝉",
+    "reading": "ほうしぜみ",
+    "season": "秋",
+    "summary": "ツクツクボウシの別名。晩夏から初秋の声として親しまれる。",
+    "scene": "夏の終わりを思わせる鳴き声が続く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-21": {
+    "term": "芙蓉",
+    "reading": "ふよう",
+    "season": "秋",
+    "summary": "夏から秋にかけて大きな淡紅色や白い花を咲かせる木。",
+    "scene": "朝の庭に柔らかな花が開く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-22": {
+    "term": "虫の声",
+    "reading": "むしのこえ",
+    "season": "秋",
+    "summary": "秋に鳴く虫たちの声。",
+    "scene": "日が落ちた草むらから音が重なる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-23": {
+    "term": "処暑",
+    "reading": "しょしょ",
+    "season": "秋",
+    "summary": "二十四節気の一つ。暑さが収まり始めるころ。日付は年によって異なる。",
+    "scene": "日中の暑さの中にも朝夕の変化を感じる時期。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-24": {
+    "term": "秋風",
+    "reading": "あきかぜ",
+    "season": "秋",
+    "summary": "秋に吹く風。涼しさや寂しさも感じさせる。",
+    "scene": "草の穂や衣の裾に風が触れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-25": {
+    "term": "桔梗",
+    "reading": "ききょう",
+    "season": "秋",
+    "summary": "青紫色などの星形の花を咲かせる草。秋の七草の一つ。",
+    "scene": "すっと伸びた茎に端正な花が開く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-26": {
+    "term": "鈴虫",
+    "reading": "すずむし",
+    "season": "秋",
+    "summary": "鈴を振るような音で鳴く虫。",
+    "scene": "夜の静けさに澄んだ音が響く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-27": {
+    "term": "葛の花",
+    "reading": "くずのはな",
+    "season": "秋",
+    "summary": "つるを伸ばす葛に咲く、紫紅色の花。",
+    "scene": "葉の陰から甘い香りが漂う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-28": {
+    "term": "秋の雲",
+    "reading": "あきのくも",
+    "season": "秋",
+    "summary": "秋の空に浮かぶ雲。",
+    "scene": "高い空に形の異なる白い雲が流れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-29": {
+    "term": "秋の水",
+    "reading": "あきのみず",
+    "season": "秋",
+    "summary": "澄んで冷たく感じられる秋の水。",
+    "scene": "流れの底の石がくっきりと見える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-30": {
+    "term": "秋の暮",
+    "reading": "あきのくれ",
+    "season": "秋",
+    "summary": "秋の夕暮れ。暮秋とは区別される。",
+    "scene": "日の沈むにつれ町や野が静まる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "08-31": {
+    "term": "秋の声",
+    "reading": "あきのこえ",
+    "season": "秋",
+    "summary": "風や虫などの音に感じ取られる秋の気配。",
+    "scene": "耳を澄ますと季節の移りが聞こえる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-01": {
+    "term": "九月",
+    "reading": "くがつ",
+    "season": "秋",
+    "summary": "暦の九番目の月。暑さを残しながら秋が進む。",
+    "scene": "朝夕の風と昼の日差しに季節の変化を感じる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-02": {
+    "term": "赤蜻蛉",
+    "reading": "あかとんぼ",
+    "season": "秋",
+    "summary": "秋に見られる、赤い体のトンボ。",
+    "scene": "田や野の上を赤い姿が飛ぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-03": {
+    "term": "秋晴",
+    "reading": "あきばれ",
+    "season": "秋",
+    "summary": "秋の空が澄んで晴れわたること。",
+    "scene": "遠くまで見渡せる青空が広がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-04": {
+    "term": "稲の花",
+    "reading": "いねのはな",
+    "season": "秋",
+    "summary": "稲の穂に咲く小さな花。",
+    "scene": "田の穂先に小さな白い葯が見える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-05": {
+    "term": "鰯雲",
+    "reading": "いわしぐも",
+    "season": "秋",
+    "summary": "小さな雲の片が群れをなす雲。巻積雲の呼び名の一つ。",
+    "scene": "空一面に細かな白い模様が並ぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-06": {
+    "term": "秋涼",
+    "reading": "しゅうりょう",
+    "season": "秋",
+    "summary": "秋になって感じる涼しさ。",
+    "scene": "風の通る部屋が心地よくなる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-07": {
+    "term": "白露",
+    "reading": "はくろ",
+    "season": "秋",
+    "summary": "二十四節気の一つ。草木に露が目立つころ。日付は年によって異なる。",
+    "scene": "朝の葉先に透明な雫が光る時期。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-08": {
+    "term": "露",
+    "reading": "つゆ",
+    "season": "秋",
+    "summary": "空気中の水蒸気が冷えて物の表面に付いた水滴。",
+    "scene": "朝の草に小さな水の粒が並ぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-09": {
+    "term": "重陽",
+    "reading": "ちょうよう",
+    "season": "秋",
+    "summary": "九月九日の節句。菊の節句ともいう。",
+    "scene": "菊を飾り、長寿を願う昔の習わしを思う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-10": {
+    "term": "萩",
+    "reading": "はぎ",
+    "season": "秋",
+    "summary": "秋に小さな紅紫色や白の花を咲かせる低木。秋の七草の一つ。",
+    "scene": "細い枝がしなって小花をこぼす。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-11": {
+    "term": "芒",
+    "reading": "すすき",
+    "season": "秋",
+    "summary": "秋に銀白色の穂を出す草。秋の七草の一つ。",
+    "scene": "夕日を受けて穂が風になびく。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-12": {
+    "term": "蟋蟀",
+    "reading": "こおろぎ",
+    "season": "秋",
+    "summary": "草むらなどで鳴く秋の虫。",
+    "scene": "夜の足元から細やかな声がする。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-13": {
+    "term": "秋雨",
+    "reading": "あきさめ",
+    "season": "秋",
+    "summary": "秋に降る雨。長く続く雨も秋らしい景色になる。",
+    "scene": "庭の葉がぬれ、空気がひんやりする。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-14": {
+    "term": "葡萄",
+    "reading": "ぶどう",
+    "season": "秋",
+    "summary": "房になって実る果実。秋の実りとして詠まれる。",
+    "scene": "枝から色づいた房が垂れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-15": {
+    "term": "爽やか",
+    "reading": "さわやか",
+    "season": "秋",
+    "summary": "秋の空気が澄み、気持ちよく感じられること。",
+    "scene": "晴れた朝に窓を開けて深呼吸する。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-16": {
+    "term": "女郎花",
+    "reading": "おみなえし",
+    "season": "秋",
+    "summary": "秋に小さな黄色い花を群がり咲かせる草。秋の七草の一つ。",
+    "scene": "野の緑の上に黄色い花がかすむ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-17": {
+    "term": "梨",
+    "reading": "なし",
+    "season": "秋",
+    "summary": "秋に熟す、みずみずしい果実。",
+    "scene": "皮をむくと果汁が光る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-18": {
+    "term": "野分",
+    "reading": "のわき",
+    "season": "秋",
+    "summary": "野の草を分けるほど強く吹く秋の風。台風に伴う風など。",
+    "scene": "草や木が大きく伏せて揺れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-19": {
+    "term": "藤袴",
+    "reading": "ふじばかま",
+    "season": "秋",
+    "summary": "淡い紫紅色の小花を咲かせる、秋の七草の一つ。",
+    "scene": "野に小さな花房が淡く浮かぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-20": {
+    "term": "秋の空",
+    "reading": "あきのそら",
+    "season": "秋",
+    "summary": "澄んで高く感じられる秋の空。",
+    "scene": "雲の間に深い青が広がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-21": {
+    "term": "曼珠沙華",
+    "reading": "まんじゅしゃげ",
+    "season": "秋",
+    "summary": "彼岸花の別名。秋の彼岸ごろに赤い花を咲かせる。",
+    "scene": "畦や土手に細い茎と赤い花が並ぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-22": {
+    "term": "秋分",
+    "reading": "しゅうぶん",
+    "season": "秋",
+    "summary": "二十四節気の一つ。昼と夜の長さがほぼ等しくなるころ。日付は年によって異なる。",
+    "scene": "日暮れが早まり、秋の深まりを感じる時期。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-23": {
+    "term": "秋彼岸",
+    "reading": "あきひがん",
+    "season": "秋",
+    "summary": "秋分を中日とする七日間。日付は年によって異なる。",
+    "scene": "墓参や供物を通して祖先をしのぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-24": {
+    "term": "金木犀",
+    "reading": "きんもくせい",
+    "season": "秋",
+    "summary": "秋に橙色の小さな花を咲かせ、強く香る木。",
+    "scene": "歩いていると生垣の向こうから香りが届く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-25": {
+    "term": "秋桜",
+    "reading": "こすもす",
+    "season": "秋",
+    "summary": "秋に桃色や白などの花を咲かせる草。",
+    "scene": "細い茎が風に揺れ、花が空を向く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-26": {
+    "term": "栗",
+    "reading": "くり",
+    "season": "秋",
+    "summary": "いがに包まれて実る、秋の木の実。",
+    "scene": "割れたいがから艶のある実がのぞく。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-27": {
+    "term": "鵙",
+    "reading": "もず",
+    "season": "秋",
+    "summary": "秋に高鳴きする鳥。",
+    "scene": "木のてっぺんから鋭い声が響く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-28": {
+    "term": "鰯",
+    "reading": "いわし",
+    "season": "秋",
+    "summary": "群れで泳ぐ小型の海魚。秋の味覚として詠まれる。",
+    "scene": "銀色の魚を並べた秋の食卓。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-29": {
+    "term": "夜長",
+    "reading": "よなが",
+    "season": "秋",
+    "summary": "秋になり、夜が長く感じられること。",
+    "scene": "灯の下で本や手仕事に向かう時間が増す。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "09-30": {
+    "term": "水澄む",
+    "reading": "みずすむ",
+    "season": "秋",
+    "summary": "秋に水が澄んで見えること。",
+    "scene": "川底の石や魚影が明瞭に見える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-01": {
+    "term": "衣被",
+    "reading": "きぬかつぎ",
+    "season": "秋",
+    "summary": "小ぶりの里芋を皮付きのまま蒸すなどした料理。",
+    "scene": "皮をつまんでむき、白い芋を味わう。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-02": {
+    "term": "柿",
+    "reading": "かき",
+    "season": "秋",
+    "summary": "秋に橙色に熟す果実。",
+    "scene": "葉の間に丸い実が色づく。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-03": {
+    "term": "秋日和",
+    "reading": "あきびより",
+    "season": "秋",
+    "summary": "穏やかに晴れた秋の天気。",
+    "scene": "庭仕事や散歩に心地よい日差しが注ぐ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-04": {
+    "term": "木の実",
+    "reading": "このみ",
+    "season": "秋",
+    "summary": "秋に実る木々の実。",
+    "scene": "林の道にさまざまな実が落ちている。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-05": {
+    "term": "稲刈",
+    "reading": "いねかり",
+    "season": "秋",
+    "summary": "熟した稲を刈り取る農作業。",
+    "scene": "黄金色の田に収穫の音が響く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-06": {
+    "term": "秋灯",
+    "reading": "しゅうとう",
+    "season": "秋",
+    "summary": "秋の夜にともす灯。",
+    "scene": "窓の内に静かな明かりが見える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-07": {
+    "term": "雁",
+    "reading": "かり",
+    "season": "秋",
+    "summary": "秋に北から渡ってくる水鳥。",
+    "scene": "空を列になって飛び、声を交わす。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-08": {
+    "term": "寒露",
+    "reading": "かんろ",
+    "season": "秋",
+    "summary": "二十四節気の一つ。露の冷たさが増すころ。日付は年によって異なる。",
+    "scene": "朝の草に冷たい雫が宿る時期。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-09": {
+    "term": "菊",
+    "reading": "きく",
+    "season": "秋",
+    "summary": "秋を代表する花。多くの品種や色がある。",
+    "scene": "庭に幾重もの花びらが開く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-10": {
+    "term": "椎の実",
+    "reading": "しいのみ",
+    "season": "秋",
+    "summary": "秋に熟すシイの木の実。",
+    "scene": "木の下に小さな褐色の実が散らばる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-11": {
+    "term": "新米",
+    "reading": "しんまい",
+    "season": "秋",
+    "summary": "その年に新しく収穫した米。",
+    "scene": "炊き上がった飯からつやと湯気が立つ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-12": {
+    "term": "茸",
+    "reading": "きのこ",
+    "season": "秋",
+    "summary": "菌類の作る子実体。秋の山の実りとして詠まれる。",
+    "scene": "湿った林床に傘の形が現れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-13": {
+    "term": "秋寂し",
+    "reading": "あきさびし",
+    "season": "秋",
+    "summary": "秋の景色や空気に寂しさを感じること。",
+    "scene": "静かな道で落ち葉の音に耳を傾ける。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-14": {
+    "term": "鵯",
+    "reading": "ひよどり",
+    "season": "秋",
+    "summary": "秋に群れや鳴き声が目立つ鳥。",
+    "scene": "実のなる木に集まり、甲高く鳴く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-15": {
+    "term": "秋高し",
+    "reading": "あきたかし",
+    "season": "秋",
+    "summary": "澄んだ秋の空が高く感じられること。",
+    "scene": "見上げる空の青が遠く深い。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-16": {
+    "term": "鶏頭",
+    "reading": "けいとう",
+    "season": "秋",
+    "summary": "鶏のとさかに似た、赤などの花穂を付ける草。",
+    "scene": "庭に厚みのある鮮やかな色が立つ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-17": {
+    "term": "紅葉",
+    "reading": "もみじ",
+    "season": "秋",
+    "summary": "秋に木の葉が赤や黄色に色づくこと。また、その葉。",
+    "scene": "山や庭の枝が鮮やかな色に変わる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-18": {
+    "term": "秋深し",
+    "reading": "あきふかし",
+    "season": "秋",
+    "summary": "秋が深まったころ。静けさや物寂しさも含む言葉。",
+    "scene": "色づく木々と早い日暮れに季節の深さを感じる。",
+    "source": "https://kigosai.sub.jp/001/archives/2525"
+  },
+  "10-19": {
+    "term": "銀杏",
+    "reading": "ぎんなん",
+    "season": "秋",
+    "summary": "イチョウの種子。秋に落ちたものを食用にもする。",
+    "scene": "黄葉の下に実が落ち、秋独特のにおいが漂う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-20": {
+    "term": "秋の山",
+    "reading": "あきのやま",
+    "season": "秋",
+    "summary": "紅葉などで色づく秋の山。",
+    "scene": "斜面に赤、黄、緑が重なり合う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-21": {
+    "term": "落花生",
+    "reading": "らっかせい",
+    "season": "秋",
+    "summary": "地中で莢が育つ豆。秋に収穫する。",
+    "scene": "掘り上げた株に土の付いた莢が連なる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-22": {
+    "term": "団栗",
+    "reading": "どんぐり",
+    "season": "秋",
+    "summary": "コナラやクヌギなどの実の総称。",
+    "scene": "林の道で小さな実を拾う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-23": {
+    "term": "霜降",
+    "reading": "そうこう",
+    "season": "秋",
+    "summary": "二十四節気の一つ。霜が降り始めるころ。日付は年によって異なる。",
+    "scene": "朝の冷え込みが一段と深まる時期。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-24": {
+    "term": "蘆の花",
+    "reading": "あしのはな",
+    "season": "秋",
+    "summary": "秋の蘆に現れる花穂。",
+    "scene": "水辺に淡い穂が群れ、風に揺れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-25": {
+    "term": "蓑虫",
+    "reading": "みのむし",
+    "season": "秋",
+    "summary": "枝や葉で作った蓑に入る、ミノガ類の幼虫。",
+    "scene": "細い枝先から小さな蓑が下がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-26": {
+    "term": "秋冷",
+    "reading": "しゅうれい",
+    "season": "秋",
+    "summary": "秋になって冷たく感じられる空気や気候。",
+    "scene": "朝、戸を開けると冷気が入る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-27": {
+    "term": "後の月",
+    "reading": "のちのつき",
+    "season": "秋",
+    "summary": "旧暦九月十三夜の月。新暦の日付は毎年変わる。",
+    "scene": "十五夜に続き、澄んだ月を眺める習わしを思う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-28": {
+    "term": "柚子",
+    "reading": "ゆず",
+    "season": "秋",
+    "summary": "秋に熟す、香りの強い柑橘の実。",
+    "scene": "黄色い皮に爪を立てると香りが広がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-29": {
+    "term": "蔦紅葉",
+    "reading": "つたもみじ",
+    "season": "秋",
+    "summary": "秋に赤く色づいた蔦の葉。",
+    "scene": "壁や木の幹に赤い葉が重なる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-30": {
+    "term": "暮の秋",
+    "reading": "くれのあき",
+    "season": "秋",
+    "summary": "秋が終わりに近づくころ。秋の夕暮れとは区別される。",
+    "scene": "花や虫の気配が少なくなり、野が静まる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "10-31": {
+    "term": "秋惜しむ",
+    "reading": "あきおしむ",
+    "season": "秋",
+    "summary": "去ってゆく秋を名残惜しく思うこと。",
+    "scene": "散りゆく葉や残る実を眺める。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-01": {
+    "term": "冬隣",
+    "reading": "ふゆどなり",
+    "season": "秋",
+    "summary": "秋の終わりに冬の近さを感じること。",
+    "scene": "冷たい風に、冬支度を思い始める。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-02": {
+    "term": "そぞろ寒",
+    "reading": "そぞろさむ",
+    "season": "秋",
+    "summary": "秋の終わりごろ、何となく身に感じる寒さ。",
+    "scene": "じっとしていると薄い寒さが忍び寄る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-03": {
+    "term": "文化の日",
+    "reading": "ぶんかのひ",
+    "season": "秋",
+    "summary": "十一月三日の祝日。自由と平和を愛し、文化をすすめる日。",
+    "scene": "展覧会や文化の催しに足を運ぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-04": {
+    "term": "落穂",
+    "reading": "おちぼ",
+    "season": "秋",
+    "summary": "収穫のあと、田畑に落ち残った穀物の穂。",
+    "scene": "刈田に取り残された穂が見える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-05": {
+    "term": "行く秋",
+    "reading": "ゆくあき",
+    "season": "秋",
+    "summary": "過ぎ去ろうとする秋。",
+    "scene": "色づいた葉が減り、野の色が落ち着く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-06": {
+    "term": "山装ふ",
+    "reading": "やまよそおう",
+    "season": "秋",
+    "summary": "紅葉で山が美しく彩られること。",
+    "scene": "斜面いっぱいに赤や黄色が広がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-07": {
+    "term": "初冬",
+    "reading": "しょとう",
+    "season": "冬",
+    "summary": "冬の初め。立冬を迎えるころからの季節。",
+    "scene": "秋の色を残した景色に冷気が重なる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-08": {
+    "term": "冬めく",
+    "reading": "ふゆめく",
+    "season": "冬",
+    "summary": "天候や景色が冬らしくなること。",
+    "scene": "服装や空の色に冬の気配が増す。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-09": {
+    "term": "木枯",
+    "reading": "こがらし",
+    "season": "冬",
+    "summary": "秋の終わりから冬に吹く、冷たく強い風。",
+    "scene": "木の葉が音を立てて路面を走る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-10": {
+    "term": "小春",
+    "reading": "こはる",
+    "season": "冬",
+    "summary": "初冬の、春のように穏やかで暖かな日和。",
+    "scene": "冷える季節に日だまりが心地よい。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-11": {
+    "term": "山茶花",
+    "reading": "さざんか",
+    "season": "冬",
+    "summary": "冬に紅や白の花を咲かせる常緑樹。",
+    "scene": "生垣の緑に花の色が点々と灯る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-12": {
+    "term": "冬日和",
+    "reading": "ふゆびより",
+    "season": "冬",
+    "summary": "冬の穏やかに晴れた天気。",
+    "scene": "冷たい空気の中に柔らかな日差しがある。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-13": {
+    "term": "石蕗の花",
+    "reading": "つわのはな",
+    "season": "冬",
+    "summary": "ツワブキに咲く黄色い花。",
+    "scene": "艶のある丸い葉の上に花が立つ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-14": {
+    "term": "帰り花",
+    "reading": "かえりばな",
+    "season": "冬",
+    "summary": "初冬の暖かさなどで、春の花が季節外れに咲くこと。",
+    "scene": "葉の少ない枝に思いがけない一輪を見つける。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-15": {
+    "term": "七五三",
+    "reading": "しちごさん",
+    "season": "冬",
+    "summary": "十一月十五日を中心に、子どもの成長を祝う行事。",
+    "scene": "晴れ着の子どもが家族と社寺を訪れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-16": {
+    "term": "冬の空",
+    "reading": "ふゆのそら",
+    "season": "冬",
+    "summary": "冬の澄んだ、または寒々とした空。",
+    "scene": "葉を落とした枝の向こうに空が広がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-17": {
+    "term": "鴨",
+    "reading": "かも",
+    "season": "冬",
+    "summary": "冬に水辺へ渡ってくるものの多い水鳥。",
+    "scene": "池に集まった群れが静かに浮かぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-18": {
+    "term": "落葉",
+    "reading": "おちば",
+    "season": "冬",
+    "summary": "木から落ちた葉。また、葉が落ちること。",
+    "scene": "道に重なった葉が足の下で鳴る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-19": {
+    "term": "冬紅葉",
+    "reading": "ふゆもみじ",
+    "season": "冬",
+    "summary": "冬になっても枝に残る紅葉。",
+    "scene": "冷たい空の下に赤い葉が少し残る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-20": {
+    "term": "手袋",
+    "reading": "てぶくろ",
+    "season": "冬",
+    "summary": "寒さから手を守るために着けるもの。",
+    "scene": "外へ出る前に指先まで包む。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-21": {
+    "term": "冬の雨",
+    "reading": "ふゆのあめ",
+    "season": "冬",
+    "summary": "冬に降る冷たい雨。",
+    "scene": "雨にぬれた道から冷たさが伝わる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-22": {
+    "term": "小雪",
+    "reading": "しょうせつ",
+    "season": "冬",
+    "summary": "二十四節気の一つ。雪が降り始めるころ。日付は年によって異なる。",
+    "scene": "山や北の土地から雪の便りが届く時期。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-23": {
+    "term": "新嘗祭",
+    "reading": "にいなめさい",
+    "season": "冬",
+    "summary": "十一月二十三日、新穀を神に供え、収穫に感謝する祭り。",
+    "scene": "その年の実りを供え、豊かさを感謝する。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-24": {
+    "term": "冬木立",
+    "reading": "ふゆこだち",
+    "season": "冬",
+    "summary": "葉を落として立つ冬の木々。",
+    "scene": "細い枝の形が空にくっきり見える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-25": {
+    "term": "大根",
+    "reading": "だいこん",
+    "season": "冬",
+    "summary": "冬の食卓に親しまれる根菜。",
+    "scene": "畑から抜いた白い根が土の上に並ぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-26": {
+    "term": "炬燵",
+    "reading": "こたつ",
+    "season": "冬",
+    "summary": "足元を暖める、布団を掛けた暖房具。",
+    "scene": "家族が集まり、膝をぬくもりに入れる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-27": {
+    "term": "冬夕焼",
+    "reading": "ふゆゆうやけ",
+    "season": "冬",
+    "summary": "冬の夕方に見られる夕焼け。",
+    "scene": "冷えた空の端が赤く染まる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-28": {
+    "term": "白菜",
+    "reading": "はくさい",
+    "season": "冬",
+    "summary": "冬に収穫され、鍋物や漬物などに用いる葉野菜。",
+    "scene": "重なる白と緑の葉を台所で切る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-29": {
+    "term": "時雨",
+    "reading": "しぐれ",
+    "season": "冬",
+    "summary": "晩秋から初冬に、降ったりやんだりする雨。",
+    "scene": "雲が通るたびに道がぬれる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "11-30": {
+    "term": "冬の星",
+    "reading": "ふゆのほし",
+    "season": "冬",
+    "summary": "冬の夜空に見える星。澄んだ光が印象的。",
+    "scene": "冷たい夜空に星が鋭くきらめく。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-01": {
+    "term": "師走",
+    "reading": "しわす",
+    "season": "冬",
+    "summary": "十二月の別名。年の終わりの月。",
+    "scene": "暮らしのあちこちで年越しの準備が始まる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-02": {
+    "term": "息白し",
+    "reading": "いきしろし",
+    "season": "冬",
+    "summary": "寒さで吐く息が白く見えること。",
+    "scene": "朝の道で息が小さな雲になる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-03": {
+    "term": "冬帽子",
+    "reading": "ふゆぼうし",
+    "season": "冬",
+    "summary": "防寒のためにかぶる冬の帽子。",
+    "scene": "耳元まで暖かくして外へ出る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-04": {
+    "term": "湯豆腐",
+    "reading": "ゆどうふ",
+    "season": "冬",
+    "summary": "湯で温めた豆腐を食べる鍋料理。",
+    "scene": "鍋から湯気が立ち、白い豆腐をすくう。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-05": {
+    "term": "霜",
+    "reading": "しも",
+    "season": "冬",
+    "summary": "水蒸気が地面や物の表面で凍ってできる氷の結晶。",
+    "scene": "朝の草や土が白く縁取られる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-06": {
+    "term": "冬ざれ",
+    "reading": "ふゆざれ",
+    "season": "冬",
+    "summary": "草木が枯れ、景色が荒涼として見える冬の様子。",
+    "scene": "色の少なくなった野に風が吹く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-07": {
+    "term": "大雪",
+    "reading": "たいせつ",
+    "season": "冬",
+    "summary": "二十四節気の一つ。雪が盛んに降るころ。日付は年によって異なる。",
+    "scene": "山や野が本格的な冬へ向かう時期。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-08": {
+    "term": "水鳥",
+    "reading": "みずとり",
+    "season": "冬",
+    "summary": "水辺で暮らす鳥。季語では冬の水上に集まる姿をいう。",
+    "scene": "池の面をいくつもの鳥影が渡る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-09": {
+    "term": "冬の月",
+    "reading": "ふゆのつき",
+    "season": "冬",
+    "summary": "冬の夜空にかかる月。",
+    "scene": "葉のない枝の上に冷たい月光が広がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-10": {
+    "term": "枯野",
+    "reading": "かれの",
+    "season": "冬",
+    "summary": "草の枯れた冬の野。",
+    "scene": "淡い褐色の原を風が渡る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-11": {
+    "term": "水仙",
+    "reading": "すいせん",
+    "season": "冬",
+    "summary": "冬から早春に香りのある花を咲かせる球根植物。",
+    "scene": "細い葉の間に白や黄色の花が開く。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-12": {
+    "term": "冬籠",
+    "reading": "ふゆごもり",
+    "season": "冬",
+    "summary": "寒い冬に家などにこもって過ごすこと。",
+    "scene": "戸外の寒さを聞きながら室内で手を動かす。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-13": {
+    "term": "煤払",
+    "reading": "すすはらい",
+    "season": "冬",
+    "summary": "年末に家の煤やほこりを払い、新年を迎える掃除。十二月十三日に行う習わしがある。",
+    "scene": "梁や棚を清め、家を整える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-14": {
+    "term": "寒椿",
+    "reading": "かんつばき",
+    "season": "冬",
+    "summary": "寒中に咲く椿や、冬に花を付けるカンツバキ。",
+    "scene": "冷たい庭の緑に紅い花が映える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-15": {
+    "term": "冬菜",
+    "reading": "ふゆな",
+    "season": "冬",
+    "summary": "冬に栽培・収穫する葉物野菜の総称。",
+    "scene": "畑で青い葉を摘み、食卓へ運ぶ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-16": {
+    "term": "毛糸編む",
+    "reading": "けいとあむ",
+    "season": "冬",
+    "summary": "毛糸で衣服や小物を編むこと。",
+    "scene": "暖かな部屋で編み針と糸を動かす。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-17": {
+    "term": "枯木",
+    "reading": "かれき",
+    "season": "冬",
+    "summary": "冬になり葉を落とした木。枯死した木だけを指すのではない。",
+    "scene": "枝だけの姿が空に立つ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-18": {
+    "term": "火鉢",
+    "reading": "ひばち",
+    "season": "冬",
+    "summary": "炭火を入れ、手などを暖める道具。",
+    "scene": "炭の赤い火の上に手をかざす。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-19": {
+    "term": "冬凪",
+    "reading": "ふゆなぎ",
+    "season": "冬",
+    "summary": "冬に風がやみ、海などが穏やかになること。",
+    "scene": "寒い日の水面が静かに広がる。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-20": {
+    "term": "蜜柑",
+    "reading": "みかん",
+    "season": "冬",
+    "summary": "冬の果物として親しまれる柑橘。",
+    "scene": "籠に盛った実を暖かな部屋でむく。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-21": {
+    "term": "年用意",
+    "reading": "としようい",
+    "season": "冬",
+    "summary": "新しい年を迎えるための準備。",
+    "scene": "掃除や買物をして年越しを整える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-22": {
+    "term": "冬至",
+    "reading": "とうじ",
+    "season": "冬",
+    "summary": "二十四節気の一つ。北半球で昼の時間が一年で最も短いころ。日付は年によって異なる。",
+    "scene": "早い日暮れの中で季節の折り返しを思う。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-23": {
+    "term": "柚子湯",
+    "reading": "ゆずゆ",
+    "season": "冬",
+    "summary": "主に冬至に柚子を浮かべて入る風呂。冬至の日付は年によって異なる。",
+    "scene": "湯に浮かぶ黄色い実から香りが立つ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-24": {
+    "term": "聖夜",
+    "reading": "せいや",
+    "season": "冬",
+    "summary": "クリスマス前夜、十二月二十四日の夜。",
+    "scene": "町の灯を眺め、静かな夜を過ごす。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-25": {
+    "term": "クリスマス",
+    "reading": "くりすます",
+    "season": "冬",
+    "summary": "十二月二十五日、キリストの降誕を祝う祭日。",
+    "scene": "飾りや灯に彩られた町で祝いの時を迎える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-26": {
+    "term": "年の暮",
+    "reading": "としのくれ",
+    "season": "冬",
+    "summary": "一年の終わりの時期。",
+    "scene": "残る日を数えながら暮らしを整える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-27": {
+    "term": "餅搗",
+    "reading": "もちつき",
+    "season": "冬",
+    "summary": "蒸したもち米を搗いて餅にすること。季語では年末の支度。",
+    "scene": "杵の音が響き、搗きたての餅から湯気が立つ。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-28": {
+    "term": "注連飾",
+    "reading": "しめかざり",
+    "season": "冬",
+    "summary": "新年を迎えるために飾る注連縄などの飾り。",
+    "scene": "玄関を清め、縄や紙垂を整える。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-29": {
+    "term": "年忘れ",
+    "reading": "としわすれ",
+    "season": "冬",
+    "summary": "年末に集まり、その年の苦労などを忘れて楽しむこと。",
+    "scene": "一年を振り返りながら親しい人と語らう。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-30": {
+    "term": "古暦",
+    "reading": "ふるごよみ",
+    "season": "冬",
+    "summary": "年末になり、役目を終えようとするその年の暦。",
+    "scene": "残り少ない暦を見て一年を振り返る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  },
+  "12-31": {
+    "term": "除夜の鐘",
+    "reading": "じょやのかね",
+    "season": "冬",
+    "summary": "大晦日の夜から新年にかけて寺で撞く鐘。",
+    "scene": "夜の空気を鐘の余韻がゆっくり渡る。",
+    "source": "https://kigosai.sub.jp/kigoken3.html"
+  }
+}

@@ -12,6 +12,8 @@ from xml.sax.saxutils import escape as xml_escape
 
 import markdown
 
+from kigo import load_kigo
+
 ROOT = Path(__file__).parent
 CONTENT = ROOT / "content"
 OUT = ROOT / "dist"
@@ -113,6 +115,8 @@ def page(title: str, description: str, path: str, body: str) -> str:
     if BOOKS:
         nav.append(("Books", "books/"))
     nav_html = "".join(f'<a href="{local(p)}" {"aria-current=\"page\"" if p == path else ""}>{label}</a>' for label, p in nav)
+    kigo_assets = (f'<link rel="stylesheet" href="{local("assets/kigo.css")}">'
+                   f'<script src="{local("assets/kigo.js")}" defer></script>') if path == "" else ""
     return f'''<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f8f7f3"><title>{e(full_title)}</title><meta name="description" content="{e(description)}">
@@ -120,10 +124,26 @@ def page(title: str, description: str, path: str, body: str) -> str:
 <meta property="og:title" content="{e(full_title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{url}">
 <meta property="og:site_name" content="{e(SITE['name'])}"><link rel="stylesheet" href="{local('assets/style.css')}">
 <link rel="stylesheet" href="{local('assets/seasonal.css')}"><script src="{local('assets/seasonal.js')}" defer></script>
-</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
+{kigo_assets}</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
 <div class="brand-lockup"><a class="brand" href="{local('')}">{e(SITE['name'])}<small>{e(SITE['name_en'])}</small></a><span class="seasonal-mark" hidden aria-hidden="true"></span></div>
 <nav aria-label="メインナビゲーション">{nav_html}</nav></header><main id="main">{body}</main>
 <footer class="footer"><span>{e(SITE['name'])} / {e(SITE['name_en'])}</span><a href="#main">上へ戻る ↑</a></footer></div></body></html>'''
+
+
+def kigo_widget() -> str:
+    # Embed validated local data; no runtime fetch, API or third-party service.
+    data = json.dumps(load_kigo(CONTENT / "kigo.json"), ensure_ascii=False).replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
+    return f'''<aside class="daily-kigo" aria-label="今日の季語" hidden>
+    <details><summary><span class="kigo-label">今日の季語</span><time></time>
+    <span class="kigo-term" data-kigo="term"></span><span class="kigo-reading" data-kigo="reading"></span>
+    <span class="kigo-description" data-kigo="summary"></span>
+    <span class="kigo-hint"><span class="kigo-more">言葉をひらく ＋</span><span class="kigo-less">説明を閉じる −</span></span></summary>
+    <div class="kigo-detail"><dl><dt>季節</dt><dd data-kigo="season"></dd>
+    <dt>意味・由来</dt><dd data-kigo="summary"></dd><dt>言葉の情景</dt><dd data-kigo="scene"></dd></dl>
+    <p class="kigo-source"><a data-kigo="source" href="https://kigosai.sub.jp/kigoken3.html" target="_blank" rel="noopener noreferrer">参考：きごさい歳時記 ↗</a></p>
+    <button class="kigo-close" type="button">閉じる</button></div></details></aside>
+    <script id="kigo-data" type="application/json">{data}</script>
+    <noscript><p class="meta">今日の季語はJavaScriptを有効にすると表示されます。</p></noscript>'''
 
 
 def write(path: str, content: str) -> None:
@@ -222,10 +242,10 @@ def build() -> None:
     home_links = sorted(sketch_links, key=lambda link: "MovingSketch" not in link["label"])
     home_links += work_by_id["lifesketch-doremi-pipes"].get("featured_links", [])
     home_galleries = featured_links(home_links)
-    home = f'''<section class="hero"><p class="kicker">Personal site</p><h1>{e(SITE['name'])}<span>{e(SITE['name_en'])}</span></h1>
+    home = f'''<div class="home-intro">{kigo_widget()}<section class="hero"><p class="kicker">Personal site</p><h1>{e(SITE['name'])}<span>{e(SITE['name_en'])}</span></h1>
     <p class="lead">{e(SITE['description'])}</p><p class="intro">{e(SITE['intro'])}</p>
     {home_galleries}
-    <a class="button" href="{local('about/')}">澤本優哉について <span aria-hidden="true">→</span></a></section>
+    <a class="button" href="{local('about/')}">澤本優哉について <span aria-hidden="true">→</span></a></section></div>
     <section class="home-section">{section_head('01 / Works', '制作物', 'works/')}<div class="card-grid">{works_home}</div></section>
     <section class="home-section">{section_head('02 / Writing', '文章・考察', 'writing/')}<div class="card-grid">{writing_home}</div></section>
     <section class="home-section">{section_head('03 / About', 'これまでの活動', 'about/#timeline')}<p class="section-copy">活動の記録は、時期や公開範囲を確認しながら年表に加えていきます。</p></section>'''

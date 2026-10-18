@@ -7,11 +7,11 @@ import sys
 root = Path(__file__).resolve().parent.parent
 output = Path(sys.argv[1]) if len(sys.argv) > 1 else root / '.private' / 'seasonal-preview.html'
 html = (root / 'dist' / 'index.html').read_text()
-style = (root / 'assets' / 'style.css').read_text() + '\n' + (root / 'assets' / 'seasonal.css').read_text()
-script = (root / 'assets' / 'seasonal.js').read_text()
+style = (root / 'assets' / 'style.css').read_text() + '\n' + (root / 'assets' / 'seasonal.css').read_text() + '\n' + (root / 'assets' / 'kigo.css').read_text()
+script = (root / 'assets' / 'seasonal.js').read_text() + '\n' + (root / 'assets' / 'kigo.js').read_text()
 # Review the exact built homepage with inlined assets; only the preview month is fixed.
 html = re.sub(r'<link rel="stylesheet" href="[^"]+">', '', html)
-html = re.sub(r'<script src="[^"]*seasonal.js" defer></script>', '', html)
+html = re.sub(r'<script src="[^"]*(?:seasonal|kigo).js" defer></script>', '', html)
 html = html.replace('</head>', '<style>' + style + '</style></head>')
 html = html.replace('href="/sawamoto/', 'href="https://sawanoto.github.io/sawamoto/')
 html = html.replace('src="/sawamoto/', 'src="https://sawanoto.github.io/sawamoto/')

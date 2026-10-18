@@ -20,7 +20,7 @@ class DraftBuildTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         for folder in ("content", "assets"):
             shutil.copytree(ROOT / folder, self.root / folder)
-        for name in ("build.py", "google9f55b9147023d4f7.html"):
+        for name in ("build.py", "kigo.py", "google9f55b9147023d4f7.html"):
             shutil.copy(ROOT / name, self.root / name)
         self.article = self.root / "content/writing" / f"{SLUG}.md"
         _, metadata, self.body = self.article.read_text().split("---", 2)

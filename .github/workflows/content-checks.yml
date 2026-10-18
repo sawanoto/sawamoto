@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - build.py
+      - kigo.py
       - content/**
       - tests/test_*.py
       - requirements.txt

@@ -1,0 +1,26 @@
+/* Home only: an in-flow column keeps navigation and controls clear. */
+.home-intro{display:grid;grid-template-columns:minmax(0,1fr) 17rem;gap:clamp(2rem,5vw,4rem);align-items:start}
+.home-intro>.hero{grid-column:1;grid-row:1;min-width:0}
+.daily-kigo{grid-column:2;grid-row:1;width:100%;min-width:0;margin-top:3rem;border-top:1px solid var(--line);padding-top:1rem;overflow-wrap:anywhere}
+.daily-kigo[hidden]{display:none}
+.daily-kigo summary{display:block;cursor:pointer;list-style:none;border-radius:2px}
+.daily-kigo summary::-webkit-details-marker{display:none}
+.daily-kigo summary:focus-visible,.kigo-close:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
+.daily-kigo .kigo-label{display:block;color:var(--muted);font-size:.7rem;letter-spacing:.12em}
+.daily-kigo time{display:block;margin-top:.35rem;color:var(--muted);font-size:.78rem}
+.daily-kigo .kigo-term{display:block;margin:.55rem 0 .15rem;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:clamp(1.8rem,3vw,2.25rem);font-weight:500;line-height:1.5;letter-spacing:.09em}
+.daily-kigo .kigo-reading{display:block;color:var(--muted);font-size:.75rem;letter-spacing:.12em}
+.daily-kigo .kigo-description{display:block;margin-top:.8rem;font-size:.8rem;line-height:1.9;color:var(--muted)}
+.daily-kigo .kigo-hint{display:block;margin-top:.65rem;font-size:.72rem;color:var(--accent);text-decoration:underline;text-underline-offset:.25em}
+.daily-kigo .kigo-less,.daily-kigo details[open] .kigo-more,.daily-kigo details[open] .kigo-description{display:none}
+.daily-kigo details[open] .kigo-less{display:inline}
+.kigo-detail{padding-top:.9rem;font-size:.82rem;line-height:1.9;animation:kigo-in .15s ease-out}
+.kigo-detail dl{margin:0}
+.kigo-detail dt{font-size:.72rem;color:var(--muted);margin-top:.8rem}
+.kigo-detail dd{margin:.2rem 0 0}
+.kigo-source{font-size:.7rem;color:var(--muted)}
+.kigo-close{font:inherit;font-size:.75rem;min-height:44px;padding:.4rem 1rem;background:transparent;color:var(--ink);border:1px solid var(--line);cursor:pointer;border-radius:2px}
+@keyframes kigo-in{from{opacity:0}to{opacity:1}}
+@media(max-width:850px){.home-intro{grid-template-columns:minmax(0,1fr) 14rem;gap:1.5rem}}
+@media(max-width:600px){.home-intro{grid-template-columns:minmax(0,1fr);gap:0}.daily-kigo{grid-column:1;grid-row:1;width:min(100%,20rem);justify-self:end;margin-top:1.5rem}.home-intro>.hero{grid-column:1;grid-row:2;padding-top:3rem}.daily-kigo .kigo-term{font-size:1.9rem}}
+@media(prefers-reduced-motion:reduce){.kigo-detail{animation:none}}
