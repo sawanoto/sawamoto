@@ -122,6 +122,14 @@ def page(title: str, description: str, path: str, body: str) -> str:
         seasonal_mark = f'<div class="brand-seasonal">{seasonal_mark}{kigo_widget()}</div>'
     return f'''<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Google tag (gtag.js): config sends one page_view per document load. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V2C8N1DQLS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', 'G-V2C8N1DQLS');
+</script>
 <meta name="theme-color" content="#f8f7f3"><title>{e(full_title)}</title><meta name="description" content="{e(description)}">
 <link rel="canonical" href="{url}"><meta property="og:type" content="website"><meta property="og:locale" content="ja_JP">
 <meta property="og:title" content="{e(full_title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{url}">
