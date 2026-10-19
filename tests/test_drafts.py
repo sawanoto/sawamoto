@@ -57,7 +57,8 @@ class DraftBuildTests(unittest.TestCase):
         self.assertEqual(before, after)
 
     def test_explicit_publish_then_return_to_draft_removes_stale_page(self):
-        self.metadata.update(draft=False, published="2026-10-17")
+        # Keep this fixture in the homepage's latest three as real articles grow.
+        self.metadata.update(draft=False, published="9999-12-31")
         self.save()
         result = self.build()
         self.assertEqual(result.returncode, 0, result.stderr)
