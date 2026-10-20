@@ -254,13 +254,18 @@ def build() -> None:
     home_links = [link for link in sketch_links if "MovingSketch" in link["label"]] + life_links
     home_galleries = featured_links(home_links)
     about_galleries = featured_links(sketch_links + life_links)
+    support = SITE.get("support")
+    support_html = f'''<section class="support-section" aria-labelledby="support-title"><h2 id="support-title">{e(support["title"])}</h2>
+    <p>{e(support["description"])}</p><p>{e(support["note"])}</p>
+    <a class="button" href="{safe_url(support["url"])}" target="_blank" rel="noopener noreferrer">{e(support["label"])} <span aria-hidden="true">↗</span></a>
+    <p class="support-external">外部サイトを新しいタブで開きます。</p></section>''' if support else ""
     home = f'''<section class="hero"><p class="kicker">Personal site</p><h1>{e(SITE['name'])}<span>{e(SITE['name_en'])}</span></h1>
     <p class="lead">{e(SITE['description'])}</p><p class="intro">{e(SITE['intro'])}</p>
     {home_galleries}
     <a class="button" href="{local('about/')}">澤本優哉について <span aria-hidden="true">→</span></a></section>
     <section class="home-section">{section_head('01 / Writing', '文章・考察', 'writing/')}<div class="card-grid">{writing_home}</div></section>
     <section class="home-section">{section_head('02 / Works', '制作物', 'works/')}<div class="card-grid">{works_home}</div></section>
-    <section class="home-section">{section_head('03 / About', 'これまでの活動', 'about/#timeline')}<p class="section-copy">活動の記録は、時期や公開範囲を確認しながら年表に加えていきます。</p></section>'''
+    <section class="home-section">{section_head('03 / About', 'これまでの活動', 'about/#timeline')}<p class="section-copy">活動の記録は、時期や公開範囲を確認しながら年表に加えていきます。</p></section>{support_html}'''
     write("", page("", SITE["description"], "", home))
 
     timeline_parts = []
