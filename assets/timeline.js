@@ -4,7 +4,7 @@
 
   const buttons = [...controls.querySelectorAll('[data-timeline-filter]')];
   const items = [...document.querySelectorAll('.timeline-item[data-importance]')];
-  let mode = 'medium';
+  let mode = 'major';
 
   function show(modeToShow) {
     mode = modeToShow;

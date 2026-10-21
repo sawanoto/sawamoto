@@ -282,8 +282,8 @@ def build() -> None:
         timeline_parts.append(f'<li id="timeline-{e(item["id"])}" class="timeline-item timeline-{importance}" data-importance="{importance}"><span class="meta">{e(item.get("period", ""))}<span class="importance-label">{importance_labels[importance]}</span></span><div><h3>{e(item["title"])}</h3><p>{e(item.get("summary", ""))}</p>{links}</div></li>')
     timeline_controls = '''<div class="timeline-controls" aria-label="年表の表示範囲" hidden>
     <span>表示する項目</span><div class="timeline-options" role="group" aria-label="重要度で絞り込む">
-    <button type="button" data-timeline-filter="major" aria-pressed="false">大のみ</button>
-    <button type="button" data-timeline-filter="medium" aria-pressed="true">大・中</button>
+    <button type="button" data-timeline-filter="major" aria-pressed="true">大のみ</button>
+    <button type="button" data-timeline-filter="medium" aria-pressed="false">大・中</button>
     <button type="button" data-timeline-filter="all" aria-pressed="false">すべて</button></div></div>'''
     timeline_html = timeline_controls + '<ol class="timeline">' + "".join(timeline_parts) + "</ol>" if timeline_parts else '<p class="empty">公開する記録を確認中です。</p>'
     social = '<ul class="link-list">' + "".join(f'<li>{external(x["label"], x["url"])}</li>' for x in SITE.get("links", [])) + "</ul>" if SITE.get("links") else '<p class="empty">公開中の外部リンクはありません。</p>'
