@@ -122,7 +122,7 @@ def page(title: str, description: str, path: str, body: str) -> str:
     nav_html = "".join(f'<a href="{local(p)}" {"aria-current=\"page\"" if p == path else ""}>{label}</a>' for label, p in nav)
     kigo_assets = (f'<link rel="stylesheet" href="{local("assets/kigo.css")}">'
                    f'<script src="{local("assets/kigo.js")}" defer></script>') if path == "" else ""
-    timeline_script = f'<script src="{local("assets/timeline.js")}" defer></script>' if path == "about/" else ""
+    timeline_script = f'<script src="{local("assets/timeline-folds.js")}" defer></script>' if path == "about/" else ""
     seasonal_mark = '<span class="seasonal-mark" hidden aria-hidden="true"></span>'
     if path == "":
         seasonal_mark = f'<div class="brand-seasonal">{seasonal_mark}{kigo_widget()}</div>'
@@ -274,18 +274,17 @@ def build() -> None:
     <section class="home-section">{section_head('03 / About', 'これまでの活動', 'about/#timeline')}<p class="section-copy">活動の記録は、時期や公開範囲を確認しながら年表に加えていきます。</p></section>{support_html}'''
     write("", page("", SITE["description"], "", home))
 
-    timeline_parts = []
+    timeline_parts = {"major": [], "medium": [], "minor": []}
     importance_labels = {"major": "大", "medium": "中", "minor": "小"}
     for item in sorted(TIMELINE, key=lambda x: x.get("order", 0), reverse=True):
         links = related(item.get("work_ids", []), work_by_id, "works") + related(item.get("article_ids", []), article_by_id, "writing")
         importance = item["importance"]
-        timeline_parts.append(f'<li id="timeline-{e(item["id"])}" class="timeline-item timeline-{importance}" data-importance="{importance}"><span class="meta">{e(item.get("period", ""))}<span class="importance-label">{importance_labels[importance]}</span></span><div><h3>{e(item["title"])}</h3><p>{e(item.get("summary", ""))}</p>{links}</div></li>')
-    timeline_controls = '''<div class="timeline-controls" aria-label="年表の表示範囲" hidden>
-    <span>表示する項目</span><div class="timeline-options" role="group" aria-label="重要度で絞り込む">
-    <button type="button" data-timeline-filter="major" aria-pressed="true">大のみ</button>
-    <button type="button" data-timeline-filter="medium" aria-pressed="false">大・中</button>
-    <button type="button" data-timeline-filter="all" aria-pressed="false">すべて</button></div></div>'''
-    timeline_html = timeline_controls + '<ol class="timeline">' + "".join(timeline_parts) + "</ol>" if timeline_parts else '<p class="empty">公開する記録を確認中です。</p>'
+        timeline_parts[importance].append(f'<li id="timeline-{e(item["id"])}" class="timeline-item timeline-{importance}"><span class="meta">{e(item.get("period", ""))}<span class="importance-label">{importance_labels[importance]}</span></span><div><h3>{e(item["title"])}</h3><p>{e(item.get("summary", ""))}</p>{links}</div></li>')
+    timeline_html = '<p class="timeline-lead">人生の大きな転機</p><ol class="timeline">' + "".join(timeline_parts["major"]) + '</ol>'
+    for importance, label in (("medium", "中"), ("minor", "小")):
+        count = len(timeline_parts[importance])
+        if count:
+            timeline_html += f'<details class="timeline-fold" data-importance="{importance}"><summary><span>{label}の出来事</span><span class="timeline-count">{count}件</span><span class="timeline-fold-icon" aria-hidden="true">＋</span></summary><ol class="timeline">' + "".join(timeline_parts[importance]) + '</ol></details>'
     social = '<ul class="link-list">' + "".join(f'<li>{external(x["label"], x["url"])}</li>' for x in SITE.get("links", [])) + "</ul>" if SITE.get("links") else '<p class="empty">公開中の外部リンクはありません。</p>'
     likes = "".join(f'<li>{e(x)}</li>' for x in SITE.get("likes", []))
     interests = "".join(f'<li>{e(x)}</li>' for x in SITE.get("interests", []))
