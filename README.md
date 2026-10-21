@@ -21,7 +21,8 @@ $env:SITE_BASE_PATH = "/"
 - Aboutの制作物紹介は今回は追加していません。今後は `content/works/` や `content/writing/` の実在する作品・記事と、公開済みの画像を選んで紹介できます。編み物の既存記事は `content/writing/mel-chan-knitted-vest.md`。写真の加工については同記事の注記を維持してください。
 - Aboutの趣味一覧：`content/site.json` の `hobbies`。各カテゴリの `category` が見出し、`items` が趣味名の配列です。項目を追加・削除し、ビルドすると反映されます。現在・過去の趣味をまとめて掲載します。
 - Aboutの資格・検定一覧：`content/site.json` の `qualifications`。各分野の `category` が見出し、`items` が資格・検定名の配列です。取得済みの項目を追加・修正し、ビルドすると反映されます。
-- 年表：`content/timeline.json`。本人が確認し、公開可能な項目だけ追加してください。
+- 年表：`content/timeline.json`。本人が確認し、公開可能な項目だけ追加してください。各項目の `importance` は `major`（大）、`medium`（中）、`minor`（小）から選びます。`period` は確認できた年・年月の精度で記入し、`order` は新しい順の表示位置を決めます。同じ年月の項目は任意の順序にできます。既存のIDは作品・記事からのリンクにも使われるため変更しないでください。
+- 年表から記事へリンクする場合は、公開済みの記事の `id` を年表項目の `article_ids` に追加します（例：`"article_ids":["knitting-my-own-time"]`）。作品は `work_ids` に作品IDを追加します。未公開・存在しない記事IDは設定せず、記事公開後に追加してください。
 - 作品：`content/works/` に英数字とハイフンのファイル名で `.md` を追加します。
 - 記事：`content/writing/` に同様の `.md` を追加します。本文は通常の Markdown なので、後の再編集や電子書籍化に再利用できます。
 - 書籍：`content/books.json` に実在する販売作品を追加すると Books ページとナビゲーションが生成されます。

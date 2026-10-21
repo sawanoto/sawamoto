@@ -1,50 +1,21 @@
 [
-  {
-    "id": "second-child-parental-leave",
-    "period": "2026年現在（開始年月は未確認）",
-    "order": 50,
-    "title": "第二子の育児休業",
-    "summary": "第二子の誕生に伴い、1年間の育児休業を取得中。",
-    "work_ids": [],
-    "article_ids": ["male-parental-leave-ten-years"]
-  },
-  {
-    "id": "first-child-parental-leave",
-    "period": "第一子の誕生後（年月は未確認）",
-    "order": 40,
-    "title": "第一子の育児休業",
-    "summary": "第一子の誕生に伴い、約9か月の育児休業を取得。復帰した経験が次の育休につながった。",
-    "work_ids": [],
-    "article_ids": ["male-parental-leave-ten-years"]
-  },
-  {
-    "id": "music-sketch-2025",
-    "period": "2025年",
-    "sort": "2025",
-    "order": 30,
-    "title": "MusicSketchを開始",
-    "summary": "音楽から浮かんだ映像を鉛筆で描くMusicSketchを開始。映像制作やp5.jsを使った作品へと活動を広げた。",
-    "work_ids": ["sketches-of-sound-and-movement"],
-    "article_ids": []
-  },
-  {
-    "id": "university-coop-videos-2014",
-    "period": "2014年",
-    "sort": "2014",
-    "order": 20,
-    "title": "大学生協の映像制作",
-    "summary": "福島大学1年生のとき、新入生向け説明会の待ち時間に着目してCM上映を提案。PowerDirectorを使い、大学生協の紹介動画を複数制作した。",
-    "work_ids": ["university-coop-videos-2014"],
-    "article_ids": []
-  },
-  {
-    "id": "newspaper-club-introduction-2013",
-    "period": "2013年度",
-    "sort": "2013",
-    "order": 10,
-    "title": "新聞部の部活動紹介動画を制作",
-    "summary": "高校3年生のとき、新聞部の部活動紹介のために動画を制作。企画・構成・編集を担当した。",
-    "work_ids": ["newspaper-club-introduction-2013"],
-    "article_ids": []
-  }
+  {"id":"ofuse-registration-2026","period":"2026年10月","order":210,"importance":"minor","title":"OFUSEに登録","summary":"創作活動への支援窓口を設ける準備を始める。"},
+  {"id":"bible-sketch-concept-2026","period":"2026年10月","order":200,"importance":"minor","title":"BibleSketchシリーズを構想","summary":"聖書の物語をインタラクティブ作品として表現する構想を始める。"},
+  {"id":"essay-writing-2026","period":"2026年10月","order":190,"importance":"medium","title":"エッセイの執筆を始める","summary":"日常の発見や思索を文章にまとめ、公式サイトに蓄積し始める。"},
+  {"id":"lifesketch-series-2026","period":"2026年10月","order":180,"importance":"medium","title":"LifeSketchシリーズを展開","summary":"日常の出来事や思想をインタラクティブ作品にする。","article_ids":["starting-lifesketch"]},
+  {"id":"koshihama-shinmei-festival-2026","period":"2026年10月","order":170,"importance":"medium","title":"腰浜神明神社の例大祭に参加","summary":"山車の準備、巡行、撤収などに携わる。"},
+  {"id":"knitting-start-2026","period":"2026年9月","order":160,"importance":"medium","title":"編み物を始める","summary":"かぎ針や棒針で、ネックウォーマーやベストなどを制作する。","article_ids":["knitting-my-own-time","mel-chan-knitted-vest"]},
+  {"id":"running-restart-2026","period":"2026年8月","order":150,"importance":"minor","title":"ランニングを再開","summary":"ランニングを再開する。"},
+  {"id":"itch-io-works-2026","period":"2026年8月","order":140,"importance":"medium","title":"インタラクティブ作品をitch.ioで公開","summary":"Web上での作品公開を広げる。"},
+  {"id":"new-home-2026","period":"2026年7〜8月","order":130,"importance":"medium","title":"新しい住まいでの生活を開始","summary":"引っ越しを経て、家族の生活環境が変わる。"},
+  {"id":"second-child-birth-2026","period":"2026年7月","order":120,"importance":"major","title":"第二子誕生","summary":"第二子が誕生する。"},
+  {"id":"second-child-parental-leave","period":"2026年7月","order":110,"importance":"major","title":"育児休業を開始","summary":"約1年間の育児休業を開始。","work_ids":[],"article_ids":["male-parental-leave-ten-years"]},
+  {"id":"expo-osaka-2025","period":"2025年","order":100,"importance":"medium","title":"大阪・関西万博を訪問","summary":"2025年日本国際博覧会を訪れる。詳細は後日記事にする予定。"},
+  {"id":"music-sketch-2025","period":"2025年","sort":"2025","order":90,"importance":"major","title":"MusicSketchを開始","summary":"音楽から浮かんだ映像を鉛筆で描くMusicSketchを開始。映像制作やp5.jsを使った作品へと活動を広げた。","work_ids":["sketches-of-sound-and-movement"],"article_ids":[]},
+  {"id":"first-child-parental-leave","period":"第一子の誕生後（年月は未確認）","order":80,"importance":"major","title":"第一子の育児休業","summary":"第一子の誕生に伴い、約9か月の育児休業を取得。復帰した経験が次の育休につながった。","work_ids":[],"article_ids":["male-parental-leave-ten-years"]},
+  {"id":"first-child-birth-2024","period":"2024年6月","order":70,"importance":"major","title":"第一子誕生","summary":"第一子が誕生し、父親になる。"},
+  {"id":"spain-honeymoon-2023","period":"2023年","order":60,"importance":"medium","title":"スペインへ新婚旅行","summary":"新婚旅行でスペインを訪れる。詳細は後日記事にする予定。"},
+  {"id":"bank-group-systems-job-2018","period":"2018年","order":50,"importance":"major","title":"銀行グループ系情報会社に就職","summary":"システムエンジニアとして働き始める。"},
+  {"id":"university-coop-videos-2014","period":"2014年","sort":"2014","order":40,"importance":"medium","title":"大学生協の映像制作","summary":"福島大学1年生のとき、新入生向け説明会の待ち時間に着目してCM上映を提案。PowerDirectorを使い、大学生協の紹介動画を複数制作した。","work_ids":["university-coop-videos-2014"],"article_ids":[]},
+  {"id":"newspaper-club-introduction-2013","period":"2013年度","sort":"2013","order":30,"importance":"medium","title":"新聞部の部活動紹介動画を制作","summary":"高校3年生のとき、新聞部の部活動紹介のために動画を制作。企画・構成・編集を担当した。","work_ids":["newspaper-club-introduction-2013"],"article_ids":[]}
 ]

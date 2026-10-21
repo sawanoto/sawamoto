@@ -83,6 +83,9 @@ timeline_by_id = {x["id"]: x for x in TIMELINE}
 for items in (WORKS, WRITING, TIMELINE):
     if len({x["id"] for x in items}) != len(items):
         raise ValueError("Duplicate content ID")
+for item in TIMELINE:
+    if item.get("importance") not in {"major", "medium", "minor"}:
+        raise ValueError(f"Invalid timeline importance: {item['id']}")
 if len(series_by_id) != len(SERIES):
     raise ValueError("Duplicate series ID")
 if {x["slug"] for x in SERIES} & {x["slug"] for x in WRITING}:
@@ -117,6 +120,7 @@ def page(title: str, description: str, path: str, body: str) -> str:
     nav_html = "".join(f'<a href="{local(p)}" {"aria-current=\"page\"" if p == path else ""}>{label}</a>' for label, p in nav)
     kigo_assets = (f'<link rel="stylesheet" href="{local("assets/kigo.css")}">'
                    f'<script src="{local("assets/kigo.js")}" defer></script>') if path == "" else ""
+    timeline_script = f'<script src="{local("assets/timeline.js")}" defer></script>' if path == "about/" else ""
     seasonal_mark = '<span class="seasonal-mark" hidden aria-hidden="true"></span>'
     if path == "":
         seasonal_mark = f'<div class="brand-seasonal">{seasonal_mark}{kigo_widget()}</div>'
@@ -135,7 +139,7 @@ def page(title: str, description: str, path: str, body: str) -> str:
 <meta property="og:title" content="{e(full_title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{url}">
 <meta property="og:site_name" content="{e(SITE['name'])}"><link rel="stylesheet" href="{local('assets/style.css')}">
 <link rel="stylesheet" href="{local('assets/seasonal.css')}"><script src="{local('assets/seasonal.js')}" defer></script>
-{kigo_assets}</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
+{kigo_assets}{timeline_script}</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
 <div class="brand-lockup"><a class="brand" href="{local('')}">{e(SITE['name'])}<small>{e(SITE['name_en'])}</small></a>{seasonal_mark}</div>
 <nav aria-label="メインナビゲーション">{nav_html}</nav></header><main id="main">{body}</main>
 <footer class="footer"><span>{e(SITE['name'])} / {e(SITE['name_en'])}</span><a href="#main">上へ戻る ↑</a></footer></div></body></html>'''
@@ -269,10 +273,17 @@ def build() -> None:
     write("", page("", SITE["description"], "", home))
 
     timeline_parts = []
+    importance_labels = {"major": "大", "medium": "中", "minor": "小"}
     for item in sorted(TIMELINE, key=lambda x: x.get("order", 0), reverse=True):
         links = related(item.get("work_ids", []), work_by_id, "works") + related(item.get("article_ids", []), article_by_id, "writing")
-        timeline_parts.append(f'<li id="timeline-{e(item["id"])}" class="timeline-item"><span class="meta">{e(item.get("period", ""))}</span><div><h3>{e(item["title"])}</h3><p>{e(item.get("summary", ""))}</p>{links}</div></li>')
-    timeline_html = '<ol class="timeline">' + "".join(timeline_parts) + "</ol>" if timeline_parts else '<p class="empty">公開する記録を確認中です。</p>'
+        importance = item["importance"]
+        timeline_parts.append(f'<li id="timeline-{e(item["id"])}" class="timeline-item timeline-{importance}" data-importance="{importance}"><span class="meta">{e(item.get("period", ""))}<span class="importance-label">{importance_labels[importance]}</span></span><div><h3>{e(item["title"])}</h3><p>{e(item.get("summary", ""))}</p>{links}</div></li>')
+    timeline_controls = '''<div class="timeline-controls" aria-label="年表の表示範囲" hidden>
+    <span>表示する項目</span><div class="timeline-options" role="group" aria-label="重要度で絞り込む">
+    <button type="button" data-timeline-filter="major" aria-pressed="false">大のみ</button>
+    <button type="button" data-timeline-filter="medium" aria-pressed="true">大・中</button>
+    <button type="button" data-timeline-filter="all" aria-pressed="false">すべて</button></div></div>'''
+    timeline_html = timeline_controls + '<ol class="timeline">' + "".join(timeline_parts) + "</ol>" if timeline_parts else '<p class="empty">公開する記録を確認中です。</p>'
     social = '<ul class="link-list">' + "".join(f'<li>{external(x["label"], x["url"])}</li>' for x in SITE.get("links", [])) + "</ul>" if SITE.get("links") else '<p class="empty">公開中の外部リンクはありません。</p>'
     likes = "".join(f'<li>{e(x)}</li>' for x in SITE.get("likes", []))
     interests = "".join(f'<li>{e(x)}</li>' for x in SITE.get("interests", []))
