@@ -86,6 +86,8 @@ for items in (WORKS, WRITING, TIMELINE):
 for item in TIMELINE:
     if item.get("importance") not in {"major", "medium", "minor"}:
         raise ValueError(f"Invalid timeline importance: {item['id']}")
+    if "date" in item and not re.fullmatch(r"\d{4}(?:-(?:0[1-9]|1[0-2]))?", item["date"]):
+        raise ValueError(f"Timeline date must be YYYY or YYYY-MM: {item['id']}")
 if len(series_by_id) != len(SERIES):
     raise ValueError("Duplicate series ID")
 if {x["slug"] for x in SERIES} & {x["slug"] for x in WRITING}:
