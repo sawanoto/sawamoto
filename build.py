@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import html
+import hashlib
 import json
 import os
 import re
@@ -21,6 +22,7 @@ BASE = os.environ.get("SITE_BASE_PATH", "/sawamoto/")
 if not BASE.startswith("/") or not BASE.endswith("/") or ".." in BASE:
     raise ValueError("SITE_BASE_PATH must be an absolute URL path ending in /")
 ORIGIN = "https://sawanoto.github.io"
+STYLE_VERSION = hashlib.sha256((ROOT / "assets/style.css").read_bytes()).hexdigest()[:12]
 SITE = json.loads((CONTENT / "site.json").read_text(encoding="utf-8"))
 TIMELINE = json.loads((CONTENT / "timeline.json").read_text(encoding="utf-8"))
 BOOKS = json.loads((CONTENT / "books.json").read_text(encoding="utf-8"))
@@ -139,7 +141,7 @@ def page(title: str, description: str, path: str, body: str) -> str:
 <meta name="theme-color" content="#f8f7f3"><title>{e(full_title)}</title><meta name="description" content="{e(description)}">
 <link rel="canonical" href="{url}"><meta property="og:type" content="website"><meta property="og:locale" content="ja_JP">
 <meta property="og:title" content="{e(full_title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{url}">
-<meta property="og:site_name" content="{e(SITE['name'])}"><link rel="stylesheet" href="{local('assets/style.css')}">
+<meta property="og:site_name" content="{e(SITE['name'])}"><link rel="stylesheet" href="{local('assets/style.css')}?v={STYLE_VERSION}">
 <link rel="stylesheet" href="{local('assets/seasonal.css')}"><script src="{local('assets/seasonal.js')}" defer></script>
 {kigo_assets}{timeline_script}</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
 <div class="brand-lockup"><a class="brand" href="{local('')}">{e(SITE['name'])}<small>{e(SITE['name_en'])}</small></a>{seasonal_mark}</div>
