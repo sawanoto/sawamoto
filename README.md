@@ -174,7 +174,7 @@ PRではGitHub Actionsの **Check seasonal themes** も同じ検証を実行し�
 
 ## ゲーム遍歴
 
-一覧は `/sawamoto/games/`、詳細は `/sawamoto/games/<id>/` です。既存のアニメ遍歴ページは現時点では存在しないため、サイト共通の見出し・配色・年表に合わせています。
+一覧は `/sawamoto/games/`、詳細は `/sawamoto/games/<id>/` です。アニメ遍歴と同じサイト共通の見出し・配色・年表のデザイン規則に合わせています。
 
 `content/games.json` の配列に1作品ずつ追加し、`python build.py` で生成します。表示処理は `game_history.py`、絞り込みは `assets/games.js` です。
 
@@ -203,3 +203,7 @@ PRではGitHub Actionsの **Check seasonal themes** も同じ検証を実行し�
 - `image` は省略または `null` で表示できます。使う場合は利用権を確認した `assets/` 以下の画像パスなどを指定してください。初版は外部画像を使用していません。
 
 確認コマンド：`python -m unittest discover -s tests`、`python build.py`。PlaywrightとChromiumがある環境では `CHROMIUM_PATH=/usr/bin/chromium node tests/games.browser.cjs` でスマートフォン・タブレット・PC幅、絞り込み、詳細リンク、JavaScript無効時の表示を確認できます。
+
+## アニメ遍歴
+
+`/sawamoto/anime/` に個人的なアニメ年表を生成します。作品は `content/anime.json`、時代別の思い出は `content/anime-eras.json` で更新できます。データ項目・追加例・確認コマンドは [アニメ遍歴の更新手順](docs/anime.md) を参照してください。
