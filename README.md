@@ -174,8 +174,44 @@ PRではGitHub Actionsの **Check seasonal themes** も同じ検証を実行し�
 
 ## 映画遍歴
 
-`/movie-history/`（公開時は `/sawamoto/movie-history/`）。共通ナビゲーションとAboutの「文化の遍歴」から参照できます。このチェックアウトにはアニメ遍歴・ゲーム遍歴がないため、共通の配色・見出し・Aboutの年表を踏襲しています。
+`/movie-history/`（公開時は `/sawamoto/movie-history/`）。共通ナビゲーションとAboutの「文化の遍歴」から参照できます。アニメ遍歴・ゲーム遍歴と共通の配色・見出しを使い、時代別に鑑賞体験を整理しています。
 
 編集元は `content/movie-history.json`、生成処理は `build.py` の `movie_history()` です。`groups` とその中の `entries` の配列順が表示順です。作品を追加するときは、一意の英数字・ハイフンの `id`、作品名 `title`、公開年 `release`、鑑賞時期 `viewed`、鑑賞方法 `method`、種別 `kind`、段落配列 `memories` を設定します。公開年から鑑賞時期を推測せず、不明な項目は未確認と明記してください。`original` は任意の原作情報です。
 
 `related_reading_id` は将来の読書遍歴に関連付ける安定したIDです。現在はリンクを生成しません。読書遍歴の公開後に対応する実在ページへリンクする処理を追加してください。原作や考察記事など、未確認のリンクは作成しません。
+
+## ゲーム遍歴
+
+一覧は `/sawamoto/games/`、詳細は `/sawamoto/games/<id>/` です。アニメ遍歴と同じサイト共通の見出し・配色・年表のデザイン規則に合わせています。
+
+`content/games.json` の配列に1作品ずつ追加し、`python build.py` で生成します。表示処理は `game_history.py`、絞り込みは `assets/games.js` です。
+
+```json
+{
+  "id": "example-game",
+  "title": "作品名",
+  "platform": null,
+  "releaseYear": null,
+  "playedPeriod": "小学校高学年頃",
+  "periodIsEstimated": true,
+  "periods": ["elementary", "junior"],
+  "memories": ["思い出の最初の段落。", "続きの段落。"],
+  "companions": ["自分", "友達"],
+  "status": "プレイ済み",
+  "image": null
+}
+```
+
+- `id` は英小文字・数字・ハイフンの一意な値で、詳細URLになります。公開後は変更しないでください。
+- `periods` は掲載先です。`elementary`（小学生）、`junior`（中学生）、`high`（高校生）、`university`（大学生）、`adult`（社会人）、`current`（現在）を指定します。複数指定しても作品データや本文の複製は不要です。時期未確定は空配列 `[]` とし、専用欄に表示します。
+- `playedPeriod` は実際のプレイ時期の説明です。曖昧な推定時期は `periodIsEstimated: true`、完全に不明なら「時期未確定」とします。`releaseYear` は発売年の整数または `null` です。初版では発売年を未確認とし、プレイ時期から推定していません。
+- `platform` は実際に遊んだ機種・環境を記載し、不明なら `null`。`companions` は相手の配列で、不明なら `[]`（未確認）。機種と相手の絞り込み候補はデータから自動生成します。
+- `status` は「クリア済み」「未クリア」「プレイ済み」「所有のみ」「不明」。観戦のみの場合はプレイ済みと断定せず、本文に状況を記載します。
+- `memories` は段落ごとの文字列配列です。先頭の段落が一覧にも表示されます。本文はHTMLとして実行されません。
+- `image` は省略または `null` で表示できます。使う場合は利用権を確認した `assets/` 以下の画像パスなどを指定してください。初版は外部画像を使用していません。
+
+確認コマンド：`python -m unittest discover -s tests`、`python build.py`。PlaywrightとChromiumがある環境では `CHROMIUM_PATH=/usr/bin/chromium node tests/games.browser.cjs` でスマートフォン・タブレット・PC幅、絞り込み、詳細リンク、JavaScript無効時の表示を確認できます。
+
+## アニメ遍歴
+
+`/sawamoto/anime/` に個人的なアニメ年表を生成します。作品は `content/anime.json`、時代別の思い出は `content/anime-eras.json` で更新できます。データ項目・追加例・確認コマンドは [アニメ遍歴の更新手順](docs/anime.md) を参照してください。
