@@ -8,6 +8,8 @@ on:
       - content/**
       - tests/seasonal*.cjs
       - tests/kigo.browser.cjs
+      - tests/reading.browser.cjs
+
       - tests/anime.browser.cjs
       - scripts/seasonal-preview.py
       - .github/workflows/seasonal-checks.yml
@@ -34,6 +36,8 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: node tests/seasonal.browser.cjs
       - run: node tests/kigo.browser.cjs
+      - run: node tests/reading.browser.cjs
+
       - run: node tests/anime.browser.cjs
       - uses: actions/upload-artifact@v4
         if: always()

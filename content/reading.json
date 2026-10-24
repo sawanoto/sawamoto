@@ -1,0 +1,1476 @@
+[
+  {
+    "id": "book-001",
+    "title": "もじゃもじゃペーター",
+    "author": "ハインリヒ・ホフマン",
+    "period": "幼少期",
+    "period_note": "",
+    "genres": [
+      "その他"
+    ],
+    "medium": "",
+    "status": "再読",
+    "reviews": [
+      "母に読み聞かせてもらった思い出。日本語訳の詩的なリズムが好き。大人になってからも図書館で借りて読み返した。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-002",
+    "title": "ズッコケ三人組 シリーズ",
+    "author": "那須正幹",
+    "period": "小学生",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "小学校で読んだ。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-003",
+    "title": "ダレン・シャン シリーズ",
+    "author": "ダレン・シャン",
+    "period": "小学生",
+    "period_note": "",
+    "genres": [
+      "海外文学"
+    ],
+    "medium": "",
+    "status": "読了範囲未確認",
+    "reviews": [
+      "おそらく全12巻読了。読みやすかった。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-004",
+    "title": "ハリー・ポッター シリーズ",
+    "author": "J・K・ローリング",
+    "period": "小学生",
+    "period_note": "",
+    "genres": [
+      "海外文学"
+    ],
+    "medium": "",
+    "status": "全巻読了",
+    "reviews": [
+      "新刊を追いかけながら読んだ。ダレン・シャン以上に面白かった。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-005",
+    "title": "こころ（学校の道徳読本）",
+    "author": "",
+    "period": "小学生",
+    "period_note": "",
+    "genres": [
+      "その他"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "学校で読んだ道徳読本。夏目漱石の小説『こころ』とは別の本。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-006",
+    "title": "蜘蛛の糸",
+    "author": "芥川龍之介",
+    "period": "中学生",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "読書感想文を書いた。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-007",
+    "title": "涼宮ハルヒの憂鬱",
+    "author": "谷川流",
+    "period": "中学生",
+    "period_note": "",
+    "genres": [
+      "ライトノベル"
+    ],
+    "medium": "",
+    "status": "途中で中断",
+    "reviews": [
+      "読み始めたが途中でやめた。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-008",
+    "title": "ソードアート・オンライン",
+    "author": "川原礫",
+    "period": "時期不明",
+    "period_note": "高校生前後（時期未確定）",
+    "genres": [
+      "ライトノベル"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-009",
+    "title": "アクセル・ワールド",
+    "author": "川原礫",
+    "period": "時期不明",
+    "period_note": "高校生前後（時期未確定）",
+    "genres": [
+      "ライトノベル"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-010",
+    "title": "デュラララ!!",
+    "author": "成田良悟",
+    "period": "時期不明",
+    "period_note": "高校生前後（時期未確定）",
+    "genres": [
+      "ライトノベル"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-011",
+    "title": "バッカーノ！",
+    "author": "成田良悟",
+    "period": "時期不明",
+    "period_note": "高校生前後（時期未確定）",
+    "genres": [
+      "ライトノベル"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-012",
+    "title": "化物語",
+    "author": "西尾維新",
+    "period": "時期不明",
+    "period_note": "高校生前後（時期未確定）",
+    "genres": [
+      "ライトノベル"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "アニメを先に見てから原作を読んだ。独特な会話、言葉遊び、ダジャレ、文章のリズムが非常に好きだった。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-013",
+    "title": "刀語",
+    "author": "西尾維新",
+    "period": "時期不明",
+    "period_note": "高校生前後（時期未確定）",
+    "genres": [
+      "ライトノベル"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-014",
+    "title": "クビキリサイクル",
+    "author": "西尾維新",
+    "period": "時期不明",
+    "period_note": "高校生前後（時期未確定）",
+    "genres": [
+      "ライトノベル"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "読んだのはおそらく最初の一冊。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-015",
+    "title": "嘘つきみーくんと壊れたまーちゃん",
+    "author": "入間人間",
+    "period": "時期不明",
+    "period_note": "高校生前後（時期未確定）",
+    "genres": [
+      "ライトノベル"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-016",
+    "title": "精霊の守り人 など守り人シリーズ",
+    "author": "上橋菜穂子",
+    "period": "時期不明",
+    "period_note": "高校生前後（時期未確定）",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "複数巻読了",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-017",
+    "title": "赤い指",
+    "author": "東野圭吾",
+    "period": "高校生",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "高校時代に読んだ。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-018",
+    "title": "図書館戦争",
+    "author": "有川浩",
+    "period": "時期不明",
+    "period_note": "高校・大学前後（時期未確定）",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-019",
+    "title": "塩の街",
+    "author": "有川浩",
+    "period": "時期不明",
+    "period_note": "高校・大学前後（時期未確定）",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-020",
+    "title": "空の中",
+    "author": "有川浩",
+    "period": "時期不明",
+    "period_note": "高校・大学前後（時期未確定）",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-021",
+    "title": "海の底",
+    "author": "有川浩",
+    "period": "時期不明",
+    "period_note": "高校・大学前後（時期未確定）",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-022",
+    "title": "殺人の門",
+    "author": "東野圭吾",
+    "period": "大学生",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "主人公を苦しめる友人に対して、自分も「もう殺してしまえ」と思うほど感情移入した。あとがきでそれが作者の狙いだったと知り、作者に感情を操られていたことに衝撃を受けた。"
+    ],
+    "impression": "特に印象に残った",
+    "featured": true,
+    "related_ids": []
+  },
+  {
+    "id": "book-023",
+    "title": "世界の終りとハードボイルド・ワンダーランド",
+    "author": "村上春樹",
+    "period": "大学生",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "大学時代にはそれほど響かなかった。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-024",
+    "title": "ねじまき鳥クロニクル",
+    "author": "村上春樹",
+    "period": "社会人",
+    "period_note": "社会人以降",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "村上春樹を好きになるきっかけ。時間を巻く鳥や壁に入り込む描写などを、自分の感覚と結びつけて理解できた。"
+    ],
+    "impression": "特に印象に残った",
+    "featured": true,
+    "related_ids": []
+  },
+  {
+    "id": "book-025",
+    "title": "ノルウェイの森",
+    "author": "村上春樹",
+    "period": "社会人",
+    "period_note": "社会人以降",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-026",
+    "title": "海辺のカフカ",
+    "author": "村上春樹",
+    "period": "社会人",
+    "period_note": "社会人以降",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-027",
+    "title": "1Q84",
+    "author": "村上春樹",
+    "period": "社会人",
+    "period_note": "社会人以降",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-028",
+    "title": "さくら",
+    "author": "西加奈子",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "犬に関する場面で強く心を動かされ、涙した。登場人物にも共感した。特に好きな作品。"
+    ],
+    "impression": "特に印象に残った",
+    "featured": true,
+    "related_ids": []
+  },
+  {
+    "id": "book-029",
+    "title": "サラバ！",
+    "author": "西加奈子",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "非常に面白かった。国境を越える壮大な物語として記憶している。再読したい。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-030",
+    "title": "きいろいゾウ",
+    "author": "西加奈子",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-031",
+    "title": "漁港の肉子ちゃん",
+    "author": "西加奈子",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-032",
+    "title": "ふくわらい",
+    "author": "西加奈子",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-033",
+    "title": "i",
+    "author": "西加奈子",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-034",
+    "title": "三体 三部作",
+    "author": "劉慈欣",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "SF"
+    ],
+    "medium": "紙の本",
+    "status": "全巻読了",
+    "reviews": [
+      "特に好きな作品。黒暗森林理論、三体問題、文明間の心理戦、宇宙規模の問題解決、光速と時間の関係など、科学的な設定を物語に生かした壮大さが魅力。"
+    ],
+    "impression": "特に印象に残った",
+    "featured": true,
+    "related_ids": []
+  },
+  {
+    "id": "book-035",
+    "title": "三体0 球状閃電",
+    "author": "劉慈欣",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "SF"
+    ],
+    "medium": "Audible",
+    "status": "読了",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-036",
+    "title": "超新星紀元",
+    "author": "劉慈欣",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "SF"
+    ],
+    "medium": "Audible",
+    "status": "読了",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-037",
+    "title": "三体X 観想之宙",
+    "author": "宝樹",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "SF"
+    ],
+    "medium": "",
+    "status": "読了",
+    "reviews": [
+      "面白かった。劉慈欣本人の作品ではない。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-038",
+    "title": "白亜紀往事",
+    "author": "劉慈欣",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "SF"
+    ],
+    "medium": "",
+    "status": "途中で中断",
+    "reviews": [
+      "冒頭の設定が取っつきにくく、途中で読むのをやめた。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-039",
+    "title": "プロジェクト・ヘイル・メアリー",
+    "author": "アンディ・ウィアー",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "SF"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "好きな作品。科学的な問題解決の面白さを楽しんだ。"
+    ],
+    "impression": "特に印象に残った",
+    "featured": true,
+    "related_ids": []
+  },
+  {
+    "id": "book-040",
+    "title": "2001年宇宙の旅",
+    "author": "アーサー・C・クラーク",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "SF"
+    ],
+    "medium": "",
+    "status": "読了",
+    "reviews": [
+      "『三体』などにつながるSFとして印象に残った。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-041",
+    "title": "華氏451度",
+    "author": "レイ・ブラッドベリ",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "SF"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "好きな作品。独特の文体とディストピアの世界観が印象的。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-042",
+    "title": "火星年代記",
+    "author": "レイ・ブラッドベリ",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "SF"
+    ],
+    "medium": "",
+    "status": "読了",
+    "reviews": [
+      "文章やエピソードのつながりが弱く感じられ、やや好みに合わなかった。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-043",
+    "title": "アンドロイドは電気羊の夢を見るか？",
+    "author": "フィリップ・K・ディック",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "SF"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "面白かった。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-044",
+    "title": "虐殺器官",
+    "author": "伊藤計劃",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "SF"
+    ],
+    "medium": "",
+    "status": "読了",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-045",
+    "title": "ハーモニー",
+    "author": "伊藤計劃",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "SF"
+    ],
+    "medium": "",
+    "status": "読了",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-046",
+    "title": "新世界より",
+    "author": "貴志祐介",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "SF"
+    ],
+    "medium": "",
+    "status": "読了",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-047",
+    "title": "アルジャーノンに花束を",
+    "author": "ダニエル・キイス",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "SF"
+    ],
+    "medium": "",
+    "status": "読了",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-048",
+    "title": "1984年",
+    "author": "ジョージ・オーウェル",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "海外文学"
+    ],
+    "medium": "",
+    "status": "読了",
+    "reviews": [
+      "読んでいる最中は苦痛も感じたが、読み終えた後に強く読んでよかったと思った。現実の社会でも「1984年的」と感じる場面がある。"
+    ],
+    "impression": "特に印象に残った",
+    "featured": true,
+    "related_ids": []
+  },
+  {
+    "id": "book-049",
+    "title": "城",
+    "author": "フランツ・カフカ",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "海外文学"
+    ],
+    "medium": "",
+    "status": "読了",
+    "reviews": [
+      "何度も挫折しながら読了。非常に苦労した作品。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-050",
+    "title": "変身",
+    "author": "フランツ・カフカ",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "海外文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "面白かった。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-051",
+    "title": "老人と海",
+    "author": "アーネスト・ヘミングウェイ",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "海外文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "好きな作品。人は何のために働くのかを考えた。結果や事業の拡大より、海に出て魚と向き合う行為そのものを楽しむ姿勢に惹かれた。"
+    ],
+    "impression": "特に印象に残った",
+    "featured": true,
+    "related_ids": []
+  },
+  {
+    "id": "book-052",
+    "title": "ファウスト",
+    "author": "ゲーテ",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "海外文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "名作だから読んだが、思ったより分かりやすい物語だった。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-053",
+    "title": "若きウェルテルの悩み",
+    "author": "ゲーテ",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "海外文学"
+    ],
+    "medium": "漫画版",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "漫画版で読んだ。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-054",
+    "title": "レ・ミゼラブル",
+    "author": "ヴィクトル・ユーゴー",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "海外文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-055",
+    "title": "日の名残り",
+    "author": "カズオ・イシグロ",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "海外文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-056",
+    "title": "坊っちゃん",
+    "author": "夏目漱石",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-057",
+    "title": "こころ",
+    "author": "夏目漱石",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-058",
+    "title": "雪国",
+    "author": "川端康成",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-059",
+    "title": "鉄道員（ぽっぽや）",
+    "author": "浅田次郎",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-060",
+    "title": "博士の愛した数式",
+    "author": "小川洋子",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-061",
+    "title": "告白",
+    "author": "湊かなえ",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-062",
+    "title": "舟を編む",
+    "author": "三浦しをん",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-063",
+    "title": "蜜蜂と遠雷",
+    "author": "恩田陸",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-064",
+    "title": "かがみの孤城",
+    "author": "辻村深月",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-065",
+    "title": "海賊とよばれた男",
+    "author": "百田尚樹",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-066",
+    "title": "成瀬は天下を取りにいく",
+    "author": "宮島未奈",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-067",
+    "title": "線は、僕を描く",
+    "author": "砥上裕將",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "読了",
+    "reviews": [
+      "『等伯』などと比較すると、やや軽い印象だった。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-068",
+    "title": "ゲーテはすべてを言った",
+    "author": "鈴木結生",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "ゲーテの作品を事前に読んでいたこともあり、長い作品ながら面白く読めた。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-069",
+    "title": "黒い家",
+    "author": "貴志祐介",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-070",
+    "title": "イン・ザ・メガチャーチ",
+    "author": "朝井リョウ",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-071",
+    "title": "殺し屋の営業術",
+    "author": "",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "面白かった。著者などの書誌情報は確認後に追記する。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-072",
+    "title": "極楽征夷大将軍",
+    "author": "垣根涼介",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "歴史小説"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "特に好きな作品。足利尊氏の、時代に流されたり、状況を見極めたり、たゆたうような人物像が魅力。無常観を描きながらも、文章が親しみやすく非常に面白かった。"
+    ],
+    "impression": "特に印象に残った",
+    "featured": true,
+    "related_ids": []
+  },
+  {
+    "id": "book-073",
+    "title": "光圀伝",
+    "author": "冲方丁",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "歴史小説"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "物語の途中で涙した場面がある。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-074",
+    "title": "等伯",
+    "author": "安部龍太郎",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "歴史小説"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "絵師として創作に向き合う情熱、大変さ、過酷さ、難しさに惹かれた。"
+    ],
+    "impression": "特に印象に残った",
+    "featured": true,
+    "related_ids": []
+  },
+  {
+    "id": "book-075",
+    "title": "収容所（ラーゲリ）から来た遺書",
+    "author": "辺見じゅん",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "ノンフィクション"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "特に好きな作品。シベリア抑留という極限状態でも自分を保ち、信念を貫き、優しさを失わなかった山本幡男の生き様に強く惹かれた。仲間たちが遺書を記憶し、家族に伝えた結末も印象的。"
+    ],
+    "impression": "特に印象に残った",
+    "featured": true,
+    "related_ids": []
+  },
+  {
+    "id": "book-076",
+    "title": "ブルシット・ジョブの謎",
+    "author": "",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "思想・社会"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "会社や仕事への違和感とつながる、重要な一冊。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-077",
+    "title": "なぜ働いていると本が読めなくなるのか",
+    "author": "",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "思想・社会"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "仕事と読書の関係を考えた。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-078",
+    "title": "ガダラの豚",
+    "author": "中島らも",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "宗教、話術、人が信じる仕組みへの関心につながった。重要な一冊。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-079",
+    "title": "沈黙",
+    "author": "遠藤周作",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "信仰の重さが印象に残った。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-080",
+    "title": "営業の魔法",
+    "author": "",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "思想・社会"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [
+      "あまり刺さらなかった。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-081",
+    "title": "自省録",
+    "author": "マルクス・アウレリウス",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "思想・社会"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-082",
+    "title": "ウブントゥ",
+    "author": "",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "その他"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-083",
+    "title": "すべてやればうまくいく",
+    "author": "",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "その他"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-084",
+    "title": "無意識の魔力",
+    "author": "",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "その他"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-085",
+    "title": "才能の見つけ方",
+    "author": "",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "その他"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-086",
+    "title": "パパは脳科学者",
+    "author": "",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "その他"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  },
+  {
+    "id": "book-087",
+    "title": "一気に読める聖書",
+    "author": "",
+    "period": "時期不明",
+    "period_note": "",
+    "genres": [
+      "その他"
+    ],
+    "medium": "",
+    "status": "記録あり（読了未確認）",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": []
+  }
+]

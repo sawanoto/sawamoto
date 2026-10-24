@@ -122,12 +122,15 @@ def page(title: str, description: str, path: str, body: str) -> str:
     nav = [("Home", ""), ("About", "about/"), ("Works", "works/"), ("Writing", "writing/"), ("ゲーム遍歴", "games/")]
     nav.append(("Anime", "anime/"))
     nav.append(("映画遍歴", "movie-history/"))
+    nav.append(("読書遍歴", "reading/"))
     if BOOKS:
         nav.append(("Books", "books/"))
     nav_html = "".join(f'<a href="{local(p)}" {"aria-current=\"page\"" if p == path else ""}>{label}</a>' for label, p in nav)
     kigo_assets = (f'<link rel="stylesheet" href="{local("assets/kigo.css")}">'
                    f'<script src="{local("assets/kigo.js")}" defer></script>') if path == "" else ""
     timeline_script = f'<script src="{local("assets/timeline-folds.js")}" defer></script>' if path == "about/" else ""
+    reading_assets = (f'<link rel="stylesheet" href="{local("assets/reading.css")}">'
+                      f'<script src="{local("assets/reading.js")}" defer></script>') if path == "reading/" else ""
     seasonal_mark = '<span class="seasonal-mark" hidden aria-hidden="true"></span>'
     if path == "":
         seasonal_mark = f'<div class="brand-seasonal">{seasonal_mark}{kigo_widget()}</div>'
@@ -146,7 +149,7 @@ def page(title: str, description: str, path: str, body: str) -> str:
 <meta property="og:title" content="{e(full_title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{url}">
 <meta property="og:site_name" content="{e(SITE['name'])}"><link rel="stylesheet" href="{local('assets/style.css')}?v={STYLE_VERSION}">
 <link rel="stylesheet" href="{local('assets/seasonal.css')}"><script src="{local('assets/seasonal.js')}" defer></script>
-{kigo_assets}{timeline_script}</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
+{kigo_assets}{timeline_script}{reading_assets}</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
 <div class="brand-lockup"><a class="brand" href="{local('')}">{e(SITE['name'])}<small>{e(SITE['name_en'])}</small></a>{seasonal_mark}</div>
 <nav aria-label="メインナビゲーション">{nav_html}</nav></header><main id="main">{body}</main>
 <footer class="footer"><span>{e(SITE['name'])} / {e(SITE['name_en'])}</span><a href="#main">上へ戻る ↑</a></footer></div></body></html>'''
@@ -241,6 +244,52 @@ def section_head(kicker: str, title: str, path: str = "") -> str:
     link = f'<a class="text-link" href="{local(path)}">一覧を見る <span aria-hidden="true">→</span></a>' if path else ""
     return f'<div class="section-head"><div><p class="kicker">{e(kicker)}</p><h2>{e(title)}</h2></div>{link}</div>'
 
+
+PERIODS = ['幼少期', '小学生', '中学生', '高校生', '大学生', '社会人', '時期不明']
+GENRES = ['SF', '海外文学', '日本文学', '歴史小説', 'ライトノベル', 'ノンフィクション', '思想・社会', 'その他']
+
+
+def reading_page() -> str:
+    records = json.loads((CONTENT / 'reading.json').read_text(encoding='utf-8'))
+    ids = [x['id'] for x in records]
+    if len(ids) != len(set(ids)) or any(not re.fullmatch(r'[a-z0-9-]+', x) for x in ids):
+        raise ValueError('Reading IDs must be unique URL-safe identifiers')
+    for x in records:
+        if x.get('period', '時期不明') not in PERIODS or any(g not in GENRES for g in x.get('genres', [])):
+            raise ValueError('Unknown reading period or genre')
+        if any(i not in ids for i in x.get('related_ids', [])):
+            raise ValueError('Unknown related reading ID')
+
+    def record(x):
+        period = x.get('period', '時期不明')
+        genres = x.get('genres', [])
+        meta = [x.get('author') or '著者未整理', x.get('period_note') or period,
+                x.get('medium') or '媒体未整理', x.get('status') or '記録あり（読了未確認）']
+        reviews = ''.join(f'<p>{e(r)}</p>' for r in x.get('reviews', [])) or '<p class="meta">感想は今後追記。</p>'
+        links = ''.join(f'<li><a href="#reading-{e(i)}">{e(next(b["title"] for b in records if b["id"] == i))}</a></li>' for i in x.get('related_ids', []))
+        related_html = f'<aside>関連する本<ul>{links}</ul></aside>' if links else ''
+        impression = f'<p class="reading-impression">{e(x["impression"])}</p>' if x.get('impression') else ''
+        return f'''<article class="reading-record" id="reading-{e(x['id'])}" data-period="{e(period)}" data-genres="{e(json.dumps(genres, ensure_ascii=False))}" data-search="{e(x['title'] + ' ' + x.get('author', ''))}" data-status="{e(x.get('status', '記録あり（読了未確認）'))}">
+        <h3>{e(x['title'])}</h3><p class="meta">{e(' · '.join(meta))}</p><p class="meta">{e(' / '.join(genres) or 'ジャンル未整理')}</p>{impression}{reviews}{related_html}</article>'''
+
+    featured = ''.join(f'<li><h3><a href="#reading-{e(x["id"])}" data-reading-link>{e(x["title"])}</a></h3><p>{e(" ".join(x.get("reviews", [])))}</p></li>' for x in records if x.get('featured'))
+    groups = ''.join(f'<section class="reading-group" data-group="{e(p)}"><h3>{e(p)}</h3><div class="reading-grid">' + ''.join(record(x) for x in records if x.get('period', '時期不明') == p) + '</div></section>' for p in PERIODS)
+    options = lambda values: ''.join(f'<option>{e(v)}</option>' for v in values)
+    return f'''<div class="reading-page"><div class="page-heading"><p class="kicker">Reading history / Ongoing notes</p><h1>読書遍歴</h1>
+    <div class="reading-intro"><p>子どものころに読んだ物語から、大人になって出会った小説、SF、歴史、思想まで。</p>
+    <p>読んでいる最中から夢中になった本もあれば、苦労して読み終えた後に価値を感じた本もある。</p>
+    <p>何を読んできたのか。そして、その本の何が面白かったのか。</p><p>思い出せるところから、少しずつ記録していく。</p></div></div>
+    <section class="reading-context"><h2>本と感想のあいだに</h2><p>科学的な設定から問題を解く面白さや、言葉のリズム、比喩、会話の楽しさ。社会の仕組みや不条理、時代に翻弄される人、信念や優しさを失わない人。創作や仕事そのものに喜びを見いだす姿にも惹かれてきたように思う。読書中の楽しさと、読後に感じる価値は、いつも同じとは限らない。</p>
+    <p>大学時代には十分に感じられなかった村上春樹の魅力が、社会人になってからは自分の感覚と結びつくようになった。本と出会う時期によって、受け取り方も変わっていく。</p><p>本屋大賞の受賞作も多く読んでいるが、すべてが特別に心に刺さったわけではない。ここには、そのときの手触りも残しておきたい。</p></section>
+    <section class="reading-featured"><h2>特に印象に残った本</h2><p class="meta">順位はつけず、それぞれ異なる理由で心に残った本を。</p><ul>{featured}</ul></section>
+    <section id="reading-library"><h2>読書の記録</h2><p>思い出せた作品からまとめた初期版です。完全な一覧ではありません。読書メーターや過去の記録を参照しながら、作品と感想を追加していきます。時期や読了範囲が曖昧なものは、確認できた範囲で記しています。</p>
+    <form class="reading-controls" hidden role="search"><label>閲覧方法<select id="reading-view"><option value="period">年代別</option><option value="genre">ジャンル別</option></select></label>
+    <label>年代<select id="reading-period"><option value="">すべて</option>{options(PERIODS)}</select></label>
+    <label>ジャンル<select id="reading-genre"><option value="">すべて</option>{options(GENRES)}</select></label>
+    <label>読了状況<select id="reading-status"><option value="">すべて</option>{options(list(dict.fromkeys(x.get('status', '記録あり（読了未確認）') for x in records)))}</select></label>
+    <label class="reading-search">作品名・著者名で検索<input id="reading-search" type="search" placeholder="例：三体、村上春樹"></label><button type="reset">条件をリセット</button></form>
+    <p id="reading-result" role="status" aria-live="polite"></p><noscript><p>JavaScriptが無効な場合は年代別の全記録を表示します。ページ内検索も利用できます。</p></noscript>
+    <div id="reading-groups">{groups}</div></section></div>'''
 
 def movie_history() -> str:
     """Keep viewing periods independent of release dates; preserve editorial order."""
@@ -419,7 +468,7 @@ def build() -> None:
     <div class="hobby-group about-daily-life" id="daily-life"><h3>普段の過ごし方</h3><p class="section-copy">{e(SITE.get('daily_life', ''))}</p></div></section>
     <section class="content-section" id="interests">{section_head('Interests', '最近気になっていること')}<ul class="chips">{interests}</ul></section>
     {hobbies}
-    <section class="content-section">{section_head("Culture", "文化の遍歴")}<ul class="link-list"><li><a href="{local('movie-history/')}">映画遍歴 →</a></li></ul><p class="section-copy">映画や映像作品に触れてきた記憶を振り返ります。</p></section>
+    <section class="content-section">{section_head("Culture", "文化の遍歴")}<ul class="link-list"><li><a href="{local('movie-history/')}">映画遍歴 →</a></li><li><a href="{local('reading/')}">読書遍歴 →</a></li></ul><p class="section-copy">映画や映像作品に触れてきた記憶を振り返ります。</p></section>
     <section class="content-section" id="timeline">{section_head('Timeline', '活動の記録')}{timeline_html}</section>
     <section class="content-section">{section_head('Elsewhere', '外部リンク')}{about_galleries}{social}</section>
     {qualifications}'''
@@ -491,6 +540,8 @@ def build() -> None:
         visit_facts = f'<dl class="work-facts visit-facts"><div><dt>訪問日</dt><dd>{e(item["visit_date"])}</dd></div><div><dt>場所</dt><dd>{e(item["center"])}</dd></div><div><dt>活動</dt><dd>{e(item["activity"])}</dd></div></dl>' if series and all(item.get(x) for x in ("visit_date", "center", "activity")) else ""
         detail = f'<div class="detail-heading"><a class="back" href="{local(back_path)}">← {e(back_label)}</a><p class="meta">{e(item.get("published", ""))}{updated} · {e(item.get("category", ""))} · {e(item.get("period", ""))}</p><h1>{e(item["title"])}</h1><p class="lead">{e(item.get("summary", ""))}</p><ul class="chips">{tags}</ul></div>{hero}{visit_facts}<article class="prose">{body}</article>{related_html}'
         write(f'writing/{item["slug"]}', page(item.get("seo_title", item["title"]), item.get("meta_description", item.get("summary", "")), f'writing/{item["slug"]}/', detail))
+
+    write("reading", page("読書遍歴", "読んできた本と、そのときの感想。年代別・ジャンル別に振り返る読書の記録。", "reading/", reading_page()))
 
     # Books stays off the navigation until a real, approved item is added.
     if BOOKS:
