@@ -32,8 +32,8 @@ const {existsSync} = require('node:fs');
     await page.locator('#reading-search').fill('見つからない検索');
     assert.equal(await page.locator('.reading-record').count(),0);
     await page.getByRole('link', {name:'殺人の門',exact:true}).click();
-    assert.equal(await page.locator('.reading-record').count(),87);
     await page.waitForFunction(()=>document.activeElement.id === 'reading-book-022');
+    assert.equal(await page.locator('.reading-record').count(),87);
     for (const width of [320,390,768,1280]) {
       await page.setViewportSize({width,height:850});
       assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`overflow at ${width}`);
