@@ -119,6 +119,7 @@ def page(title: str, description: str, path: str, body: str) -> str:
     full_title = f"{title} | {SITE['name']}" if title else f"{SITE['name']} / {SITE['name_en']}"
     url = ORIGIN + local(path)
     nav = [("Home", ""), ("About", "about/"), ("Works", "works/"), ("Writing", "writing/")]
+    nav.append(("Anime", "anime/"))
     if BOOKS:
         nav.append(("Books", "books/"))
     nav_html = "".join(f'<a href="{local(p)}" {"aria-current=\"page\"" if p == path else ""}>{label}</a>' for label, p in nav)
@@ -237,6 +238,90 @@ def highlights(items: list[dict]) -> str:
 def section_head(kicker: str, title: str, path: str = "") -> str:
     link = f'<a class="text-link" href="{local(path)}">一覧を見る <span aria-hidden="true">→</span></a>' if path else ""
     return f'<div class="section-head"><div><p class="kicker">{e(kicker)}</p><h2>{e(title)}</h2></div>{link}</div>'
+
+
+def anime_data() -> tuple[list[dict], list[dict]]:
+    items = json.loads((CONTENT / 'anime.json').read_text(encoding='utf-8'))
+    eras = json.loads((CONTENT / 'anime-eras.json').read_text(encoding='utf-8'))
+    era_ids = [x['id'] for x in eras]
+    if len(set(era_ids)) != len(era_ids) or any(not re.fullmatch(r'[a-z0-9-]+', x) for x in era_ids):
+        raise ValueError('Invalid or duplicate anime era')
+    for key in ('id', 'slug'):
+        if len({x[key] for x in items}) != len(items):
+            raise ValueError(f'Duplicate anime {key}')
+    ids = {x['id'] for x in items}
+    required = {'id', 'slug', 'title', 'releaseYear', 'watchedPeriod', 'watchedYear',
+                'watchedYearConfidence', 'impression', 'memory', 'relatedWorks', 'tags', 'updatedAt', 'era'}
+    for item in items:
+        if not required <= item.keys():
+            raise ValueError('Missing anime fields')
+        if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', item['slug']):
+            raise ValueError('Use an ASCII anime slug')
+        if item['era'] not in era_ids or item['watchedYearConfidence'] not in {'確定', '推定', '不明'}:
+            raise ValueError('Invalid anime period/confidence')
+        for key in ('releaseYear', 'watchedYear'):
+            if item[key] is not None and (type(item[key]) is not int or not 1900 <= item[key] <= 2200):
+                raise ValueError(f'Invalid anime {key}')
+        if not isinstance(item['relatedWorks'], list) or not set(item['relatedWorks']) <= ids:
+            raise ValueError('Unknown related anime ID')
+        if not isinstance(item['tags'], list) or any(not isinstance(t, str) for t in item['tags']):
+            raise ValueError('Invalid anime tags')
+        if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', item['updatedAt']):
+            raise ValueError('Use YYYY-MM-DD for anime updatedAt')
+    return items, eras
+
+
+def anime_paragraphs(text: str) -> str:
+    return ''.join(f'<p>{e(p)}</p>' for p in text.split('\n\n') if p.strip()) or '<p>今後追記予定</p>'
+
+
+def build_anime() -> None:
+    items, eras = anime_data()
+    by_id = {x['id']: x for x in items}
+    assets = (f'<link rel="stylesheet" href="{local("assets/anime.css")}">'
+              f'<script src="{local("assets/anime.js")}" defer></script>')
+    jumps = ''.join(f'<a href="#era-{x["id"]}">{e(x["label"])}</a>' for x in eras)
+    sections = []
+    for era in eras:
+        rows = []
+        for item in items:
+            if item['era'] != era['id']:
+                continue
+            release = f'{item["releaseYear"]}年' if item['releaseYear'] else '未確定'
+            kind = '関連視聴作品・人形劇（アニメではありません）' if item.get('mediaType') == '人形劇' else 'アニメ'
+            tags = ' / '.join(item['tags'])
+            rows.append(f'''<li data-anime-title="{e(item['title'])}"><a class="anime-row" href="{local(f"anime/{item['slug']}/")}">
+            <span class="meta">{kind}{' · ' + e(tags) if tags else ''}</span><h3>{e(item['title'])}<span aria-hidden="true"> ↗</span></h3>
+            <span class="anime-meta">放送開始：{release} ／ 視聴：{e(item['watchedPeriod'])}（{e(item['watchedYearConfidence'])}）</span></a></li>''')
+        sections.append(f'''<section class="anime-era" id="era-{era['id']}" aria-labelledby="heading-{era['id']}">
+        <h2 id="heading-{era['id']}">{e(era['label'])}</h2><ul class="anime-list">{''.join(rows)}</ul>
+        <div class="anime-memory"><h3>{e(era['heading'])}</h3>{anime_paragraphs(era['memory'])}</div></section>''')
+    body = f'''{assets}<div class="page-heading"><p class="kicker">Anime / Personal history</p><h1>澤本のアニメ遍歴</h1>
+    <p>幼少期から今までに見てきたアニメを、当時の思い出と一緒に振り返る個人的な年表です。友達と作品の話をするときの、記憶の手がかりになれば。</p>
+    <p>放送開始年と、実際に見た時期は別の情報です。「確定・推定・不明」は視聴時期の確度を表し、具体的な視聴年が分からない作品も残しています。</p></div>
+    <nav class="anime-jumps" aria-label="年代別ナビゲーション">{jumps}</nav>
+    <div class="anime-search" hidden><label for="anime-search">作品名で検索</label><input id="anime-search" type="search" placeholder="例：ガンダム" autocomplete="off" aria-controls="anime-timeline"><p id="anime-result" role="status" aria-live="polite"></p></div>
+    <div id="anime-timeline">{''.join(sections)}</div>
+    <p class="anime-closing">見た作品や当時の思い出は、これからも少しずつ追加していきます。友達との会話で思い出した作品や、新しく出会った作品も、ここに残していく予定です。</p>'''
+    write('anime', page('澤本のアニメ遍歴', '幼少期から現在までのアニメと、その頃の思い出を振り返る個人的な年表。', 'anime/', body))
+    for item in items:
+        release = f'{item["releaseYear"]}年' if item['releaseYear'] else '未確定'
+        year = f'{item["watchedYear"]}年' if item['watchedYear'] else '不明'
+        back = local(f'anime/#era-{item["era"]}')
+        links = ''.join(f'<li><a href="{local(f"anime/{by_id[id_]['slug']}/")}">{e(by_id[id_]["title"])}</a></li>' for id_ in item['relatedWorks'])
+        related_html = f'<ul class="link-list">{links}</ul>' if links else '<p>今後追記予定</p>'
+        tags = ''.join(f'<li>{e(t)}</li>' for t in item['tags'])
+        note = f'<p>{e(item["releaseNote"])}</p>' if item.get('releaseNote') else ''
+        kind = '<p>幼少期の関連視聴作品：人形劇（アニメではありません）</p>' if item.get('mediaType') == '人形劇' else ''
+        detail = f'''{assets}<div class="detail-heading"><a class="back" href="{back}">← アニメ遍歴の年表に戻る</a>
+        <p class="kicker">Anime / Memory</p><h1>{e(item['title'])}</h1>{kind}<ul class="chips">{tags}</ul></div>
+        <dl class="work-facts anime-facts"><div><dt>放送開始年</dt><dd>{release}</dd></div><div><dt>実際の視聴時期</dt><dd>{e(item['watchedPeriod'])}</dd></div>
+        <div><dt>視聴時期の確度</dt><dd>{e(item['watchedYearConfidence'])}</dd></div><div><dt>実際の視聴年</dt><dd>{year}</dd></div></dl>
+        <div class="prose">{note}<p class="meta">放送開始年は、実際に視聴した年を表すものではありません。</p>
+        <h2>当時の思い出</h2>{anime_paragraphs(item['memory'])}<h2>作品に対する感想</h2>{anime_paragraphs(item['impression'])}
+        <h2>関連する作品</h2>{related_html}<p class="meta">更新日：<time datetime="{e(item['updatedAt'])}">{e(item['updatedAt'])}</time></p>
+        <a class="back" href="{back}">← アニメ遍歴の年表に戻る</a></div>'''
+        write(f'anime/{item["slug"]}', page(item['title'], f'{item["title"]}の視聴時期と思い出。', f'anime/{item["slug"]}/', detail))
 
 
 def build() -> None:
@@ -381,6 +466,8 @@ def build() -> None:
     if BOOKS:
         cards = "".join(f'<article class="book"><h2>{e(x["title"])}</h2><p>{e(x.get("summary", ""))}</p>{external("販売ページ", x["url"])}</article>' for x in BOOKS)
         write("books", page("Books", "澤本優哉の書籍と販売作品。", "books/", f'<div class="page-heading"><p class="kicker">Books</p><h1>書籍・販売</h1></div>{cards}'))
+
+    build_anime()
 
     # Use pages actually written to dist, so the sitemap cannot list missing pages.
     paths = []
