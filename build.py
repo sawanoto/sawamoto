@@ -14,6 +14,7 @@ from xml.sax.saxutils import escape as xml_escape
 import markdown
 
 from kigo import load_kigo
+from game_history import render_games
 
 ROOT = Path(__file__).parent
 CONTENT = ROOT / "content"
@@ -118,7 +119,7 @@ def related(ids: list[str], collection: dict, section: str) -> str:
 def page(title: str, description: str, path: str, body: str) -> str:
     full_title = f"{title} | {SITE['name']}" if title else f"{SITE['name']} / {SITE['name_en']}"
     url = ORIGIN + local(path)
-    nav = [("Home", ""), ("About", "about/"), ("Works", "works/"), ("Writing", "writing/")]
+    nav = [("Home", ""), ("About", "about/"), ("Works", "works/"), ("Writing", "writing/"), ("ゲーム遍歴", "games/")]
     if BOOKS:
         nav.append(("Books", "books/"))
     nav_html = "".join(f'<a href="{local(p)}" {"aria-current=\"page\"" if p == path else ""}>{label}</a>' for label, p in nav)
@@ -273,7 +274,7 @@ def build() -> None:
     <a class="button" href="{local('about/')}">澤本優哉について <span aria-hidden="true">→</span></a></section>
     <section class="home-section">{section_head('01 / Writing', '文章・考察', 'writing/')}<div class="card-grid">{writing_home}</div></section>
     <section class="home-section">{section_head('02 / Works', '制作物', 'works/')}<div class="card-grid">{works_home}</div></section>
-    <section class="home-section">{section_head('03 / About', 'これまでの活動', 'about/#timeline')}<p class="section-copy">活動の記録は、時期や公開範囲を確認しながら年表に加えていきます。</p></section>{support_html}'''
+    <section class="home-section">{section_head('03 / About', 'これまでの活動', 'about/#timeline')}<p class="section-copy">活動の記録は、時期や公開範囲を確認しながら年表に加えていきます。</p></section><section class="home-section">{section_head("04 / Game history", "ゲーム遍歴", "games/")}<p class="section-copy">子供の頃から現在まで、遊んできたゲームと、その頃の思い出。</p></section>{support_html}'''
     write("", page("", SITE["description"], "", home))
 
     timeline_parts = {"major": [], "medium": [], "minor": []}
@@ -381,6 +382,8 @@ def build() -> None:
     if BOOKS:
         cards = "".join(f'<article class="book"><h2>{e(x["title"])}</h2><p>{e(x.get("summary", ""))}</p>{external("販売ページ", x["url"])}</article>' for x in BOOKS)
         write("books", page("Books", "澤本優哉の書籍と販売作品。", "books/", f'<div class="page-heading"><p class="kicker">Books</p><h1>書籍・販売</h1></div>{cards}'))
+
+    render_games(CONTENT, write, page, local, e, image_url)
 
     # Use pages actually written to dist, so the sitemap cannot list missing pages.
     paths = []

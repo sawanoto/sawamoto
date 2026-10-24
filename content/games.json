@@ -1,0 +1,521 @@
+[
+  {
+    "id": "pokemon-leafgreen",
+    "title": "ポケットモンスター リーフグリーン",
+    "platform": "ゲームボーイアドバンスSP",
+    "releaseYear": null,
+    "playedPeriod": "小学生時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "elementary"
+    ],
+    "memories": [
+      "ゲームボーイアドバンスSPで遊んだ、記憶にある最初のゲームです。ここから私のゲーム遍歴が始まりました。"
+    ],
+    "companions": [
+      "自分"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "starfy",
+    "title": "伝説のスタフィー",
+    "platform": null,
+    "releaseYear": null,
+    "playedPeriod": "小学生時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "elementary"
+    ],
+    "memories": [
+      "小学生の頃に遊んだゲームの一つです。詳しい思い出は、今後追加する予定です。"
+    ],
+    "companions": [
+      "自分"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "wind-waker",
+    "title": "ゼルダの伝説 風のタクト",
+    "platform": "ゲームキューブ",
+    "releaseYear": null,
+    "playedPeriod": "小学生時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "elementary"
+    ],
+    "memories": [
+      "ゲームキューブで遊びました。",
+      "序盤のメドリが登場する島で、Rボタンを長押しして石を動かす操作が分からず、先へ進めなくなってしまいました。",
+      "子供の私には難しく、長い間放置していました。",
+      "小学校高学年頃に再開すると、これがかなり面白いゲームだったのです。"
+    ],
+    "companions": [
+      "自分"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "mario-kart-ds",
+    "title": "マリオカートDS",
+    "platform": "ニンテンドーDS",
+    "releaseYear": null,
+    "playedPeriod": "小学生時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "elementary"
+    ],
+    "memories": [
+      "友達と通信対戦をして、かなり遊び込みました。"
+    ],
+    "companions": [
+      "友達"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "chocotto-land",
+    "title": "チョコットランド",
+    "platform": "ハンゲーム",
+    "releaseYear": null,
+    "playedPeriod": "小学校高学年頃",
+    "periodIsEstimated": true,
+    "periods": [
+      "elementary"
+    ],
+    "memories": [
+      "小学校高学年の頃、ハンゲームで遊んでいました。学校の友達と一緒に楽しんだオンラインRPGです。"
+    ],
+    "companions": [
+      "友達"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "smash-dx",
+    "title": "大乱闘スマッシュブラザーズDX",
+    "platform": null,
+    "releaseYear": null,
+    "playedPeriod": "小学生時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "elementary"
+    ],
+    "memories": [
+      "弟とよく対戦しました。",
+      "私がよく使っていたキャラクターはリンクです。もともとゼルダが好きだったことに加え、弓矢やブーメランなどの飛び道具が有利だと感じていました。",
+      "私が勝つことが多かったので、弟は対戦を嫌がることもありました。"
+    ],
+    "companions": [
+      "弟"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "wii-sports",
+    "title": "Wii Sports",
+    "platform": null,
+    "releaseYear": null,
+    "playedPeriod": "小学生時代〜中学生時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "elementary",
+      "junior"
+    ],
+    "memories": [
+      "弟とよく遊びました。"
+    ],
+    "companions": [
+      "弟"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "brain-training",
+    "title": "脳を鍛える大人のDSトレーニング",
+    "platform": "ニンテンドーDS",
+    "releaseYear": null,
+    "playedPeriod": "小学生時代〜中学生時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "elementary",
+      "junior"
+    ],
+    "memories": [
+      "家族で遊んだ思い出があります。"
+    ],
+    "companions": [
+      "家族"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "tomodachi-collection",
+    "title": "トモダチコレクション",
+    "platform": "ニンテンドーDS",
+    "releaseYear": null,
+    "playedPeriod": "小学生時代〜中学生時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "elementary",
+      "junior"
+    ],
+    "memories": [
+      "ニンテンドーDSで遊んだ作品です。詳細な思い出は後日追加します。"
+    ],
+    "companions": [
+      "自分"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "smash-x",
+    "title": "大乱闘スマッシュブラザーズX",
+    "platform": null,
+    "releaseYear": null,
+    "playedPeriod": "中学生時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "junior"
+    ],
+    "memories": [
+      "スマブラDXに続いて、弟とよく遊びました。リンクを愛用していました。"
+    ],
+    "companions": [
+      "弟"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "monster-hunter-2g",
+    "title": "モンスターハンターポータブル 2nd G",
+    "platform": "PSP",
+    "releaseYear": null,
+    "playedPeriod": "中学生時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "junior"
+    ],
+    "memories": [
+      "PSPで友達と集まって遊びました。"
+    ],
+    "companions": [
+      "友達"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "minecraft",
+    "title": "Minecraft",
+    "platform": null,
+    "releaseYear": null,
+    "playedPeriod": "中学生時代から／社会人時代にもプレイ",
+    "periodIsEstimated": false,
+    "periods": [
+      "junior",
+      "adult"
+    ],
+    "memories": [
+      "中学生の頃から遊んでいました。",
+      "社会人になってからも、妻や会社の友達と一緒にプレイしています。",
+      "ただ、私は途中で飽きてしまうこともあります。",
+      "特に覚えているのは、ダイヤモンドの採掘です。",
+      "効率のよい回収方法を調べ、地下で円形にぐるぐる回りながら、ひたすら鉱石や資源を集めていました。",
+      "自由に何でもできるゲームなのに、結局は効率を考えながら同じ作業を繰り返していました。"
+    ],
+    "companions": [
+      "自分",
+      "妻",
+      "友達"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "ace-combat-2",
+    "title": "エースコンバット2",
+    "platform": "PlayStation",
+    "releaseYear": null,
+    "playedPeriod": "高校生時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "high"
+    ],
+    "memories": [
+      "過去のPlayStation作品を遡って遊んでいた頃のゲームです。"
+    ],
+    "companions": [
+      "自分"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "kingdom-hearts-2",
+    "title": "キングダム ハーツII",
+    "platform": null,
+    "releaseYear": null,
+    "playedPeriod": "高校生時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "high"
+    ],
+    "memories": [
+      "最後までクリアしました。ラスボスのゼムナスを倒した記憶があります。"
+    ],
+    "companions": [
+      "自分"
+    ],
+    "status": "クリア済み",
+    "image": null
+  },
+  {
+    "id": "angry-birds",
+    "title": "Angry Birds",
+    "platform": "Dell Streak（Android）",
+    "releaseYear": null,
+    "playedPeriod": "高校生時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "high"
+    ],
+    "memories": [
+      "Dell StreakというAndroidスマートフォンで遊んでいました。"
+    ],
+    "companions": [
+      "自分"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "puzzle-dragons",
+    "title": "パズル＆ドラゴンズ",
+    "platform": null,
+    "releaseYear": null,
+    "playedPeriod": "大学生時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "university"
+    ],
+    "memories": [
+      "遊んではみたものの、それほど熱中しませんでした。"
+    ],
+    "companions": [
+      "自分"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "nameko",
+    "title": "おさわり探偵 なめこ栽培キット",
+    "platform": null,
+    "releaseYear": null,
+    "playedPeriod": "時期未確定",
+    "periodIsEstimated": false,
+    "periods": [],
+    "memories": [
+      "少しだけ遊んだ記憶があります。プレイ時期は未確定です。"
+    ],
+    "companions": [
+      "自分"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "pokemon-sun-moon",
+    "title": "ポケットモンスター サン・ムーン",
+    "platform": null,
+    "releaseYear": null,
+    "playedPeriod": "大学生時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "university"
+    ],
+    "memories": [
+      "オンライン対戦をかなり楽しみました。",
+      "バンギラス、ギャラドス、そして「どくどく」と「みがわり」を活用するギルガルドなどを育成していました。",
+      "ギルガルドは5Vの個体を用意していた記憶があります。",
+      "対戦はシングルバトルが中心だったと思いますが、ダブルバトルを遊んだかどうかは覚えていません。",
+      "子供の頃のリーフグリーンとは違い、個体値や技構成を考える楽しみ方をしていました。"
+    ],
+    "companions": [
+      "オンラインの人"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "pokemon-ultra",
+    "title": "ポケットモンスター ウルトラサン・ウルトラムーン",
+    "platform": "ニンテンドー3DS",
+    "releaseYear": null,
+    "playedPeriod": "大学生時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "university"
+    ],
+    "memories": [
+      "3DSで遊んだ作品です。詳しい思い出は後日追加します。"
+    ],
+    "companions": [
+      "自分"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "catan-vr",
+    "title": "Catan VR",
+    "platform": "Oculus Go",
+    "releaseYear": null,
+    "playedPeriod": "社会人時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "adult"
+    ],
+    "memories": [
+      "Oculus Goで遊びました。",
+      "VR空間で知らない人とオンライン対戦をしていました。"
+    ],
+    "companions": [
+      "オンラインの人"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "splatoon-2",
+    "title": "スプラトゥーン2",
+    "platform": "Nintendo Switch",
+    "releaseYear": null,
+    "playedPeriod": "社会人時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "adult"
+    ],
+    "memories": [
+      "Nintendo Switchで遊びました。"
+    ],
+    "companions": [
+      "自分"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "age-of-calamity",
+    "title": "ゼルダ無双 厄災の黙示録",
+    "platform": null,
+    "releaseYear": null,
+    "playedPeriod": "社会人時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "adult"
+    ],
+    "memories": [
+      "妻と一緒に遊びました。",
+      "実は、妻に『ゼルダの伝説 ブレス オブ ザ ワイルド』を一人で遊べるようになってもらうための計画でした。",
+      "私が隣でプレイを眺めて楽しむためです。",
+      "完全に私の趣味に巻き込んだ形でしたが、よく付き合ってくれたものです。"
+    ],
+    "companions": [
+      "妻"
+    ],
+    "status": "プレイ済み",
+    "image": null
+  },
+  {
+    "id": "breath-of-the-wild",
+    "title": "ゼルダの伝説 ブレス オブ ザ ワイルド",
+    "platform": null,
+    "releaseYear": null,
+    "playedPeriod": "社会人時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "adult"
+    ],
+    "memories": [
+      "妻が一人で遊べるようになり、私は隣で観戦していました。",
+      "すると、次第に妻のほうが熱心に遊ぶようになりました。",
+      "計画通りです。"
+    ],
+    "companions": [
+      "妻"
+    ],
+    "status": "不明",
+    "image": null
+  },
+  {
+    "id": "tears-of-the-kingdom",
+    "title": "ゼルダの伝説 ティアーズ オブ ザ キングダム",
+    "platform": null,
+    "releaseYear": null,
+    "playedPeriod": "社会人時代",
+    "periodIsEstimated": false,
+    "periods": [
+      "adult"
+    ],
+    "memories": [
+      "夫婦ともに遊んでいますが、まだクリアしていません。"
+    ],
+    "companions": [
+      "自分",
+      "妻"
+    ],
+    "status": "未クリア",
+    "image": null
+  },
+  {
+    "id": "pikmin",
+    "title": "ピクミンシリーズ",
+    "platform": "Nintendo Switch",
+    "releaseYear": null,
+    "playedPeriod": "最近（所有を確認／プレイ時期未確認）",
+    "periodIsEstimated": false,
+    "periods": [
+      "current"
+    ],
+    "memories": [
+      "Switchのソフトを所有しています。詳細なタイトルや思い出は後日追加します。"
+    ],
+    "companions": [
+      "自分"
+    ],
+    "status": "所有のみ",
+    "image": null
+  },
+  {
+    "id": "momotetsu",
+    "title": "桃太郎電鉄シリーズ",
+    "platform": "Nintendo Switch",
+    "releaseYear": null,
+    "playedPeriod": "最近（所有を確認／プレイ時期未確認）",
+    "periodIsEstimated": false,
+    "periods": [
+      "current"
+    ],
+    "memories": [
+      "Switchのソフトを所有しています。詳細なタイトルや思い出は後日追加します。"
+    ],
+    "companions": [
+      "自分"
+    ],
+    "status": "所有のみ",
+    "image": null
+  }
+]

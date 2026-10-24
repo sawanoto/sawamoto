@@ -171,3 +171,35 @@ PRではGitHub Actionsの **Check seasonal themes** も同じ検証を実行し�
 編集元は **`content/kigo.json`**。`MM-DD` をキーに366日分（閏日を含む）の表記・読み・季節・短い説明・情景・参考URLを管理します。編集後に `python build.py` で反映し、日付の網羅性や重複などを自動検査します。外部APIは使いません。
 
 [データの編集方法・出典と日付対応の留意点・動作検証](docs/daily-kigo.md)を参照してください。季語の分類と実際の気候には地域差があり、節気・旧暦行事の紹介日は毎年の実施日を示すものではありません。プレビュー用の単体HTMLには季語表示も含まれます。
+
+## ゲーム遍歴
+
+一覧は `/sawamoto/games/`、詳細は `/sawamoto/games/<id>/` です。既存のアニメ遍歴ページは現時点では存在しないため、サイト共通の見出し・配色・年表に合わせています。
+
+`content/games.json` の配列に1作品ずつ追加し、`python build.py` で生成します。表示処理は `game_history.py`、絞り込みは `assets/games.js` です。
+
+```json
+{
+  "id": "example-game",
+  "title": "作品名",
+  "platform": null,
+  "releaseYear": null,
+  "playedPeriod": "小学校高学年頃",
+  "periodIsEstimated": true,
+  "periods": ["elementary", "junior"],
+  "memories": ["思い出の最初の段落。", "続きの段落。"],
+  "companions": ["自分", "友達"],
+  "status": "プレイ済み",
+  "image": null
+}
+```
+
+- `id` は英小文字・数字・ハイフンの一意な値で、詳細URLになります。公開後は変更しないでください。
+- `periods` は掲載先です。`elementary`（小学生）、`junior`（中学生）、`high`（高校生）、`university`（大学生）、`adult`（社会人）、`current`（現在）を指定します。複数指定しても作品データや本文の複製は不要です。時期未確定は空配列 `[]` とし、専用欄に表示します。
+- `playedPeriod` は実際のプレイ時期の説明です。曖昧な推定時期は `periodIsEstimated: true`、完全に不明なら「時期未確定」とします。`releaseYear` は発売年の整数または `null` です。初版では発売年を未確認とし、プレイ時期から推定していません。
+- `platform` は実際に遊んだ機種・環境を記載し、不明なら `null`。`companions` は相手の配列で、不明なら `[]`（未確認）。機種と相手の絞り込み候補はデータから自動生成します。
+- `status` は「クリア済み」「未クリア」「プレイ済み」「所有のみ」「不明」。観戦のみの場合はプレイ済みと断定せず、本文に状況を記載します。
+- `memories` は段落ごとの文字列配列です。先頭の段落が一覧にも表示されます。本文はHTMLとして実行されません。
+- `image` は省略または `null` で表示できます。使う場合は利用権を確認した `assets/` 以下の画像パスなどを指定してください。初版は外部画像を使用していません。
+
+確認コマンド：`python -m unittest discover -s tests`、`python build.py`。PlaywrightとChromiumがある環境では `CHROMIUM_PATH=/usr/bin/chromium node tests/games.browser.cjs` でスマートフォン・タブレット・PC幅、絞り込み、詳細リンク、JavaScript無効時の表示を確認できます。
