@@ -118,7 +118,7 @@ def related(ids: list[str], collection: dict, section: str) -> str:
 def page(title: str, description: str, path: str, body: str) -> str:
     full_title = f"{title} | {SITE['name']}" if title else f"{SITE['name']} / {SITE['name_en']}"
     url = ORIGIN + local(path)
-    nav = [("Home", ""), ("About", "about/"), ("Works", "works/"), ("Writing", "writing/")]
+    nav = [("Home", ""), ("About", "about/"), ("Works", "works/"), ("Writing", "writing/"), ("映画遍歴", "movie-history/")]
     if BOOKS:
         nav.append(("Books", "books/"))
     nav_html = "".join(f'<a href="{local(p)}" {"aria-current=\"page\"" if p == path else ""}>{label}</a>' for label, p in nav)
@@ -239,6 +239,32 @@ def section_head(kicker: str, title: str, path: str = "") -> str:
     return f'<div class="section-head"><div><p class="kicker">{e(kicker)}</p><h2>{e(title)}</h2></div>{link}</div>'
 
 
+def movie_history() -> str:
+    """Keep viewing periods independent of release dates; preserve editorial order."""
+    data = json.loads((CONTENT / "movie-history.json").read_text(encoding="utf-8"))
+    ids = [g["id"] for g in data["groups"]] + [x["id"] for g in data["groups"] for x in g["entries"]]
+    if len(ids) != len(set(ids)) or any(not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", x) for x in ids):
+        raise ValueError("Movie history IDs must be unique ASCII slugs")
+    contents = "".join(f'<li><a href="#{e(g["id"])}">{e(g["title"])}</a></li>' for g in data["groups"])
+    body = f'<div class="page-heading"><p class="kicker">Culture / Movie history</p><h1>{e(data["title"])}</h1><p>{e(data["intro"])}</p></div>'
+    body += '<p class="section-copy">公開年は作品の情報であり、鑑賞した年とは異なります。時期や鑑賞方法がわからないものは未確認として記録しています。作品の内容や個人的な解釈に触れています。</p>'
+    body += f'<nav class="movie-contents" aria-label="映画遍歴の目次"><ul class="link-list">{contents}<li><a href="#preferences">映画の好みについて</a></li></ul></nav>'
+    for group in data["groups"]:
+        entries = []
+        for item in group["entries"]:
+            facts = [("種別", item["kind"]), ("公開年" if item["kind"] == "映画" else "制作・上演年", item["release"]), ("鑑賞方法", item["method"])]
+            if item.get("original"):
+                facts.append(("原作との関係", item["original"]))
+            facts_html = "".join(f'<div><dt>{e(k)}</dt><dd>{e(v)}</dd></div>' for k, v in facts)
+            memories = "".join(f'<p>{e(p)}</p>' for p in item["memories"])
+            reading = f' data-reading-id="{e(item["related_reading_id"])}"' if item.get("related_reading_id") else ""
+            entries.append(f'<li class="timeline-item" id="{e(item["id"])}"{reading}><span class="meta">{e(item["viewed"])}</span><div class="movie-entry"><h3>{e(item["title"])}</h3><dl class="movie-facts">{facts_html}</dl>{memories}</div></li>')
+        body += f'<section class="content-section movie-section" id="{e(group["id"])}">{section_head("Viewing memories", group["title"])}<p class="section-copy">{e(group["note"])}</p><ol class="timeline">{"".join(entries)}</ol></section>'
+    preferences = "".join(f'<p>{e(p)}</p>' for p in data["preferences"])
+    body += f'<section class="content-section" id="preferences">{section_head("Preferences", "映画の好みについて")}<div class="prose">{preferences}</div><p class="section-copy">『さくら』『三体』は、今後作成する読書遍歴ともつなげていきたい作品です。</p></section>'
+    return body
+
+
 def build() -> None:
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -305,6 +331,7 @@ def build() -> None:
     <div class="hobby-group about-daily-life" id="daily-life"><h3>普段の過ごし方</h3><p class="section-copy">{e(SITE.get('daily_life', ''))}</p></div></section>
     <section class="content-section" id="interests">{section_head('Interests', '最近気になっていること')}<ul class="chips">{interests}</ul></section>
     {hobbies}
+    <section class="content-section">{section_head("Culture", "文化の遍歴")}<ul class="link-list"><li><a href="{local('movie-history/')}">映画遍歴 →</a></li></ul><p class="section-copy">映画や映像作品に触れてきた記憶を振り返ります。</p></section>
     <section class="content-section" id="timeline">{section_head('Timeline', '活動の記録')}{timeline_html}</section>
     <section class="content-section">{section_head('Elsewhere', '外部リンク')}{about_galleries}{social}</section>
     {qualifications}'''
@@ -381,6 +408,8 @@ def build() -> None:
     if BOOKS:
         cards = "".join(f'<article class="book"><h2>{e(x["title"])}</h2><p>{e(x.get("summary", ""))}</p>{external("販売ページ", x["url"])}</article>' for x in BOOKS)
         write("books", page("Books", "澤本優哉の書籍と販売作品。", "books/", f'<div class="page-heading"><p class="kicker">Books</p><h1>書籍・販売</h1></div>{cards}'))
+
+    write("movie-history", page("映画遍歴", "幼少期から現在まで、映画や映像作品に興奮し、心を動かされた個人的な記録。", "movie-history/", movie_history()))
 
     # Use pages actually written to dist, so the sitemap cannot list missing pages.
     paths = []
