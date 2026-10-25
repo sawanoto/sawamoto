@@ -22,7 +22,7 @@ $env:SITE_BASE_PATH = "/"
 - Aboutの趣味一覧：`content/site.json` の `hobbies`。各カテゴリの `category` が見出し、`items` が趣味名の配列です。項目を追加・削除し、ビルドすると反映されます。現在・過去の趣味をまとめて掲載します。
 - Aboutの資格・検定一覧：`content/site.json` の `qualifications`。各分野の `category` が見出し、`items` が資格・検定名の配列です。取得済みの項目を追加・修正し、ビルドすると反映されます。
 - 年表：`content/timeline.json`。本人が確認し、公開可能な項目だけ追加してください。各項目の `importance` は `major`（大）、`medium`（中）、`minor`（小）から選びます。`date` は判明している精度で `YYYY` または `YYYY-MM` と記入し、表示文字列は `period` に設定します。`order` は新しい順の表示位置を決め、同じ年月の項目は任意の順序にできます。既存のIDは作品・記事からのリンクにも使われるため変更しないでください。
-- 年表は大の出来事を最初に表示し、中・小の出来事はそれぞれ折りたたんでいます。見出しを押すと展開でき、作品・記事から中・小の項目へ直接移動した場合は自動で開きます。
+- 年表の公開先は `/timeline/` に一本化しました。Aboutには入口だけを表示し、従来の生活年表アンカーも該当する統合記録へ転送します。
 - 年表から記事へリンクする場合は、公開済みの記事の `id` を年表項目の `article_ids` に追加します（例：`"article_ids":["knitting-my-own-time"]`）。作品は `work_ids` に作品IDを追加します。未公開・存在しない記事IDは設定せず、記事公開後に追加してください。
 - 作品：`content/works/` に英数字とハイフンのファイル名で `.md` を追加します。
 - 記事：`content/writing/` に同様の `.md` を追加します。本文は通常の Markdown なので、後の再編集や電子書籍化に再利用できます。
@@ -219,3 +219,93 @@ PRではGitHub Actionsの **Check seasonal themes** も同じ検証を実行し�
 ## アニメ遍歴
 
 `/sawamoto/anime/` に個人的なアニメ年表を生成します。作品は `content/anime.json`、時代別の思い出は `content/anime-eras.json` で更新できます。データ項目・追加例・確認コマンドは [アニメ遍歴の更新手順](docs/anime.md) を参照してください。
+
+## 統合人生年表 `/timeline/`
+
+アニメ・映画・読書・ゲーム・生活を、1995年から現在までの一本の年表で表示します。初期表示は「すべて」。6種類のボタンでページ再読み込みなしに切り替え、各タイトルから全文・メタデータ・関連記録・元ページを開けます。フィルターは `?genre=anime` などのURLにも対応します。JavaScript無効時も全件と詳細を読めます。
+
+### 正本と自動生成
+
+| 正本 | 内容 | 初回統合件数 |
+| --- | --- | ---: |
+| `content/anime.json` | アニメ・関連視聴作品 | 29 |
+| `content/movie-history.json` | 映画・関連鑑賞体験 | 19 |
+| `content/reading.json` | 読書（シリーズを含む記録） | 87 |
+| `content/games.json` | ゲーム | 26 |
+| `content/timeline.json` | 生活・活動 | 46 |
+
+**正本は引き続き上記のJSONです。** `life_timeline.py` がビルド時に207件を共通構造へ自動変換します。統合用の作品JSONを手作業で二重管理しません。各元JSONのID・本文・既存フィールドは変更していません。旧ページの生成処理は入力検証にも使用しますが、公開出力は新年表への転送ページです。`content/books.json` は販売作品用で、読書遍歴には使用しません。
+
+追加の文章の正本は以下です。
+
+- `content/anime-eras.json`：6区分の時代別の思い出。対応する西暦見出しの下から開け、不明区分の文章は「記録の背景」から読めます。
+- `content/movie-history.json`：導入文・グループ別注記・映画の好み。
+- `content/history-context.json`：従来 `build.py` / `game_history.py` 内にあった導入文・読書観・注意書きを全文移設。統合年表がこの共通文章を読み込みます。
+
+「遍歴データが存在しない」という前回実装時の説明は誤りでした。古い作業HEAD `6dd5249` と未更新のローカル `origin/main` を調べていたことが原因です。今回は指定どおり `git fetch origin main` を実行し、最新main **`6cb64ed1de932686acfec8500a6722da4fe980b7`** を作業基準としました。公開反映前にはさらにmain `e51e5c9`（PR #34のあすなろリトミック記事）を取り込み、その記事を保持した状態で再検証しています。前回の未コミット変更はGit stashと `/workspace/timeline-previous-implementation/` に保全しています（後者は今回の作業環境内の保存先）。
+
+### 年代の扱い
+
+`content/timeline-settings.json` に、重複しない表示区間の開始年・終了年、ジャンル定義、推定規則と根拠をまとめています。2024年以降はビルドした年まで西暦の区間を自動追加します。
+
+- **確定**：生活記録の明記された年月、または明記された体験年。
+- **推定**：元の学校時代・社会人時代の記録を、既存の「2013年度・高校3年生」「2014年・大学1年生」「2018年・就職」と通常の修業年限から、幅を持たせて配置。出生年・入学日を確定する処理ではありません。小学生以前は1995〜2007年の広い範囲です。
+- **不明**：根拠がない記録は「時期未整理」。読書の「時期不明」、ゲームの所有のみの記録、第一子の育休などを含み、全件を閲覧できます。
+
+作品の公開年・発売年や `updatedAt` は体験年に使いません。元データの「確定」が学校時代だけを指す場合も、西暦への換算は「推定」として別管理します。
+
+複数の時期を含む記録は一度だけ表示し、元の時期表記と各範囲を詳細に保持します。例えばMinecraftは中学生時代と社会人時代の2範囲を持ちます。幅のある記録の所属は**開始年を含む表示区間**で一意に決め、タイトル横に範囲を表示します。原作と映像版など、別の元記録は統合して消さず、別IDで関連付けます。
+
+### 今後の追加・修正
+
+該当する正本JSONへ既存形式の項目を追加して `python build.py` を実行するだけで、統合年表・移行対応表・旧URLの転送先に反映されます。HTMLの編集は不要です。
+
+必要に応じ、各項目へ次の任意フィールドを追加できます。
+
+```json
+{
+  "timelineGenres": ["reading", "life"],
+  "timelineDate": {
+    "startYear": 2025,
+    "endYear": 2025,
+    "confidence": "confirmed",
+    "label": "2025年",
+    "basis": "本人の当時の読書記録に記載"
+  }
+}
+```
+
+`confidence` は `confirmed` / `estimated` / `unknown`。確定・推定には開始年、終了年と根拠 `basis` が必要です。正確な体験年が判明した際は、このフィールドで推定を置き換えられます。不明は `{"confidence":"unknown","label":"時期未整理"}`。既存フィールドはそのまま残せます。
+
+`timelineGenres` はサイト内の分類です。読書JSONの `genres`（SFなどの書籍ジャンル）とは別です。新しいジャンルは `timeline-settings.json` の `genres` に追加し、例えば生活記録へ `"timelineGenres":["life","music"]` と設定すれば、ボタン・識別表示へ自動反映されます。ジャンルIDは半角英小文字で始まる英数字・ハイフンを使います。
+
+映画から読書への既存別名参照は、同設定の `movieReadingAliases` で `sakura → book-028`、`three-body-problem → book-034` に対応させ、統合時に双方向リンクを生成します。元データ間の存在しない参照・ID重複・表示区間の重複はビルドエラーになります。
+
+### 移行対応表と検証
+
+ビルドのたびに次を生成します。これらは出力物であり、手動編集しません。
+
+- `dist/timeline/records.json`：統合ID、元ID・ファイル、元フィールド全文、複数ジャンル、年代・確度・根拠、本文、関連ID、記事・制作物など関連ページへのリンク、旧URLの転送元情報。
+- `dist/timeline/migration.json`：元記録から統合記録への207行の対応表と集計、補足文章19項目の対応表。
+- `dist/timeline/migration.csv`：同じ記録対応を表計算ソフトで確認できるCSV。
+
+初回結果は207件、確定45件・推定78件・不明84件。アニメ年代別6項目などの補足文章19項目は、作品・出来事の件数とは別です。ジャンルフィルターは複数分類を含むため、アニメ30件・読書88件になります（アニメにも属する映画側のDVD鑑賞記録、読書にも属する生活側の図書館記録）。
+
+```sh
+python build.py
+python -m unittest discover -s tests -p 'test_*.py'
+node --test --test-isolation=none tests/seasonal.test.cjs
+node tests/life-timeline.browser.cjs
+```
+
+新規Pythonテストは全207件の元フィールドと本文、補足文章、全ローカルリンク・関連参照、年代区間、JSON追加のみの反映を照合します。ブラウザテストは6フィルター、320/375/768/1280px、複数開閉、キーボード、原作・映像間の移動、旧URL・保存済みアンカーからの自動転送、JavaScript無効時を確認します。PlaywrightとChromiumが必要で、実行ファイルは `CHROMIUM_PATH` でも指定できます。
+
+### 既存URL
+
+`/anime/`、`/games/`、`/movie-history/`、`/reading/` と作品詳細URLは、人生年表への転送ページに変更しました。サイト内の旧一覧・旧詳細へのリンクと、Aboutに重複していた生活年表は削除しています。元JSONと本文は保持しています。
+
+`legacy_routes()` が元ID・旧URLから転送先を自動生成します。例えば `/anime/steins-gate/` は `/timeline/?genre=anime#anime-steins-gate`、`/reading/#reading-book-034` は対応する読書記録、`/movie-history/#sakura` は映画の『さくら』へ移動します。Aboutの `#timeline-…` も新しい生活記録へ転送します。通常のAboutプロフィールはそのまま閲覧できます。
+
+旧URLは検索対象から外す `noindex` と新年表のcanonicalを設定し、サイトマップにも含めません。JavaScript無効時は旧ページから新年表へmeta refreshで転送し、明示リンクも用意しています。JavaScript有効時は保存済みアンカーも対応する詳細・年代へ引き継ぎます。
+
+`records.json` / `migration.json` の `legacyPaths` とCSVの「旧URL（転送元）」列に対応を保持します。年表上には旧ページへ戻るリンクを表示しません。

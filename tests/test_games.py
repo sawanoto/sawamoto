@@ -14,21 +14,20 @@ class GameHistoryTests(unittest.TestCase):
         subprocess.run([sys.executable, 'build.py'], cwd=ROOT, check=True, capture_output=True)
         games = load_games(ROOT / 'content/games.json')
         self.assertEqual(len(games), 26)
-        listing = (ROOT / 'dist/games/index.html').read_text()
+        data = json.loads((ROOT / 'dist/timeline/records.json').read_text())
+        records = {r['id']: r for r in data['records']}
+        output = (ROOT / 'dist/timeline/index.html').read_text()
         home = (ROOT / 'dist/index.html').read_text()
-        self.assertIn('href="/sawamoto/games/"', home)
-        sitemap = (ROOT / 'dist/sitemap.xml').read_text()
+        self.assertNotIn('href="/sawamoto/games/"', home)
         for game in games:
             detail = ROOT / 'dist/games' / game['id'] / 'index.html'
             self.assertTrue(detail.exists())
-            self.assertIn('/games/' + game['id'] + '/', sitemap)
-            self.assertEqual(listing.count('href="/sawamoto/games/' + game['id'] + '/"'), max(1, len(game['periods'])))
+            self.assertIn('timeline/?genre=game#game-' + game['id'], detail.read_text())
+            self.assertEqual(records['game-' + game['id']]['metadata'], game)
             for memory in game['memories']:
-                self.assertIn(memory, detail.read_text())
-        university = listing.split('id="university"')[1].split('id="adult"')[0]
-        self.assertNotIn('なめこ', university)
-        self.assertIn('時期未確定', listing.split('id="unknown"')[1])
-        self.assertIn('発売年：未確認', listing)
+                self.assertIn(memory, output)
+        self.assertEqual(records['game-nameko']['periodId'], 'unknown')
+
 
 
 if __name__ == '__main__':

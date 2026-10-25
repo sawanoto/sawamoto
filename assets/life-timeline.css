@@ -1,0 +1,36 @@
+/* Reuses the site's paper, ink, line and seasonal accent variables. */
+.life-timeline{max-width:800px;padding-bottom:5rem}
+.life-timeline [hidden]{display:none!important}
+.life-filters{display:flex;flex-wrap:wrap;gap:.5rem}
+.life-filters button{font:inherit;font-size:.88rem;min-height:44px;padding:.4rem 1rem;border:1px solid var(--line);border-radius:2rem;background:transparent;color:var(--ink);cursor:pointer}
+.life-filters button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.life-filters button:focus-visible,.life-timeline summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.life-status,.timeline-lead{font-size:.82rem;color:var(--muted)}
+.life-guide{margin:1rem 0;font-size:.85rem}
+.life-timeline summary{cursor:pointer;min-height:44px;padding:.6rem .2rem;overflow-wrap:anywhere}
+.life-jumps ul{list-style:none;margin:1rem 0;padding:0;display:flex;flex-wrap:wrap;gap:.25rem 1rem;font-size:.8rem}
+.life-jumps a{display:inline-block;min-height:44px;padding:.5rem 0}
+.life-years{border-left:1px solid var(--line);margin:2rem 0 0 .4rem;padding-left:1.5rem}
+.life-year{position:relative;margin-bottom:2.5rem;scroll-margin-top:1rem}
+.life-year:before{content:"";position:absolute;left:-1.8rem;top:.8rem;width:.55rem;height:.55rem;border-radius:50%;background:var(--accent)}
+.life-year h2{font-size:1.2rem;font-weight:500;margin:0 0 .5rem;scroll-margin-top:1rem}
+.life-year ol{list-style:none;padding:0;margin:0}
+.life-event{border-bottom:1px solid var(--line);scroll-margin-top:1rem}
+.life-event>summary{min-height:48px}
+.life-title{font-size:.95rem}
+.life-when{display:inline-block;font-size:.7rem;color:var(--muted);margin-left:.65rem}
+.life-genre{display:inline-block;font-size:.7rem;color:var(--muted);margin-left:.65rem}
+.life-detail{padding:.25rem .5rem 1rem 1.2rem;font-size:.9rem;overflow-wrap:anywhere}
+.life-paragraph{white-space:pre-wrap}
+.life-detail p{margin:.4rem 0 1rem}
+.life-detail h3{font-size:.9rem;font-weight:600;margin:1.25rem 0 .5rem}
+.life-detail .link-list{margin-bottom:0}
+.life-facts{margin:1rem 0;font-size:.8rem;color:var(--muted)}
+.life-facts>div{display:grid;grid-template-columns:minmax(7rem,35%) 1fr;gap:1rem;padding:.4rem 0;border-bottom:1px solid var(--line)}
+.life-facts dd{margin:0}
+.life-note{border-bottom:1px solid var(--line);font-size:.85rem;scroll-margin-top:1rem}
+.life-note>summary{color:var(--accent)}
+.life-context{margin-top:3rem}
+.life-context h2{font-size:1.1rem;font-weight:500}
+.life-image{display:block;max-width:100%;max-height:400px;object-fit:contain;margin:1rem 0}
+@media(max-width:480px){.life-years{padding-left:1rem}.life-year:before{left:-1.3rem}.life-genre{font-size:.65rem}.life-detail{padding-left:.5rem}.life-facts>div{grid-template-columns:1fr;gap:.1rem}}

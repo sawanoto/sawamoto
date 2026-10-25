@@ -15,6 +15,7 @@ import markdown
 
 from kigo import load_kigo
 from game_history import render_games
+from life_timeline import load_timeline, render_timeline, write_migration_artifacts, legacy_routes, redirect_document, redirect_data
 
 ROOT = Path(__file__).parent
 CONTENT = ROOT / "content"
@@ -27,6 +28,8 @@ STYLE_VERSION = hashlib.sha256((ROOT / "assets/style.css").read_bytes()).hexdige
 SITE = json.loads((CONTENT / "site.json").read_text(encoding="utf-8"))
 TIMELINE = json.loads((CONTENT / "timeline.json").read_text(encoding="utf-8"))
 BOOKS = json.loads((CONTENT / "books.json").read_text(encoding="utf-8"))
+REDIRECTS = {}
+HISTORY_CONTEXT = json.loads((CONTENT / "history-context.json").read_text(encoding="utf-8"))
 SERIES = json.loads((CONTENT / "series.json").read_text(encoding="utf-8"))
 
 
@@ -111,7 +114,7 @@ def related(ids: list[str], collection: dict, section: str) -> str:
         if id_ not in collection:
             raise ValueError(f"Unknown related ID: {id_}")
         item = collection[id_]
-        href = local(f"{section}/{item['slug']}/") if section != "about" else local(f"about/#timeline-{e(id_)}")
+        href = local(f"{section}/{item['slug']}/") if section != "about" else local(f"timeline/#life-{e(id_)}")
         links.append(f'<li><a href="{href}">{e(item["title"])}</a></li>')
     return '<ul class="link-list">' + "".join(links) + "</ul>" if links else ""
 
@@ -119,18 +122,20 @@ def related(ids: list[str], collection: dict, section: str) -> str:
 def page(title: str, description: str, path: str, body: str) -> str:
     full_title = f"{title} | {SITE['name']}" if title else f"{SITE['name']} / {SITE['name_en']}"
     url = ORIGIN + local(path)
-    nav = [("Home", ""), ("About", "about/"), ("Works", "works/"), ("Writing", "writing/"), ("ゲーム遍歴", "games/")]
-    nav.append(("Anime", "anime/"))
-    nav.append(("映画遍歴", "movie-history/"))
-    nav.append(("読書遍歴", "reading/"))
+    nav = [("Home", ""), ("About", "about/"), ("人生年表", "timeline/"), ("Works", "works/"), ("Writing", "writing/")]
     if BOOKS:
         nav.append(("Books", "books/"))
     nav_html = "".join(f'<a href="{local(p)}" {"aria-current=\"page\"" if p == path else ""}>{label}</a>' for label, p in nav)
     kigo_assets = (f'<link rel="stylesheet" href="{local("assets/kigo.css")}">'
                    f'<script src="{local("assets/kigo.js")}" defer></script>') if path == "" else ""
-    timeline_script = f'<script src="{local("assets/timeline-folds.js")}" defer></script>' if path == "about/" else ""
+    timeline_script = ""
     reading_assets = (f'<link rel="stylesheet" href="{local("assets/reading.css")}">'
                       f'<script src="{local("assets/reading.js")}" defer></script>') if path == "reading/" else ""
+    life_assets = (f'<link rel="stylesheet" href="{local("assets/life-timeline.css")}">'
+                   f'<script src="{local("assets/life-timeline.js")}" defer></script>') if path == "timeline/" else ""
+    if path == "about/":
+        anchors = {f"timeline-{x['id']}": f"timeline/#life-{x['id']}" for x in TIMELINE}
+        timeline_script = f'<script id="timeline-redirect-data" type="application/json">{redirect_data(None, anchors, local)}</script><script src="{local("assets/timeline-redirect.js")}" defer></script>'
     seasonal_mark = '<span class="seasonal-mark" hidden aria-hidden="true"></span>'
     if path == "":
         seasonal_mark = f'<div class="brand-seasonal">{seasonal_mark}{kigo_widget()}</div>'
@@ -149,7 +154,7 @@ def page(title: str, description: str, path: str, body: str) -> str:
 <meta property="og:title" content="{e(full_title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{url}">
 <meta property="og:site_name" content="{e(SITE['name'])}"><link rel="stylesheet" href="{local('assets/style.css')}?v={STYLE_VERSION}">
 <link rel="stylesheet" href="{local('assets/seasonal.css')}"><script src="{local('assets/seasonal.js')}" defer></script>
-{kigo_assets}{timeline_script}{reading_assets}</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
+{kigo_assets}{timeline_script}{reading_assets}{life_assets}</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
 <div class="brand-lockup"><a class="brand" href="{local('')}">{e(SITE['name'])}<small>{e(SITE['name_en'])}</small></a>{seasonal_mark}</div>
 <nav aria-label="メインナビゲーション">{nav_html}</nav></header><main id="main">{body}</main>
 <footer class="footer"><span>{e(SITE['name'])} / {e(SITE['name_en'])}</span><a href="#main">上へ戻る ↑</a></footer></div></body></html>'''
@@ -174,6 +179,8 @@ def kigo_widget() -> str:
 def write(path: str, content: str) -> None:
     file = OUT / path / "index.html"
     file.parent.mkdir(parents=True, exist_ok=True)
+    if path in REDIRECTS:
+        content = redirect_document(REDIRECTS[path], local, ORIGIN, e)
     file.write_text(content, encoding="utf-8")
 
 
@@ -276,13 +283,13 @@ def reading_page() -> str:
     groups = ''.join(f'<section class="reading-group" data-group="{e(p)}"><h3>{e(p)}</h3><div class="reading-grid">' + ''.join(record(x) for x in records if x.get('period', '時期不明') == p) + '</div></section>' for p in PERIODS)
     options = lambda values: ''.join(f'<option>{e(v)}</option>' for v in values)
     return f'''<div class="reading-page"><div class="page-heading"><p class="kicker">Reading history / Ongoing notes</p><h1>読書遍歴</h1>
-    <div class="reading-intro"><p>子どものころに読んだ物語から、大人になって出会った小説、SF、歴史、思想まで。</p>
-    <p>読んでいる最中から夢中になった本もあれば、苦労して読み終えた後に価値を感じた本もある。</p>
-    <p>何を読んできたのか。そして、その本の何が面白かったのか。</p><p>思い出せるところから、少しずつ記録していく。</p></div></div>
-    <section class="reading-context"><h2>本と感想のあいだに</h2><p>科学的な設定から問題を解く面白さや、言葉のリズム、比喩、会話の楽しさ。社会の仕組みや不条理、時代に翻弄される人、信念や優しさを失わない人。創作や仕事そのものに喜びを見いだす姿にも惹かれてきたように思う。読書中の楽しさと、読後に感じる価値は、いつも同じとは限らない。</p>
-    <p>大学時代には十分に感じられなかった村上春樹の魅力が、社会人になってからは自分の感覚と結びつくようになった。本と出会う時期によって、受け取り方も変わっていく。</p><p>本屋大賞の受賞作も多く読んでいるが、すべてが特別に心に刺さったわけではない。ここには、そのときの手触りも残しておきたい。</p></section>
-    <section class="reading-featured"><h2>特に印象に残った本</h2><p class="meta">順位はつけず、それぞれ異なる理由で心に残った本を。</p><ul>{featured}</ul></section>
-    <section id="reading-library"><h2>読書の記録</h2><p>思い出せた作品からまとめた初期版です。完全な一覧ではありません。読書メーターや過去の記録を参照しながら、作品と感想を追加していきます。時期や読了範囲が曖昧なものは、確認できた範囲で記しています。</p>
+    <div class="reading-intro"><p>{e(HISTORY_CONTEXT['reading-intro']["paragraphs"][0])}</p>
+    <p>{e(HISTORY_CONTEXT['reading-intro']["paragraphs"][1])}</p>
+    <p>{e(HISTORY_CONTEXT['reading-intro']["paragraphs"][2])}</p><p>{e(HISTORY_CONTEXT['reading-intro']["paragraphs"][3])}</p></div></div>
+    <section class="reading-context"><h2>本と感想のあいだに</h2><p>{e(HISTORY_CONTEXT['reading-context']["paragraphs"][0])}</p>
+    <p>{e(HISTORY_CONTEXT['reading-context']["paragraphs"][1])}</p><p>{e(HISTORY_CONTEXT['reading-context']["paragraphs"][2])}</p></section>
+    <section class="reading-featured"><h2>特に印象に残った本</h2><p class="meta">{e(HISTORY_CONTEXT['reading-featured']["paragraphs"][0])}</p><ul>{featured}</ul></section>
+    <section id="reading-library"><h2>読書の記録</h2><p>{e(HISTORY_CONTEXT['reading-library']["paragraphs"][0])}</p>
     <form class="reading-controls" hidden role="search"><label>閲覧方法<select id="reading-view"><option value="period">年代別</option><option value="genre">ジャンル別</option></select></label>
     <label>年代<select id="reading-period"><option value="">すべて</option>{options(PERIODS)}</select></label>
     <label>ジャンル<select id="reading-genre"><option value="">すべて</option>{options(GENRES)}</select></label>
@@ -300,7 +307,7 @@ def movie_history() -> str:
     contents = "".join(f'<li><a href="#{e(g["id"])}">{e(g["title"])}</a></li>' for g in data["groups"])
     body = f'<div class="page-heading"><p class="kicker">Culture / Movie history</p><h1>{e(data["title"])}</h1><p>{e(data["intro"])}</p></div>'
     body += f'<ul class="link-list"><li><a href="{local("anime/")}">アニメ遍歴</a></li><li><a href="{local("games/")}">ゲーム遍歴</a></li></ul>'
-    body += '<p class="section-copy">公開年は作品の情報であり、鑑賞した年とは異なります。時期や鑑賞方法がわからないものは未確認として記録しています。作品の内容や個人的な解釈に触れています。</p>'
+    body += f'<p class="section-copy">{e(HISTORY_CONTEXT["movie"]["paragraphs"][0])}</p>'
     body += f'<nav class="movie-contents" aria-label="映画遍歴の目次"><ul class="link-list">{contents}<li><a href="#preferences">映画の好みについて</a></li></ul></nav>'
     for group in data["groups"]:
         entries = []
@@ -314,7 +321,7 @@ def movie_history() -> str:
             entries.append(f'<li class="timeline-item" id="{e(item["id"])}"{reading}><span class="meta">{e(item["viewed"])}</span><div class="movie-entry"><h3>{e(item["title"])}</h3><dl class="movie-facts">{facts_html}</dl>{memories}</div></li>')
         body += f'<section class="content-section movie-section" id="{e(group["id"])}">{section_head("Viewing memories", group["title"])}<p class="section-copy">{e(group["note"])}</p><ol class="timeline">{"".join(entries)}</ol></section>'
     preferences = "".join(f'<p>{e(p)}</p>' for p in data["preferences"])
-    body += f'<section class="content-section" id="preferences">{section_head("Preferences", "映画の好みについて")}<div class="prose">{preferences}</div><p class="section-copy">『さくら』『三体』は、今後作成する読書遍歴ともつなげていきたい作品です。</p></section>'
+    body += f'<section class="content-section" id="preferences">{section_head("Preferences", "映画の好みについて")}<div class="prose">{preferences}</div><p class="section-copy">{e(HISTORY_CONTEXT["movie"]["paragraphs"][1])}</p></section>'
     return body
 
 
@@ -375,12 +382,12 @@ def build_anime() -> None:
         <h2 id="heading-{era['id']}">{e(era['label'])}</h2><ul class="anime-list">{''.join(rows)}</ul>
         <div class="anime-memory"><h3>{e(era['heading'])}</h3>{anime_paragraphs(era['memory'])}</div></section>''')
     body = f'''{assets}<div class="page-heading"><p class="kicker">Anime / Personal history</p><h1>澤本のアニメ遍歴</h1>
-    <p>幼少期から今までに見てきたアニメを、当時の思い出と一緒に振り返る個人的な年表です。友達と作品の話をするときの、記憶の手がかりになれば。</p>
-    <p>放送開始年と、実際に見た時期は別の情報です。「確定・推定・不明」は視聴時期の確度を表し、具体的な視聴年が分からない作品も残しています。</p></div>
+    <p>{e(HISTORY_CONTEXT['anime']["paragraphs"][0])}</p>
+    <p>{e(HISTORY_CONTEXT['anime']["paragraphs"][1])}</p></div>
     <nav class="anime-jumps" aria-label="年代別ナビゲーション">{jumps}</nav>
     <div class="anime-search" hidden><label for="anime-search">作品名で検索</label><input id="anime-search" type="search" placeholder="例：ガンダム" autocomplete="off" aria-controls="anime-timeline"><p id="anime-result" role="status" aria-live="polite"></p></div>
     <div id="anime-timeline">{''.join(sections)}</div>
-    <p class="anime-closing">見た作品や当時の思い出は、これからも少しずつ追加していきます。友達との会話で思い出した作品や、新しく出会った作品も、ここに残していく予定です。</p>'''
+    <p class="anime-closing">{e(HISTORY_CONTEXT['anime']["paragraphs"][2])}</p>'''
     write('anime', page('澤本のアニメ遍歴', '幼少期から現在までのアニメと、その頃の思い出を振り返る個人的な年表。', 'anime/', body))
     for item in items:
         release = f'{item["releaseYear"]}年' if item['releaseYear'] else '未確定'
@@ -403,6 +410,9 @@ def build_anime() -> None:
 
 
 def build() -> None:
+    unified = load_timeline(CONTENT, work_by_id, article_by_id)
+    REDIRECTS.clear()
+    REDIRECTS.update(legacy_routes(unified))
     if OUT.exists():
         shutil.rmtree(OUT)
     (OUT / "assets").mkdir(parents=True)
@@ -436,20 +446,9 @@ def build() -> None:
     <a class="button" href="{local('about/')}">澤本優哉について <span aria-hidden="true">→</span></a></section>
     <section class="home-section">{section_head('01 / Writing', '文章・考察', 'writing/')}<div class="card-grid">{writing_home}</div></section>
     <section class="home-section">{section_head('02 / Works', '制作物', 'works/')}<div class="card-grid">{works_home}</div></section>
-    <section class="home-section">{section_head('03 / About', 'これまでの活動', 'about/#timeline')}<p class="section-copy">活動の記録は、時期や公開範囲を確認しながら年表に加えていきます。</p></section><section class="home-section">{section_head("04 / Game history", "ゲーム遍歴", "games/")}<p class="section-copy">子供の頃から現在まで、遊んできたゲームと、その頃の思い出。</p></section>{support_html}'''
+    <section class="home-section">{section_head('03 / Timeline', '人生年表', 'timeline/')}<p class="section-copy">活動の記録は、時期や公開範囲を確認しながら年表に加えていきます。</p></section>{support_html}'''
     write("", page("", SITE["description"], "", home))
 
-    timeline_parts = {"major": [], "medium": [], "minor": []}
-    importance_labels = {"major": "大", "medium": "中", "minor": "小"}
-    for item in sorted(TIMELINE, key=lambda x: x.get("order", 0), reverse=True):
-        links = related(item.get("work_ids", []), work_by_id, "works") + related(item.get("article_ids", []), article_by_id, "writing")
-        importance = item["importance"]
-        timeline_parts[importance].append(f'<li id="timeline-{e(item["id"])}" class="timeline-item timeline-{importance}"><span class="meta">{e(item.get("period", ""))}<span class="importance-label">{importance_labels[importance]}</span></span><div><h3>{e(item["title"])}</h3><p>{e(item.get("summary", ""))}</p>{links}</div></li>')
-    timeline_html = '<p class="timeline-lead">人生の大きな転機</p><ol class="timeline">' + "".join(timeline_parts["major"]) + '</ol>'
-    for importance, label in (("medium", "中"), ("minor", "小")):
-        count = len(timeline_parts[importance])
-        if count:
-            timeline_html += f'<details class="timeline-fold" data-importance="{importance}"><summary><span>{label}の出来事</span><span class="timeline-count">{count}件</span><span class="timeline-fold-icon" aria-hidden="true">＋</span></summary><ol class="timeline">' + "".join(timeline_parts[importance]) + '</ol></details>'
     social = '<ul class="link-list">' + "".join(f'<li>{external(x["label"], x["url"])}</li>' for x in SITE.get("links", [])) + "</ul>" if SITE.get("links") else '<p class="empty">公開中の外部リンクはありません。</p>'
     likes = "".join(f'<li>{e(x)}</li>' for x in SITE.get("likes", []))
     interests = "".join(f'<li>{e(x)}</li>' for x in SITE.get("interests", []))
@@ -468,8 +467,7 @@ def build() -> None:
     <div class="hobby-group about-daily-life" id="daily-life"><h3>普段の過ごし方</h3><p class="section-copy">{e(SITE.get('daily_life', ''))}</p></div></section>
     <section class="content-section" id="interests">{section_head('Interests', '最近気になっていること')}<ul class="chips">{interests}</ul></section>
     {hobbies}
-    <section class="content-section">{section_head("Culture", "文化の遍歴")}<ul class="link-list"><li><a href="{local('movie-history/')}">映画遍歴 →</a></li><li><a href="{local('reading/')}">読書遍歴 →</a></li></ul><p class="section-copy">映画や映像作品に触れてきた記憶を振り返ります。</p></section>
-    <section class="content-section" id="timeline">{section_head('Timeline', '活動の記録')}{timeline_html}</section>
+    <section class="content-section" id="timeline">{section_head('Timeline', '活動の記録')}<p><a class="button" href="{local('timeline/')}">作品との出会いも、生活も。人生年表を見る →</a></p></section>
     <section class="content-section">{section_head('Elsewhere', '外部リンク')}{about_galleries}{social}</section>
     {qualifications}'''
     write("about", page("About", "澤本優哉のプロフィールと活動の記録。", "about/", about))
@@ -554,9 +552,14 @@ def build() -> None:
 
     build_anime()
 
+    write("timeline", page("人生年表", "1995年から現在まで、アニメ・映画・読書・ゲーム・生活を同じ時間軸で振り返る記録。", "timeline/", render_timeline(unified, local, e, external, image_url)))
+    write_migration_artifacts(OUT / "timeline", unified)
+
     # Use pages actually written to dist, so the sitemap cannot list missing pages.
     paths = []
     for file in sorted(OUT.rglob("index.html")):
+        if file.relative_to(OUT).parent.as_posix() in REDIRECTS:
+            continue
         folder = file.relative_to(OUT).parent.as_posix()
         paths.append("" if folder == "." else f"{folder}/")
     urls = "".join(f'<url><loc>{xml_escape(ORIGIN + local(x))}</loc></url>' for x in paths)

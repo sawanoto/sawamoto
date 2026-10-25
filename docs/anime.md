@@ -1,3 +1,5 @@
+> 公開表示は `/timeline/` に統合済みです。旧一覧・詳細URLは対応する年表へ転送します。以下のデータ形式は引き続き正本の編集に利用できます。
+
 # アニメ遍歴の更新
 
 既存の `build.py` が `content/anime.json` と `content/anime-eras.json` を読み、年表と全詳細ページを生成します。追加サービス・DB・依存パッケージはありません。公開先は既存設定では `/sawamoto/anime/`、詳細は `/sawamoto/anime/<slug>/` です。各URLに `index.html` を生成するため、GitHub Pagesで直接開けます。

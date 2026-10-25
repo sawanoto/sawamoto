@@ -10,20 +10,18 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class TimelineDisplayTests(unittest.TestCase):
-    def test_major_events_are_visible_and_other_events_are_closed(self):
+    def test_life_records_are_unified_and_about_bookmarks_are_mapped(self):
         subprocess.run([sys.executable, "build.py"], cwd=ROOT, check=True, capture_output=True)
-        html = (ROOT / "dist/about/index.html").read_text(encoding="utf-8")
-        events = json.loads((ROOT / "content/timeline.json").read_text(encoding="utf-8"))
-        major_html, folded_html = html.split('<details class="timeline-fold"', 1)
-
-        self.assertNotIn("timeline-controls", html)
-        self.assertEqual(major_html.count('class="timeline-item timeline-major"'),
-                         sum(item["importance"] == "major" for item in events))
-        self.assertNotIn('class="timeline-item timeline-medium"', major_html)
-        self.assertNotIn('class="timeline-item timeline-minor"', major_html)
-        self.assertIn('data-importance="medium"><summary>', folded_html)
-        self.assertIn('data-importance="minor"><summary>', folded_html)
-        self.assertNotIn('<details class="timeline-fold" open', html)
+        about = (ROOT / 'dist/about/index.html').read_text()
+        timeline = (ROOT / 'dist/timeline/index.html').read_text()
+        events = json.loads((ROOT / 'content/timeline.json').read_text())
+        self.assertNotIn('class="timeline-fold"', about)
+        self.assertIn('href="/sawamoto/timeline/"', about)
+        for event in events:
+            self.assertIn('timeline-' + event['id'], about)
+            self.assertIn('timeline/#life-' + event['id'], about)
+            self.assertIn('id="life-' + event['id'] + '"', timeline)
+        self.assertNotIn('class="life-event" open', timeline)
 
 
 if __name__ == "__main__":
