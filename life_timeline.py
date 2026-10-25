@@ -318,11 +318,19 @@ def load_timeline(content, works, articles, current_year=None):
                       "byGenre": {g: sum(g in x["genres"] for x in records) for g in genres}}}
 
 
-META_LABELS = {
-    "releaseYear": "公開・発売年（体験年とは別）", "watchedPeriod": "元の視聴時期", "watchedYearConfidence": "元記録の視聴時期の確度", "watchedYear": "明記された視聴年",
-    "mediaType": "媒体", "tags": "タグ", "updatedAt": "更新日", "platform": "ゲーム機", "playedPeriod": "元のプレイ時期", "periodIsEstimated": "元記録の推定表示",
-    "companions": "一緒に遊んだ相手", "status": "状況", "author": "著者", "period": "元の時期", "period_note": "時期の補足", "genres": "読書ジャンル", "medium": "媒体",
-    "featured": "特に印象に残った本", "kind": "種別", "release": "公開・制作・上演年（体験年とは別）", "viewed": "元の鑑賞時期", "method": "鑑賞方法", "original": "原作との関係", "importance": "元の重要度"
+# Presentation only: preserve all original paragraphs in the source/export data.
+# These notes explain record management rather than the author's experiences.
+NOTE_PARAGRAPHS = {
+    "context-anime": (0,),
+    "context-game": (0,),
+    "context-movie": (),
+    "context-reading-library": (),
+    "context-reading-featured": (),
+    "anime-era-unknown": (),
+    "movie-group-school": (),
+    "movie-group-university": (),
+    "movie-group-unknown": (),
+    "movie-group-related": (),
 }
 
 
@@ -330,38 +338,31 @@ def render_timeline(data, local, e, external, image_url):
     by_id = {record["id"]: record for record in data["records"]}
 
     def notes_html(notes, genres=None, opened=False):
-        return "".join(f'<details class="life-note" data-life-note data-genres="{e(" ".join(genres or note["genres"]))}" id="{e(note["id"])}" {"open" if opened else ""}><summary>{e(note["title"])}</summary><div class="life-detail">{paragraphs(note["paragraphs"], e)}</div></details>' for note in notes)
+        items = []
+        for note in notes:
+            selected = NOTE_PARAGRAPHS.get(note["id"])
+            prose = [text for index, text in enumerate(note["paragraphs"]) if selected is None or index in selected]
+            if not any(prose):
+                # An old note bookmark still opens its enclosing hobby group.
+                items.append(f'<span id="{e(note["id"])}" data-life-note-anchor hidden></span>')
+                continue
+            items.append(f'<details class="life-note" data-life-note data-genres="{e(" ".join(genres or note["genres"]))}" id="{e(note["id"])}" {"open" if opened else ""}><summary>{e(note["title"])}</summary><div class="life-detail">{paragraphs(prose, e)}</div></details>')
+        return "".join(items)
 
     def record_html(record):
         top_level = record["sourceKind"] == "life"
         item_marker = ' data-life-item data-entry-kind="life"' if top_level else ""
         date = record["date"]
-        fields = []
-        for key, label in META_LABELS.items():
-            if key not in record["metadata"]:
-                continue
-            value = record["metadata"][key]
-            if isinstance(value, list):
-                value = " / ".join(value)
-            if isinstance(value, bool):
-                value = "はい" if value else "いいえ"
-            if value is None or value == "":
-                value = "未確認"
-            fields.append(f'<div><dt>{e(label)}</dt><dd>{e(value)}</dd></div>')
-        sections = "".join(f'<section><h3>{e(section["title"])}</h3>{paragraphs(section["paragraphs"], e)}</section>' for section in record["sections"] if any(section["paragraphs"]))
+        prose = [text for section in record["sections"] if section["title"] != "作品情報の注記" for text in section["paragraphs"]]
+        body = paragraphs(prose, e)
         links = "".join(f'<li><a href="{local(link["path"])}">{e(link["label"])}</a></li>' if "path" in link else f'<li>{external(link["label"], link["url"])}</li>' for link in record["links"])
         links += f'<li><a href="#{e(record["id"])}" data-life-permalink>この記録へのリンク</a></li>'
         related = "".join(f'<li><a href="#{e(id_)}" data-life-related>{e(by_id[id_]["title"])}</a></li>' for id_ in record["relatedIds"])
-        related = f'<aside><h3>関連する記録</h3><ul class="link-list">{related}</ul></aside>' if related else ""
-        image = record["metadata"].get("image")
-        image = f'<img class="life-image" src="{image_url(image)}" alt="{e(record["title"])}" loading="lazy">' if image else ""
+        related = f'<ul class="link-list" aria-label="関連する記録">{related}</ul>' if related else ""
         badges = " / ".join(data["genres"][g] for g in record["genres"])
-        when = f'<span class="life-when">{e(date["label"])}</span>' if date["confidence"] != "unknown" else ""
-        date_label = ("時期未整理" if date["confidence"] == "unknown" else date["label"]) + f' · {CONFIDENCE[date["confidence"]]}'
-        ranges = "、".join(f'{r["startYear"]}–{r["endYear"]}年頃' for r in date["ranges"])
-        basis = f'<p class="meta">{e(date["basis"])}</p>' if date["confidence"] == "estimated" else ""
-        span_note = f'<p class="meta">記録された体験の範囲：{e(ranges)}</p>' if len(date["ranges"]) > 1 else ""
-        return f'''<li data-life-record{item_marker} data-genres="{e(" ".join(record["genres"]))}" data-record-id="{e(record["id"])}"><details id="{e(record["id"])}" class="life-event"><summary><span class="life-title">{e(record["title"])}</span>{when}<span class="life-genre">{e(badges)}</span></summary><div class="life-detail"><p class="meta">{e(date_label)}</p>{basis}{span_note}{image}{sections}<dl class="life-facts">{"".join(fields)}</dl>{related}<ul class="link-list">{links}</ul></div></details></li>'''
+        when = f'<span class="life-when">{e(date["label"])}</span>' if top_level and date["confidence"] != "unknown" else ""
+        genre_label = f'<span class="life-genre">{e(badges)}</span>' if top_level else ""
+        return f'''<li data-life-record{item_marker} data-genres="{e(" ".join(record["genres"]))}" data-record-id="{e(record["id"])}"><details id="{e(record["id"])}" class="life-event"><summary><span class="life-title">{e(record["title"])}</span>{when}{genre_label}</summary><div class="life-detail">{body}{related}<ul class="link-list">{links}</ul></div></details></li>'''
 
     notes_by_id = {note["id"]: note for note in data["notes"]}
 
@@ -373,8 +374,7 @@ def render_timeline(data, local, e, external, image_url):
         badges = " / ".join(data["genres"][g] for g in entry["genres"])
         note_html = notes_html([notes_by_id[id_] for id_ in entry["noteIds"]], entry["genres"], opened=True)
         works = "".join(record_html(by_id[id_]) for id_ in entry["recordIds"])
-        date_text = "まとまりの時期：" + ("時期未整理" if date["confidence"] == "unknown" else date["label"] + "（推定）")
-        return f'''<li data-life-item data-entry-kind="hobby" data-genres="{e(" ".join(entry["genres"]))}" data-entry-id="{e(entry["id"])}"><details id="{e(entry["id"])}" class="life-group"><summary><span class="life-title">{e(entry["title"])}</span>{when}<span class="life-genre">{e(badges)}</span><span class="life-group-count" data-group-count>{len(entry["recordIds"])}記録</span></summary><div class="life-group-body"><p class="meta">{e(date_text)}。作品それぞれの体験時期は、個別の記録に残しています。</p>{note_html}<h3 class="life-works-heading">作品とその思い出</h3><ul class="life-works">{works}</ul></div></details></li>'''
+        return f'''<li data-life-item data-entry-kind="hobby" data-genres="{e(" ".join(entry["genres"]))}" data-entry-id="{e(entry["id"])}"><details id="{e(entry["id"])}" class="life-group"><summary><span class="life-title">{e(entry["title"])}</span>{when}<span class="life-genre">{e(badges)}</span><span class="life-group-count" data-group-count>{len(entry["recordIds"])}記録</span></summary><div class="life-group-body">{note_html}<h3 class="life-works-heading">作品とその思い出</h3><ul class="life-works">{works}</ul></div></details></li>'''
 
     sections = []
     for period in data["periods"]:
@@ -390,7 +390,6 @@ def render_timeline(data, local, e, external, image_url):
     return f'''<div class="page-heading"><p class="kicker">Life timeline / 1995 —</p><h1>人生年表</h1><p>趣味や関心が少しずつ変わっていくこと。生活の出来事と一緒に、これまでを振り返ります。</p></div>
     <div class="life-timeline"><div class="life-filters" role="group" aria-label="年表のジャンル" hidden>{buttons}</div><p class="life-status" role="status" aria-live="polite" data-timeline-status>すべて：{data["stats"]["entries"]}項目（{data["stats"]["total"]}記録）</p>
     <p class="timeline-lead">趣味のまとまりを開くと、その頃の思い出と作品が読めます。生活の出来事は一件ずつ残しています。</p>
-    <details class="life-guide"><summary>年代の読み方・推定について</summary><div class="life-detail"><p>確定：体験年が明記されている記録。推定：既存の生活記録から幅を持たせて配置した記録。不明：判断できず「時期未整理」に残した記録。</p><p>学校時代の年代は、2013年度の高校3年生、2014年の大学1年生、2018年の就職を根拠に、通常の修業年限から推定しています。公開年・発売年を体験年として使っていません。詳細には元の時期表記と推定の根拠を残しています。</p><p>趣味のまとまりの年代は、作品ごとの体験年とは別です。時期不明の作品が年代のあるまとまりに入っていても、体験年が確定したことにはなりません。幅のあるまとまりは範囲の始まりに一度だけ表示します。</p></div></details>
     <nav class="life-jumps" aria-label="年表の年代"><ul>{jumps}</ul></nav><noscript><p>すべてのまとまり・出来事を表示しています。JavaScriptが無効でも趣味のまとまりと作品の詳細を順に開けます。ジャンルの切り替えにはJavaScriptが必要です。</p></noscript>
     <div class="life-years" id="life-years">{"".join(sections)}</div><p class="empty" data-timeline-empty hidden>このジャンルの記録はまだありません。</p>
     <section class="life-context" aria-labelledby="life-context-heading"><h2 id="life-context-heading">記録の背景</h2>{notes}</section></div>'''

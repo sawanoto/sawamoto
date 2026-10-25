@@ -29,8 +29,11 @@ module.exports = async function check(folder, genre, cases) {
     for(const [old,target] of cases) {
       await page.goto(`https://legacy.test/sawamoto/${old}`);
       await page.waitForURL(url => url.pathname==='/sawamoto/timeline/' && url.hash==='#'+target);
-      await page.waitForFunction(id=>document.getElementById(id)?.open===true,target);
-      await page.locator('#'+target).waitFor({state:'visible'});
+      await page.waitForFunction(id => {
+        let el=document.getElementById(id);
+        if(el?.matches('[data-life-note-anchor]')) el=el.closest('details') || document.getElementById('life-context-heading');
+        return el?.open===true && el.getClientRects().length>0;
+      },target);
     }
     assert.deepEqual(errors,[]);
     console.log(`${folder}: legacy list/detail/bookmark redirects and mobile filters passed`);

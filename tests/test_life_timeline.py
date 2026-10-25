@@ -1,5 +1,6 @@
 """Compare every source record and paragraph with the generated unified timeline."""
 from collections import Counter
+from copy import deepcopy
 import html
 import csv
 from html.parser import HTMLParser
@@ -56,7 +57,7 @@ def originals(content):
 
 def text_fields(kind, raw):
     if kind == 'anime':
-        return [raw['memory'], raw['impression'], raw.get('releaseNote', '')]
+        return [raw['memory'], raw['impression']]
     if kind in {'movie', 'game'}:
         return raw['memories']
     if kind == 'reading':
@@ -99,9 +100,20 @@ class LifeTimelineTests(unittest.TestCase):
     def test_notes_keep_all_shared_prose_and_era_memories(self):
         output = html.unescape((ROOT / 'dist/timeline/index.html').read_text())
         notes = {n['id']: n for n in self.data['notes']}
+        suppressed = {'context-movie','context-reading-library','context-reading-featured','anime-era-unknown',
+                      'movie-group-school','movie-group-university','movie-group-unknown','movie-group-related'}
         for note in notes.values():
-            for paragraph in note['paragraphs']:
+            visible = note['paragraphs']
+            if note['id'] in {'context-anime', 'context-game'}:
+                visible = visible[:1]
+            elif note['id'] in suppressed:
+                visible = []
+            for paragraph in visible:
                 self.assertIn(paragraph, output)
+            for paragraph in note['paragraphs']:
+                if paragraph not in visible:
+                    self.assertNotIn(paragraph, output)
+            self.assertIn(note['id'], self.page.ids, 'old note anchors remain usable')
         eras = json.loads((ROOT / 'content/anime-eras.json').read_text())
         for era in eras:
             self.assertEqual(notes['anime-era-' + era['id']]['paragraphs'], [era['memory']])
@@ -115,6 +127,25 @@ class LifeTimelineTests(unittest.TestCase):
         for group in movies['groups']:
             if group['note']:
                 self.assertEqual(notes['movie-group-' + group['id']]['paragraphs'], [group['note']])
+
+    def test_presentation_hides_metadata_without_mutating_saved_data(self):
+        data = deepcopy(self.data)
+        for record in data['records']:
+            record['metadata']['tags'] = ['__HIDDEN_TAG__']
+            record['metadata']['author'] = '__HIDDEN_AUTHOR__'
+            record['metadata']['releaseYear'] = '__HIDDEN_RELEASE_YEAR__'
+            record['date']['basis'] = '__HIDDEN_DATE_BASIS__'
+            record['sections'].append({'title':'作品情報の注記','paragraphs':['__HIDDEN_RELEASE_NOTE__']})
+        before = deepcopy(data)
+        output = render_timeline(data, lambda p: '/sawamoto/' + p, lambda v: html.escape(str(v), quote=True), lambda label,url: '', lambda p:p)
+        self.assertEqual(data, before)
+        for marker in ['__HIDDEN_TAG__','__HIDDEN_AUTHOR__','__HIDDEN_RELEASE_YEAR__','__HIDDEN_DATE_BASIS__','__HIDDEN_RELEASE_NOTE__']:
+            self.assertNotIn(marker, output)
+        for old_ui in ['life-facts','life-guide','年代の読み方・推定について','明記された視聴年','元の視聴時期','まとまりの時期：','作品それぞれの体験時期は','<h3>当時の思い出</h3>']:
+            self.assertNotIn(old_ui, output)
+        self.assertNotIn('未確認', self.page.records['anime-doraemon'])
+        self.assertNotIn('1979', self.page.records['anime-doraemon'])
+        self.assertIn('妻と一緒に遊びました。', self.page.records['game-age-of-calamity'])
 
     def test_relations_and_all_local_paths_exist(self):
         self.assertIn('reading-book-028', self.records['movie-sakura']['relatedIds'])
