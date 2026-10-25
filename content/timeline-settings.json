@@ -1,0 +1,27 @@
+{
+  "startYear": 1995,
+  "genres": {"anime": "アニメ", "movie": "映画", "reading": "読書", "game": "ゲーム", "life": "生活"},
+  "periods": [
+    {"id": "1995-2007", "startYear": 1995, "endYear": 2007, "label": "1995–2007年"},
+    {"id": "2008-2010", "startYear": 2008, "endYear": 2010, "label": "2008–2010年頃"},
+    {"id": "2011-2013", "startYear": 2011, "endYear": 2013, "label": "2011–2013年"},
+    {"id": "2014-2017", "startYear": 2014, "endYear": 2017, "label": "2014–2017年"},
+    {"id": "2018-2023", "startYear": 2018, "endYear": 2023, "label": "2018–2023年"}
+  ],
+  "annualFrom": 2024,
+  "stageRanges": {
+    "childhood": {"startYear": 1995, "endYear": 2007},
+    "elementary": {"startYear": 2002, "endYear": 2007},
+    "middle": {"startYear": 2008, "endYear": 2010},
+    "high": {"startYear": 2011, "endYear": 2013},
+    "university": {"startYear": 2014, "endYear": 2017},
+    "adult": {"startYear": 2018, "endYear": null}
+  },
+  "stageEvidence": [
+    {"path": "content/works/newspaper-club-introduction-2013.md", "text": "2013年度、高校3年生のときに制作した新聞部の部活動紹介動画です。"},
+    {"path": "content/works/university-coop-videos-2014.md", "text": "2014年、福島大学1年生のとき"},
+    {"path": "content/timeline.json", "id": "bank-group-systems-job-2018", "text": "2018年"}
+  ],
+  "stageBasis": "2013年度の高校3年生、2014年の大学1年生、2018年の就職という既存記録を基準に、通常の修業年限から幅を持たせて推定。小学生以前は年表の開始年1995年からの広い範囲で扱います。作品の公開年・発売年は使用していません。",
+  "movieReadingAliases": {"sakura": "book-028", "three-body-problem": "book-034"}
+}

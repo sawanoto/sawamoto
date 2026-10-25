@@ -1,3 +1,5 @@
+> 公開表示は `/timeline/` に統合済みです。旧一覧・詳細URLは対応する年表へ転送します。以下のデータ形式は引き続き正本の編集に利用できます。
+
 # 読書遍歴の編集
 
 ページは `/sawamoto/reading/`（`SITE_BASE_PATH` に追従）。既存サイトと同じく `python build.py` で `dist/` に生成し、mainへのpush後、既存のGitHub Pagesワークフローで公開されます。今回の作業ではデプロイしていません。

@@ -4,6 +4,7 @@ on:
     paths:
       - build.py
       - kigo.py
+      - life_timeline.py
       - game_history.py
       - content/**
       - tests/test_*.py

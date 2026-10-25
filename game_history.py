@@ -5,7 +5,6 @@ import re
 PERIODS = [('elementary', '小学生時代'), ('junior', '中学生時代'),
            ('high', '高校生時代'), ('university', '大学生時代'),
            ('adult', '社会人時代'), ('current', '現在')]
-INTRO = '子供の頃から現在まで、遊んできたゲームと、その頃の思い出を振り返ります。友達や弟との対戦、妻と遊んだゲーム、一人で夢中になった作品。ゲームの記憶をたどると、その頃の生活まで思い出されます。'
 
 
 def load_games(path):
@@ -35,6 +34,8 @@ def load_games(path):
 
 def render_games(content, write, page, local, e, image_url):
     games = load_games(content / 'games.json')
+    copy = json.loads((content / 'history-context.json').read_text(encoding='utf-8'))['game']['paragraphs']
+    intro, note = copy
 
     def played(game):
         return game['playedPeriod'] + ('（推定）' if game['periodIsEstimated'] else '')
@@ -65,11 +66,11 @@ def render_games(content, write, page, local, e, image_url):
         sections.append(f'<section class="game-period content-section" id="{id_}"><div class="section-head"><h2>{title}</h2></div>'
                         f'<ul class="game-list">{"".join(card(g) for g in items)}</ul></section>')
     jumps = ''.join(f'<li><a href="#{id_}">{title}</a></li>' for id_, title in PERIODS + [('unknown', '時期未確定')])
-    body = (f'<div class="page-heading"><p class="kicker">Game history</p><h1>ゲーム遍歴</h1><p>{INTRO}</p></div>'
-            '<p class="section-copy">発売年は作品の情報、プレイ時期は私の体験の時期です。複数の時代で遊んだ作品は、それぞれの時代に掲載しています。未確認の情報や思い出は、少しずつ追記します。</p>'
+    body = (f'<div class="page-heading"><p class="kicker">Game history</p><h1>ゲーム遍歴</h1><p>{e(intro)}</p></div>'
+            f'<p class="section-copy">{e(note)}</p>'
             f'<nav aria-label="ゲーム遍歴の時代"><ul class="link-list">{jumps}</ul></nav>{filters}{"".join(sections)}'
             f'<script src="{local("assets/games.js")}" defer></script>')
-    write('games', page('ゲーム遍歴', INTRO, 'games/', body))
+    write('games', page('ゲーム遍歴', intro, 'games/', body))
     for game in games:
         facts = [('ゲーム機', game['platform'] or '未確認'), ('発売年', release(game)),
                  ('プレイ時期', played(game)), ('一緒に遊んだ相手', '、'.join(game['companions']) or '未確認'), ('状況', game['status'])]
