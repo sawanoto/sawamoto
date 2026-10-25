@@ -213,6 +213,83 @@ class LifeTimelineTests(unittest.TestCase):
             lookups.append(items)
         return lookups
 
+    def test_every_record_has_one_display_entry_and_life_events_stay_individual(self):
+        entries = {entry['id']: entry for entry in self.data['entries']}
+        groups = {group['id']: group for group in self.data['groups']}
+        membership = Counter(id_ for entry in entries.values() for id_ in entry['recordIds'])
+        self.assertEqual(set(membership), set(self.records))
+        self.assertTrue(all(count == 1 for count in membership.values()))
+        life = [entry for entry in entries.values() if entry['kind'] == 'life']
+        self.assertEqual([entry['id'] for entry in life], [r['id'] for r in self.records.values() if r['sourceKind'] == 'life'])
+        expected_life = sum(r['sourceKind'] == 'life' for r in self.records.values())
+        self.assertEqual(len(life), expected_life)
+        self.assertEqual(len(entries), len(groups) + expected_life)
+        self.assertEqual(sum(len(group['recordIds']) for group in groups.values()), len(self.records) - expected_life)
+        for record in self.records.values():
+            entry = entries[record['entryId']]
+            self.assertIn(record['id'], entry['recordIds'])
+            self.assertEqual(self.manifest['records'][list(self.records).index(record['id'])]['entryId'], record['entryId'])
+            if record['sourceKind'] == 'life':
+                self.assertEqual(entry['recordIds'], [record['id']])
+                self.assertEqual(entry['id'], record['id'])
+                self.assertEqual(entry['title'], record['title'])
+                self.assertEqual(entry['date'], record['date'])
+                self.assertEqual(entry['periodId'], record['periodId'])
+            else:
+                self.assertEqual(entry['kind'], 'hobby')
+        for entry in entries.values():
+            self.assertEqual(set(entry['genres']), {genre for genre in self.data['genres'] if any(genre in self.records[id_]['genres'] for id_ in entry['recordIds'])})
+        with (ROOT / 'dist/timeline/groups.csv').open(encoding='utf-8-sig', newline='') as stream:
+            rows = list(csv.DictReader(stream))
+        self.assertEqual(len(rows), len(groups))
+
+    def test_group_dates_do_not_change_unknown_work_dates(self):
+        groups = {group['id']: group for group in self.data['groups']}
+        novel = self.records['reading-book-008']
+        self.assertEqual(novel['date']['confidence'], 'unknown')
+        self.assertEqual(groups[novel['entryId']]['date']['confidence'], 'estimated')
+        self.assertEqual(groups['hobby-science-fiction']['periodId'], 'unknown')
+        self.assertEqual(groups['hobby-games-with-wife']['date']['startYear'], 2018)
+        self.assertEqual(self.records['game-minecraft']['date']['startYear'], 2008)
+        self.assertEqual(self.records['game-minecraft']['metadata']['playedPeriod'], '中学生時代から／社会人時代にもプレイ')
+        self.assertEqual(self.data['stats']['fallbackRecords'], 26)
+        self.assertEqual(self.data['stats']['unassignedRecords'], 0)
+        entries = self.data['entries']
+        starts = [entry['date']['startYear'] or 9999 for entry in entries]
+        self.assertEqual(starts, sorted(starts))
+
+    def test_group_membership_validation_and_extension(self):
+        with tempfile.TemporaryDirectory() as temp:
+            content = Path(temp) / 'content'
+            shutil.copytree(ROOT / 'content', content)
+            path = content / 'timeline-groups.json'
+            definitions = json.loads(path.read_text())
+            original = json.loads(path.read_text())
+            definitions['groups'][0]['recordIds'].append('anime-missing')
+            path.write_text(json.dumps(definitions))
+            with self.assertRaisesRegex(ValueError, 'Unknown work'):
+                load_timeline(content, *self.published_lookups(), 2026)
+            definitions = json.loads(json.dumps(original))
+            definitions['groups'][1]['recordIds'].append('anime-doraemon')
+            path.write_text(json.dumps(definitions))
+            with self.assertRaisesRegex(ValueError, 'multiple hobby groups'):
+                load_timeline(content, *self.published_lookups(), 2026)
+            definitions = json.loads(json.dumps(original))
+            definitions['groups'][0]['recordIds'].append('life-first-child-birth-2024')
+            path.write_text(json.dumps(definitions))
+            with self.assertRaisesRegex(ValueError, 'life event in hobby group'):
+                load_timeline(content, *self.published_lookups(), 2026)
+            definitions = json.loads(json.dumps(original))
+            # Explicit new groups take precedence over the fallback regardless of definition order.
+            definitions['groups'].append({'id':'after-broadcast','title':'放送後に出会ったアニメ',
+                'recordIds':['anime-steins-gate'],'evidenceIds':['anime-steins-gate']})
+            path.write_text(json.dumps(definitions))
+            extended = load_timeline(content, *self.published_lookups(), 2026)
+            record = next(r for r in extended['records'] if r['id'] == 'anime-steins-gate')
+            self.assertEqual(record['entryId'], 'hobby-after-broadcast')
+            self.assertEqual(record['date']['confidence'], 'unknown')
+            self.assertNotIn('hobby-other-anime', {group['id'] for group in extended['groups']})
+
     def test_invalid_relationship_and_overlap_fail_build_projection(self):
         with tempfile.TemporaryDirectory() as temp:
             content = Path(temp) / 'content'
