@@ -46,6 +46,9 @@
     let target = document.getElementById(id);
     // Keep bookmarks made with the earlier local life-only implementation usable.
     if (!target && id.startsWith('timeline-')) target = document.getElementById(`life-${id.slice(9)}`);
+    if (target?.matches('[data-life-note-anchor]')) {
+      target = target.closest('details') || document.getElementById('life-context-heading');
+    }
     return target && root.contains(target) ? target : null;
   }
   function revealHash() {

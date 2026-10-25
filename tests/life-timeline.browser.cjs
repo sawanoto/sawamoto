@@ -28,6 +28,8 @@ const serve = route => {
       await page.goto(`${origin}/sawamoto/timeline/`);
       assert.equal(await page.locator('[data-life-item]:visible').count(), data.stats.entries);
       assert.equal(await page.locator('.life-event[open]').count(), 0);
+      assert.equal(await page.locator('.life-facts, .life-guide').count(),0);
+      assert.equal(await page.locator('main').innerText().then(text => /通常の修業年限|元の視聴時期|公開・発売年|年代の読み方/.test(text)),false);
       assert.equal(await page.locator('.life-group[open]').count(), 0);
       assert.equal(await page.locator('.life-year > ol > li[data-life-record]').count(),data.stats.lifeEntries);
       assert.equal(await page.locator('[data-life-record]').count(),data.stats.total);
@@ -80,6 +82,7 @@ const serve = route => {
       await page.goto(`${origin}/sawamoto/timeline/?genre=reading#reading-book-034`);
       assert.equal(await page.locator('#reading-book-034').getAttribute('open'),'');
       assert.match(await page.locator('#reading-book-034').innerText(),/黒暗森林理論/);
+      assert.doesNotMatch(await page.locator('#reading-book-034').innerText(),/体験年|著者|媒体|推定|状況|明記された/);
       await page.locator('#reading-book-034 [href="#movie-three-body-problem"]').click();
       assert.equal(await page.locator('#movie-three-body-problem').getAttribute('open'),'');
       assert.notEqual(await page.locator('#movie-three-body-problem').innerText(),await page.locator('#reading-book-034').innerText());
