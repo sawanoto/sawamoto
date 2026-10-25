@@ -309,3 +309,13 @@ node tests/life-timeline.browser.cjs
 旧URLは検索対象から外す `noindex` と新年表のcanonicalを設定し、サイトマップにも含めません。JavaScript無効時は旧ページから新年表へmeta refreshで転送し、明示リンクも用意しています。JavaScript有効時は保存済みアンカーも対応する詳細・年代へ引き継ぎます。
 
 `records.json` / `migration.json` の `legacyPaths` とCSVの「旧URL（転送元）」列に対応を保持します。年表上には旧ページへ戻るリンクを表示しません。
+
+### 「澤本家 手しごと商店」を更新する
+
+独立した構想ページは `/handcraft-shop/`（GitHub Pagesでは `/sawamoto/handcraft-shop/`）。Works の「構想中の創作企画」からアクセスできます。
+
+`content/handcraft-shop.json` の `family` は参加構想、`categories` は商品・展示案、`display` は売り場、`progress` は制作進捗、`goals` は今後の目標です。進捗の `stage` は `構想中`・`試作中`・`完成`・`出品候補` から選び、出店など未定の項目は `null` にします。経験があることと、販売用作品が完成していることは区別し、補足を `note` に記入してください。
+
+写真は公開可能な実物の画像を `assets/images/` に置き、該当カテゴリの `images` に `{"src":"assets/images/ファイル名.jpg","alt":"画像の説明","caption":"作品の制作状況や写真の説明"}` を追加します。空配列なら写真枠も表示しません。未制作のものを完成品として掲載せず、家族の実名・顔写真・個人情報は載せないでください。参加承諾や提供可否の状況が変わったときは、ページ本文の注記も確認してください。
+
+導入・注記の文章は `build.py` の `render_handcraft`、ページ専用の装飾は `assets/handcraft-shop.css` で編集します。更新後は `python build.py` で再生成します。公開は既存の main 向け GitHub Pages ワークフローに従います。
