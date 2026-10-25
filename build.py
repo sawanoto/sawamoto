@@ -154,7 +154,7 @@ def page(title: str, description: str, path: str, body: str) -> str:
 <meta property="og:title" content="{e(full_title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{url}">
 <meta property="og:site_name" content="{e(SITE['name'])}"><link rel="stylesheet" href="{local('assets/style.css')}?v={STYLE_VERSION}">
 <link rel="stylesheet" href="{local('assets/seasonal.css')}"><script src="{local('assets/seasonal.js')}" defer></script>
-{kigo_assets}{timeline_script}{reading_assets}{life_assets}</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
+{kigo_assets}{timeline_script}{reading_assets}{life_assets}{f'<link rel="stylesheet" href="{local("assets/handcraft-shop.css")}">' if path == "handcraft-shop/" else ""}</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
 <div class="brand-lockup"><a class="brand" href="{local('')}">{e(SITE['name'])}<small>{e(SITE['name_en'])}</small></a>{seasonal_mark}</div>
 <nav aria-label="メインナビゲーション">{nav_html}</nav></header><main id="main">{body}</main>
 <footer class="footer"><span>{e(SITE['name'])} / {e(SITE['name_en'])}</span><a href="#main">上へ戻る ↑</a></footer></div></body></html>'''
@@ -409,6 +409,42 @@ def build_anime() -> None:
         write(f'anime/{item["slug"]}', page(item['title'], f'{item["title"]}の視聴時期と思い出。', f'anime/{item["slug"]}/', detail))
 
 
+def render_handcraft(content: Path, e, local, image_url) -> str:
+    data = json.loads((content / 'handcraft-shop.json').read_text(encoding='utf-8'))
+
+    def bullets(items):
+        return '<ul>' + ''.join(f'<li>{e(x)}</li>' for x in items) + '</ul>'
+
+    family = ''.join(f'<article class="craft-note"><h3>{e(x["role"])}</h3><p class="craft-label">参加構想</p>{bullets(x["ideas"])}</article>' for x in data['family'])
+    categories = []
+    for index, item in enumerate(data['categories'], 1):
+        photos = ''.join(f'<figure><img src="{image_url(img["src"])}" alt="{e(img["alt"])}" loading="lazy"><figcaption>{e(img["caption"])}</figcaption></figure>' for img in item.get('images', []))
+        categories.append(f'<article class="craft-note" id="{e(item["id"])}"><p class="kicker">Idea / {index:02d}</p><h3>{e(item["title"])}</h3>{bullets(item["items"])}<p>{e(item["note"])}</p>{photos}</article>')
+    progress = []
+    for item in data['progress']:
+        if item['stage'] is not None and item['stage'] not in data['stages']:
+            raise ValueError(f'Unknown craft progress stage: {item["stage"]}')
+        stage = item['stage'] or '未定'
+        progress.append(f'<div><dt>{e(item["title"])}</dt><dd><span class="craft-status">{e(stage)}</span><span>{e(item["note"])}</span></dd></div>')
+    goals = '<ol class="craft-goals">' + ''.join(f'<li>{e(x)}</li>' for x in data['goals']) + '</ol>'
+    jumps = [('origin', 'きっかけ'), ('family', '家族の参加構想'), ('ideas', '商品・展示'), ('display', '売り場'), ('progress', '制作進捗'), ('goals', 'これから')]
+    nav = ''.join(f'<a href="#{key}">{label}</a>' for key, label in jumps)
+    return f'''<div class="craft-page">
+    <div class="page-heading craft-heading"><a class="back" href="{local('works/')}">← Works</a><p class="kicker">Sawamoto Family Craft Project</p><h1>澤本家 手しごと商店</h1>
+    <p class="craft-copy">いつか、家族で手しごと市に出店してみたい。</p><p class="lead">まだ存在しない、家族のお店。まずは想像するところから。</p><p class="craft-label">構想ノート / 2026年10月25日から</p></div>
+    <aside class="craft-notice" aria-label="この企画について"><p>いまは、架空のお店の創作プロジェクトです。実際の出店予定はありません。</p><p>家族の役割はすべて仮案で、本人たちの参加承諾はまだ得ていません。将来の参加や出店を約束するものではありません。</p></aside>
+    <nav class="craft-jumps" aria-label="構想ノートの目次">{nav}</nav>
+    <section id="origin"><p class="kicker">01 / Inspiration</p><h2>お店ごと、ひとつの作品だった。</h2><p>2026年10月25日、「あづま手しごといち」を訪問しました。作家たちは作品だけでなく、服装、展示、値札、販売空間全体を通して、それぞれの世界観を表現していました。</p><p>もし、自分の家族でも手しごと市に出店したら、どんなお店になるだろう。このノートは、そんな想像から始まります。</p><p>正式な事業計画書ではなく、自由に構想を広げ、少しずつ試作していくための企画書。まずは「こんなものが並んだら楽しそう」を集めてみます。</p></section>
+    <section id="family"><p class="kicker">02 / Family ideas</p><h2>家族でやるなら、こんなこと。</h2><p>以下はすべて参加構想です。家族への相談は、これから。</p><div class="craft-grid">{family}</div></section>
+    <section id="ideas"><p class="kicker">03 / Things to make</p><h2>まだない棚に、並べたいもの。</h2><p>商品・展示のアイデア帳です。販売用作品や価格はまだ決めていません。</p><div class="craft-grid">{''.join(categories)}</div></section>
+    <section id="display"><p class="kicker">04 / Our little booth</p><h2>白い布の上から、お店をつくる。</h2><p>あづま手しごといちで観察した展示方法をヒントに、売り場を想像します。</p><div class="craft-display">{bullets(data['display'])}</div><p>商品だけでなく、売り場全体で一つの世界観を。素材の手ざわりや、作っている時間まで伝わるような場所にしたい。</p></section>
+    <section id="progress"><p class="kicker">05 / Work in progress</p><h2>いま、どのあたり？</h2><p class="craft-flow">{' → '.join(e(x) for x in data['stages'])}</p><p>作品ごとに少しずつ進めるための目印です。「出品候補」になっても出店が決まるわけではありません。</p><dl class="craft-progress">{''.join(progress)}</dl></section>
+    <section id="goals"><p class="kicker">06 / Small next steps</p><h2>ひとつずつ、試してみる。</h2><p>期日や達成期限は設けません。興味の向くほうへ、ゆっくり。</p>{goals}</section>
+    <aside class="craft-notice"><h2>もし、本当に出店を考えるなら。</h2><p>食品や飲料の提供には、営業許可・届出や衛生管理等の確認が必要です。弓道の実演には、会場の許可と十分な安全対策が必要です。いずれも現時点ではアイデアで、実施・提供可否は未定です。</p></aside>
+    <p><a href="{local('works/')}">制作物の一覧へ戻る →</a></p></div>'''
+
+
+
 def build() -> None:
     unified = load_timeline(CONTENT, work_by_id, article_by_id)
     REDIRECTS.clear()
@@ -472,8 +508,10 @@ def build() -> None:
     {qualifications}'''
     write("about", page("About", "澤本優哉のプロフィールと活動の記録。", "about/", about))
 
+    write("handcraft-shop", page("澤本家 手しごと商店", "まだ存在しない、家族のお店。手しごと市への架空の出店を想像し、少しずつ試作する創作プロジェクト。", "handcraft-shop/", render_handcraft(CONTENT, e, local, image_url)))
+
     works_list = "".join(card(x, "works") for x in sorted(WORKS, key=lambda x: x.get("sort", ""), reverse=True)) if WORKS else '<p class="empty">公開できる制作物を準備中です。作品を確認後、ここに追加します。</p>'
-    write("works", page("Works", "澤本優哉の制作物。", "works/", f'<div class="page-heading"><p class="kicker">Works</p><h1>制作物</h1><p>形式や時期を問わず、公開できる作品を掲載します。</p></div><div class="card-grid listing">{works_list}</div>'))
+    write("works", page("Works", "澤本優哉の制作物。", "works/", f'<div class="page-heading"><p class="kicker">Works</p><h1>制作物</h1><p>形式や時期を問わず、公開できる作品を掲載します。</p></div><section class="writing-series" aria-labelledby="craft-project-title"><h2 id="craft-project-title">構想中の創作企画</h2><p><a href="{local("handcraft-shop/")}">澤本家 手しごと商店 →</a></p><p>まだ存在しない、家族のお店。まずは想像するところから。</p></section><div class="card-grid listing">{works_list}</div>'))
     for item in WORKS:
         youtube_id = item.get("youtube_id")
         if item.get("videos"):
