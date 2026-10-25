@@ -34,3 +34,18 @@
 .life-context h2{font-size:1.1rem;font-weight:500}
 .life-image{display:block;max-width:100%;max-height:400px;object-fit:contain;margin:1rem 0}
 @media(max-width:480px){.life-years{padding-left:1rem}.life-year:before{left:-1.3rem}.life-genre{font-size:.65rem}.life-detail{padding-left:.5rem}.life-facts>div{grid-template-columns:1fr;gap:.1rem}}
+
+/* The timeline shows life events and interests; works stay inside their group. */
+.life-group{border-bottom:1px solid var(--line);scroll-margin-top:1rem}
+.life-group>summary{min-height:52px;font-weight:500}
+.life-group-count{display:inline-block;margin-left:.65rem;font-size:.7rem;color:var(--muted);font-weight:400}
+.life-group-body{padding:.3rem .4rem 1.25rem 1rem}
+.life-group-body>.meta{font-size:.76rem;margin:0 0 1rem}
+.life-group .life-note{margin-bottom:.5rem}
+.life-works{list-style:none;padding:0;margin:0}
+.life-works-heading{font-size:.88rem;font-weight:500;margin:1.2rem 0 .5rem}
+.life-works .life-title{font-size:.87rem}
+.life-works .life-event>summary{min-height:46px}
+.life-works .life-when,.life-works .life-genre{font-size:.65rem}
+.life-works>li:last-child>.life-event{border-bottom:0}
+@media(max-width:480px){.life-group-body{padding-left:.3rem;padding-right:0}.life-group>summary .life-title{font-size:.93rem}.life-works .life-detail{padding-right:0}}

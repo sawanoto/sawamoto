@@ -99,6 +99,89 @@ def record_date(kind, raw, settings, current_year):
     return date
 
 
+def project_entries(content, records, notes, settings, place):
+    """Keep one canonical home for each work and one independent entry per life event."""
+    definitions = read_json(content, "timeline-groups.json")
+    if definitions.get("schemaVersion") != 1 or not isinstance(definitions.get("groups"), list):
+        raise ValueError("Unsupported hobby group schema")
+    by_id = {record["id"]: record for record in records}
+    notes_by_id = {note["id"]: note for note in notes}
+    used_records, used_notes, group_ids, fallbacks = set(), set(), set(), set()
+    groups = []
+    definitions = definitions["groups"]
+    # Explicit curation always takes precedence over the safety-net groups.
+    for definition in sorted(definitions, key=lambda x: bool(x.get("fallbackFor"))):
+        key = definition["id"]
+        if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", key) or key in group_ids:
+            raise ValueError(f"Invalid or duplicate hobby group: {key}")
+        group_ids.add(key)
+        if not isinstance(definition.get("title"), str) or not definition["title"].strip():
+            raise ValueError(f"Missing hobby group title: {key}")
+        for field in ("recordIds", "noteIds", "dateFrom", "evidenceIds"):
+            value = definition.get(field, [])
+            if not isinstance(value, list) or not all(isinstance(id_, str) for id_ in value):
+                raise ValueError(f"Hobby group {field} must be a list of IDs: {key}")
+        member_ids = list(definition.get("recordIds", []))
+        fallback = definition.get("fallbackFor")
+        if fallback:
+            if fallback not in FILES or fallback == "life" or fallback in fallbacks:
+                raise ValueError(f"Invalid or duplicate fallback group: {key}")
+            if member_ids or definition.get("dateFrom"):
+                raise ValueError("Fallback groups cannot assign explicit works or dates")
+            fallbacks.add(fallback)
+            member_ids = [record["id"] for record in records if record["sourceKind"] == fallback and record["id"] not in used_records]
+        if len(set(member_ids)) != len(member_ids):
+            raise ValueError(f"Duplicate work within hobby group: {key}")
+        for id_ in member_ids:
+            if id_ not in by_id or by_id[id_]["sourceKind"] == "life":
+                raise ValueError(f"Unknown work or life event in hobby group: {id_}")
+            if id_ in used_records:
+                raise ValueError(f"Work belongs to multiple hobby groups: {id_}")
+        note_ids = definition.get("noteIds", [])
+        if len(set(note_ids)) != len(note_ids) or set(note_ids) & used_notes or any(id_ not in notes_by_id for id_ in note_ids):
+            raise ValueError(f"Invalid or duplicate hobby group notes: {key}")
+        allowed = set(member_ids) | set(note_ids)
+        refs = definition.get("dateFrom", [])
+        evidence = definition.get("evidenceIds", [])
+        if not set(refs + evidence) <= allowed or (member_ids and not fallback and not evidence):
+            raise ValueError(f"Invalid or missing hobby group evidence: {key}")
+        used_records.update(member_ids)
+        used_notes.update(note_ids)
+        if not member_ids:
+            continue
+        dates = [(by_id.get(id_) or notes_by_id[id_])["date"] for id_ in refs]
+        dates = [date for date in dates if date["confidence"] != "unknown"]
+        date = unknown_date()
+        if dates:
+            start = min(d["startYear"] for d in dates)
+            end = max(d["endYear"] for d in dates)
+            spans = sorted({(r["startYear"], r["endYear"]) for d in dates for r in d["ranges"]})
+            date = {"startYear": start, "endYear": end, "confidence": "estimated", "label": f"{start}–{end}年頃",
+                    "basis": "このまとまりに関する記録の体験時期からまとめた目安です。作品ごとの体験年を確定するものではありません。",
+                    "ranges": [{"startYear": a, "endYear": b} for a, b in spans]}
+        genres = [genre for genre in settings["genres"] if any(genre in by_id[id_]["genres"] for id_ in member_ids)]
+        group = {"id": f"hobby-{key}", "kind": "hobby", "title": definition["title"], "recordIds": member_ids,
+                 "noteIds": note_ids, "genres": genres, "date": date, "periodId": place(date),
+                 "dateFrom": refs, "evidenceIds": evidence, "isFallback": bool(fallback),
+                 "source": {"file": "content/timeline-groups.json", "id": key}}
+        groups.append(group)
+        for id_ in member_ids:
+            by_id[id_]["entryId"] = group["id"]
+        for id_ in note_ids:
+            notes_by_id[id_]["entryId"] = group["id"]
+    missing = {r["id"] for r in records if r["sourceKind"] != "life"} - used_records
+    if missing:
+        raise ValueError(f"Works without a hobby group: {', '.join(sorted(missing))}")
+    entries = list(groups)
+    for record in records:
+        if record["sourceKind"] == "life":
+            record["entryId"] = record["id"]
+            entries.append({"id": record["id"], "kind": "life", "title": record["title"], "recordIds": [record["id"]], "noteIds": [],
+                            "genres": record["genres"], "date": record["date"], "periodId": record["periodId"]})
+    entries.sort(key=lambda x: (x["date"]["startYear"] or 9999, x["date"].get("month") or 0, x["date"]["confidence"] != "confirmed", by_id.get(x["id"], {}).get("metadata", {}).get("order", 0), x["id"]))
+    return groups, entries
+
+
 def load_timeline(content, works, articles, current_year=None):
     current_year = current_year or datetime.now(timezone.utc).year
     settings = read_json(content, "timeline-settings.json")
@@ -224,8 +307,13 @@ def load_timeline(content, works, articles, current_year=None):
 
     records.sort(key=lambda x: (x["date"]["startYear"] or 9999, x["date"].get("month") or 0, x["date"]["confidence"] != "confirmed", x["metadata"].get("order", 0), x["id"]))
     periods.append({"id": "unknown", "startYear": None, "endYear": None, "label": "時期未整理"})
-    return {"schemaVersion": 1, "genres": genres, "periods": periods, "records": records, "notes": notes,
-            "stats": {"total": len(records), "bySource": dict(Counter(x["sourceKind"] for x in records)),
+    groups, entries = project_entries(content, records, notes, settings, place)
+    return {"schemaVersion": 2, "genres": genres, "periods": periods, "records": records, "notes": notes, "groups": groups, "entries": entries,
+            "stats": {"total": len(records), "hobbyGroups": len(groups), "entries": len(entries),
+                      "lifeEntries": sum(x["kind"] == "life" for x in entries),
+                      "byEntryGenre": {g: sum(g in x["genres"] for x in entries) for g in genres},
+                      "fallbackRecords": sum(len(g["recordIds"]) for g in groups if g["isFallback"]),
+                      "unassignedRecords": 0, "bySource": dict(Counter(x["sourceKind"] for x in records)),
                       "byConfidence": dict(Counter(x["date"]["confidence"] for x in records)),
                       "byGenre": {g: sum(g in x["genres"] for x in records) for g in genres}}}
 
@@ -241,10 +329,12 @@ META_LABELS = {
 def render_timeline(data, local, e, external, image_url):
     by_id = {record["id"]: record for record in data["records"]}
 
-    def notes_html(notes):
-        return "".join(f'<details class="life-note" data-life-note data-genres="{e(" ".join(note["genres"]))}" id="{e(note["id"])}"><summary>{e(note["title"])}</summary><div class="life-detail">{paragraphs(note["paragraphs"], e)}</div></details>' for note in notes)
+    def notes_html(notes, genres=None, opened=False):
+        return "".join(f'<details class="life-note" data-life-note data-genres="{e(" ".join(genres or note["genres"]))}" id="{e(note["id"])}" {"open" if opened else ""}><summary>{e(note["title"])}</summary><div class="life-detail">{paragraphs(note["paragraphs"], e)}</div></details>' for note in notes)
 
     def record_html(record):
+        top_level = record["sourceKind"] == "life"
+        item_marker = ' data-life-item data-entry-kind="life"' if top_level else ""
         date = record["date"]
         fields = []
         for key, label in META_LABELS.items():
@@ -260,6 +350,7 @@ def render_timeline(data, local, e, external, image_url):
             fields.append(f'<div><dt>{e(label)}</dt><dd>{e(value)}</dd></div>')
         sections = "".join(f'<section><h3>{e(section["title"])}</h3>{paragraphs(section["paragraphs"], e)}</section>' for section in record["sections"] if any(section["paragraphs"]))
         links = "".join(f'<li><a href="{local(link["path"])}">{e(link["label"])}</a></li>' if "path" in link else f'<li>{external(link["label"], link["url"])}</li>' for link in record["links"])
+        links += f'<li><a href="#{e(record["id"])}" data-life-permalink>この記録へのリンク</a></li>'
         related = "".join(f'<li><a href="#{e(id_)}" data-life-related>{e(by_id[id_]["title"])}</a></li>' for id_ in record["relatedIds"])
         related = f'<aside><h3>関連する記録</h3><ul class="link-list">{related}</ul></aside>' if related else ""
         image = record["metadata"].get("image")
@@ -270,32 +361,43 @@ def render_timeline(data, local, e, external, image_url):
         ranges = "、".join(f'{r["startYear"]}–{r["endYear"]}年頃' for r in date["ranges"])
         basis = f'<p class="meta">{e(date["basis"])}</p>' if date["confidence"] == "estimated" else ""
         span_note = f'<p class="meta">記録された体験の範囲：{e(ranges)}</p>' if len(date["ranges"]) > 1 else ""
-        return f'''<li data-life-record data-genres="{e(" ".join(record["genres"]))}" data-record-id="{e(record["id"])}"><details id="{e(record["id"])}" class="life-event"><summary><span class="life-title">{e(record["title"])}</span>{when}<span class="life-genre">{e(badges)}</span></summary><div class="life-detail"><p class="meta">{e(date_label)}</p>{basis}{span_note}{image}{sections}<dl class="life-facts">{"".join(fields)}</dl>{related}<ul class="link-list">{links}</ul></div></details></li>'''
+        return f'''<li data-life-record{item_marker} data-genres="{e(" ".join(record["genres"]))}" data-record-id="{e(record["id"])}"><details id="{e(record["id"])}" class="life-event"><summary><span class="life-title">{e(record["title"])}</span>{when}<span class="life-genre">{e(badges)}</span></summary><div class="life-detail"><p class="meta">{e(date_label)}</p>{basis}{span_note}{image}{sections}<dl class="life-facts">{"".join(fields)}</dl>{related}<ul class="link-list">{links}</ul></div></details></li>'''
 
-    groups = []
+    notes_by_id = {note["id"]: note for note in data["notes"]}
+
+    def entry_html(entry):
+        if entry["kind"] == "life":
+            return record_html(by_id[entry["recordIds"][0]])
+        date = entry["date"]
+        when = f'<span class="life-when">{e(date["label"])}</span>' if date["confidence"] != "unknown" else ""
+        badges = " / ".join(data["genres"][g] for g in entry["genres"])
+        note_html = notes_html([notes_by_id[id_] for id_ in entry["noteIds"]], entry["genres"], opened=True)
+        works = "".join(record_html(by_id[id_]) for id_ in entry["recordIds"])
+        date_text = "まとまりの時期：" + ("時期未整理" if date["confidence"] == "unknown" else date["label"] + "（推定）")
+        return f'''<li data-life-item data-entry-kind="hobby" data-genres="{e(" ".join(entry["genres"]))}" data-entry-id="{e(entry["id"])}"><details id="{e(entry["id"])}" class="life-group"><summary><span class="life-title">{e(entry["title"])}</span>{when}<span class="life-genre">{e(badges)}</span><span class="life-group-count" data-group-count>{len(entry["recordIds"])}記録</span></summary><div class="life-group-body"><p class="meta">{e(date_text)}。作品それぞれの体験時期は、個別の記録に残しています。</p>{note_html}<h3 class="life-works-heading">作品とその思い出</h3><ul class="life-works">{works}</ul></div></details></li>'''
+
+    sections = []
     for period in data["periods"]:
-        records = [x for x in data["records"] if x["periodId"] == period["id"]]
-        notes = [x for x in data["notes"] if x["periodId"] == period["id"]]
-        # Retain the initial 1995 endpoint without inventing a birth/event.
-        if not records and not notes and period != data["periods"][0]:
+        entries = [x for x in data["entries"] if x["periodId"] == period["id"]]
+        if not entries and period != data["periods"][0]:
             continue
         bounds = '' if period["startYear"] is None else f' data-start-year="{period["startYear"]}" data-end-year="{period["endYear"]}"'
-        groups.append(f'<section class="life-year" data-year="{e(period["id"])}"{bounds}><h2 id="year-{e(period["id"])}">{e(period["label"])}</h2>{notes_html(notes)}<ol>{"".join(record_html(x) for x in records)}</ol></section>')
+        sections.append(f'<section class="life-year" data-year="{e(period["id"])}"{bounds}><h2 id="year-{e(period["id"])}">{e(period["label"])}</h2><ol>{"".join(entry_html(x) for x in entries)}</ol></section>')
     buttons = '<button type="button" data-genre="all" aria-pressed="true" aria-controls="life-years">すべて</button>'
     buttons += "".join(f'<button type="button" data-genre="{e(key)}" aria-pressed="false" aria-controls="life-years">{e(label)}</button>' for key, label in data["genres"].items())
-    notes = notes_html([x for x in data["notes"] if x["periodId"] is None])
-    jumps = "".join(f'<li><a href="#year-{e(p["id"])}" data-year-jump="{e(p["id"])}">{e(p["label"])}</a></li>' for p in data["periods"] if any(x["periodId"] == p["id"] for x in data["records"]))
-    return f'''<div class="page-heading"><p class="kicker">Life timeline / 1995 —</p><h1>人生年表</h1><p>観たもの、読んだもの、遊んだもの。生活の出来事と一緒に、これまでを振り返ります。</p></div>
-    <div class="life-timeline"><div class="life-filters" role="group" aria-label="年表のジャンル" hidden>{buttons}</div><p class="life-status" role="status" aria-live="polite" data-timeline-status>すべて：{data["stats"]["total"]}件</p>
-    <p class="timeline-lead">タイトルをタップすると、感想や思い出が開きます。年代は体験の時期をもとにした目安です。幅のある記録は、その範囲の始まりに一度だけ表示しています。</p>
-    <details class="life-guide"><summary>年代の読み方・推定について</summary><div class="life-detail"><p>確定：体験年が明記されている記録。推定：既存の生活記録から幅を持たせて配置した記録。不明：判断できず「時期未整理」に残した記録。</p><p>学校時代の年代は、2013年度の高校3年生、2014年の大学1年生、2018年の就職を根拠に、通常の修業年限から推定しています。公開年・発売年を体験年として使っていません。詳細には元の時期表記と推定の根拠を残しています。</p></div></details>
-    <nav class="life-jumps" aria-label="年表の年代"><ul>{jumps}</ul></nav><noscript><p>すべての記録を表示しています。JavaScriptが無効でも詳細を開けます。ジャンルの切り替えにはJavaScriptが必要です。</p></noscript>
-    <div class="life-years" id="life-years">{"".join(groups)}</div><p class="empty" data-timeline-empty hidden>このジャンルの記録はまだありません。</p>
+    notes = notes_html([x for x in data["notes"] if not x.get("entryId")])
+    jumps = "".join(f'<li><a href="#year-{e(p["id"])}" data-year-jump="{e(p["id"])}">{e(p["label"])}</a></li>' for p in data["periods"] if any(x["periodId"] == p["id"] for x in data["entries"]))
+    return f'''<div class="page-heading"><p class="kicker">Life timeline / 1995 —</p><h1>人生年表</h1><p>趣味や関心が少しずつ変わっていくこと。生活の出来事と一緒に、これまでを振り返ります。</p></div>
+    <div class="life-timeline"><div class="life-filters" role="group" aria-label="年表のジャンル" hidden>{buttons}</div><p class="life-status" role="status" aria-live="polite" data-timeline-status>すべて：{data["stats"]["entries"]}項目（{data["stats"]["total"]}記録）</p>
+    <p class="timeline-lead">趣味のまとまりを開くと、その頃の思い出と作品が読めます。生活の出来事は一件ずつ残しています。</p>
+    <details class="life-guide"><summary>年代の読み方・推定について</summary><div class="life-detail"><p>確定：体験年が明記されている記録。推定：既存の生活記録から幅を持たせて配置した記録。不明：判断できず「時期未整理」に残した記録。</p><p>学校時代の年代は、2013年度の高校3年生、2014年の大学1年生、2018年の就職を根拠に、通常の修業年限から推定しています。公開年・発売年を体験年として使っていません。詳細には元の時期表記と推定の根拠を残しています。</p><p>趣味のまとまりの年代は、作品ごとの体験年とは別です。時期不明の作品が年代のあるまとまりに入っていても、体験年が確定したことにはなりません。幅のあるまとまりは範囲の始まりに一度だけ表示します。</p></div></details>
+    <nav class="life-jumps" aria-label="年表の年代"><ul>{jumps}</ul></nav><noscript><p>すべてのまとまり・出来事を表示しています。JavaScriptが無効でも趣味のまとまりと作品の詳細を順に開けます。ジャンルの切り替えにはJavaScriptが必要です。</p></noscript>
+    <div class="life-years" id="life-years">{"".join(sections)}</div><p class="empty" data-timeline-empty hidden>このジャンルの記録はまだありません。</p>
     <section class="life-context" aria-labelledby="life-context-heading"><h2 id="life-context-heading">記録の背景</h2>{notes}</section></div>'''
 
 
 def migration_manifest(data):
-    return {"schemaVersion": 1, "stats": data["stats"], "records": [{"source": x["source"], "unifiedId": x["id"], "genres": x["genres"], "date": x["date"], "periodId": x["periodId"], "relatedIds": x["relatedIds"], "links": x["links"], "legacyPaths": x["legacyPaths"]} for x in data["records"]],
+    return {"schemaVersion": 2, "stats": data["stats"], "groups": data["groups"], "entries": data["entries"], "records": [{"source": x["source"], "unifiedId": x["id"], "entryId": x["entryId"], "genres": x["genres"], "date": x["date"], "periodId": x["periodId"], "relatedIds": x["relatedIds"], "links": x["links"], "legacyPaths": x["legacyPaths"]} for x in data["records"]],
             "notes": [{"source": x["source"], "unifiedId": x["id"], "periodId": x["periodId"]} for x in data["notes"]]}
 
 
@@ -303,11 +405,18 @@ def write_migration_artifacts(folder, data):
     """Rebuilt alongside the HTML; never edited independently from the sources."""
     for filename, value in (("records.json", data), ("migration.json", migration_manifest(data))):
         (folder / filename).write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (folder / "groups.json").write_text(json.dumps(data["groups"], ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    with (folder / "groups.csv").open("w", encoding="utf-8-sig", newline="") as stream:
+        writer = csv.writer(stream)
+        writer.writerow(["まとまりID", "タイトル", "ジャンル", "記録数", "年代", "補助グループ", "所属記録ID", "根拠となる記録ID"])
+        for group in data["groups"]:
+            writer.writerow([group["id"], group["title"], " / ".join(group["genres"]), len(group["recordIds"]), group["date"]["label"],
+                             "はい" if group["isFallback"] else "いいえ", " / ".join(group["recordIds"]), " / ".join(group["evidenceIds"])])
     with (folder / "migration.csv").open("w", encoding="utf-8-sig", newline="") as stream:
         writer = csv.writer(stream)
-        writer.writerow(["元ファイル", "元ID", "統合ID", "タイトル", "ジャンル", "開始年", "終了年", "確度", "表示区間", "関連ID", "関連リンク", "旧URL（転送元）"])
+        writer.writerow(["元ファイル", "元ID", "統合ID", "表示項目ID", "タイトル", "ジャンル", "開始年", "終了年", "確度", "表示区間", "関連ID", "関連リンク", "旧URL（転送元）"])
         for record in data["records"]:
-            writer.writerow([record["source"]["file"], record["source"]["id"], record["id"], record["title"],
+            writer.writerow([record["source"]["file"], record["source"]["id"], record["id"], record["entryId"], record["title"],
                              " / ".join(record["genres"]), record["date"]["startYear"], record["date"]["endYear"],
                              CONFIDENCE[record["date"]["confidence"]], record["periodId"], " / ".join(record["relatedIds"]),
                              " / ".join(link.get("path", link.get("url", "")) for link in record["links"]), " / ".join(record["legacyPaths"])])

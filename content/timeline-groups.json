@@ -1,0 +1,651 @@
+{
+  "schemaVersion": 1,
+  "groups": [
+    {
+      "id": "television",
+      "title": "テレビアニメに親しむ",
+      "recordIds": [
+        "anime-doraemon",
+        "anime-crayon-shinchan",
+        "anime-nintama-rantaro",
+        "anime-pokemon",
+        "anime-inuyasha",
+        "anime-black-jack",
+        "anime-shimajiro",
+        "anime-mobile-suit-gundam",
+        "anime-gankochan",
+        "movie-car-dvds"
+      ],
+      "noteIds": [
+        "anime-era-childhood"
+      ],
+      "dateFrom": [
+        "anime-era-childhood"
+      ],
+      "evidenceIds": [
+        "anime-era-childhood",
+        "movie-car-dvds"
+      ]
+    },
+    {
+      "id": "internet-culture",
+      "title": "オタク文化に憧れ、深夜アニメと友達との会話を楽しむ",
+      "recordIds": [
+        "anime-haruhi",
+        "anime-lucky-star",
+        "anime-higurashi",
+        "anime-index",
+        "reading-book-007"
+      ],
+      "noteIds": [
+        "anime-era-middle"
+      ],
+      "dateFrom": [
+        "anime-era-middle"
+      ],
+      "evidenceIds": [
+        "anime-era-middle",
+        "reading-book-007"
+      ]
+    },
+    {
+      "id": "light-novels",
+      "title": "アニメからライトノベルへ読み広げる",
+      "recordIds": [
+        "anime-railgun",
+        "anime-madoka-magica",
+        "anime-durarara",
+        "anime-baccano",
+        "anime-sword-art-online",
+        "anime-accel-world",
+        "reading-book-008",
+        "reading-book-009",
+        "reading-book-010",
+        "reading-book-011",
+        "reading-book-012",
+        "reading-book-013",
+        "reading-book-014",
+        "reading-book-015",
+        "reading-book-016"
+      ],
+      "noteIds": [
+        "anime-era-high"
+      ],
+      "dateFrom": [
+        "anime-era-high"
+      ],
+      "evidenceIds": [
+        "anime-era-high",
+        "reading-book-012"
+      ]
+    },
+    {
+      "id": "anime-at-own-pace",
+      "title": "アニメから少しずつ離れ、好きなシリーズにも戻る",
+      "recordIds": [
+        "anime-attack-on-titan",
+        "anime-knights-of-sidonia",
+        "anime-made-in-abyss",
+        "anime-zeta-gundam",
+        "anime-gundam-zz"
+      ],
+      "noteIds": [
+        "anime-era-university"
+      ],
+      "dateFrom": [
+        "anime-era-university"
+      ],
+      "evidenceIds": [
+        "anime-era-university"
+      ]
+    },
+    {
+      "id": "recommended-anime",
+      "title": "友達に勧められてアニメを見る",
+      "recordIds": [
+        "anime-demon-slayer",
+        "anime-jujutsu-kaisen",
+        "anime-orb",
+        "anime-ranking-of-kings"
+      ],
+      "noteIds": [
+        "anime-era-adult"
+      ],
+      "dateFrom": [
+        "anime-era-adult"
+      ],
+      "evidenceIds": [
+        "anime-era-adult"
+      ]
+    },
+    {
+      "id": "other-anime",
+      "title": "その他のアニメの記録",
+      "recordIds": [],
+      "noteIds": [
+        "anime-era-unknown"
+      ],
+      "dateFrom": [],
+      "evidenceIds": [],
+      "fallbackFor": "anime"
+    },
+    {
+      "id": "first-adventures",
+      "title": "はじめてのゲームと、冒険を楽しんだ記憶",
+      "recordIds": [
+        "game-pokemon-leafgreen",
+        "game-starfy",
+        "game-wind-waker"
+      ],
+      "noteIds": [],
+      "dateFrom": [
+        "game-pokemon-leafgreen",
+        "game-wind-waker"
+      ],
+      "evidenceIds": [
+        "game-pokemon-leafgreen",
+        "game-wind-waker"
+      ]
+    },
+    {
+      "id": "games-with-brother",
+      "title": "弟と対戦ゲームを楽しむ",
+      "recordIds": [
+        "game-smash-dx",
+        "game-wii-sports",
+        "game-smash-x"
+      ],
+      "noteIds": [],
+      "dateFrom": [
+        "game-smash-dx",
+        "game-wii-sports",
+        "game-smash-x"
+      ],
+      "evidenceIds": [
+        "game-smash-dx",
+        "game-wii-sports",
+        "game-smash-x"
+      ]
+    },
+    {
+      "id": "games-with-friends",
+      "title": "友達と通信対戦やオンラインゲームで遊ぶ",
+      "recordIds": [
+        "game-mario-kart-ds",
+        "game-chocotto-land",
+        "game-monster-hunter-2g"
+      ],
+      "noteIds": [],
+      "dateFrom": [
+        "game-mario-kart-ds",
+        "game-chocotto-land",
+        "game-monster-hunter-2g"
+      ],
+      "evidenceIds": [
+        "game-mario-kart-ds",
+        "game-chocotto-land",
+        "game-monster-hunter-2g"
+      ]
+    },
+    {
+      "id": "ds-games",
+      "title": "DSのいろいろな遊びに触れる",
+      "recordIds": [
+        "game-brain-training",
+        "game-tomodachi-collection"
+      ],
+      "noteIds": [],
+      "dateFrom": [
+        "game-brain-training",
+        "game-tomodachi-collection"
+      ],
+      "evidenceIds": [
+        "game-brain-training",
+        "game-tomodachi-collection"
+      ]
+    },
+    {
+      "id": "revisit-games",
+      "title": "過去のゲームを遡って遊ぶ",
+      "recordIds": [
+        "game-ace-combat-2",
+        "game-kingdom-hearts-2"
+      ],
+      "noteIds": [],
+      "dateFrom": [
+        "game-ace-combat-2",
+        "game-kingdom-hearts-2"
+      ],
+      "evidenceIds": [
+        "game-ace-combat-2",
+        "game-kingdom-hearts-2"
+      ]
+    },
+    {
+      "id": "smartphone-games",
+      "title": "スマートフォンでもゲームを遊ぶ",
+      "recordIds": [
+        "game-angry-birds"
+      ],
+      "noteIds": [],
+      "dateFrom": [
+        "game-angry-birds"
+      ],
+      "evidenceIds": [
+        "game-angry-birds"
+      ]
+    },
+    {
+      "id": "pokemon-battles",
+      "title": "ポケモンの育成とオンライン対戦を楽しむ",
+      "recordIds": [
+        "game-pokemon-sun-moon",
+        "game-pokemon-ultra"
+      ],
+      "noteIds": [],
+      "dateFrom": [
+        "game-pokemon-sun-moon",
+        "game-pokemon-ultra"
+      ],
+      "evidenceIds": [
+        "game-pokemon-sun-moon"
+      ]
+    },
+    {
+      "id": "games-with-wife",
+      "title": "妻とゲームを楽しみ、ときには隣で観戦する",
+      "recordIds": [
+        "game-age-of-calamity",
+        "game-breath-of-the-wild",
+        "game-tears-of-the-kingdom",
+        "game-minecraft"
+      ],
+      "noteIds": [],
+      "dateFrom": [
+        "game-age-of-calamity",
+        "game-breath-of-the-wild",
+        "game-tears-of-the-kingdom"
+      ],
+      "evidenceIds": [
+        "game-age-of-calamity",
+        "game-breath-of-the-wild",
+        "game-minecraft"
+      ]
+    },
+    {
+      "id": "vr-and-switch",
+      "title": "VRやSwitchでも遊ぶ",
+      "recordIds": [
+        "game-catan-vr",
+        "game-splatoon-2"
+      ],
+      "noteIds": [],
+      "dateFrom": [
+        "game-catan-vr",
+        "game-splatoon-2"
+      ],
+      "evidenceIds": [
+        "game-catan-vr",
+        "game-splatoon-2"
+      ]
+    },
+    {
+      "id": "other-games",
+      "title": "その他のゲームの記録",
+      "recordIds": [],
+      "noteIds": [],
+      "dateFrom": [],
+      "evidenceIds": [],
+      "fallbackFor": "game"
+    },
+    {
+      "id": "childhood-films",
+      "title": "子どものころ、映画のシリーズに親しむ",
+      "recordIds": [
+        "movie-doraemon",
+        "movie-pokemon",
+        "movie-harry-potter-early",
+        "movie-order-of-phoenix"
+      ],
+      "noteIds": [],
+      "dateFrom": [
+        "movie-doraemon",
+        "movie-pokemon",
+        "movie-harry-potter-early",
+        "movie-order-of-phoenix"
+      ],
+      "evidenceIds": [
+        "movie-harry-potter-early",
+        "movie-order-of-phoenix"
+      ]
+    },
+    {
+      "id": "cinema-stories",
+      "title": "映画館で物語に触れ、登場人物に心を動かされる",
+      "recordIds": [
+        "movie-l-change-the-world",
+        "movie-suspect-x",
+        "movie-eternal-zero"
+      ],
+      "noteIds": [
+        "movie-group-school"
+      ],
+      "dateFrom": [
+        "movie-l-change-the-world",
+        "movie-suspect-x",
+        "movie-eternal-zero"
+      ],
+      "evidenceIds": [
+        "movie-suspect-x",
+        "movie-l-change-the-world"
+      ]
+    },
+    {
+      "id": "disney-with-wife",
+      "title": "妻の影響でディズニーやピクサーの映画を観る",
+      "recordIds": [
+        "movie-disney-pixar"
+      ],
+      "noteIds": [
+        "movie-group-university"
+      ],
+      "dateFrom": [
+        "movie-disney-pixar"
+      ],
+      "evidenceIds": [
+        "movie-disney-pixar"
+      ]
+    },
+    {
+      "id": "interpret-stories",
+      "title": "作品の象徴や構造を自分なりに読み解く",
+      "recordIds": [
+        "movie-the-boy-and-the-heron",
+        "movie-elcos"
+      ],
+      "noteIds": [
+        "movie-preferences",
+        "movie-group-related"
+      ],
+      "dateFrom": [
+        "movie-the-boy-and-the-heron",
+        "movie-elcos"
+      ],
+      "evidenceIds": [
+        "movie-the-boy-and-the-heron",
+        "movie-elcos"
+      ]
+    },
+    {
+      "id": "miyazaki-films",
+      "title": "ジブリや宮崎駿の映画に触れる",
+      "recordIds": [
+        "movie-cagliostro",
+        "movie-ghibli"
+      ],
+      "noteIds": [
+        "movie-group-unknown"
+      ],
+      "dateFrom": [],
+      "evidenceIds": [
+        "movie-cagliostro",
+        "movie-ghibli"
+      ]
+    },
+    {
+      "id": "live-action-sf",
+      "title": "実写映画のSF世界を楽しむ",
+      "recordIds": [
+        "movie-matrix",
+        "movie-avatar",
+        "movie-transformers",
+        "movie-terminator"
+      ],
+      "noteIds": [],
+      "dateFrom": [
+        "movie-matrix"
+      ],
+      "evidenceIds": [
+        "movie-matrix",
+        "movie-transformers",
+        "movie-terminator"
+      ]
+    },
+    {
+      "id": "kanako-nishi",
+      "title": "西加奈子の小説を読み、原作の映画も楽しむ",
+      "recordIds": [
+        "reading-book-028",
+        "reading-book-029",
+        "reading-book-030",
+        "reading-book-031",
+        "reading-book-032",
+        "reading-book-033",
+        "movie-sakura"
+      ],
+      "noteIds": [],
+      "dateFrom": [],
+      "evidenceIds": [
+        "reading-book-028",
+        "reading-book-029",
+        "movie-sakura"
+      ]
+    },
+    {
+      "id": "science-fiction",
+      "title": "SFの壮大な世界観や科学的な問題解決に惹かれる",
+      "recordIds": [
+        "reading-book-034",
+        "reading-book-035",
+        "reading-book-036",
+        "reading-book-037",
+        "reading-book-038",
+        "reading-book-039",
+        "reading-book-040",
+        "reading-book-041",
+        "reading-book-042",
+        "reading-book-043",
+        "reading-book-044",
+        "reading-book-045",
+        "reading-book-046",
+        "reading-book-047",
+        "movie-three-body-problem"
+      ],
+      "noteIds": [],
+      "dateFrom": [],
+      "evidenceIds": [
+        "reading-book-034",
+        "reading-book-039",
+        "reading-book-040",
+        "movie-three-body-problem"
+      ]
+    },
+    {
+      "id": "childhood-reading",
+      "title": "読み聞かせから、自分で物語を読むようになる",
+      "recordIds": [
+        "reading-book-001",
+        "reading-book-002",
+        "reading-book-003",
+        "reading-book-004",
+        "reading-book-005"
+      ],
+      "noteIds": [],
+      "dateFrom": [
+        "reading-book-001",
+        "reading-book-002",
+        "reading-book-003",
+        "reading-book-004",
+        "reading-book-005"
+      ],
+      "evidenceIds": [
+        "reading-book-001",
+        "reading-book-002",
+        "reading-book-004"
+      ]
+    },
+    {
+      "id": "school-book-report",
+      "title": "読書感想文を書く",
+      "recordIds": [
+        "reading-book-006"
+      ],
+      "noteIds": [],
+      "dateFrom": [
+        "reading-book-006"
+      ],
+      "evidenceIds": [
+        "reading-book-006"
+      ]
+    },
+    {
+      "id": "higashino-stories",
+      "title": "東野圭吾の物語に感情を動かされる",
+      "recordIds": [
+        "reading-book-017",
+        "reading-book-022"
+      ],
+      "noteIds": [],
+      "dateFrom": [
+        "reading-book-017",
+        "reading-book-022"
+      ],
+      "evidenceIds": [
+        "reading-book-022"
+      ]
+    },
+    {
+      "id": "hiro-arikawa",
+      "title": "有川浩の小説を読む",
+      "recordIds": [
+        "reading-book-018",
+        "reading-book-019",
+        "reading-book-020",
+        "reading-book-021"
+      ],
+      "noteIds": [],
+      "dateFrom": [],
+      "evidenceIds": [
+        "reading-book-018",
+        "reading-book-019",
+        "reading-book-020",
+        "reading-book-021"
+      ]
+    },
+    {
+      "id": "haruki-murakami",
+      "title": "大学で出会い、社会人になって村上春樹を好きになる",
+      "recordIds": [
+        "reading-book-023",
+        "reading-book-024",
+        "reading-book-025",
+        "reading-book-026",
+        "reading-book-027"
+      ],
+      "noteIds": [],
+      "dateFrom": [
+        "reading-book-023",
+        "reading-book-024",
+        "reading-book-025",
+        "reading-book-026",
+        "reading-book-027"
+      ],
+      "evidenceIds": [
+        "reading-book-023",
+        "reading-book-024"
+      ]
+    },
+    {
+      "id": "world-literature",
+      "title": "海外文学の不条理や物語に触れる",
+      "recordIds": [
+        "reading-book-048",
+        "reading-book-049",
+        "reading-book-050",
+        "reading-book-052",
+        "reading-book-053",
+        "reading-book-054",
+        "reading-book-055",
+        "reading-book-068"
+      ],
+      "noteIds": [],
+      "dateFrom": [],
+      "evidenceIds": [
+        "reading-book-048",
+        "reading-book-049",
+        "reading-book-050",
+        "reading-book-052",
+        "reading-book-068"
+      ]
+    },
+    {
+      "id": "history-and-creation",
+      "title": "歴史の人物や、創作に向き合う姿に惹かれる",
+      "recordIds": [
+        "reading-book-067",
+        "reading-book-072",
+        "reading-book-073",
+        "reading-book-074"
+      ],
+      "noteIds": [],
+      "dateFrom": [],
+      "evidenceIds": [
+        "reading-book-072",
+        "reading-book-074",
+        "reading-book-067"
+      ]
+    },
+    {
+      "id": "work-and-belief",
+      "title": "働くことや、信念を持って生きる姿を考える",
+      "recordIds": [
+        "reading-book-051",
+        "reading-book-075",
+        "reading-book-076",
+        "reading-book-077"
+      ],
+      "noteIds": [],
+      "dateFrom": [],
+      "evidenceIds": [
+        "reading-book-051",
+        "reading-book-075",
+        "reading-book-076",
+        "reading-book-077"
+      ]
+    },
+    {
+      "id": "faith-and-religion",
+      "title": "信じることや、宗教に関心を向ける",
+      "recordIds": [
+        "reading-book-078",
+        "reading-book-079",
+        "reading-book-087"
+      ],
+      "noteIds": [],
+      "dateFrom": [],
+      "evidenceIds": [
+        "reading-book-078",
+        "reading-book-079",
+        "reading-book-087"
+      ]
+    },
+    {
+      "id": "other-reading",
+      "title": "その他の読書記録",
+      "recordIds": [],
+      "noteIds": [],
+      "dateFrom": [],
+      "evidenceIds": [],
+      "fallbackFor": "reading"
+    },
+    {
+      "id": "other-films",
+      "title": "その他の映画・鑑賞の記録",
+      "recordIds": [],
+      "noteIds": [],
+      "dateFrom": [],
+      "evidenceIds": [],
+      "fallbackFor": "movie"
+    }
+  ]
+}
