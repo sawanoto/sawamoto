@@ -1,77 +1,77 @@
 [
   {
     "url": "https://sawanoalan.mydns.jp/wordpress/wp-content/uploads/2024/01/IMG_20220814_152857-1-scaled.jpg",
-    "file": "images/6947c67b33072565d9e8.jpg",
+    "file": "media/6947c67b33072565d9e8.jpg",
     "bytes": 334854,
     "sha256": "828e8effc6d46736e2ea436256f165d069df7dfff725df5c7fca162323b780de"
   },
   {
     "url": "https://sawanoalan.mydns.jp/wordpress/wp-content/uploads/2024/03/0797a3f31c4cadc3bea3a771e0e61a72.png",
-    "file": "images/f920b7b60ae48becdece.png",
+    "file": "media/f920b7b60ae48becdece.png",
     "bytes": 157961,
     "sha256": "0bc1ed01abcf3a7b311402ce66e2225aa098e5917735ede301f51e7992bb0bea"
   },
   {
     "url": "https://sawanoalan.mydns.jp/wordpress/wp-content/uploads/2024/03/291e588dc6de1433d30d9affcc6777a0.png",
-    "file": "images/f3f1140b1b359aab941b.png",
+    "file": "media/f3f1140b1b359aab941b.png",
     "bytes": 7003,
     "sha256": "3c71eeae1029c3182afa7e78e734b1197c44da312331e411bdeaa5e93a70ee2a"
   },
   {
     "url": "https://sawanoalan.mydns.jp/wordpress/wp-content/uploads/2024/03/bc86f566178f7a6bf302d46273c979c8.png",
-    "file": "images/151c2233415f90b8a502.png",
+    "file": "media/151c2233415f90b8a502.png",
     "bytes": 70978,
     "sha256": "2cc99347f21074b91b6865819cf27e473c6cc844363587faa91ceb8451343580"
   },
   {
     "url": "https://sawanoalan.mydns.jp/wordpress/wp-content/uploads/2024/03/cropped-0797a3f31c4cadc3bea3a771e0e61a72.png",
-    "file": "images/b48477f333e293deff11.png",
+    "file": "media/b48477f333e293deff11.png",
     "bytes": 187703,
     "sha256": "a364beb477382a3214dbbf5ded05159352fa02ac50923d89cc45eb20eaaa8fbe"
   },
   {
     "url": "https://sawanoalan.mydns.jp/wordpress/wp-content/uploads/cocoon-resources/blog-card-cache/c9d98c7ce54d48c540284621e7f84876.jpg",
-    "file": "images/46258549a12ffdf67c01.jpg",
+    "file": "media/46258549a12ffdf67c01.jpg",
     "bytes": 92313,
     "sha256": "7bec239091882adaefb9d29465f90731376228d1da4c4fafd0f6ae301ab4c8f0"
   },
   {
     "url": "https://sawanoalan.mydns.jp/wordpress/wp-content/uploads/woocommerce-placeholder.png",
-    "file": "images/21a3728e4c05c82d7f61.png",
+    "file": "media/21a3728e4c05c82d7f61.png",
     "bytes": 102644,
     "sha256": "b207bfc50434ff10f4d5f2b9b0c3d7892c06ff72083026e3356dd7b6c3a04b45"
   },
   {
     "url": "https://sawanoalan.mydns.jp/wordpress/wp-content/uploads/2025/02/cropped-siteicon.webp",
-    "file": "images/7f7edfcf30751ae8e1f4.webp",
+    "file": "media/7f7edfcf30751ae8e1f4.webp",
     "bytes": 9424,
     "sha256": "18c66c2161120d451e5bd863c2d3e4ab0a3c6f81b554b4374b2554c89504063f",
     "recovered_from": "backup:wp_backup/wordpress_site/wordpress/wp-content/uploads/2025/02/cropped-siteicon.webp"
   },
   {
     "url": "https://sawanoalan.mydns.jp/wordpress/wp-content/uploads/2025/02/siteicon.webp",
-    "file": "images/063a120d3badee0af74d.webp",
+    "file": "media/063a120d3badee0af74d.webp",
     "bytes": 20710,
     "sha256": "fe4a9306fa5037c5e1c49cda8da7b0a6c13825b23c3efaa0ad75ef73622bb3ef",
     "recovered_from": "backup:wp_backup/wordpress_site/wordpress/wp-content/uploads/2025/02/siteicon.webp"
   },
   {
     "url": "https://sawanoalan.mydns.jp/wordpress/wp-content/uploads/2025/03/90a0ac6490ea6c0959f4011c9e23bed1.webp",
-    "file": "images/582a978cf5f0947604bf.webp",
+    "file": "media/582a978cf5f0947604bf.webp",
     "bytes": 243308,
     "sha256": "549b26cd90084b00e46e234530307727322576330fef34fb032076241fecb249",
     "recovered_from": "backup:wp_backup/wordpress_site/wordpress/wp-content/uploads/2025/03/90a0ac6490ea6c0959f4011c9e23bed1.webp"
   },
   {
     "url": "https://sawanoalan.mydns.jp/wordpress/wp-content/uploads/2025/03/a066914781d1dbbc70c4118a57a5516f.webp",
-    "file": "images/d18d1fc0e8fe7d8cfac5.webp",
+    "file": "media/d18d1fc0e8fe7d8cfac5.webp",
     "bytes": 499164,
     "sha256": "e8071286aa7d203b1eb3a308eb34db0bab991014a4a3930db411286315eebcdd",
     "recovered_from": "backup:wp_backup/wordpress_site/wordpress/wp-content/uploads/2025/03/a066914781d1dbbc70c4118a57a5516f.webp"
   },
   {
     "url": "https://sawanoalan.mydns.jp/wordpress/wp-content/uploads/cocoon-resources/blog-card-cache/dacbd673a21bf27f283977119fd424f6.",
-    "file": "images/d13e3d8b37e499341eec.jpg",
+    "file": "media/d13e3d8b37e499341eec.jpg",
     "bytes": 98352,
     "sha256": "b9454a8ad199ddc82e94ec7e0fc736d82a317fc5cd57801543243c46796c4aac",
     "recovered_from": "backup:wp_backup/wordpress_site/wordpress/wp-content/uploads/cocoon-resources/blog-card-cache/dacbd673a21bf27f283977119fd424f6."
