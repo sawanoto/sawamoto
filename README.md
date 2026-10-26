@@ -53,6 +53,8 @@ LifeSketchの記事内にも作品を埋め込むときは、記事のメタデ�
 
 記事の途中に複数の写真を置くときは、`gallery_images` に各画像の `src`、`alt`、`caption` を設定し、本文の挿入位置に `<!-- image-gallery -->` を一行で置きます。画像の出典や加工の有無が分かる説明を添えてください。実例は `content/writing/support-center-halloween-craft-2026.md` にあります。
 
+`content/writing/anatomica-chino-ii.md` は写真なしで公開する愛用品の記録です。後から本人のCHINO II写真を追加する場合は、既存の `hero_image` または `gallery_images` を利用できます。手書きの手紙の写真は別途掲載指示があるまで追加しません。掲載する場合も元画像は上書きせず、公開用コピーで店員さんの個人名・署名など個人情報が読み取れないように加工し、公開前に確認してください。未加工の手紙はリポジトリや公開用assetsに置かないでください。
+
 ### 記事を下書きとして保存する
 
 `content/writing/*.md` の冒頭の JSON に `"draft":true` を設定すると、本文を GitHub 上で何度でも修正しながら保存できます。執筆日は `written`（`YYYY-MM-DD`）に記録し、公開日 `published` は公開時に設定します。実例は `content/writing/while-clouds-change-color.md` です。
