@@ -23,8 +23,8 @@
 リンクカードのサムネイル・ファビコン・アフィリエイト装飾画像を除き、説明文とリンクを残しました。
 -->
 
-このホームページ(sawanomap)はWordPressのCocoonテーマを使用して作成しています。  
-サーバーにはGCP（GoogleCloudPlatform）を使用しています。ドメイン名はmydnsを使用しています。  
+このホームページ(sawanomap)はWordPressのCocoonテーマを使用して作成しています。<br>
+サーバーにはGCP（GoogleCloudPlatform）を使用しています。ドメイン名はmydnsを使用しています。<br>
 そのため、ホームページは無料で運用しています。
 
 https://sawanoalan.mydns.jp
