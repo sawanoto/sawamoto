@@ -119,9 +119,13 @@ def related(ids: list[str], collection: dict, section: str) -> str:
     return '<ul class="link-list">' + "".join(links) + "</ul>" if links else ""
 
 
-def page(title: str, description: str, path: str, body: str) -> str:
+def page(title: str, description: str, path: str, body: str, *, article: dict | None = None) -> str:
     full_title = f"{title} | {SITE['name']}" if title else f"{SITE['name']} / {SITE['name_en']}"
     url = ORIGIN + local(path)
+    article_meta = ""
+    if article:
+        article_meta = (f'<meta name="author" content="{e(article.get("author", SITE["name"]))}">'
+                        f'<meta property="article:published_time" content="{e(article.get("published", ""))}">')
     nav = [("Home", ""), ("About", "about/"), ("人生年表", "timeline/"), ("Works", "works/"), ("Writing", "writing/")]
     if BOOKS:
         nav.append(("Books", "books/"))
@@ -150,7 +154,7 @@ def page(title: str, description: str, path: str, body: str) -> str:
   gtag('config', 'G-V2C8N1DQLS');
 </script>
 <meta name="theme-color" content="#f8f7f3"><title>{e(full_title)}</title><meta name="description" content="{e(description)}">
-<link rel="canonical" href="{url}"><meta property="og:type" content="website"><meta property="og:locale" content="ja_JP">
+<link rel="canonical" href="{url}"><meta property="og:type" content="{'article' if article else 'website'}"><meta property="og:locale" content="ja_JP">{article_meta}
 <meta property="og:title" content="{e(full_title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{url}">
 <meta property="og:site_name" content="{e(SITE['name'])}"><link rel="stylesheet" href="{local('assets/style.css')}?v={STYLE_VERSION}">
 <link rel="stylesheet" href="{local('assets/seasonal.css')}"><script src="{local('assets/seasonal.js')}" defer></script>
@@ -575,7 +579,7 @@ def build() -> None:
         back_label = series["title"] if series else 'Writing'
         visit_facts = f'<dl class="work-facts visit-facts"><div><dt>訪問日</dt><dd>{e(item["visit_date"])}</dd></div><div><dt>場所</dt><dd>{e(item["center"])}</dd></div><div><dt>活動</dt><dd>{e(item["activity"])}</dd></div></dl>' if series and all(item.get(x) for x in ("visit_date", "center", "activity")) else ""
         detail = f'<div class="detail-heading"><a class="back" href="{local(back_path)}">← {e(back_label)}</a><p class="meta">{e(item.get("published", ""))}{updated} · {e(item.get("category", ""))} · {e(item.get("period", ""))}</p><h1>{e(item["title"])}</h1><p class="lead">{e(item.get("summary", ""))}</p><ul class="chips">{tags}</ul></div>{hero}{visit_facts}<article class="prose">{body}</article>{related_html}'
-        write(f'writing/{item["slug"]}', page(item.get("seo_title", item["title"]), item.get("meta_description", item.get("summary", "")), f'writing/{item["slug"]}/', detail))
+        write(f'writing/{item["slug"]}', page(item.get("seo_title", item["title"]), item.get("meta_description", item.get("summary", "")), f'writing/{item["slug"]}/', detail, article=item))
 
     write("reading", page("読書遍歴", "読んできた本と、そのときの感想。年代別・ジャンル別に振り返る読書の記録。", "reading/", reading_page()))
 
