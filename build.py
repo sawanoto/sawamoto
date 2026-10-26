@@ -574,7 +574,9 @@ def build() -> None:
         back_path = f'writing/{series["slug"]}/' if series else 'writing/'
         back_label = series["title"] if series else 'Writing'
         visit_facts = f'<dl class="work-facts visit-facts"><div><dt>訪問日</dt><dd>{e(item["visit_date"])}</dd></div><div><dt>場所</dt><dd>{e(item["center"])}</dd></div><div><dt>活動</dt><dd>{e(item["activity"])}</dd></div></dl>' if series and all(item.get(x) for x in ("visit_date", "center", "activity")) else ""
-        detail = f'<div class="detail-heading"><a class="back" href="{local(back_path)}">← {e(back_label)}</a><p class="meta">{e(item.get("published", ""))}{updated} · {e(item.get("category", ""))} · {e(item.get("period", ""))}</p><h1>{e(item["title"])}</h1><p class="lead">{e(item.get("summary", ""))}</p><ul class="chips">{tags}</ul></div>{hero}{visit_facts}<article class="prose">{body}</article>{related_html}'
+        lead = item.get("subtitle", item.get("summary", ""))
+        prose_class = "prose prose-essay" if item.get("subtitle") else "prose"
+        detail = f'<div class="detail-heading"><a class="back" href="{local(back_path)}">← {e(back_label)}</a><p class="meta">{e(item.get("published", ""))}{updated} · {e(item.get("category", ""))} · {e(item.get("period", ""))}</p><h1>{e(item["title"])}</h1><p class="lead">{e(lead)}</p><ul class="chips">{tags}</ul></div>{hero}{visit_facts}<article class="{prose_class}">{body}</article>{related_html}'
         write(f'writing/{item["slug"]}', page(item.get("seo_title", item["title"]), item.get("meta_description", item.get("summary", "")), f'writing/{item["slug"]}/', detail))
 
     write("reading", page("読書遍歴", "読んできた本と、そのときの感想。年代別・ジャンル別に振り返る読書の記録。", "reading/", reading_page()))
