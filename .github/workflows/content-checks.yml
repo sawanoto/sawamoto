@@ -9,6 +9,8 @@ on:
       - content/**
       - tests/test_*.py
       - requirements.txt
+      - scripts/preview-sawanoalan.py
+      - docs/sawanoalan/**
       - .github/workflows/content-checks.yml
 permissions:
   contents: read
@@ -23,3 +25,10 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python -m unittest discover -s tests -p 'test_*.py'
       - run: python build.py
+      - name: Build imported article review
+        run: python scripts/preview-sawanoalan.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sawanoalan-article-review
+          path: .private/sawanoalan-preview/review.html
+          include-hidden-files: true
