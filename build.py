@@ -486,6 +486,11 @@ def build() -> None:
     write("", page("", SITE["description"], "", home))
 
     social = '<ul class="link-list">' + "".join(f'<li>{external(x["label"], x["url"])}</li>' for x in SITE.get("links", [])) + "</ul>" if SITE.get("links") else '<p class="empty">公開中の外部リンクはありません。</p>'
+    about_links = "".join(
+        f'<div class="hobby-group"><h3>{external(link["label"], link["url"])}</h3>'
+        f'<p class="section-copy">{e(link["description"])}</p></div>'
+        for link in SITE.get("about_links", [])
+    )
     likes = "".join(f'<li>{e(x)}</li>' for x in SITE.get("likes", []))
     interests = "".join(f'<li>{e(x)}</li>' for x in SITE.get("interests", []))
     hobby_groups = []
@@ -505,7 +510,8 @@ def build() -> None:
     {hobbies}
     <section class="content-section" id="timeline">{section_head('Timeline', '活動の記録')}<p><a class="button" href="{local('timeline/')}">作品との出会いも、生活も。人生年表を見る →</a></p></section>
     <section class="content-section">{section_head('Elsewhere', '外部リンク')}{about_galleries}{social}</section>
-    {qualifications}'''
+    {qualifications}
+    <section class="content-section" id="external-links">{section_head('Links', '外部リンク')}<div class="hobby-grid">{about_links}</div></section>'''
     write("about", page("About", "澤本優哉のプロフィールと活動の記録。", "about/", about))
 
     write("handcraft-shop", page("澤本家 手しごと商店", "まだ存在しない、家族のお店。手しごと市への架空の出店を想像し、少しずつ試作する創作プロジェクト。", "handcraft-shop/", render_handcraft(CONTENT, e, local, image_url)))

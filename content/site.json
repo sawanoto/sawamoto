@@ -17,6 +17,23 @@
       "url": "https://www.instagram.com/yuyasaw"
     }
   ],
+  "about_links": [
+    {
+      "label": "X（旧Twitter）",
+      "url": "https://x.com/yuyasaw",
+      "description": "日々の発見や制作、暮らしの記録"
+    },
+    {
+      "label": "ふくこしえん",
+      "url": "https://fukushima-oyako-navi.sawasour.chatgpt.site/",
+      "description": "福島の親子向け情報をまとめたWebサイト"
+    },
+    {
+      "label": "OFUSE",
+      "url": "https://ofuse.me/231ff3cc",
+      "description": "活動への応援はこちら"
+    }
+  ],
   "hobbies": [
     {
       "category": "創作・ものづくり",
