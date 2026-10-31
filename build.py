@@ -104,7 +104,7 @@ for series in SERIES:
 for item in WRITING:
     if item.get("series_id") and item["series_id"] not in series_by_id:
         raise ValueError(f"Unknown series ID: {item['series_id']}")
-    if item.get("series_id") and not all(item.get(x) for x in ("visit_date", "center", "activity")):
+    if item.get("series_id") == "support-center-visits" and not all(item.get(x) for x in ("visit_date", "center", "activity")):
         raise ValueError(f"Series article needs visit_date, center and activity: {item['slug']}")
 
 
@@ -554,7 +554,7 @@ def build() -> None:
         entries = sorted((x for x in WRITING if x.get("series_id") == series["id"]), key=lambda x: x.get("visit_date", x.get("published", "")), reverse=True)
         if not entries:
             continue
-        rows = "".join(f'<li><p class="meta">{e(item.get("visit_date", ""))} · {e(item.get("center", ""))}</p><h2><a href="{local(f"writing/{item["slug"]}/")}">{e(item.get("activity", item["title"]))}</a></h2><p>{e(item.get("summary", ""))}</p></li>' for item in entries)
+        rows = "".join(f'<li><p class="meta">{e(item.get("visit_date", item.get("published", "")))} · {e(item.get("center", item.get("category", "")))}</p><h2><a href="{local(f"writing/{item["slug"]}/")}">{e(item.get("activity", item["title"]))}</a></h2><p>{e(item.get("summary", ""))}</p></li>' for item in entries)
         series_body = f'<div class="page-heading"><a class="back" href="{local("writing/")}">← Writing</a><p class="kicker">Series</p><h1>{e(series["title"])}</h1><p>{e(series["description"])}</p></div><ol class="series-list">{rows}</ol>'
         write(f'writing/{series["slug"]}', page(series["title"], series["description"], f'writing/{series["slug"]}/', series_body))
     for item in WRITING:
