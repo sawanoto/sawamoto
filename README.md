@@ -354,8 +354,25 @@ node tests/life-timeline.browser.cjs
 
 ### 記事ファイル名とURL
 
+Codex Cloud を含むエージェント向けの記事作成ルールは、リポジトリ直下の [AGENTS.md](AGENTS.md) に記載しています。新規記事では必ずこの規則に従ってください。
+
 ファイル名は初回公開日を先頭にした `YYYY-MM-DD-slug.md`、公開URLは JSON の `slug` から生成します。既存の `id` と `slug` は改名時にも変更しません。旧形式で `slug` がないファイルは従来どおりファイル名からURLを生成します。重複・不正な公開用 `slug` はビルドエラーになります。
 
 `published` は初回公開日、`updated` は更新日、`visit_date` は訪問日、`period` は出来事・制作時期です。Gitへの追加日やファイル名末尾の体験日から公開日を推測しません。公開日未定の下書きは `written` の執筆日で仮命名し、公開時に `published` を設定してファイル名の日付を変更します。`draft: true` はそのまま維持します。
 
 今回の対応表と確認内容は [記事ファイル名の整理](docs/writing-filenames.md) を参照してください。
+
+新規記事の例：`content/writing/2026-11-01-autumn-walk.md` の冒頭に次の JSON を記載します（説明用の例で、公開データではありません）。
+
+```markdown
+---
+{"id":"autumn-walk","slug":"autumn-walk","title":"秋の散歩","published":"2026-11-01","draft":false,"period":"2026年10月31日","category":"日々の記録","summary":"散歩の記録。","tags":[],"work_ids":[],"article_ids":[]}
+---
+本文
+```
+
+ファイル名の説明部分は半角小文字英数字とハイフンにします。新規記事の `slug` は通常この説明部分と同じ値にし、日付を含むファイル名から独立させます。既存記事ではファイル名の説明部分と `slug` が異なっていても正常です。年や体験日を含む既存 `slug` は変更しません。`slug` は下書き・シリーズも含めて重複させないでください。
+
+公開日未定なら `published` を省略し、`draft: true` と `written` を設定して執筆日で仮命名します。公開時にファイル名の日付を `published` に合わせます。公開済みの記事を下書きに戻す場合は、既存の公開日とファイル名の日付を維持します。編集・改名だけで公開状態を変えないでください。
+
+記事の追加・変更後は `python scripts/check_writing.py`、`python -m unittest discover -s tests -p 'test_*.py'`、`python build.py` を実行します。Windows では既存テストのため `$env:PYTHONUTF8 = "1"` を先に設定してください。PR の「Check content build」でも命名検証を実行し、下書きを含む全記事のファイル名・日付の実在性・公開日または執筆日との一致・明示的な `slug`・重複を確認します。命名検証は公開処理を変更しません。
