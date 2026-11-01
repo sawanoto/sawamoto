@@ -1,6 +1,6 @@
 # 北信学習センター・キッズクラブの記事追加
 
-- 記事：`content/writing/support-center-hokushin-halloween-20261021.md`
+- 記事：`content/writing/2026-10-21-support-center-hokushin-halloween.md`
 - 訪問日・記事日付：2026年10月21日。
 - 公開時のURL：https://sawanoto.github.io/sawamoto/writing/support-center-hokushin-halloween-20261021/
 - カテゴリー「子育て」、既存シリーズ「支援センター巡り」。Writing一覧・シリーズ一覧・トップ・サイトマップへ自動追加。

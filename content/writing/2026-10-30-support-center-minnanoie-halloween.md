@@ -1,5 +1,5 @@
 ---
-{"id":"support-center-minnanoie-halloween-20261030","title":"アットホームな支援センター、みんなの家＠ふくしまでハロウィン制作","published":"2026-10-30","period":"2026年10月30日訪問","category":"支援センター巡り","author":"澤本優哉","tags":["子育て","支援センター巡り","ハロウィン","制作遊び"],"summary":"娘が飾りを選び、私がグルーガンで張り付ける。みんなの家＠ふくしまで親子一緒にオーナメントを作り、いつもとは少し違う雰囲気に触れた一日でした。","series_id":"support-center-visits","visit_date":"2026-10-30","center":"みんなの家＠ふくしま","activity":"ハロウィン制作","play_type":"制作遊び","work_ids":[],"article_ids":[]}
+{"slug":"support-center-minnanoie-halloween-20261030","id":"support-center-minnanoie-halloween-20261030","title":"アットホームな支援センター、みんなの家＠ふくしまでハロウィン制作","published":"2026-10-30","period":"2026年10月30日訪問","category":"支援センター巡り","author":"澤本優哉","tags":["子育て","支援センター巡り","ハロウィン","制作遊び"],"summary":"娘が飾りを選び、私がグルーガンで張り付ける。みんなの家＠ふくしまで親子一緒にオーナメントを作り、いつもとは少し違う雰囲気に触れた一日でした。","series_id":"support-center-visits","visit_date":"2026-10-30","center":"みんなの家＠ふくしま","activity":"ハロウィン制作","play_type":"制作遊び","work_ids":[],"article_ids":[]}
 ---
 ## アットホームな支援センター
 

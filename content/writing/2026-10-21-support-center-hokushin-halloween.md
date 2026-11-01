@@ -1,5 +1,5 @@
 ---
-{"id":"support-center-hokushin-halloween-20261021","title":"20組以上の親子が楽しむハロウィン ― 北信学習センター","published":"2026-10-21","period":"2026年10月21日","category":"子育て","author":"澤本優哉","tags":["子育て","支援センター巡り","キッズクラブ","ハロウィン","制作遊び"],"summary":"北信学習センターで、20組以上の親子が参加するハロウィンパーティー。お菓子袋作りから館内巡り、外の散歩へとつながる活動と、先生方の工夫。","series_id":"support-center-visits","visit_date":"2026-10-21","center":"北信学習センター","activity":"キッズクラブ ハロウィンパーティー","play_type":"制作遊び","work_ids":[],"article_ids":["support-center-halloween-craft-2026"]}
+{"slug":"support-center-hokushin-halloween-20261021","id":"support-center-hokushin-halloween-20261021","title":"20組以上の親子が楽しむハロウィン ― 北信学習センター","published":"2026-10-21","period":"2026年10月21日","category":"子育て","author":"澤本優哉","tags":["子育て","支援センター巡り","キッズクラブ","ハロウィン","制作遊び"],"summary":"北信学習センターで、20組以上の親子が参加するハロウィンパーティー。お菓子袋作りから館内巡り、外の散歩へとつながる活動と、先生方の工夫。","series_id":"support-center-visits","visit_date":"2026-10-21","center":"北信学習センター","activity":"キッズクラブ ハロウィンパーティー","play_type":"制作遊び","work_ids":[],"article_ids":["support-center-halloween-craft-2026"]}
 ---
 ## 仮装した子どもたちが集まる
 

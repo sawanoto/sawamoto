@@ -1,6 +1,6 @@
 # 鳥谷野支援センター訪問記の追加
 
-- 追加記事：`content/writing/support-center-toriyano-20261026.md`
+- 追加記事：`content/writing/2026-10-27-support-center-toriyano.md`
 - 公開後のURL： https://sawanoto.github.io/sawamoto/writing/support-center-toriyano-20261026/
 - 訪問日：2026年10月26日（月）。公開予定日：2026年10月27日（作業時点の日本時間）。実際の公開が別日になった場合は `published` を更新する。
 - カテゴリ：育児記録。連載・タグ：支援センター巡り。著者：澤本優哉。

@@ -1,6 +1,6 @@
 # 日本舞踊体験記事の公開メモ
 
-- 原稿：`content/writing/nihon-buyou-20261018.md`
+- 原稿：`content/writing/2026-10-19-nihon-buyou.md`
 - 公開URL：`https://sawanoto.github.io/sawamoto/writing/nihon-buyou-20261018/`
 - 本人による先生の氏名・本文の修整を反映しています。
 - 本人の依頼によりチラシ画像の掲載を取りやめ、開催概要のみを掲載しています。画像ファイルも公開対象から削除しました。

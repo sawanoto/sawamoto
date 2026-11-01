@@ -1,5 +1,5 @@
 ---
-{"id":"support-center-quick-information-exchange-2026","title":"ほんの数分で情報が行き交う — 支援センターで見た保護者たちの情報交換","published":"2026-10-15","period":"2026年10月14日","category":"支援センター巡り","tags":["保護者同士の交流","情報交換"],"summary":"子どもを見ながら交わす短い立ち話で、入園先の情報が次々に共有されていた。その速さへの驚きと、交流の場について調べたこと。","series_id":"support-center-visits","visit_date":"2026-10-14","center":"さくら子育て支援センター","activity":"保護者同士の情報交換","work_ids":[],"article_ids":["support-center-watching-over-2026"]}
+{"slug":"support-center-quick-information-exchange-2026","id":"support-center-quick-information-exchange-2026","title":"ほんの数分で情報が行き交う — 支援センターで見た保護者たちの情報交換","published":"2026-10-15","period":"2026年10月14日","category":"支援センター巡り","tags":["保護者同士の交流","情報交換"],"summary":"子どもを見ながら交わす短い立ち話で、入園先の情報が次々に共有されていた。その速さへの驚きと、交流の場について調べたこと。","series_id":"support-center-visits","visit_date":"2026-10-14","center":"さくら子育て支援センター","activity":"保護者同士の情報交換","work_ids":[],"article_ids":["support-center-watching-over-2026"]}
 ---
 ## 子どもを見ながらの立ち話
 

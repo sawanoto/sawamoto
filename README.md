@@ -18,14 +18,14 @@ $env:SITE_BASE_PATH = "/"
 
 - サイト名、トップの説明、About、関心、外部リンク：`content/site.json`。説明文は仮文なので自由に更新できます。
 - Aboutの「好きなもの」は `content/site.json` の `likes`、「普段の過ごし方」は `daily_life`、「最近気になっていること」は `interests` で編集します。一覧は配列の項目を追加・削除し、文章は文字列を変更して再ビルドしてください。
-- Aboutの制作物紹介は今回は追加していません。今後は `content/works/` や `content/writing/` の実在する作品・記事と、公開済みの画像を選んで紹介できます。編み物の既存記事は `content/writing/mel-chan-knitted-vest.md`。写真の加工については同記事の注記を維持してください。
+- Aboutの制作物紹介は今回は追加していません。今後は `content/works/` や `content/writing/` の実在する作品・記事と、公開済みの画像を選んで紹介できます。編み物の既存記事は `content/writing/2026-10-14-mel-chan-knitted-vest.md`。写真の加工については同記事の注記を維持してください。
 - Aboutの趣味一覧：`content/site.json` の `hobbies`。各カテゴリの `category` が見出し、`items` が趣味名の配列です。項目を追加・削除し、ビルドすると反映されます。現在・過去の趣味をまとめて掲載します。
 - Aboutの資格・検定一覧：`content/site.json` の `qualifications`。各分野の `category` が見出し、`items` が資格・検定名の配列です。取得済みの項目を追加・修正し、ビルドすると反映されます。
 - 年表：`content/timeline.json`。本人が確認し、公開可能な項目だけ追加してください。各項目の `importance` は `major`（大）、`medium`（中）、`minor`（小）から選びます。`date` は判明している精度で `YYYY` または `YYYY-MM` と記入し、表示文字列は `period` に設定します。`order` は新しい順の表示位置を決め、同じ年月の項目は任意の順序にできます。既存のIDは作品・記事からのリンクにも使われるため変更しないでください。
 - 年表の公開先は `/timeline/` に一本化しました。Aboutには入口だけを表示し、従来の生活年表アンカーも該当する統合記録へ転送します。
 - 年表から記事へリンクする場合は、公開済みの記事の `id` を年表項目の `article_ids` に追加します（例：`"article_ids":["knitting-my-own-time"]`）。作品は `work_ids` に作品IDを追加します。未公開・存在しない記事IDは設定せず、記事公開後に追加してください。
 - 作品：`content/works/` に英数字とハイフンのファイル名で `.md` を追加します。
-- 記事：`content/writing/` に同様の `.md` を追加します。本文は通常の Markdown なので、後の再編集や電子書籍化に再利用できます。
+- 記事：`content/writing/` に `YYYY-MM-DD-slug.md` を追加します。日付は初回公開日 `published` とし、訪問日・制作日とは区別します。URL用の `slug` を冒頭の JSON に必ず明記してください。本文は通常の Markdown なので、後の再編集や電子書籍化に再利用できます。
 - 書籍：`content/books.json` に実在する販売作品を追加すると Books ページとナビゲーションが生成されます。
 
 作品ファイルの例（**この例は公開データには含めません**）：
@@ -49,13 +49,13 @@ LifeSketchの記事内にも作品を埋め込むときは、記事のメタデ�
 
 記事ファイルは `published`（`YYYY-MM-DD`）、任意の制作時期 `period`、`updated`、`tags`、`work_ids` を設定します。作品と年表の `sort` は並び順用の文字列で、確認できる精度の年（`YYYY`）や年月日（`YYYY-MM-DD`）を設定できます。年表の各項目には `id`、`period`、`sort`、`title`、`summary`、`work_ids`、`article_ids` を設定します。各 ID はその種類の中で一意にし、関連 ID は実在する公開コンテンツを指してください。未公開コンテンツへの関連 ID はビルドエラーになります。
 
-手仕事などの写真付き記事では、`period` に制作時期、`published` に公開日を別々に設定できます。公開を確認した画像を `assets/images/` に置き、記事の `thumbnail` と `hero_image` にその `assets/` から始まるパスを設定すると、一覧と記事冒頭に表示されます。`thumbnail_alt`、`hero_image_alt`、`hero_caption` で画像の説明を指定できます。実例は `content/writing/mel-chan-knitted-vest.md` を参照してください。後続の記事へのリンクは、公開された記事ができてから本文に追加してください。
+手仕事などの写真付き記事では、`period` に制作時期、`published` に公開日を別々に設定できます。公開を確認した画像を `assets/images/` に置き、記事の `thumbnail` と `hero_image` にその `assets/` から始まるパスを設定すると、一覧と記事冒頭に表示されます。`thumbnail_alt`、`hero_image_alt`、`hero_caption` で画像の説明を指定できます。実例は `content/writing/2026-10-14-mel-chan-knitted-vest.md` を参照してください。後続の記事へのリンクは、公開された記事ができてから本文に追加してください。
 
-記事の途中に複数の写真を置くときは、`gallery_images` に各画像の `src`、`alt`、`caption` を設定し、本文の挿入位置に `<!-- image-gallery -->` を一行で置きます。画像の出典や加工の有無が分かる説明を添えてください。実例は `content/writing/support-center-halloween-craft-2026.md` にあります。
+記事の途中に複数の写真を置くときは、`gallery_images` に各画像の `src`、`alt`、`caption` を設定し、本文の挿入位置に `<!-- image-gallery -->` を一行で置きます。画像の出典や加工の有無が分かる説明を添えてください。実例は `content/writing/2026-10-14-support-center-halloween-craft.md` にあります。
 
 ### 記事を下書きとして保存する
 
-`content/writing/*.md` の冒頭の JSON に `"draft":true` を設定すると、本文を GitHub 上で何度でも修正しながら保存できます。執筆日は `written`（`YYYY-MM-DD`）に記録し、公開日 `published` は公開時に設定します。実例は `content/writing/while-clouds-change-color.md` です。
+`content/writing/*.md` の冒頭の JSON に `"draft":true` を設定すると、本文を GitHub 上で何度でも修正しながら保存できます。執筆日は `written`（`YYYY-MM-DD`）に記録し、公開日 `published` は公開時に設定します。実例は `content/writing/2026-10-17-while-clouds-change-color.md` です。
 
 ビルドは `draft: true` の記事・作品を読み込み時に除外します。個別ページ、トップ、一覧、シリーズ、関連リンク、サイトマップの公開対象にならず、原稿の Markdown も `dist/` にコピーしません。RSS は現在生成していません。毎回 `dist/` を作り直すため、公開済み記事を下書きに戻した場合も以前のページは残りません。公開コンテンツから下書きの ID を参照するとビルドエラーになります。
 
@@ -67,7 +67,7 @@ LifeSketchの記事内にも作品を埋め込むときは、記事のメタデ�
 
 ### 「支援センター巡り」に記事を追加する
 
-`content/writing/support-center-halloween-craft-2026.md` を手本に、`content/writing/` に新しい Markdown ファイルを作ります。冒頭の JSON に一意の `id`、`series_id: "support-center-visits"`、公開日 `published`、訪問日 `visit_date`（`YYYY-MM-DD`）、本人が確認した呼称の `center`、`activity`、短い `summary` を設定してください。任意の `play_type` には「制作遊び」などの一語を入れられます。記事を追加すると、`/writing/support-center-visits/` のシリーズ一覧に訪問日順で表示されます。シリーズ名や説明は `content/series.json` で変更できます。
+`content/writing/2026-10-14-support-center-halloween-craft.md` を手本に、`content/writing/` に新しい Markdown ファイルを作ります。冒頭の JSON に一意の `id`、`series_id: "support-center-visits"`、公開日 `published`、訪問日 `visit_date`（`YYYY-MM-DD`）、本人が確認した呼称の `center`、`activity`、短い `summary` を設定してください。任意の `play_type` には「制作遊び」などの一語を入れられます。記事を追加すると、`/writing/support-center-visits/` のシリーズ一覧に訪問日順で表示されます。シリーズ名や説明は `content/series.json` で変更できます。
 
 本文には「体験したこと」「子どもの様子」「この遊びには、どんな意味がある？」「参考資料」を分けて記します。資料にない発達効果や、個別の子どもへの効果は断定しません。確認済みの公的資料・論文へのリンクを本文と参考資料に残してください。非公開の訪問メモや写真は公開リポジトリに置かず、掲載が決まった内容だけを追加してください。
 
@@ -351,3 +351,11 @@ node tests/life-timeline.browser.cjs
 表示は作品名、感想・思い出、関連記録や記事・詳細へのリンクを中心にしています。作品ごとのメタ情報表、公開・発売年、確度・媒体・タグ・更新日、年代の推定根拠、年表全体の算出方法、管理用の補足文章はHTMLに出力しません。作品の感想を短縮・生成せず、短文の「当時の思い出」などの小見出しも省いています。趣味のまとまりと生活の項目では、年代の目安を引き続き表示します。
 
 これは `render_timeline()` の表示制御です。元JSON、統合JSON/CSV、年代・並び順・グループ所属・全メタデータは変更しません。原文の管理用注記は `NOTE_PARAGRAPHS` で表示対象だけを選び、作品の公開年などの注記セクションも表示から外します。旧注記のアンカーは空の非表示アンカーとして残し、趣味グループを開くようにするため、既存の転送ページ自体は変更しません。
+
+### 記事ファイル名とURL
+
+ファイル名は初回公開日を先頭にした `YYYY-MM-DD-slug.md`、公開URLは JSON の `slug` から生成します。既存の `id` と `slug` は改名時にも変更しません。旧形式で `slug` がないファイルは従来どおりファイル名からURLを生成します。重複・不正な公開用 `slug` はビルドエラーになります。
+
+`published` は初回公開日、`updated` は更新日、`visit_date` は訪問日、`period` は出来事・制作時期です。Gitへの追加日やファイル名末尾の体験日から公開日を推測しません。公開日未定の下書きは `written` の執筆日で仮命名し、公開時に `published` を設定してファイル名の日付を変更します。`draft: true` はそのまま維持します。
+
+今回の対応表と確認内容は [記事ファイル名の整理](docs/writing-filenames.md) を参照してください。

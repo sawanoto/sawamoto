@@ -1,5 +1,5 @@
 ---
-{"id":"support-center-segami-hokkori-20261029","title":"褒められて伸びる、子どもも大人も","published":"2026-10-29","period":"2026年10月29日訪問","category":"支援センター巡り","author":"澤本優哉","tags":["子育て","支援センター巡り","紐通し"],"summary":"少人数の出張ほっこり広場で、娘は紐通しという新しい遊びに挑戦。父親は先生との会話で刺激をもらい、認められた勢いで帰宅後に大掃除までしてしまった一日の記録。","series_id":"support-center-visits","visit_date":"2026-10-29","center":"瀬上支援センター（会場：北信学習センター）","activity":"出張ほっこり広場","play_type":"紐通し","gallery_images":[],"work_ids":[],"article_ids":[]}
+{"slug":"support-center-segami-hokkori-20261029","id":"support-center-segami-hokkori-20261029","title":"褒められて伸びる、子どもも大人も","published":"2026-10-29","period":"2026年10月29日訪問","category":"支援センター巡り","author":"澤本優哉","tags":["子育て","支援センター巡り","紐通し"],"summary":"少人数の出張ほっこり広場で、娘は紐通しという新しい遊びに挑戦。父親は先生との会話で刺激をもらい、認められた勢いで帰宅後に大掃除までしてしまった一日の記録。","series_id":"support-center-visits","visit_date":"2026-10-29","center":"瀬上支援センター（会場：北信学習センター）","activity":"出張ほっこり広場","play_type":"紐通し","gallery_images":[],"work_ids":[],"article_ids":[]}
 ---
 今日は瀬上支援センターの「出張ほっこり広場」に参加してきました。
 

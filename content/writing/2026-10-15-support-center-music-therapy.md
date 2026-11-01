@@ -1,5 +1,5 @@
 ---
-{"id":"support-center-music-therapy-2026","title":"30分のミュージックセラピーで見えた、子どもと大人の時間の違い","published":"2026-10-15","period":"2026年10月15日","category":"支援センター巡り","tags":["ミュージックセラピー","集団活動","子どもの興味"],"summary":"北信学習センターで、2歳の娘と合同開催のミュージックセラピーへ。みっちゃん先生の手作り教材と表現力、活動を支えた先生方への感謝、娘のやりたい遊びと集団の時間について。","series_id":"support-center-visits","visit_date":"2026-10-15","center":"北信学習センター","activity":"合同ミュージックセラピー（第二部）","play_type":"音楽遊び","work_ids":[],"article_ids":["support-center-watching-over-2026","support-center-halloween-craft-2026"]}
+{"slug":"support-center-music-therapy-2026","id":"support-center-music-therapy-2026","title":"30分のミュージックセラピーで見えた、子どもと大人の時間の違い","published":"2026-10-15","period":"2026年10月15日","category":"支援センター巡り","tags":["ミュージックセラピー","集団活動","子どもの興味"],"summary":"北信学習センターで、2歳の娘と合同開催のミュージックセラピーへ。みっちゃん先生の手作り教材と表現力、活動を支えた先生方への感謝、娘のやりたい遊びと集団の時間について。","series_id":"support-center-visits","visit_date":"2026-10-15","center":"北信学習センター","activity":"合同ミュージックセラピー（第二部）","play_type":"音楽遊び","work_ids":[],"article_ids":["support-center-watching-over-2026","support-center-halloween-craft-2026"]}
 ---
 ## いつもより大勢の親子と
 

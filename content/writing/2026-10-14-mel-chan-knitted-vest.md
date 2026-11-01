@@ -1,5 +1,5 @@
 ---
-{"id":"mel-chan-knitted-vest","title":"はじめて棒針でベストを編む — メルちゃんのベスト制作記録","published":"2026-10-14","period":"2026年10月","category":"手仕事／編み物","tags":["手仕事","編み物","制作記録"],"summary":"自分用のベストを編む前に、メルちゃんのベストを作って練習した記録。","thumbnail":"assets/images/mel-chan-knitted-vest-processed.png","thumbnail_alt":"手編みのベストを着たメルちゃん（イメージ加工あり）","hero_image":"assets/images/mel-chan-knitted-vest-processed.png","hero_image_alt":"手編みのベストを着たメルちゃん（イメージ加工あり）","hero_caption":"手編みのベストを着たメルちゃん（イメージ加工あり）","work_ids":[]}
+{"slug":"mel-chan-knitted-vest","id":"mel-chan-knitted-vest","title":"はじめて棒針でベストを編む — メルちゃんのベスト制作記録","published":"2026-10-14","period":"2026年10月","category":"手仕事／編み物","tags":["手仕事","編み物","制作記録"],"summary":"自分用のベストを編む前に、メルちゃんのベストを作って練習した記録。","thumbnail":"assets/images/mel-chan-knitted-vest-processed.png","thumbnail_alt":"手編みのベストを着たメルちゃん（イメージ加工あり）","hero_image":"assets/images/mel-chan-knitted-vest-processed.png","hero_image_alt":"手編みのベストを着たメルちゃん（イメージ加工あり）","hero_caption":"手編みのベストを着たメルちゃん（イメージ加工あり）","work_ids":[]}
 ---
 ## はじめて棒針でベストを編む
 

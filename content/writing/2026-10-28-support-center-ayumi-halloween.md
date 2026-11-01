@@ -1,5 +1,5 @@
 ---
-{"id":"support-center-ayumi-halloween-20261027","title":"娘ができることを、また見つけた。あゆみ支援センターでのハロウィン制作","published":"2026-10-28","period":"2026年10月27日訪問","category":"子育て","author":"澤本優哉","tags":["子育て","支援センター巡り","ハロウィン","制作遊び"],"summary":"ハロウィン制作でジャック・オー・ランタンのバッグを作りました。毛糸通しやシール貼り、友達とのおもちゃのやり取りを通じて、娘の新しい一面を発見した一日です。","series_id":"support-center-visits","visit_date":"2026-10-27","center":"あゆみ支援センター（あゆみ保育園）","activity":"ハロウィン制作","play_type":"制作遊び","gallery_images":[],"work_ids":[],"article_ids":[]}
+{"slug":"support-center-ayumi-halloween-20261027","id":"support-center-ayumi-halloween-20261027","title":"娘ができることを、また見つけた。あゆみ支援センターでのハロウィン制作","published":"2026-10-28","period":"2026年10月27日訪問","category":"子育て","author":"澤本優哉","tags":["子育て","支援センター巡り","ハロウィン","制作遊び"],"summary":"ハロウィン制作でジャック・オー・ランタンのバッグを作りました。毛糸通しやシール貼り、友達とのおもちゃのやり取りを通じて、娘の新しい一面を発見した一日です。","series_id":"support-center-visits","visit_date":"2026-10-27","center":"あゆみ支援センター（あゆみ保育園）","activity":"ハロウィン制作","play_type":"制作遊び","gallery_images":[],"work_ids":[],"article_ids":[]}
 ---
 2026年10月27日、娘と一緒にあゆみ支援センターを訪問しました。
 

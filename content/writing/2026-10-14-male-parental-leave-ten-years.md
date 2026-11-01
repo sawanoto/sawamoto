@@ -1,5 +1,5 @@
 ---
-{"id":"male-parental-leave-ten-years","title":"10年前と今、男性の育休はどれくらい変わったのか","published":"2026-10-14","period":"2026年10月13日の会話から","category":"生活記録・自分史","tags":["育児休業","自分史"],"summary":"支援センターでの会話をきっかけに、第一子で約9か月、第二子で1年間の育休を選んだ自分の経験と、この10年ほどの統計・制度の変化を振り返る。","article_ids":["support-center-halloween-craft-2026"]}
+{"slug":"male-parental-leave-ten-years","id":"male-parental-leave-ten-years","title":"10年前と今、男性の育休はどれくらい変わったのか","published":"2026-10-14","period":"2026年10月13日の会話から","category":"生活記録・自分史","tags":["育児休業","自分史"],"summary":"支援センターでの会話をきっかけに、第一子で約9か月、第二子で1年間の育休を選んだ自分の経験と、この10年ほどの統計・制度の変化を振り返る。","article_ids":["support-center-halloween-craft-2026"]}
 ---
 ## 支援センターでの会話から
 
