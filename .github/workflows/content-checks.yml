@@ -2,6 +2,9 @@ name: Check content build
 on:
   pull_request:
     paths:
+      - AGENTS.md
+      - README.md
+      - scripts/check_writing.py
       - build.py
       - kigo.py
       - life_timeline.py
@@ -21,5 +24,6 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install -r requirements.txt
+      - run: python scripts/check_writing.py
       - run: python -m unittest discover -s tests -p 'test_*.py'
       - run: python build.py
