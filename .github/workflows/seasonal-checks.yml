@@ -15,6 +15,7 @@ on:
       - tests/games.browser.cjs
 
       - tests/anime.browser.cjs
+      - tests/daily-schedule.browser.cjs
       - scripts/seasonal-preview.py
       - .github/workflows/seasonal-checks.yml
   workflow_dispatch:
@@ -45,6 +46,7 @@ jobs:
       - run: node tests/games.browser.cjs
 
       - run: node tests/anime.browser.cjs
+      - run: node tests/daily-schedule.browser.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
