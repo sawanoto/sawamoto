@@ -157,7 +157,7 @@ def page(title: str, description: str, path: str, body: str) -> str:
 <meta property="og:title" content="{e(full_title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{url}">
 <meta property="og:site_name" content="{e(SITE['name'])}"><link rel="stylesheet" href="{local('assets/style.css')}?v={STYLE_VERSION}">
 <link rel="stylesheet" href="{local('assets/seasonal.css')}"><script src="{local('assets/seasonal.js')}" defer></script>
-{kigo_assets}{timeline_script}{reading_assets}{life_assets}{f'<link rel="stylesheet" href="{local("assets/daily-schedule.css")}">' if path == "writing/childcare-daily-schedule/" else ""}{f'<link rel="stylesheet" href="{local("assets/handcraft-shop.css")}">' if path == "handcraft-shop/" else ""}</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
+{kigo_assets}{timeline_script}{reading_assets}{life_assets}{f'<link rel="stylesheet" href="{local("assets/handcraft-shop.css")}">' if path == "handcraft-shop/" else ""}</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
 <div class="brand-lockup"><a class="brand" href="{local('')}">{e(SITE['name'])}<small>{e(SITE['name_en'])}</small></a>{seasonal_mark}</div>
 <nav aria-label="メインナビゲーション">{nav_html}</nav></header><main id="main">{body}</main>
 <footer class="footer"><span>{e(SITE['name'])} / {e(SITE['name_en'])}</span><a href="#main">上へ戻る ↑</a></footer></div></body></html>'''
