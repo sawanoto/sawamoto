@@ -1,5 +1,5 @@
 ---
-{"id":"omiyamairi-four-generations-20261031","title":"四世代で迎えたお宮参り。","published":"2026-10-31","category":"育児記録","author":"澤本優哉","tags":["育児記録","お宮参り","家族"],"summary":"四世代10人で次女のお宮参り。神社でのご祈祷、ピザパーティー。","work_ids":[],"article_ids":[]}
+{"slug":"omiyamairi-four-generations-20261031","id":"omiyamairi-four-generations-20261031","title":"四世代で迎えたお宮参り。","published":"2026-10-31","category":"育児記録","author":"澤本優哉","tags":["育児記録","お宮参り","家族"],"summary":"四世代10人で次女のお宮参り。神社でのご祈祷、ピザパーティー。","work_ids":[],"article_ids":[]}
 ---
 2026年10月31日、次女のお宮参りに行ってきました。
 
