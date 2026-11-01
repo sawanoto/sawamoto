@@ -240,7 +240,7 @@ class LifeTimelineTests(unittest.TestCase):
             for file in (ROOT / 'content' / folder).glob('*.md'):
                 data = json.loads(file.read_text().split('---', 2)[1])
                 if not data.get('draft', False):
-                    items[data['id']] = dict(data, slug=file.stem)
+                    items[data['id']] = dict(data, slug=data.get("slug", file.stem))
             lookups.append(items)
         return lookups
 

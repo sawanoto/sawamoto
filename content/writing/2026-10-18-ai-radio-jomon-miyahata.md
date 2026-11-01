@@ -1,5 +1,5 @@
 ---
-{"id":"ai-radio-jomon-miyahata-2026","title":"AI縄文人とのラジオ企画","published":"2026-10-18","period":"2026年10月18日","category":"制作記録","tags":["AIラジオ実験記録","ChatGPT","縄文時代"],"summary":"ChatGPTの音声会話で、架空の縄文人「宮畑さん」と約7分間の即興ラジオ。縄文時代の暮らしを聞くはずが、神や科学、自分が声を届けたい理由について考える時間になってしまった。","article_ids":["jomopia-miyahata-acorns"]}
+{"slug":"ai-radio-jomon-miyahata-2026","id":"ai-radio-jomon-miyahata-2026","title":"AI縄文人とのラジオ企画","published":"2026-10-18","period":"2026年10月18日","category":"制作記録","tags":["AIラジオ実験記録","ChatGPT","縄文時代"],"summary":"ChatGPTの音声会話で、架空の縄文人「宮畑さん」と約7分間の即興ラジオ。縄文時代の暮らしを聞くはずが、神や科学、自分が声を届けたい理由について考える時間になってしまった。","article_ids":["jomopia-miyahata-acorns"]}
 ---
 
 ## AIラジオ実験のきっかけ

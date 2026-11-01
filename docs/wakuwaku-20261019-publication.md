@@ -3,7 +3,7 @@
 - 記事URL： https://sawanoto.github.io/sawamoto/writing/support-center-wakuwaku-20261019/
 - 体験日：2026年10月19日。公開日（原稿では2026年10月20日）は、本人の修正完了後、実際の公開日に合わせてメタデータと本文を更新してください。
 - カテゴリは依頼どおり「子育て」、シリーズは既存の「支援センター巡り」。トップの最新記事、Writing一覧、シリーズ一覧、サイトマップに自動追加。
-- 記事ファイル：`content/writing/support-center-wakuwaku-20261019.md`
+- 記事ファイル：`content/writing/2026-10-20-support-center-wakuwaku.md`
 - `build.py`：記事ごとの任意の `seo_title` / `meta_description` に対応。指定がない記事は従来のタイトル・要約を維持。SEOタイトルには既存仕様どおりサイト名が付く。表示見出しは記事タイトルのまま。
 - 内部の記録方法についての推測を削除し、先生一人という記述は利用者が見た範囲に限定。
 

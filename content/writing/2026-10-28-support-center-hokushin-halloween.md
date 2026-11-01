@@ -1,5 +1,5 @@
 ---
-{"id":"support-center-hokushin-halloween-20261028","title":"まる手作り遊園地。北信支援センターのハロウィン","published":"2026-10-28","period":"2026年10月28日","category":"支援センター巡り","author":"澤本優哉","tags":["子育て","支援センター巡り","ハロウィン","制作遊び"],"summary":"娘と訪れた北信支援センターのハロウィンパーティ。遊びを引き出す飾り付けの工夫と、2人の先生の楽しさに触れた記録。","series_id":"support-center-visits","visit_date":"2026-10-28","center":"北信支援センター","activity":"ハロウィンパーティ","play_type":"制作遊び","work_ids":[]}
+{"slug":"support-center-hokushin-halloween-20261028","id":"support-center-hokushin-halloween-20261028","title":"まる手作り遊園地。北信支援センターのハロウィン","published":"2026-10-28","period":"2026年10月28日","category":"支援センター巡り","author":"澤本優哉","tags":["子育て","支援センター巡り","ハロウィン","制作遊び"],"summary":"娘と訪れた北信支援センターのハロウィンパーティ。遊びを引き出す飾り付けの工夫と、2人の先生の楽しさに触れた記録。","series_id":"support-center-visits","visit_date":"2026-10-28","center":"北信支援センター","activity":"ハロウィンパーティ","play_type":"制作遊び","work_ids":[]}
 ---
 10月28日、娘と北信支援センターのハロウィンパーティに参加してきました。
 

@@ -1,5 +1,5 @@
 ---
-{"id":"starting-lifesketch","title":"LifeSketchを始める — マーパンとドレミパイプ","published":"2026-10-16","period":"2026年10月","category":"制作記録","tags":["LifeSketch","p5.js","音"],"summary":"日々の気づきから調べ、試し、作品にする新しいシリーズの最初の実験。","interactive_url":"https://sawanoto.github.io/LifeSketch/001_doremi-pipes/?embed=1","work_ids":["lifesketch-doremi-pipes"]}
+{"slug":"starting-lifesketch","id":"starting-lifesketch","title":"LifeSketchを始める — マーパンとドレミパイプ","published":"2026-10-16","period":"2026年10月","category":"制作記録","tags":["LifeSketch","p5.js","音"],"summary":"日々の気づきから調べ、試し、作品にする新しいシリーズの最初の実験。","interactive_url":"https://sawanoto.github.io/LifeSketch/001_doremi-pipes/?embed=1","work_ids":["lifesketch-doremi-pipes"]}
 ---
 ## 動きを遊ぶところから、日々の気づきへ
 

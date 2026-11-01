@@ -73,11 +73,14 @@ def data_files(folder: str) -> list[dict]:
         if item.get("draft", False):
             continue
         item["body"] = match.group(2)
-        item["slug"] = file.stem
-        if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", item["slug"]):
+        item["slug"] = item.get("slug", file.stem)
+        if not isinstance(item["slug"], str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", item["slug"]):
             raise ValueError(f"Use an ASCII slug: {file}")
         items.append(item)
-    return items
+    if len({item["slug"] for item in items}) != len(items):
+        raise ValueError(f"Duplicate content slug: {folder}")
+    # Preserve existing tie order when source filenames change.
+    return sorted(items, key=lambda item: item["slug"])
 
 
 WORKS = data_files("works")

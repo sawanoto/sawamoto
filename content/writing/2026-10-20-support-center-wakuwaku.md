@@ -1,5 +1,5 @@
 ---
-{"id":"support-center-wakuwaku-20261019","title":"広い体育館と、一人の先生","published":"2026-10-20","period":"2026年10月19日体験","category":"子育て","author":"澤本優哉","tags":["子育て","支援センター","ワクワク広場"],"summary":"豊富な遊具が並ぶワクワク広場で、子どもだけでなく保護者にも目を向ける先生方の仕事と、そのありがたさを感じました。","seo_title":"広い体育館と、一人の先生｜北信支援センターのワクワク広場","meta_description":"福島市の北信支援センター「ワクワク広場」に参加。豊富な遊具と広い施設の背景、そして子どもだけでなく保護者にも気を配る先生方への感謝を綴ります。","series_id":"support-center-visits","visit_date":"2026-10-19","center":"ほくしん子育て支援センター（北信支援センター）","activity":"ワクワク広場","play_type":"自由遊び","work_ids":[],"article_ids":["support-center-watching-over-2026","support-center-quick-information-exchange-2026"]}
+{"slug":"support-center-wakuwaku-20261019","id":"support-center-wakuwaku-20261019","title":"広い体育館と、一人の先生","published":"2026-10-20","period":"2026年10月19日体験","category":"子育て","author":"澤本優哉","tags":["子育て","支援センター","ワクワク広場"],"summary":"豊富な遊具が並ぶワクワク広場で、子どもだけでなく保護者にも目を向ける先生方の仕事と、そのありがたさを感じました。","seo_title":"広い体育館と、一人の先生｜北信支援センターのワクワク広場","meta_description":"福島市の北信支援センター「ワクワク広場」に参加。豊富な遊具と広い施設の背景、そして子どもだけでなく保護者にも気を配る先生方への感謝を綴ります。","series_id":"support-center-visits","visit_date":"2026-10-19","center":"ほくしん子育て支援センター（北信支援センター）","activity":"ワクワク広場","play_type":"自由遊び","work_ids":[],"article_ids":["support-center-watching-over-2026","support-center-quick-information-exchange-2026"]}
 ---
 執筆：澤本優哉  
 公開日：2026年10月20日／体験日：2026年10月19日

@@ -22,7 +22,7 @@ class DraftBuildTests(unittest.TestCase):
             shutil.copytree(ROOT / folder, self.root / folder)
         for name in ("build.py", "kigo.py", "game_history.py", "life_timeline.py", "google9f55b9147023d4f7.html"):
             shutil.copy(ROOT / name, self.root / name)
-        self.article = self.root / "content/writing" / f"{SLUG}.md"
+        self.article = self.root / "content/writing" / "2026-10-17-while-clouds-change-color.md"
         _, metadata, self.body = self.article.read_text().split("---", 2)
         self.metadata = json.loads(metadata)
 
@@ -80,6 +80,39 @@ class DraftBuildTests(unittest.TestCase):
                 result = self.build()
                 self.assertNotEqual(result.returncode, 0)
                 self.assertIn("draft must be a JSON boolean", result.stderr)
+
+    def test_source_rename_preserves_every_generated_file(self):
+        result = self.build()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        out = self.root / "dist"
+        before = {p.relative_to(out): p.read_bytes() for p in out.rglob("*") if p.is_file()}
+        article = self.root / "content/writing/2026-10-19-nihon-buyou.md"
+        article.rename(article.with_name("2099-01-01-another-source-name.md"))
+        result = self.build()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        after = {p.relative_to(out): p.read_bytes() for p in out.rglob("*") if p.is_file()}
+        self.assertEqual(before, after)
+
+    def test_legacy_filename_fallback_preserves_public_url(self):
+        self.metadata.pop("slug")
+        self.metadata.update(draft=False, published="9999-12-31")
+        self.article.rename(self.article.with_name(f"{SLUG}.md"))
+        self.article = self.article.with_name(f"{SLUG}.md")
+        self.save()
+        result = self.build()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertTrue((self.root / "dist/writing" / SLUG / "index.html").exists())
+
+    def test_invalid_and_duplicate_public_slugs_fail(self):
+        self.metadata["draft"] = False
+        for slug in ("../escape", "", None, 123, "support-center-music-therapy-2026"):
+            with self.subTest(slug=slug):
+                self.metadata["slug"] = slug
+                self.save()
+                result = self.build()
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn("Duplicate content slug" if slug == "support-center-music-therapy-2026"
+                              else "Use an ASCII slug", result.stderr)
 
     def test_public_reference_to_draft_fails_build(self):
         work = next((self.root / "content/works").glob("*.md"))

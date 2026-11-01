@@ -1,5 +1,5 @@
 ---
-{"id":"support-center-toriyano-20261026","title":"帰りたくない娘が「売り切れちゃう！」と走り出す。鳥谷野支援センターの先生の技術","published":"2026-10-27","period":"2026年10月26日訪問","category":"育児記録","author":"澤本優哉","tags":["育児記録","支援センター巡り","自由遊び","絵本"],"summary":"鳥谷野支援センターで2歳の娘と過ごした午前中。絵本を囲む交流や保護者との会話、帰りたがらない娘を「売り切れちゃう！」と言って車へ向かわせた先生の声かけを振り返ります。","series_id":"support-center-visits","visit_date":"2026-10-26","center":"鳥谷野支援センター","activity":"自由遊び・絵本","play_type":"自由遊び","work_ids":[],"article_ids":[]}
+{"slug":"support-center-toriyano-20261026","id":"support-center-toriyano-20261026","title":"帰りたくない娘が「売り切れちゃう！」と走り出す。鳥谷野支援センターの先生の技術","published":"2026-10-27","period":"2026年10月26日訪問","category":"育児記録","author":"澤本優哉","tags":["育児記録","支援センター巡り","自由遊び","絵本"],"summary":"鳥谷野支援センターで2歳の娘と過ごした午前中。絵本を囲む交流や保護者との会話、帰りたがらない娘を「売り切れちゃう！」と言って車へ向かわせた先生の声かけを振り返ります。","series_id":"support-center-visits","visit_date":"2026-10-26","center":"鳥谷野支援センター","activity":"自由遊び・絵本","play_type":"自由遊び","work_ids":[],"article_ids":[]}
 ---
 2026年10月26日（月）、2歳の娘と福島市の鳥谷野支援センターを訪問しました。
 

@@ -1,5 +1,5 @@
 ---
-{"id":"while-clouds-change-color","title":"朝日が雲の色を変える合間に","written":"2026-10-17","period":"2026年10月17日","category":"エッセイ・日々の思考","draft":true,"tags":["ランニング","書くこと","言葉"],"summary":"","work_ids":[],"article_ids":[]}
+{"slug":"while-clouds-change-color","id":"while-clouds-change-color","title":"朝日が雲の色を変える合間に","written":"2026-10-17","period":"2026年10月17日","category":"エッセイ・日々の思考","draft":true,"tags":["ランニング","書くこと","言葉"],"summary":"","work_ids":[],"article_ids":[]}
 ---
 朝、走りながら空を見上げる。
 
