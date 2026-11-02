@@ -16,12 +16,16 @@
 <p class="daily-schedule__category">休息</p>
 <h3 id="schedule-heading-0500">起床・コーヒー</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 朝5時に起床します。
 
 まずはコーヒー豆を挽き、ゆっくり丁寧にコーヒーを淹れます。
 
 できあがったコーヒーを持って、パソコンを開きます。
 
+</details>
 </div>
 </section>
 
@@ -31,12 +35,16 @@
 <p class="daily-schedule__category">創作</p>
 <h3 id="schedule-heading-0515">創作①</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 朝最初の創作時間です。
 
 Instagramへの作品投稿や、前日に書いた記事の推敲などを行います。
 
 短い時間ですが、発信や文章の整理に充てています。
 
+</details>
 </div>
 </section>
 
@@ -46,10 +54,14 @@ Instagramへの作品投稿や、前日に書いた記事の推敲などを行�
 <p class="daily-schedule__category">創作</p>
 <h3 id="schedule-heading-0530">創作②</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 引き続き創作の時間です。
 
 最近は編み物をすることが多く、自分用のベストなどを制作しています。
 
+</details>
 </div>
 </section>
 
@@ -59,12 +71,16 @@ Instagramへの作品投稿や、前日に書いた記事の推敲などを行�
 <p class="daily-schedule__category">外出</p>
 <h3 id="schedule-heading-0600">ランニング・散歩</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 外へ出て、ランニングや散歩をします。
 
 ChatGPTと会話しながら、前日の出来事を振り返ったり、新しい記事の構想を整理します。
 
 身体を動かしてリフレッシュしています。
 
+</details>
 </div>
 </section>
 
@@ -74,8 +90,12 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <p class="daily-schedule__category">休息</p>
 <h3 id="schedule-heading-0620">帰宅・切り替え</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 散歩から戻り、次の活動に移ります。
 
+</details>
 </div>
 </section>
 
@@ -85,12 +105,16 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <p class="daily-schedule__category">創作</p>
 <h3 id="schedule-heading-0630">創作③</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 朝3回目の創作時間です。
 
 現在は主に編み物をしています。
 
 朝の創作時間は、私の生活の中でも特に大切にしている時間です。
 
+</details>
 </div>
 </section>
 
@@ -99,6 +123,9 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <div class="daily-schedule__activity" markdown="1">
 <p class="daily-schedule__category">家事</p>
 <h3 id="schedule-heading-0700">家事・料理</h3>
+
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
 
 7時頃、妻の起床時間。
 
@@ -112,6 +139,7 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 
 長女はやはりママとと触れ合いたがるので、私はその時間に料理を進めます。
 
+</details>
 </div>
 </section>
 
@@ -121,10 +149,14 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <p class="daily-schedule__category">食事・家事</p>
 <h3 id="schedule-heading-0800">朝食・ゴミ出し</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 家族で朝食を食べます。
 
 食後は必要に応じてゴミ出し、掃除、毛玉取り、外出準備をします。
 
+</details>
 </div>
 </section>
 
@@ -134,10 +166,14 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <p class="daily-schedule__category">育児・外出</p>
 <h3 id="schedule-heading-0830">家で過ごす・長女と散歩</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 家でゆっくり過ごすこともありますが、早い日は長女と散歩に出かけます。
 
 近所を散歩。幼稚園バスを待つお友達に合ったり、犬の散歩に混ぜてもらったり。
 
+</details>
 </div>
 </section>
 
@@ -147,10 +183,14 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <p class="daily-schedule__category">外出</p>
 <h3 id="schedule-heading-0900">買い物・近所の散歩</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 近隣のお店が開く時間です。
 
 おむつや生活用品を購入したり、長女と散歩を続けたり。
 
+</details>
 </div>
 </section>
 
@@ -160,8 +200,12 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <p class="daily-schedule__category">外出</p>
 <h3 id="schedule-heading-0930">支援センターへ移動</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 車に乗り、地域の子育て支援センターへ向かいます。
 
+</details>
 </div>
 </section>
 
@@ -171,12 +215,16 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <p class="daily-schedule__category">育児</p>
 <h3 id="schedule-heading-1000">支援センター</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 支援センターで長女と遊びます。
 
 制作活動や読み聞かせ、先生やほかの親子との交流など、その日のプログラムに参加します。
 
 終了時間は施設や活動内容によって異なります。
 
+</details>
 </div>
 </section>
 
@@ -186,12 +234,16 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <p class="daily-schedule__category">外出・食事</p>
 <h3 id="schedule-heading-1130">買い物・昼食</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 支援センターを出たあと、すぐに帰宅するとは限りません。
 
 スーパーやコンビニに寄って昼食用のパンを買い、車内やフードコートで長女が食べ終わるのを待ちます。
 
 妻にお菓子を買ったり、花を買って帰ったり。
 
+</details>
 </div>
 </section>
 
@@ -201,12 +253,16 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <p class="daily-schedule__category">育児</p>
 <h3 id="schedule-heading-1200">ドライブ・寝かしつけ</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 昼食を終えたら、車で移動しながら長女の寝かしつけ。
 
 車内で歌を歌ったり、お話を聞いたり。長女が眠ってから帰宅し、ベットに移動します。
 
 早く眠る日もあれば、1時間程度かかる日もあります。
 
+</details>
 </div>
 </section>
 
@@ -216,12 +272,16 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <p class="daily-schedule__category">休息・創作</p>
 <h3 id="schedule-heading-1300">昼食・仮眠・創作</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 帰宅後、私自身が昼食を取ります。
 
 その後、20分以内の短い仮眠を取り、残った時間を創作に充てます。
 
 最近はもっぱら編み物です。
 
+</details>
 </div>
 </section>
 
@@ -231,10 +291,14 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <p class="daily-schedule__category">育児</p>
 <h3 id="schedule-heading-1400">家族で過ごす</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 長女がお昼寝から起きる時間です。
 
 起きたあとは妻とおしゃべりしたり、絵本を読んだり、室内で遊んだりして過ごします。
 
+</details>
 </div>
 </section>
 
@@ -243,6 +307,9 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <div class="daily-schedule__activity" markdown="1">
 <p class="daily-schedule__category">育児・外出</p>
 <h3 id="schedule-heading-1500">おやつ・制作・外出</h3>
+
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
 
 15時はおやつの時間です。
 
@@ -256,6 +323,7 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 
 その日の気分や予定に合わせて、比較的自由に過ごす時間です。
 
+</details>
 </div>
 </section>
 
@@ -265,10 +333,14 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <p class="daily-schedule__category">食事</p>
 <h3 id="schedule-heading-1700">夕食</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 家族で夕食を食べます。
 
 夕食は朝のうちに準備しているため、この時間は食べるだけ。
 
+</details>
 </div>
 </section>
 
@@ -278,8 +350,12 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <p class="daily-schedule__category">育児</p>
 <h3 id="schedule-heading-1800">お風呂①</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 妻と長女がお風呂に入ります。
 
+</details>
 </div>
 </section>
 
@@ -289,8 +365,12 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <p class="daily-schedule__category">育児</p>
 <h3 id="schedule-heading-1830">お風呂②</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 続いて、私が次女をお風呂に入れます。
 
+</details>
 </div>
 </section>
 
@@ -300,10 +380,14 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <p class="daily-schedule__category">家事・育児</p>
 <h3 id="schedule-heading-1900">長女は祖父母宅へ・家事</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 妻と長女は近くの妻の実家へ遊びに行きます。
 
 私は次女とアパートに残り、洗濯物を干したり、掃除機をかけたり。
 
+</details>
 </div>
 </section>
 
@@ -313,10 +397,14 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <p class="daily-schedule__category">創作</p>
 <h3 id="schedule-heading-2000">創作・読書</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 家事が落ち着いたら、制作活動や読書をして過ごします。
 
 朝とは別の、比較的自由な時間です。妻よ、ありがとう。
 
+</details>
 </div>
 </section>
 
@@ -326,10 +414,14 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 <p class="daily-schedule__category">育児・休息</p>
 <h3 id="schedule-heading-2100">帰宅・寝かしつけ・就寝</h3>
 
+<details class="daily-schedule__notes" markdown="1">
+<summary>補足説明</summary>
+
 妻と長女が帰宅し、寝かしつけを始めます。
 
 私も妻も子どもと同じタイミングで眠るため、21時から22時頃には一日が終わります。
 
+</details>
 </div>
 </section>
 </div>

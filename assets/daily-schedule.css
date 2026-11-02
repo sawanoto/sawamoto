@@ -36,3 +36,24 @@
   .daily-schedule .daily-schedule__time { font-size: .85rem; }
   .daily-schedule .daily-schedule__activity { padding-left: .75rem; }
 }
+
+.daily-schedule .daily-schedule__notes { margin-top: .5rem; }
+.daily-schedule .daily-schedule__notes summary {
+  width: fit-content;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  cursor: pointer;
+  list-style: none;
+  font-size: .85rem;
+  color: var(--muted);
+}
+.daily-schedule .daily-schedule__notes summary::-webkit-details-marker { display: none; }
+.daily-schedule .daily-schedule__notes summary::before { content: "+"; }
+.daily-schedule .daily-schedule__notes[open] summary::before { content: "−"; }
+.daily-schedule .daily-schedule__notes summary:hover { color: var(--ink); }
+.daily-schedule .daily-schedule__notes summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
