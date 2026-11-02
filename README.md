@@ -376,3 +376,11 @@ Codex Cloud を含むエージェント向けの記事作成ルールは、リ�
 公開日未定なら `published` を省略し、`draft: true` と `written` を設定して執筆日で仮命名します。公開時にファイル名の日付を `published` に合わせます。公開済みの記事を下書きに戻す場合は、既存の公開日とファイル名の日付を維持します。編集・改名だけで公開状態を変えないでください。
 
 記事の追加・変更後は `python scripts/check_writing.py`、`python -m unittest discover -s tests -p 'test_*.py'`、`python build.py` を実行します。Windows では既存テストのため `$env:PYTHONUTF8 = "1"` を先に設定してください。PR の「Check content build」でも命名検証を実行し、下書きを含む全記事のファイル名・日付の実在性・公開日または執筆日との一致・明示的な `slug`・重複を確認します。命名検証は公開処理を変更しません。
+
+### 育休中の一日の記録
+
+`content/writing/2026-11-02-childcare-daily-schedule.md` は通常の記事として公開します。本文の `.daily-schedule` 内で時間帯ごとに区切り、時刻・所要時間・活動・説明を記載しています。`markdown="1"` は各枠と説明のMarkdown変換に必要です。更新時は時刻の範囲と所要時間も合わせて確認してください。`schedule-HHMM` のIDを各枠に設定しています。
+
+専用の `assets/daily-schedule.css` はこの記事のURLでのみ読み込み、すべてのスタイルを `.daily-schedule` 内に限定しています。枠の高さは説明量に応じて変わるため、所要時間を併記します。リンクや現在時刻の判定などの機能は実装していません。
+
+ビルド後に `node tests/daily-schedule.browser.cjs` で、320/375/768/1280pxでの表示、23時間帯、記事一覧、既存URL、CSSの適用範囲を確認できます（PlaywrightとChromiumが必要、`CHROMIUM_PATH` 指定可）。
