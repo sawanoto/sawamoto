@@ -381,6 +381,6 @@ Codex Cloud を含むエージェント向けの記事作成ルールは、リ�
 
 `content/writing/2026-11-02-childcare-daily-schedule.md` は通常の記事として公開します。本文の `.daily-schedule` 内で時間帯ごとに区切り、時刻・所要時間・活動・説明を記載しています。`markdown="1"` は各枠と説明のMarkdown変換に必要です。更新時は時刻の範囲と所要時間も合わせて確認してください。`schedule-HHMM` のIDを各枠に設定しています。
 
-専用の `assets/daily-schedule.css` はこの記事のURLでのみ読み込み、すべてのスタイルを `.daily-schedule` 内に限定しています。枠の高さは説明量に応じて変わるため、所要時間を併記します。リンクや現在時刻の判定などの機能は実装していません。
+専用の `assets/daily-schedule.css` はこの記事のURLでのみ読み込み、すべてのスタイルを `.daily-schedule` 内に限定しています。補足説明は初期状態で折りたたみ、各枠の「補足説明」から開閉できます。標準のdetails/summaryを使い、JavaScriptなしでもクリック・キーボードで操作できます。枠の高さは説明の開閉に応じて変わるため、所要時間を併記します。リンクや現在時刻の判定などの機能は実装していません。
 
 ビルド後に `node tests/daily-schedule.browser.cjs` で、320/375/768/1280pxでの表示、23時間帯、記事一覧、既存URL、CSSの適用範囲を確認できます（PlaywrightとChromiumが必要、`CHROMIUM_PATH` 指定可）。
