@@ -23,7 +23,7 @@ module.exports = async function check(folder, genre, cases) {
       await page.goto(`https://legacy.test/sawamoto/${folder}/`);
       await page.waitForURL(`**/timeline/?genre=${genre}`);
       await page.waitForFunction(g => document.querySelector(`[data-genre="${g}"]`)?.getAttribute('aria-pressed')==='true',genre);
-      assert.equal(await page.locator('[data-life-item]:visible').count(),data.stats.byEntryGenre[genre]);
+      assert.equal(await page.locator('[data-life-item]:visible').count(),data.entries.filter(entry => entry.recordIds.some(id => data.records.some(record => record.id === id && record.sourceKind === genre))).length);
       assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
     }
     for(const [old,target] of cases) {
