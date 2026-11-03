@@ -28,3 +28,10 @@ python build.py
 ```
 
 Windows では既存テストの文字コードのため `PYTHONUTF8=1` を設定してください。命名検証は下書きも対象にし、PRの既存CIでも実行されます。詳細と改名前後の対応表は README の「記事ファイル名とURL」および `docs/writing-filenames.md` を参照してください。
+
+## 作品写真ギャラリー
+
+- ギャラリーは `content/galleries/<UUID>.json` と `assets/images/galleries/<UUID>.jpg`。記事とは独立させ、既存記事や作品の公開状態・画像を勝手に移行しません。
+- 認証情報は公開HTML・JS・JSONに含めません。投稿サービスは `gallery-service/` のAccess JWT検証を必須にし、初期設定未完了時の拒否を維持します。
+- ギャラリー変更時は上のPython確認に加え、`cd gallery-service && npm ci && npm test && npx wrangler deploy --dry-run`、直下で `node tests/gallery.browser.cjs` を実行します（Playwright/Chromium必要）。
+- `docs/gallery-setup.md` の本人設定・公開写真の注意点と、実際に検証した範囲を維持してください。

@@ -17,7 +17,7 @@ class AnimeBuildTests(unittest.TestCase):
         self.root = Path(temp.name)
         for folder in ('content', 'assets'):
             shutil.copytree(ROOT / folder, self.root / folder)
-        for name in ('build.py', 'kigo.py', 'game_history.py', 'life_timeline.py', 'google9f55b9147023d4f7.html'):
+        for name in ('build.py', 'gallery.py', 'kigo.py', 'game_history.py', 'life_timeline.py', 'google9f55b9147023d4f7.html'):
             shutil.copy(ROOT / name, self.root / name)
         self.data = self.root / 'content/anime.json'
         self.items = json.loads(self.data.read_text())
