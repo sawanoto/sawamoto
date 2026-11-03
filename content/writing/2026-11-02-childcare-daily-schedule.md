@@ -9,15 +9,15 @@
 
 ## 一日のスケジュール
 
+開始時刻は目安です。活動名を押すと補足説明を開けます。
+
 <div class="daily-schedule" markdown="1">
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--rest" id="schedule-0500" aria-labelledby="schedule-heading-0500">
-<div class="daily-schedule__time"><time datetime="05:00">5:00</time><span>〜</span><time datetime="05:15">5:15</time><small>約15分</small></div>
+<div class="daily-schedule__time"><time datetime="05:00">5:00</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">休息</p>
-<h3 id="schedule-heading-0500">起床・コーヒー</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-0500">起床・コーヒー</h3></summary>
+<p class="daily-schedule__category">休息</p>
 
 朝5時に起床します。
 
@@ -30,13 +30,11 @@
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--creative" id="schedule-0515" aria-labelledby="schedule-heading-0515">
-<div class="daily-schedule__time"><time datetime="05:15">5:15</time><span>〜</span><time datetime="05:30">5:30</time><small>約15分</small></div>
+<div class="daily-schedule__time"><time datetime="05:15">5:15</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">創作</p>
-<h3 id="schedule-heading-0515">創作①</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-0515">創作①</h3></summary>
+<p class="daily-schedule__category">創作</p>
 
 朝最初の創作時間です。
 
@@ -49,13 +47,11 @@ Instagramへの作品投稿や、前日に書いた記事の推敲などを行�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--creative" id="schedule-0530" aria-labelledby="schedule-heading-0530">
-<div class="daily-schedule__time"><time datetime="05:30">5:30</time><span>〜</span><time datetime="06:00">6:00</time><small>約30分</small></div>
+<div class="daily-schedule__time"><time datetime="05:30">5:30</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">創作</p>
-<h3 id="schedule-heading-0530">創作②</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-0530">創作②</h3></summary>
+<p class="daily-schedule__category">創作</p>
 
 引き続き創作の時間です。
 
@@ -66,13 +62,11 @@ Instagramへの作品投稿や、前日に書いた記事の推敲などを行�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--outing" id="schedule-0600" aria-labelledby="schedule-heading-0600">
-<div class="daily-schedule__time"><time datetime="06:00">6:00</time><span>〜</span><time datetime="06:20">6:20</time><small>約20分</small></div>
+<div class="daily-schedule__time"><time datetime="06:00">6:00</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">外出</p>
-<h3 id="schedule-heading-0600">ランニング・散歩</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-0600">ランニング・散歩</h3></summary>
+<p class="daily-schedule__category">外出</p>
 
 外へ出て、ランニングや散歩をします。
 
@@ -85,13 +79,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--rest" id="schedule-0620" aria-labelledby="schedule-heading-0620">
-<div class="daily-schedule__time"><time datetime="06:20">6:20</time><span>〜</span><time datetime="06:30">6:30</time><small>約10分</small></div>
+<div class="daily-schedule__time"><time datetime="06:20">6:20</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">休息</p>
-<h3 id="schedule-heading-0620">帰宅・切り替え</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-0620">帰宅・切り替え</h3></summary>
+<p class="daily-schedule__category">休息</p>
 
 散歩から戻り、次の活動に移ります。
 
@@ -100,13 +92,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--creative" id="schedule-0630" aria-labelledby="schedule-heading-0630">
-<div class="daily-schedule__time"><time datetime="06:30">6:30</time><span>〜</span><time datetime="07:00">7:00</time><small>約30分</small></div>
+<div class="daily-schedule__time"><time datetime="06:30">6:30</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">創作</p>
-<h3 id="schedule-heading-0630">創作③</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-0630">創作③</h3></summary>
+<p class="daily-schedule__category">創作</p>
 
 朝3回目の創作時間です。
 
@@ -119,13 +109,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--housework" id="schedule-0700" aria-labelledby="schedule-heading-0700">
-<div class="daily-schedule__time"><time datetime="07:00">7:00</time><span>〜</span><time datetime="08:00">8:00</time><small>約60分</small></div>
+<div class="daily-schedule__time"><time datetime="07:00">7:00</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">家事</p>
-<h3 id="schedule-heading-0700">家事・料理</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-0700">家事・料理</h3></summary>
+<p class="daily-schedule__category">家事</p>
 
 7時頃、妻の起床時間。
 
@@ -144,13 +132,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--housework" id="schedule-0800" aria-labelledby="schedule-heading-0800">
-<div class="daily-schedule__time"><time datetime="08:00">8:00</time><span>〜</span><time datetime="08:30">8:30</time><small>約30分</small></div>
+<div class="daily-schedule__time"><time datetime="08:00">8:00</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">食事・家事</p>
-<h3 id="schedule-heading-0800">朝食・ゴミ出し</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-0800">朝食・ゴミ出し</h3></summary>
+<p class="daily-schedule__category">食事・家事</p>
 
 家族で朝食を食べます。
 
@@ -161,13 +147,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--childcare" id="schedule-0830" aria-labelledby="schedule-heading-0830">
-<div class="daily-schedule__time"><time datetime="08:30">8:30</time><span>〜</span><time datetime="09:00">9:00</time><small>約30分</small></div>
+<div class="daily-schedule__time"><time datetime="08:30">8:30</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">育児・外出</p>
-<h3 id="schedule-heading-0830">家で過ごす・長女と散歩</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-0830">家で過ごす・長女と散歩</h3></summary>
+<p class="daily-schedule__category">育児・外出</p>
 
 家でゆっくり過ごすこともありますが、早い日は長女と散歩に出かけます。
 
@@ -178,13 +162,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--outing" id="schedule-0900" aria-labelledby="schedule-heading-0900">
-<div class="daily-schedule__time"><time datetime="09:00">9:00</time><span>〜</span><time datetime="09:30">9:30</time><small>約30分</small></div>
+<div class="daily-schedule__time"><time datetime="09:00">9:00</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">外出</p>
-<h3 id="schedule-heading-0900">買い物・近所の散歩</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-0900">買い物・近所の散歩</h3></summary>
+<p class="daily-schedule__category">外出</p>
 
 近隣のお店が開く時間です。
 
@@ -195,13 +177,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--outing" id="schedule-0930" aria-labelledby="schedule-heading-0930">
-<div class="daily-schedule__time"><time datetime="09:30">9:30</time><span>〜</span><time datetime="10:00">10:00</time><small>約30分</small></div>
+<div class="daily-schedule__time"><time datetime="09:30">9:30</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">外出</p>
-<h3 id="schedule-heading-0930">支援センターへ移動</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-0930">支援センターへ移動</h3></summary>
+<p class="daily-schedule__category">外出</p>
 
 車に乗り、地域の子育て支援センターへ向かいます。
 
@@ -210,13 +190,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--childcare" id="schedule-1000" aria-labelledby="schedule-heading-1000">
-<div class="daily-schedule__time"><time datetime="10:00">10:00</time><span>〜</span><time datetime="11:30">11:30頃</time><small>約90分</small></div>
+<div class="daily-schedule__time"><time datetime="10:00">10:00</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">育児</p>
-<h3 id="schedule-heading-1000">支援センター</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-1000">支援センター</h3></summary>
+<p class="daily-schedule__category">育児</p>
 
 支援センターで長女と遊びます。
 
@@ -229,13 +207,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--outing" id="schedule-1130" aria-labelledby="schedule-heading-1130">
-<div class="daily-schedule__time"><time datetime="11:30">11:30頃</time><span>〜</span><time datetime="12:00">12:00</time><small>約30分</small></div>
+<div class="daily-schedule__time"><time datetime="11:30">11:30頃</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">外出・食事</p>
-<h3 id="schedule-heading-1130">買い物・昼食</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-1130">買い物・昼食</h3></summary>
+<p class="daily-schedule__category">外出・食事</p>
 
 支援センターを出たあと、すぐに帰宅するとは限りません。
 
@@ -248,13 +224,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--childcare" id="schedule-1200" aria-labelledby="schedule-heading-1200">
-<div class="daily-schedule__time"><time datetime="12:00">12:00</time><span>〜</span><time datetime="13:00">13:00</time><small>約60分</small></div>
+<div class="daily-schedule__time"><time datetime="12:00">12:00</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">育児</p>
-<h3 id="schedule-heading-1200">ドライブ・寝かしつけ</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-1200">ドライブ・寝かしつけ</h3></summary>
+<p class="daily-schedule__category">育児</p>
 
 昼食を終えたら、車で移動しながら長女の寝かしつけ。
 
@@ -267,13 +241,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--rest" id="schedule-1300" aria-labelledby="schedule-heading-1300">
-<div class="daily-schedule__time"><time datetime="13:00">13:00</time><span>〜</span><time datetime="14:00">14:00</time><small>約60分</small></div>
+<div class="daily-schedule__time"><time datetime="13:00">13:00</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">休息・創作</p>
-<h3 id="schedule-heading-1300">昼食・仮眠・創作</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-1300">昼食・仮眠・創作</h3></summary>
+<p class="daily-schedule__category">休息・創作</p>
 
 帰宅後、私自身が昼食を取ります。
 
@@ -286,13 +258,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--childcare" id="schedule-1400" aria-labelledby="schedule-heading-1400">
-<div class="daily-schedule__time"><time datetime="14:00">14:00</time><span>〜</span><time datetime="15:00">15:00</time><small>約60分</small></div>
+<div class="daily-schedule__time"><time datetime="14:00">14:00</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">育児</p>
-<h3 id="schedule-heading-1400">家族で過ごす</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-1400">家族で過ごす</h3></summary>
+<p class="daily-schedule__category">育児</p>
 
 長女がお昼寝から起きる時間です。
 
@@ -303,13 +273,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--childcare" id="schedule-1500" aria-labelledby="schedule-heading-1500">
-<div class="daily-schedule__time"><time datetime="15:00">15:00</time><span>〜</span><time datetime="17:00">17:00</time><small>約120分</small></div>
+<div class="daily-schedule__time"><time datetime="15:00">15:00</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">育児・外出</p>
-<h3 id="schedule-heading-1500">おやつ・制作・外出</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-1500">おやつ・制作・外出</h3></summary>
+<p class="daily-schedule__category">育児・外出</p>
 
 15時はおやつの時間です。
 
@@ -328,13 +296,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--rest" id="schedule-1700" aria-labelledby="schedule-heading-1700">
-<div class="daily-schedule__time"><time datetime="17:00">17:00</time><span>〜</span><time datetime="18:00">18:00</time><small>約60分</small></div>
+<div class="daily-schedule__time"><time datetime="17:00">17:00</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">食事</p>
-<h3 id="schedule-heading-1700">夕食</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-1700">夕食</h3></summary>
+<p class="daily-schedule__category">食事</p>
 
 家族で夕食を食べます。
 
@@ -345,13 +311,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--childcare" id="schedule-1800" aria-labelledby="schedule-heading-1800">
-<div class="daily-schedule__time"><time datetime="18:00">18:00</time><span>〜</span><time datetime="18:30">18:30</time><small>約30分</small></div>
+<div class="daily-schedule__time"><time datetime="18:00">18:00</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">育児</p>
-<h3 id="schedule-heading-1800">お風呂①</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-1800">お風呂①</h3></summary>
+<p class="daily-schedule__category">育児</p>
 
 妻と長女がお風呂に入ります。
 
@@ -360,13 +324,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--childcare" id="schedule-1830" aria-labelledby="schedule-heading-1830">
-<div class="daily-schedule__time"><time datetime="18:30">18:30</time><span>〜</span><time datetime="19:00">19:00</time><small>約30分</small></div>
+<div class="daily-schedule__time"><time datetime="18:30">18:30</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">育児</p>
-<h3 id="schedule-heading-1830">お風呂②</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-1830">お風呂②</h3></summary>
+<p class="daily-schedule__category">育児</p>
 
 続いて、私が次女をお風呂に入れます。
 
@@ -375,13 +337,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--housework" id="schedule-1900" aria-labelledby="schedule-heading-1900">
-<div class="daily-schedule__time"><time datetime="19:00">19:00</time><span>〜</span><time datetime="20:00">20:00</time><small>約60分</small></div>
+<div class="daily-schedule__time"><time datetime="19:00">19:00</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">家事・育児</p>
-<h3 id="schedule-heading-1900">長女は祖父母宅へ・家事</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-1900">長女は祖父母宅へ・家事</h3></summary>
+<p class="daily-schedule__category">家事・育児</p>
 
 妻と長女は近くの妻の実家へ遊びに行きます。
 
@@ -392,13 +352,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--creative" id="schedule-2000" aria-labelledby="schedule-heading-2000">
-<div class="daily-schedule__time"><time datetime="20:00">20:00</time><span>〜</span><time datetime="21:00">21:00</time><small>約60分</small></div>
+<div class="daily-schedule__time"><time datetime="20:00">20:00</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">創作</p>
-<h3 id="schedule-heading-2000">創作・読書</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-2000">創作・読書</h3></summary>
+<p class="daily-schedule__category">創作</p>
 
 家事が落ち着いたら、制作活動や読書をして過ごします。
 
@@ -409,13 +367,11 @@ ChatGPTと会話しながら、前日の出来事を振り返ったり、新し�
 </section>
 
 <section markdown="1" class="daily-schedule__slot daily-schedule__slot--childcare" id="schedule-2100" aria-labelledby="schedule-heading-2100">
-<div class="daily-schedule__time"><time datetime="21:00">21:00</time><span>〜</span><time datetime="22:00">22:00</time><small>約60分</small></div>
+<div class="daily-schedule__time"><time datetime="21:00">21:00</time></div>
 <div class="daily-schedule__activity" markdown="1">
-<p class="daily-schedule__category">育児・休息</p>
-<h3 id="schedule-heading-2100">帰宅・寝かしつけ・就寝</h3>
-
 <details class="daily-schedule__notes" markdown="1">
-<summary>補足説明</summary>
+<summary><h3 id="schedule-heading-2100">帰宅・寝かしつけ・就寝</h3></summary>
+<p class="daily-schedule__category">育児・休息</p>
 
 妻と長女が帰宅し、寝かしつけを始めます。
 
