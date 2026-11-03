@@ -337,6 +337,12 @@ NOTE_PARAGRAPHS = {
 def render_timeline(data, local, e, external, image_url):
     by_id = {record["id"]: record for record in data["records"]}
 
+    def initially_visible(record):
+        return record["sourceKind"] == "life" and record["metadata"].get("importance", "medium") != "minor"
+
+    visible = [record for record in data["records"] if initially_visible(record)]
+    visible_periods = {record["periodId"] for record in visible}
+
     def notes_html(notes, genres=None, opened=False):
         items = []
         for note in notes:
@@ -346,7 +352,7 @@ def render_timeline(data, local, e, external, image_url):
                 # An old note bookmark still opens its enclosing hobby group.
                 items.append(f'<span id="{e(note["id"])}" data-life-note-anchor hidden></span>')
                 continue
-            items.append(f'<details class="life-note" data-life-note data-genres="{e(" ".join(genres or note["genres"]))}" id="{e(note["id"])}" {"open" if opened else ""}><summary>{e(note["title"])}</summary><div class="life-detail">{paragraphs(prose, e)}</div></details>')
+            items.append(f'<details class="life-note" hidden data-life-note data-genres="{e(" ".join(genres or note["genres"]))}" id="{e(note["id"])}" {"open" if opened else ""}><summary>{e(note["title"])}</summary><div class="life-detail">{paragraphs(prose, e)}</div></details>')
         return "".join(items)
 
     def record_html(record):
@@ -362,7 +368,7 @@ def render_timeline(data, local, e, external, image_url):
         badges = " / ".join(data["genres"][g] for g in record["genres"])
         when = f'<span class="life-when">{e(date["label"])}</span>' if top_level and date["confidence"] != "unknown" else ""
         genre_label = f'<span class="life-genre">{e(badges)}</span>' if top_level else ""
-        return f'''<li data-life-record{item_marker} data-genres="{e(" ".join(record["genres"]))}" data-record-id="{e(record["id"])}"><details id="{e(record["id"])}" class="life-event"><summary><span class="life-title">{e(record["title"])}</span>{when}{genre_label}</summary><div class="life-detail">{body}{related}<ul class="link-list">{links}</ul></div></details></li>'''
+        return f'''<li data-life-record{item_marker} {"" if initially_visible(record) else "hidden"} data-category="{e(record["sourceKind"])}" data-importance="{e(record["metadata"].get("importance", "medium"))}" data-genres="{e(" ".join(record["genres"]))}" data-record-id="{e(record["id"])}"><details id="{e(record["id"])}" class="life-event"><summary><span class="life-title">{e(record["title"])}</span>{when}{genre_label}</summary><div class="life-detail">{body}{related}<ul class="link-list">{links}</ul></div></details></li>'''
 
     notes_by_id = {note["id"]: note for note in data["notes"]}
 
@@ -374,7 +380,7 @@ def render_timeline(data, local, e, external, image_url):
         badges = " / ".join(data["genres"][g] for g in entry["genres"])
         note_html = notes_html([notes_by_id[id_] for id_ in entry["noteIds"]], entry["genres"], opened=True)
         works = "".join(record_html(by_id[id_]) for id_ in entry["recordIds"])
-        return f'''<li data-life-item data-entry-kind="hobby" data-genres="{e(" ".join(entry["genres"]))}" data-entry-id="{e(entry["id"])}"><details id="{e(entry["id"])}" class="life-group"><summary><span class="life-title">{e(entry["title"])}</span>{when}<span class="life-genre">{e(badges)}</span><span class="life-group-count" data-group-count>{len(entry["recordIds"])}記録</span></summary><div class="life-group-body">{note_html}<h3 class="life-works-heading">作品とその思い出</h3><ul class="life-works">{works}</ul></div></details></li>'''
+        return f'''<li hidden data-life-item data-entry-kind="hobby" data-genres="{e(" ".join(entry["genres"]))}" data-entry-id="{e(entry["id"])}"><details id="{e(entry["id"])}" class="life-group"><summary><span class="life-title">{e(entry["title"])}</span>{when}<span class="life-genre">{e(badges)}</span><span class="life-group-count" data-group-count>{len(entry["recordIds"])}記録</span></summary><div class="life-group-body">{note_html}<h3 class="life-works-heading">作品とその思い出</h3><ul class="life-works">{works}</ul></div></details></li>'''
 
     sections = []
     for period in data["periods"]:
@@ -382,17 +388,17 @@ def render_timeline(data, local, e, external, image_url):
         if not entries and period != data["periods"][0]:
             continue
         bounds = '' if period["startYear"] is None else f' data-start-year="{period["startYear"]}" data-end-year="{period["endYear"]}"'
-        sections.append(f'<section class="life-year" data-year="{e(period["id"])}"{bounds}><h2 id="year-{e(period["id"])}">{e(period["label"])}</h2><ol>{"".join(entry_html(x) for x in entries)}</ol></section>')
-    buttons = '<button type="button" data-genre="all" aria-pressed="true" aria-controls="life-years">すべて</button>'
-    buttons += "".join(f'<button type="button" data-genre="{e(key)}" aria-pressed="false" aria-controls="life-years">{e(label)}</button>' for key, label in data["genres"].items())
+        sections.append(f'<section class="life-year" data-year="{e(period["id"])}" {"" if period["id"] in visible_periods else "hidden"}{bounds}><h2 id="year-{e(period["id"])}">{e(period["label"])}</h2><ol>{"".join(entry_html(x) for x in entries)}</ol></section>')
+    buttons = "".join(f'<button type="button" data-genre="{e(key)}" aria-pressed="{str(key == "life").lower()}" aria-controls="life-years">{e(label)}</button>' for key, label in data["genres"].items())
+    importance = "".join(f'<button type="button" data-importance-filter="{key}" aria-pressed="{str(key == "medium").lower()}" aria-controls="life-years">{label}</button>' for key, label in [("major", "大のみ"), ("medium", "大・中"), ("all", "すべて（大・中・小）")])
     notes = notes_html([x for x in data["notes"] if not x.get("entryId")])
-    jumps = "".join(f'<li><a href="#year-{e(p["id"])}" data-year-jump="{e(p["id"])}">{e(p["label"])}</a></li>' for p in data["periods"] if any(x["periodId"] == p["id"] for x in data["entries"]))
-    return f'''<div class="page-heading"><p class="kicker">Life timeline / 1995 —</p><h1>人生年表</h1><p>趣味や関心が少しずつ変わっていくこと。生活の出来事と一緒に、これまでを振り返ります。</p></div>
-    <div class="life-timeline"><div class="life-filters" role="group" aria-label="年表のジャンル" hidden>{buttons}</div><p class="life-status" role="status" aria-live="polite" data-timeline-status>すべて：{data["stats"]["entries"]}項目（{data["stats"]["total"]}記録）</p>
-    <p class="timeline-lead">趣味のまとまりを開くと、その頃の思い出と作品が読めます。生活の出来事は一件ずつ残しています。</p>
-    <nav class="life-jumps" aria-label="年表の年代"><ul>{jumps}</ul></nav><noscript><p>すべてのまとまり・出来事を表示しています。JavaScriptが無効でも趣味のまとまりと作品の詳細を順に開けます。ジャンルの切り替えにはJavaScriptが必要です。</p></noscript>
+    jumps = "".join(f'<li {"" if p["id"] in visible_periods else "hidden"}><a href="#year-{e(p["id"])}" data-year-jump="{e(p["id"])}">{e(p["label"])}</a></li>' for p in data["periods"] if any(x["periodId"] == p["id"] for x in data["entries"]))
+    return f'''<div class="page-heading"><p class="kicker">Life timeline / 1995 —</p><h1>History</h1><p>人生の節目や印象に残る経験をたどる人生年表です。アニメ・映画・読書・ゲームの記録は、それぞれのカテゴリーから読めます。</p></div>
+    <div class="life-timeline"><div class="life-filters" role="group" aria-label="年表のジャンル" hidden>{buttons}</div><div class="life-filters life-importance" role="group" aria-label="人生の重要度" hidden>{importance}</div><p class="life-status" role="status" aria-live="polite" data-timeline-status>人生（大・中）：{len(visible)}項目（{len(visible)}記録）</p>
+    <p class="timeline-lead" data-category-description>人生の節目や経験を一件ずつ表示しています。重要度は、大：人生に大きな影響を与えた出来事、中：印象に残る経験や挑戦、小：小さな出来事や日々の記録です。</p>
+    <nav class="life-jumps" aria-label="年表の年代"><ul>{jumps}</ul></nav><noscript><p>人生の「大・中」を表示しています。カテゴリー・重要度の切り替えにはJavaScriptを有効にしてください。</p></noscript>
     <div class="life-years" id="life-years">{"".join(sections)}</div><p class="empty" data-timeline-empty hidden>このジャンルの記録はまだありません。</p>
-    <section class="life-context" aria-labelledby="life-context-heading"><h2 id="life-context-heading">記録の背景</h2>{notes}</section></div>'''
+    <section class="life-context" hidden aria-labelledby="life-context-heading"><h2 id="life-context-heading">記録の背景</h2>{notes}</section></div>'''
 
 
 def migration_manifest(data):

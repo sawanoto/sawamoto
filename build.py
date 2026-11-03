@@ -125,7 +125,7 @@ def related(ids: list[str], collection: dict, section: str) -> str:
 def page(title: str, description: str, path: str, body: str) -> str:
     full_title = f"{title} | {SITE['name']}" if title else f"{SITE['name']} / {SITE['name_en']}"
     url = ORIGIN + local(path)
-    nav = [("Home", ""), ("About", "about/"), ("人生年表", "timeline/"), ("Works", "works/"), ("Writing", "writing/")]
+    nav = [("Home", ""), ("About", "about/"), ("History", "timeline/"), ("Works", "works/"), ("Writing", "writing/")]
     if BOOKS:
         nav.append(("Books", "books/"))
     nav_html = "".join(f'<a href="{local(p)}" {"aria-current=\"page\"" if p == path else ""}>{label}</a>' for label, p in nav)
@@ -485,7 +485,7 @@ def build() -> None:
     <a class="button" href="{local('about/')}">澤本優哉について <span aria-hidden="true">→</span></a></section>
     <section class="home-section">{section_head('01 / Writing', '文章・考察', 'writing/')}<div class="card-grid">{writing_home}</div></section>
     <section class="home-section">{section_head('02 / Works', '制作物', 'works/')}<div class="card-grid">{works_home}</div></section>
-    <section class="home-section">{section_head('03 / Timeline', '人生年表', 'timeline/')}<p class="section-copy">活動の記録は、時期や公開範囲を確認しながら年表に加えていきます。</p></section>{support_html}'''
+    <section class="home-section">{section_head('03 / Timeline', 'History', 'timeline/')}<p class="section-copy">活動の記録は、時期や公開範囲を確認しながら年表に加えていきます。</p></section>{support_html}'''
     write("", page("", SITE["description"], "", home))
 
     social = '<ul class="link-list">' + "".join(f'<li>{external(x["label"], x["url"])}</li>' for x in SITE.get("links", [])) + "</ul>" if SITE.get("links") else '<p class="empty">公開中の外部リンクはありません。</p>'
@@ -599,7 +599,7 @@ def build() -> None:
 
     build_anime()
 
-    write("timeline", page("人生年表", "1995年から現在まで、アニメ・映画・読書・ゲーム・生活を同じ時間軸で振り返る記録。", "timeline/", render_timeline(unified, local, e, external, image_url)))
+    write("timeline", page("History", "人生の節目や経験をたどる人生年表。アニメ・映画・読書・ゲームはカテゴリー別に閲覧できます。", "timeline/", render_timeline(unified, local, e, external, image_url)))
     write_migration_artifacts(OUT / "timeline", unified)
 
     # Use pages actually written to dist, so the sitemap cannot list missing pages.
