@@ -29,12 +29,11 @@ jobs:
         env:
           ACCESS_TEAM: ${{ vars.GALLERY_ACCESS_TEAM }}
           ACCESS_AUD: ${{ vars.GALLERY_ACCESS_AUD }}
-          OWNER_EMAIL: ${{ vars.GALLERY_OWNER_EMAIL }}
         run: |
           node --input-type=module <<'JS'
           import fs from 'node:fs';
           const config=JSON.parse(fs.readFileSync('wrangler.jsonc','utf8'));
-          for (const key of ['ACCESS_TEAM','ACCESS_AUD','OWNER_EMAIL']) config.vars[key]=process.env[key] || '';
+          for (const key of ['ACCESS_TEAM','ACCESS_AUD']) config.vars[key]=process.env[key] || '';
           config.workers_dev=true;
           fs.writeFileSync('wrangler.deploy.json',JSON.stringify(config));
           JS
@@ -42,10 +41,11 @@ jobs:
       - name: Store repository credential only in Worker Secret
         env:
           GALLERY_REPO_TOKEN: ${{ secrets.GALLERY_REPO_TOKEN }}
+          GALLERY_OWNER_EMAIL: ${{ secrets.GALLERY_OWNER_EMAIL }}
         run: |
           node --input-type=module <<'JS' > "$RUNNER_TEMP/gallery-secrets.json"
-          if (!process.env.GALLERY_REPO_TOKEN) throw new Error('GALLERY_REPO_TOKEN is required');
-          process.stdout.write(JSON.stringify({GITHUB_TOKEN:process.env.GALLERY_REPO_TOKEN}));
+          if (!process.env.GALLERY_REPO_TOKEN || !process.env.GALLERY_OWNER_EMAIL) throw new Error('GALLERY_REPO_TOKEN and GALLERY_OWNER_EMAIL are required');
+          process.stdout.write(JSON.stringify({GITHUB_TOKEN:process.env.GALLERY_REPO_TOKEN,OWNER_EMAIL:process.env.GALLERY_OWNER_EMAIL}));
           JS
           npx wrangler secret bulk "$RUNNER_TEMP/gallery-secrets.json" --config wrangler.deploy.json
           rm -f "$RUNNER_TEMP/gallery-secrets.json"

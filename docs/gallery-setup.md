@@ -26,17 +26,17 @@ Cloudflareの利用規約・無料枠・料金条件は登録時に本人が確�
 
 1. **Cloudflareのアカウントを作成**し、Workers & PagesでWorkersサブドメインを設定します。Account IDを控えます。API Tokensで **Edit Cloudflare Workers** を基に、対象アカウントに限定したデプロイ用APIトークンを作成します。アカウントのWorkers Scriptsの編集と、User Detailsの参照など、Wranglerに必要な権限を有効にしてください。カスタムドメインやDNS変更は必須ではありません。
 2. **GitHubの専用トークンを作成**します。Settings → Developer settings → Personal access tokens → Fine-grained tokens。Repository accessは **Only select repositories → sawanoto/sawamotoだけ**、Repository permissionsは **Contents: Read and write**、Metadata: Read。Workflow・Administrationなどの権限は不要です。有効期限を設定し更新日を控えます。このトークンは日常の投稿には入力しません。
-3. [GitHubリポジトリ設定](https://github.com/sawanoto/sawamoto/settings/secrets/actions) → Secrets and variables → Actions → Repository secretsに次の3件を登録します。
+3. [GitHubリポジトリ設定](https://github.com/sawanoto/sawamoto/settings/secrets/actions) → Secrets and variables → Actions → Repository secretsに次の4件を登録します。
    - `CLOUDFLARE_API_TOKEN`: 手順1のデプロイ用トークン
    - `CLOUDFLARE_ACCOUNT_ID`: 手順1のAccount ID
    - `GALLERY_REPO_TOKEN`: 手順2のGitHub専用トークン
+   - `GALLERY_OWNER_EMAIL`: 投稿する本人のメールアドレス（手順5のAccessポリシーにも同じ値を設定）
 4. [Actions](https://github.com/sawanoto/sawamoto/actions/workflows/gallery-service.yml) → **Deploy private gallery service** → Run workflow → mainを選択して実行します。初回は認証変数が空なので **503（初期設定待ち）が正常** です。Workerのデプロイ先URLはCloudflareのWorkers & Pages → sawamoto-galleryで確認できます。
 5. **Cloudflare Zero Trust / Accessを設定**します。Workers & Pages → sawamoto-gallery → Settings → Domains & Routesで **workers.devのAccess保護を有効** にします。必要ならZero Trustチームを作成し、Access → ApplicationsでこのWorkerの **ホスト全体（パスを限定しない）** を対象にSelf-hostedアプリを作成してください。`/api/*`も必ず対象に含めます。AllowポリシーのIncludeは **Emails → 自分のメールアドレス1件だけ**。Everyone、Bypass、Service Authは使いません。Login methodsにOne-time PINを有効にし、セッション有効期間は24時間などにします。WorkersのプレビューURLは構成で無効にしています。
 6. Accessアプリの **Application Audience (AUD)** と、Zero Trustの **team name**（`https://<team>.cloudflareaccess.com` の `<team>` 部分）を確認します。[GitHub ActionsのVariables](https://github.com/sawanoto/sawamoto/settings/variables/actions) に次を登録します。
    - `GALLERY_ACCESS_TEAM`: team nameのみ（URL全体ではありません）
    - `GALLERY_ACCESS_AUD`: アプリのAUD
-   - `GALLERY_OWNER_EMAIL`: Allowに登録した本人のメールアドレスと完全に同じ値
-7. 手順4のWorkflowをもう一度実行します。投稿用URLをスマートフォンで開き、本人メールに届くコードでログインします。ホーム画面への追加やブックマークを推奨します。メールアドレスなどの変数はGitHub VariablesとWorker設定に保存され、公開ページやソースには埋め込みません。
+7. 手順4のWorkflowをもう一度実行します。投稿用URLをスマートフォンで開き、本人メールに届くコードでログインします。ホーム画面への追加やブックマークを推奨します。本人メールとGitHubトークンはGitHub Actions SecretからWorker Secretへ登録し、デプロイの公開ログにも値を出しません。チーム名とAUDだけをVariablesとして使います。ブラウザには有効期限付きのAccessセッションCookieだけを持たせ、GitHubトークンは渡しません。
 8. **利用開始前に確認**します。プライベートブラウズでは認証が必要なこと、別のメールでは入れないことを確認し、個人情報のないテスト写真を1枚投稿します。Actionsの **Deploy GitHub Pages** 成功後、対応する公開ギャラリーに表示されることを確認します。作品編集・削除も一度試してください。Accessの設定を変えた後はこの確認を繰り返します。
 
 CloudflareとGitHubのアカウントは本人が管理してください。こちらから登録・承認やSecret値の代理入力は行っていません。mainに保護ルールがあり直接コミットできない場合は保存時にエラーになります。保護を緩める前に運用を検討してください（投稿用PRの自動マージは未実装）。

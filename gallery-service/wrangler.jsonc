@@ -8,7 +8,6 @@
   "vars": {
     "ACCESS_TEAM": "",
     "ACCESS_AUD": "",
-    "OWNER_EMAIL": "",
     "REPO": "sawanoto/sawamoto",
     "BRANCH": "main"
   }
