@@ -1,11 +1,11 @@
-/* Article-only vertical schedule. Time ranges remain explicit at every width. */
+/* Article-only vertical schedule. Start times and activity names stay visible at every width. */
 .prose .daily-schedule { margin: 2rem 0 3rem; }
 .daily-schedule .daily-schedule__slot {
   --slot-color: #79766e;
   display: grid;
-  grid-template-columns: 6rem minmax(0, 1fr);
+  grid-template-columns: 4.5rem minmax(0, 1fr);
   gap: 1rem;
-  padding: 1.3rem 0;
+  padding: .3rem 0;
   border-bottom: 1px solid var(--line);
 }
 .daily-schedule .daily-schedule__slot--creative { --slot-color: #7c7290; }
@@ -17,10 +17,10 @@
   flex-direction: column;
   align-items: flex-start;
   font-variant-numeric: tabular-nums;
-  line-height: 1.5;
+  line-height: 1.6;
   font-weight: 600;
+  padding-top: .6rem;
 }
-.daily-schedule__time small { margin-top: .5rem; font-weight: 400; color: var(--muted); }
 .daily-schedule .daily-schedule__activity {
   min-width: 0;
   border-left: 3px solid var(--slot-color);
@@ -28,18 +28,18 @@
   overflow-wrap: anywhere;
 }
 .daily-schedule .daily-schedule__category { margin: 0 0 .35rem; font-size: .75rem; color: var(--muted); }
-.daily-schedule .daily-schedule__activity h3 { margin: 0 0 .8rem; font-size: 1.1rem; line-height: 1.6; }
+.daily-schedule .daily-schedule__activity h3 { display: inline; margin: 0; font-size: 1rem; line-height: 1.6; }
 .daily-schedule .daily-schedule__activity p { margin: .65rem 0; }
 .daily-schedule .daily-schedule__activity p:last-child { margin-bottom: 0; }
 @media (max-width: 480px) {
-  .daily-schedule .daily-schedule__slot { grid-template-columns: 4.2rem minmax(0, 1fr); gap: .6rem; }
+  .daily-schedule .daily-schedule__slot { grid-template-columns: 3.4rem minmax(0, 1fr); gap: .6rem; }
   .daily-schedule .daily-schedule__time { font-size: .85rem; }
   .daily-schedule .daily-schedule__activity { padding-left: .75rem; }
 }
 
-.daily-schedule .daily-schedule__notes { margin-top: .5rem; }
+.daily-schedule .daily-schedule__notes { margin: 0; }
 .daily-schedule .daily-schedule__notes summary {
-  width: fit-content;
+  width: 100%;
   min-height: 44px;
   display: flex;
   align-items: center;
@@ -47,11 +47,11 @@
   cursor: pointer;
   list-style: none;
   font-size: .85rem;
-  color: var(--muted);
+  color: var(--ink);
 }
 .daily-schedule .daily-schedule__notes summary::-webkit-details-marker { display: none; }
-.daily-schedule .daily-schedule__notes summary::before { content: "+"; }
-.daily-schedule .daily-schedule__notes[open] summary::before { content: "−"; }
+.daily-schedule .daily-schedule__notes summary::after { content: "+"; margin-left: auto; flex-shrink: 0; }
+.daily-schedule .daily-schedule__notes[open] summary::after { content: "−"; }
 .daily-schedule .daily-schedule__notes summary:hover { color: var(--ink); }
 .daily-schedule .daily-schedule__notes summary:focus-visible {
   outline: 2px solid var(--accent);
