@@ -646,6 +646,185 @@
       "dateFrom": [],
       "evidenceIds": [],
       "fallbackFor": "movie"
+    },
+    {
+      "id": "music-elementary",
+      "title": "小学生：家の車やアニメで音楽に触れる",
+      "recordIds": [
+        "music-elementary-01",
+        "music-elementary-02",
+        "music-elementary-03",
+        "music-elementary-04"
+      ],
+      "dateFrom": [
+        "music-elementary-01",
+        "music-elementary-02",
+        "music-elementary-03",
+        "music-elementary-04"
+      ],
+      "evidenceIds": [
+        "music-elementary-01",
+        "music-elementary-02",
+        "music-elementary-03",
+        "music-elementary-04"
+      ]
+    },
+    {
+      "id": "music-middle",
+      "title": "中学生：友人やカラオケ、ネットを通じて聴く",
+      "recordIds": [
+        "music-middle-01",
+        "music-middle-02",
+        "music-middle-03",
+        "music-middle-04",
+        "music-middle-05",
+        "music-middle-06"
+      ],
+      "dateFrom": [
+        "music-middle-01",
+        "music-middle-02",
+        "music-middle-03",
+        "music-middle-04",
+        "music-middle-05",
+        "music-middle-06"
+      ],
+      "evidenceIds": [
+        "music-middle-01",
+        "music-middle-02",
+        "music-middle-03",
+        "music-middle-04",
+        "music-middle-05",
+        "music-middle-06"
+      ]
+    },
+    {
+      "id": "music-high",
+      "title": "高校生：ボーカロイドと勉強中のクラシック",
+      "recordIds": [
+        "music-high-01",
+        "music-high-02"
+      ],
+      "dateFrom": [
+        "music-high-01",
+        "music-high-02"
+      ],
+      "evidenceIds": [
+        "music-high-01",
+        "music-high-02"
+      ]
+    },
+    {
+      "id": "music-university",
+      "title": "大学生：妻の影響でバンドを聴き、ライブへ",
+      "recordIds": [
+        "music-university-01",
+        "music-university-02",
+        "music-university-03",
+        "music-university-04",
+        "music-university-05",
+        "music-university-06",
+        "music-university-07",
+        "music-university-08"
+      ],
+      "dateFrom": [
+        "music-university-01",
+        "music-university-02",
+        "music-university-03",
+        "music-university-04",
+        "music-university-05",
+        "music-university-06",
+        "music-university-07",
+        "music-university-08"
+      ],
+      "evidenceIds": [
+        "music-university-01",
+        "music-university-02",
+        "music-university-03",
+        "music-university-04",
+        "music-university-05",
+        "music-university-06",
+        "music-university-07",
+        "music-university-08"
+      ]
+    },
+    {
+      "id": "music-early-work",
+      "title": "社会人前半：音楽と移動中の音声読書",
+      "recordIds": [
+        "music-early-work-01",
+        "music-early-work-02",
+        "music-early-work-03",
+        "music-early-work-04"
+      ],
+      "dateFrom": [
+        "music-early-work-01",
+        "music-early-work-02",
+        "music-early-work-03",
+        "music-early-work-04"
+      ],
+      "evidenceIds": [
+        "music-early-work-01",
+        "music-early-work-02",
+        "music-early-work-03",
+        "music-early-work-04"
+      ]
+    },
+    {
+      "id": "music-audiobooks",
+      "title": "音楽を聴く時間が音声読書に置き換わる",
+      "recordIds": [
+        "music-audiobooks-01"
+      ],
+      "dateFrom": [
+        "music-audiobooks-01"
+      ],
+      "evidenceIds": [
+        "music-audiobooks-01"
+      ]
+    },
+    {
+      "id": "music-musicsketch",
+      "title": "MusicSketchの制作とクラシックとの出会い",
+      "recordIds": [
+        "music-musicsketch-01",
+        "music-musicsketch-02",
+        "music-musicsketch-03",
+        "music-musicsketch-04"
+      ],
+      "dateFrom": [
+        "music-musicsketch-01",
+        "music-musicsketch-02",
+        "music-musicsketch-03",
+        "music-musicsketch-04"
+      ],
+      "evidenceIds": [
+        "music-musicsketch-01",
+        "music-musicsketch-02",
+        "music-musicsketch-03",
+        "music-musicsketch-04"
+      ]
+    },
+    {
+      "id": "music-present",
+      "title": "現在：編み物をしながらクラシックを楽しむ",
+      "recordIds": [
+        "music-present-01",
+        "music-present-02"
+      ],
+      "dateFrom": [
+        "music-present-01",
+        "music-present-02"
+      ],
+      "evidenceIds": [
+        "music-present-01",
+        "music-present-02"
+      ]
+    },
+    {
+      "id": "other-music",
+      "title": "その他の音楽の記録",
+      "recordIds": [],
+      "fallbackFor": "music"
     }
   ]
 }

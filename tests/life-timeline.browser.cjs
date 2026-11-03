@@ -58,7 +58,7 @@ const serve = route => {
         await page.locator(`[data-importance-filter="${level}"]`).click();
         await check('life',level);
       }
-      for (const category of ['anime','movie','reading','game','life']) {
+      for (const category of ['anime','movie','reading','game','music','life']) {
         await page.locator(`[data-genre="${category}"]`).click();
         await check(category);
         assert.match(await page.locator('[data-category-description]').textContent(), /記録|人生/);
@@ -94,14 +94,16 @@ const serve = route => {
     await touchContext.route('**/*',serve);
     const touch = await touchContext.newPage();
     await touch.goto(`${origin}/sawamoto/timeline/`);
-    await touch.locator('[data-genre="movie"]').tap();
-    assert.equal(await touch.locator('[data-genre="movie"]').getAttribute('aria-pressed'),'true');
+    await touch.locator('[data-genre="music"]').tap();
+    assert.equal(await touch.locator('[data-genre="music"]').getAttribute('aria-pressed'),'true');
     await touchContext.close();
     fs.mkdirSync(path.resolve(__dirname,'../.private/timeline'),{recursive:true});
     for (const width of [375,1280]) {
       await page.setViewportSize({width,height:900});
       await page.goto(`${origin}/sawamoto/timeline/`);
-      await page.screenshot({path:path.resolve(__dirname,`../.private/timeline/history-${width}.png`)});
+      await page.locator('[data-genre="music"]').click();
+      await page.locator('#hobby-music-elementary > summary').click();
+      await page.screenshot({path:path.resolve(__dirname,`../.private/timeline/music-${width}.png`)});
     }
     assert.deepEqual(errors,[]);
     console.log('History: category isolation/counts, importance, year jumps, legacy and related links, keyboard/touch, no-JS initial view, 320/375/768/1280px passed.');

@@ -1,6 +1,6 @@
 {
   "startYear": 1995,
-  "genres": {"life": "人生", "anime": "アニメ", "movie": "映画", "reading": "読書", "game": "ゲーム"},
+  "genres": {"life": "人生", "anime": "アニメ", "movie": "映画", "reading": "読書", "game": "ゲーム", "music": "音楽"},
   "periods": [
     {"id": "1995-2007", "startYear": 1995, "endYear": 2007, "label": "1995–2007年"},
     {"id": "2008-2010", "startYear": 2008, "endYear": 2010, "label": "2008–2010年頃"},
