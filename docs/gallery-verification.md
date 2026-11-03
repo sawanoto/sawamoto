@@ -20,7 +20,9 @@
 | 依存パッケージ | `npm audit --omit=dev` 既知の脆弱性0件（検証時点） |
 | 既存の年表 | `tests/life-timeline.browser.cjs` 成功。320/375/768/1280px、関連リンク、旧URL、タッチ／キーボードなど |
 | 既存季節テーマ | `node --test tests/seasonal.test.cjs` 5件成功 |
-| 既存の一日の記録 | `tests/daily-schedule.browser.cjs` は50行目のsummaryクリック待ちでタイムアウト。変更前238077aの隔離コピーでも同じ50行目で再現。成功扱いにしていない |
+| 既存の一日の記録 | `tests/daily-schedule.browser.cjs` は50行目のsummaryクリック待ちでタイムアウト。変更前238077aの隔離コピーでも同じ50行目で再現。ローカルでは成功扱いにしていない。GitHub Actionsの既存デザインCIでは当該テストを含めて成功（下記） |
+
+GitHub Actionsでも [ギャラリー専用CI](https://github.com/sawanoto/sawamoto/actions/runs/41721265362)、[記事・全体ビルドCI](https://github.com/sawanoto/sawamoto/actions/runs/41721264957)、[既存デザインCI](https://github.com/sawanoto/sawamoto/actions/runs/41721264969) が成功しました。デザインCIは季節テーマ・季語・読書・年表・ゲーム・アニメ・一日の記録のブラウザ確認を含みます。
 
 ## 本人の初期設定後に必要な確認
 
