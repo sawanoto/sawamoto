@@ -5,6 +5,7 @@
 .life-filters button{font:inherit;font-size:.88rem;min-height:44px;padding:.4rem 1rem;border:1px solid var(--line);border-radius:2rem;background:transparent;color:var(--ink);cursor:pointer}
 .life-filters button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
 .life-filters button:focus-visible,.life-timeline summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.life-importance{margin-top:1rem}
 .life-status,.timeline-lead{font-size:.82rem;color:var(--muted)}
 .life-timeline summary{cursor:pointer;min-height:44px;padding:.6rem .2rem;overflow-wrap:anywhere}
 .life-jumps ul{list-style:none;margin:1rem 0;padding:0;display:flex;flex-wrap:wrap;gap:.25rem 1rem;font-size:.8rem}
