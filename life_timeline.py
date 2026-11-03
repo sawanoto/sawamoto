@@ -11,7 +11,7 @@ import re
 
 CONFIDENCE = {"confirmed": "確定", "estimated": "推定", "unknown": "不明"}
 STAGES = {"幼少期": "childhood", "小学生": "elementary", "中学生": "middle", "高校生": "high", "大学生": "university", "社会人": "adult"}
-FILES = {"anime": "anime.json", "movie": "movie-history.json", "reading": "reading.json", "game": "games.json", "life": "timeline.json"}
+FILES = {"anime": "anime.json", "movie": "movie-history.json", "reading": "reading.json", "game": "games.json", "life": "timeline.json", "music": "music.json"}
 
 
 def read_json(content, name):
@@ -65,7 +65,7 @@ def record_date(kind, raw, settings, current_year):
         value.setdefault("label", f"{start}–{end}年頃")
         value.setdefault("ranges", [{"startYear": start, "endYear": end}])
         return value
-    if kind == "life":
+    if kind in {"life", "music"}:
         return explicit_date(raw.get("date") or raw.get("period", "")) or unknown_date(raw.get("period"))
     if kind == "anime":
         if raw.get("watchedYear") is not None:
@@ -160,6 +160,11 @@ def project_entries(content, records, notes, settings, place):
                     "basis": "このまとまりに関する記録の体験時期からまとめた目安です。作品ごとの体験年を確定するものではありません。",
                     "ranges": [{"startYear": a, "endYear": b} for a, b in spans]}
         genres = [genre for genre in settings["genres"] if any(genre in by_id[id_]["genres"] for id_ in member_ids)]
+        if genres == ["music"] and dates:
+            age_start, age_end = start - settings["startYear"], end - settings["startYear"]
+            ages = str(age_start) if age_start == age_end else f"{age_start}〜{age_end}"
+            years = f"{start}年" if start == end else f"{start}〜{end}年"
+            date["label"] = f"{years}{'' if start == end and all(d['confidence'] == 'confirmed' for d in dates) else '頃'}（年齢の目安：{ages}歳）"
         group = {"id": f"hobby-{key}", "kind": "hobby", "title": definition["title"], "recordIds": member_ids,
                  "noteIds": note_ids, "genres": genres, "date": date, "periodId": place(date),
                  "dateFrom": refs, "evidenceIds": evidence, "isFallback": bool(fallback),
@@ -267,6 +272,8 @@ def load_timeline(content, works, articles, current_year=None):
                     if mapped is None:
                         raise ValueError(f"Unknown movie/reading alias: {alias}")
                     record["relatedIds"] = [f"reading-{mapped}"]
+            elif kind == "music":
+                record["sections"] = [{"title": "思い出", "paragraphs": [raw["summary"]]}]
             else:
                 record["sections"] = [{"title": "記録", "paragraphs": [raw.get("summary", "")]}]
                 for key, collection, section in (("work_ids", works, "works"), ("article_ids", articles, "writing")):
@@ -393,7 +400,7 @@ def render_timeline(data, local, e, external, image_url):
     importance = "".join(f'<button type="button" data-importance-filter="{key}" aria-pressed="{str(key == "medium").lower()}" aria-controls="life-years">{label}</button>' for key, label in [("major", "大のみ"), ("medium", "大・中"), ("all", "すべて（大・中・小）")])
     notes = notes_html([x for x in data["notes"] if not x.get("entryId")])
     jumps = "".join(f'<li {"" if p["id"] in visible_periods else "hidden"}><a href="#year-{e(p["id"])}" data-year-jump="{e(p["id"])}">{e(p["label"])}</a></li>' for p in data["periods"] if any(x["periodId"] == p["id"] for x in data["entries"]))
-    return f'''<div class="page-heading"><p class="kicker">Life timeline / 1995 —</p><h1>History</h1><p>人生の節目や印象に残る経験をたどる人生年表です。アニメ・映画・読書・ゲームの記録は、それぞれのカテゴリーから読めます。</p></div>
+    return f'''<div class="page-heading"><p class="kicker">Life timeline / 1995 —</p><h1>History</h1><p>人生の節目や印象に残る経験をたどる人生年表です。アニメ・映画・読書・ゲーム・音楽の記録は、それぞれのカテゴリーから読めます。</p></div>
     <div class="life-timeline"><div class="life-filters" role="group" aria-label="年表のジャンル" hidden>{buttons}</div><div class="life-filters life-importance" role="group" aria-label="人生の重要度" hidden>{importance}</div><p class="life-status" role="status" aria-live="polite" data-timeline-status>人生（大・中）：{len(visible)}項目（{len(visible)}記録）</p>
     <p class="timeline-lead" data-category-description>人生の節目や経験を一件ずつ表示しています。重要度は、大：人生に大きな影響を与えた出来事、中：印象に残る経験や挑戦、小：小さな出来事や日々の記録です。</p>
     <nav class="life-jumps" aria-label="年表の年代"><ul>{jumps}</ul></nav><noscript><p>人生の「大・中」を表示しています。カテゴリー・重要度の切り替えにはJavaScriptを有効にしてください。</p></noscript>

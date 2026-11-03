@@ -232,6 +232,19 @@ class LifeTimelineTests(unittest.TestCase):
             self.assertIn('全文\n\n二段落目', output)
             self.assertIn('data-genre="music"', output)
 
+    def test_music_experience_dates_and_age_labels(self):
+        music = [r for r in self.records.values() if r['sourceKind'] == 'music']
+        self.assertEqual(len(music), 32)
+        groups = [g for g in self.data['groups'] if g['genres'] == ['music']]
+        self.assertEqual(len(groups), 9)
+        dated = [g for g in self.data['entries'] if g['genres'] == ['music'] and g['date']['startYear'] is not None]
+        self.assertEqual([g['date']['startYear'] for g in dated], [2002, 2008, 2011, 2014, 2018, 2023, 2025, 2026])
+        self.assertIn('2002〜2008年頃（年齢の目安：7〜13歳）', (ROOT / 'dist/timeline/index.html').read_text())
+        self.assertIn('2026年（年齢の目安：31歳）', (ROOT / 'dist/timeline/index.html').read_text())
+        self.assertEqual(self.records['music-early-work-04']['date']['startYear'], 2022)
+        self.assertEqual(self.records['music-middle-07']['date']['confidence'], 'unknown')
+        self.assertTrue(all(not r['legacyPaths'] for r in music))
+
     def published_lookups(self):
         # Only public content is eligible, matching build.py's draft filtering.
         lookups = []
@@ -283,7 +296,8 @@ class LifeTimelineTests(unittest.TestCase):
         self.assertEqual(groups['hobby-games-with-wife']['date']['startYear'], 2018)
         self.assertEqual(self.records['game-minecraft']['date']['startYear'], 2008)
         self.assertEqual(self.records['game-minecraft']['metadata']['playedPeriod'], '中学生時代から／社会人時代にもプレイ')
-        self.assertEqual(self.data['stats']['fallbackRecords'], 26)
+        self.assertEqual(self.data['stats']['fallbackRecords'], 27)
+        self.assertEqual(sum(len(g['recordIds']) for g in self.data['groups'] if g['isFallback'] and g['genres'] != ['music']), 26)
         self.assertEqual(self.data['stats']['unassignedRecords'], 0)
         entries = self.data['entries']
         starts = [entry['date']['startYear'] or 9999 for entry in entries]

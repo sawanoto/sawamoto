@@ -1,0 +1,415 @@
+[
+  {
+    "id": "elementary-01",
+    "title": "DREAMS COME TRUE「未来予想図Ⅱ」",
+    "summary": "母親が車でよく流していたため自然に覚えた。特別好きだったわけではない。",
+    "order": 1,
+    "timelineDate": {
+      "startYear": 2002,
+      "endYear": 2008,
+      "confidence": "estimated",
+      "label": "2002〜2008年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "elementary-02",
+    "title": "Janne Da Arc「月光花」",
+    "summary": "アニメ『ブラック・ジャック』をきっかけに好きになった。今でも歌える。",
+    "order": 2,
+    "timelineDate": {
+      "startYear": 2002,
+      "endYear": 2008,
+      "confidence": "estimated",
+      "label": "2002〜2008年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "elementary-03",
+    "title": "L'Arc-en-Ciel「READY STEADY GO」",
+    "summary": "『鋼の錬金術師』をきっかけに好きになった。",
+    "order": 3,
+    "timelineDate": {
+      "startYear": 2002,
+      "endYear": 2008,
+      "confidence": "estimated",
+      "label": "2002〜2008年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "elementary-04",
+    "title": "身近なアニメ主題歌",
+    "summary": "ポケモン、ドラえもん、クレヨンしんちゃんなどの主題歌にも親しんだ。",
+    "order": 4,
+    "timelineDate": {
+      "startYear": 2002,
+      "endYear": 2008,
+      "confidence": "estimated",
+      "label": "2002〜2008年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "middle-01",
+    "title": "ORANGE RANGE「花」／Mr.Children「HANABI」",
+    "summary": "友人とのカラオケに参加するために覚えた。",
+    "order": 1,
+    "timelineDate": {
+      "startYear": 2008,
+      "endYear": 2011,
+      "confidence": "estimated",
+      "label": "2008〜2011年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "middle-02",
+    "title": "GReeeeN「愛唄」",
+    "summary": "友人の影響で聴いた。",
+    "order": 2,
+    "timelineDate": {
+      "startYear": 2008,
+      "endYear": 2011,
+      "confidence": "estimated",
+      "label": "2008〜2011年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "middle-03",
+    "title": "wowaka「ローリンガール」",
+    "summary": "ボーカロイド音楽に親しんだ。",
+    "order": 3,
+    "timelineDate": {
+      "startYear": 2008,
+      "endYear": 2011,
+      "confidence": "estimated",
+      "label": "2008〜2011年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "middle-04",
+    "title": "東方Projectのアレンジ楽曲",
+    "summary": "「ナイト・オブ・ナイツ」「魔理沙は大変なものを盗んでいきました」「Bad Apple!!」「チルノのパーフェクトさんすう教室」などを聴いた。",
+    "order": 4,
+    "timelineDate": {
+      "startYear": 2008,
+      "endYear": 2011,
+      "confidence": "estimated",
+      "label": "2008〜2011年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "middle-05",
+    "title": "「ハレ晴レユカイ」とアニメ主題歌",
+    "summary": "「ハレ晴レユカイ」は学校行事で踊った。『D.Gray-man』『NARUTO』『デジモン』などの主題歌にも友人経由で触れた。",
+    "order": 5,
+    "timelineDate": {
+      "startYear": 2008,
+      "endYear": 2011,
+      "confidence": "estimated",
+      "label": "2008〜2011年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "middle-06",
+    "title": "カラオケの記憶",
+    "summary": "当時は楽しさがよく分からず、途中で寝てしまうこともあった。",
+    "order": 6,
+    "timelineDate": {
+      "startYear": 2008,
+      "endYear": 2011,
+      "confidence": "estimated",
+      "label": "2008〜2011年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "middle-07",
+    "title": "campaign（正式名称未確認）",
+    "summary": "友人経由で聴いたバンドの記憶。正式名称は未確認。",
+    "order": 7,
+    "timelineDate": {
+      "confidence": "unknown",
+      "label": "時期未整理"
+    }
+  },
+  {
+    "id": "high-01",
+    "title": "ボーカロイド楽曲とProject DIVA",
+    "summary": "「カゲロウデイズ」「十面相」「メルト」「ワールドイズマイン」「ブラック★ロックシューター」「初音ミクの消失」など。ニコニコ動画で原曲を中心に聴き、PSPの『初音ミク -Project DIVA-』でも遊んでいた。",
+    "order": 1,
+    "timelineDate": {
+      "startYear": 2011,
+      "endYear": 2014,
+      "confidence": "estimated",
+      "label": "2011〜2014年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "high-02",
+    "title": "勉強中のクラシック音楽",
+    "summary": "歌詞がないほうが集中できたため、オーケストラを流していた。作曲家や曲名は意識していなかった。",
+    "order": 2,
+    "timelineDate": {
+      "startYear": 2011,
+      "endYear": 2014,
+      "confidence": "estimated",
+      "label": "2011〜2014年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "university-01",
+    "title": "摩天楼オペラ",
+    "summary": "交際相手（現在の妻）の影響で知り、特に好きになった。アルバムも所有。「BURNING SOUL」「GLORIA」「orb」などをよく聴いた。苑さんの声やビブラートが好きだった。",
+    "order": 1,
+    "timelineDate": {
+      "startYear": 2014,
+      "endYear": 2018,
+      "confidence": "estimated",
+      "label": "2014〜2018年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "university-02",
+    "title": "L'Arc-en-Ciel",
+    "summary": "「READY STEADY GO」「Link」「Driver’s High」「DAYBREAK’S BELL」など。hydeさんの声やリズムが好きだった。",
+    "order": 2,
+    "timelineDate": {
+      "startYear": 2014,
+      "endYear": 2018,
+      "confidence": "estimated",
+      "label": "2014〜2018年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "university-03",
+    "title": "R指定・BORN",
+    "summary": "聴いてみたが、特にハマらなかった。",
+    "order": 3,
+    "timelineDate": {
+      "startYear": 2014,
+      "endYear": 2018,
+      "confidence": "estimated",
+      "label": "2014〜2018年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "university-04",
+    "title": "DEZERTのライブ",
+    "summary": "妻と2回行った。初回は大音量や会場の熱狂が新鮮だった。",
+    "order": 4,
+    "timelineDate": {
+      "startYear": 2014,
+      "endYear": 2018,
+      "confidence": "estimated",
+      "label": "2014〜2018年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "university-05",
+    "title": "TK from 凛として時雨「unravel」",
+    "summary": "『東京喰種』の影響で好きになった。",
+    "order": 5,
+    "timelineDate": {
+      "startYear": 2014,
+      "endYear": 2018,
+      "confidence": "estimated",
+      "label": "2014〜2018年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "university-06",
+    "title": "amazarashi「季節は次々死んでいく」",
+    "summary": "『東京喰種√A』の影響で好きになった。",
+    "order": 6,
+    "timelineDate": {
+      "startYear": 2014,
+      "endYear": 2018,
+      "confidence": "estimated",
+      "label": "2014〜2018年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "university-07",
+    "title": "EGOIST「名前のない怪物」",
+    "summary": "『PSYCHO-PASS』の影響で好きになった。",
+    "order": 7,
+    "timelineDate": {
+      "startYear": 2014,
+      "endYear": 2018,
+      "confidence": "estimated",
+      "label": "2014〜2018年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "university-08",
+    "title": "勉強中のクラシック音楽",
+    "summary": "高校時代に引き続き、オーケストラを流していた。",
+    "order": 8,
+    "timelineDate": {
+      "startYear": 2014,
+      "endYear": 2018,
+      "confidence": "estimated",
+      "label": "2014〜2018年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "early-work-01",
+    "title": "バンドへの関心の変化",
+    "summary": "大学時代に好きだったバンドへの関心が徐々に薄れていった。",
+    "order": 1,
+    "timelineDate": {
+      "startYear": 2018,
+      "endYear": 2022,
+      "confidence": "estimated",
+      "label": "2018〜2022年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "early-work-02",
+    "title": "移動中にAlexaでKindle本を聴く",
+    "summary": "妻が会津に勤務していたため、週末の約2時間の移動時間にAlexaでKindle本を読み上げてもらうようになった。当初は音楽を聴く時間のほうが長かった。",
+    "order": 2,
+    "timelineDate": {
+      "startYear": 2019,
+      "endYear": 2020,
+      "confidence": "estimated",
+      "label": "2019〜2020年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "early-work-03",
+    "title": "Ado「うっせぇわ」",
+    "summary": "流行を通じて聴いた。",
+    "order": 3,
+    "timelineDate": {
+      "startYear": 2018,
+      "endYear": 2022,
+      "confidence": "estimated",
+      "label": "2018〜2022年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "early-work-04",
+    "title": "SiM「The Rumbling」／ヒグチアイ「悪魔の子」",
+    "summary": "2022年、『進撃の巨人 The Final Season Part 2』のオープニングとエンディング。どちらも好きだった。",
+    "order": 4,
+    "timelineDate": {
+      "startYear": 2022,
+      "endYear": 2022,
+      "confidence": "confirmed",
+      "label": "2022年",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "audiobooks-01",
+    "title": "Audibleと音声読書",
+    "summary": "2023年頃からAudibleを利用。音楽を聴いていた時間がほぼ音声読書に置き換わり、流行曲を積極的に追うことはほとんどなくなった。",
+    "order": 1,
+    "timelineDate": {
+      "startYear": 2023,
+      "endYear": 2024,
+      "confidence": "estimated",
+      "label": "2023〜2024年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "musicsketch-01",
+    "title": "MusicSketchの制作開始",
+    "summary": "2025年10月頃から、音楽を聴いて思い浮かべた映像を作品にする活動を始めた。",
+    "order": 1,
+    "timelineDate": {
+      "startYear": 2025,
+      "endYear": 2025,
+      "confidence": "estimated",
+      "label": "2025年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "musicsketch-02",
+    "title": "ショパン「ノクターン」",
+    "summary": "Instagramで利用できる曲を探していて出会い、初期作品の題材にした。",
+    "order": 2,
+    "timelineDate": {
+      "startYear": 2025,
+      "endYear": 2025,
+      "confidence": "estimated",
+      "label": "2025年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "musicsketch-03",
+    "title": "クラシックを聴き、作品を制作する",
+    "summary": "曲を聴きながら映像を思い描き、次々とクラシック曲を題材に作品を制作。クラシックを積極的に聴くようになった。",
+    "order": 3,
+    "timelineDate": {
+      "startYear": 2025,
+      "endYear": 2025,
+      "confidence": "estimated",
+      "label": "2025年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "musicsketch-04",
+    "title": "辻井伸行のピアノコンサート",
+    "summary": "ピアノコンサートにも足を運んだ。",
+    "order": 4,
+    "timelineDate": {
+      "startYear": 2025,
+      "endYear": 2025,
+      "confidence": "estimated",
+      "label": "2025年頃",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "present-01",
+    "title": "ショパンを中心にクラシックを聴く",
+    "summary": "主に編み物中に流しっぱなしにしている。現在は映像を想像しようとはせず、普通に音楽を楽しんでいる。",
+    "order": 1,
+    "timelineDate": {
+      "startYear": 2026,
+      "endYear": 2026,
+      "confidence": "confirmed",
+      "label": "2026年",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  },
+  {
+    "id": "present-02",
+    "title": "以前好きだった音楽との距離",
+    "summary": "クラシック以外はほとんど聴かなくなった。摩天楼オペラなどには懐かしさを感じるが、積極的に聴きたいとは思わない。",
+    "order": 2,
+    "timelineDate": {
+      "startYear": 2026,
+      "endYear": 2026,
+      "confidence": "confirmed",
+      "label": "2026年",
+      "basis": "本人の記憶に基づく聴取・体験時期。楽曲の発売年ではありません。"
+    }
+  }
+]
