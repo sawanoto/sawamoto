@@ -384,3 +384,9 @@ Codex Cloud を含むエージェント向けの記事作成ルールは、リ�
 専用の `assets/daily-schedule.css` はこの記事のURLでのみ読み込み、すべてのスタイルを `.daily-schedule` 内に限定しています。補足説明は初期状態で折りたたみ、各枠の活動名から開閉できます。標準のdetails/summaryを使い、JavaScriptなしでもクリック・キーボードで操作できます。時刻は開始時刻のみ表示し、終了時刻や所要時間は表示しません。リンクや現在時刻の判定などの機能は実装していません。
 
 ビルド後に `node tests/daily-schedule.browser.cjs` で、320/375/768/1280pxでの表示、23時間帯、記事一覧、既存URL、CSSの適用範囲を確認できます（PlaywrightとChromiumが必要、`CHROMIUM_PATH` 指定可）。
+
+### 作品写真ギャラリーとスマホ投稿
+
+子どもの作品は `/gallery/children/`、本人の手仕事・実物作品は `/gallery/handwork/` に独立して表示します。既存Works・記事・年表とは別の記録です。写真と任意の作品情報を `content/galleries/<UUID>.json` と `assets/images/galleries/` に保存します。公開用の架空作品や既存記事からの無断転載は追加していません。
+
+本人専用のスマホ投稿サービスは `gallery-service/`。Cloudflare AccessとWorker Secretの設定が完了するまでは投稿できません。初回設定から日常操作まで、[スマホ投稿の設定手順](docs/gallery-setup.md)を参照してください。GitHub Pagesの `/gallery-admin/` は設定待ちの案内で、実際の管理画面は本人認証が必要なWorkerのURLです。既存のmain → Pages公開方法は維持しています。

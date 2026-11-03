@@ -1,0 +1,51 @@
+name: Deploy private gallery service
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: gallery-service
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: gallery-admin
+    defaults:
+      run:
+        working-directory: gallery-service
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: gallery-service/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - name: Prepare configuration
+        env:
+          ACCESS_TEAM: ${{ vars.GALLERY_ACCESS_TEAM }}
+          ACCESS_AUD: ${{ vars.GALLERY_ACCESS_AUD }}
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const config=JSON.parse(fs.readFileSync('wrangler.jsonc','utf8'));
+          for (const key of ['ACCESS_TEAM','ACCESS_AUD']) config.vars[key]=process.env[key] || '';
+          config.workers_dev=true;
+          fs.writeFileSync('wrangler.deploy.json',JSON.stringify(config));
+          JS
+      - run: npx wrangler deploy --config wrangler.deploy.json
+      - name: Store repository credential only in Worker Secret
+        env:
+          GALLERY_REPO_TOKEN: ${{ secrets.GALLERY_REPO_TOKEN }}
+          GALLERY_OWNER_EMAIL: ${{ secrets.GALLERY_OWNER_EMAIL }}
+        run: |
+          node --input-type=module <<'JS' > "$RUNNER_TEMP/gallery-secrets.json"
+          if (!process.env.GALLERY_REPO_TOKEN || !process.env.GALLERY_OWNER_EMAIL) throw new Error('GALLERY_REPO_TOKEN and GALLERY_OWNER_EMAIL are required');
+          process.stdout.write(JSON.stringify({GITHUB_TOKEN:process.env.GALLERY_REPO_TOKEN,OWNER_EMAIL:process.env.GALLERY_OWNER_EMAIL}));
+          JS
+          npx wrangler secret bulk "$RUNNER_TEMP/gallery-secrets.json" --config wrangler.deploy.json
+          rm -f "$RUNNER_TEMP/gallery-secrets.json"

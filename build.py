@@ -13,6 +13,7 @@ from xml.sax.saxutils import escape as xml_escape
 
 import markdown
 
+from gallery import render_galleries
 from kigo import load_kigo
 from game_history import render_games
 from life_timeline import load_timeline, render_timeline, write_migration_artifacts, legacy_routes, redirect_document, redirect_data
@@ -125,7 +126,7 @@ def related(ids: list[str], collection: dict, section: str) -> str:
 def page(title: str, description: str, path: str, body: str) -> str:
     full_title = f"{title} | {SITE['name']}" if title else f"{SITE['name']} / {SITE['name_en']}"
     url = ORIGIN + local(path)
-    nav = [("Home", ""), ("About", "about/"), ("History", "timeline/"), ("Works", "works/"), ("Writing", "writing/")]
+    nav = [("Home", ""), ("About", "about/"), ("History", "timeline/"), ("Works", "works/"), ("Writing", "writing/"), ("Gallery", "gallery/handwork/")]
     if BOOKS:
         nav.append(("Books", "books/"))
     nav_html = "".join(f'<a href="{local(p)}" {"aria-current=\"page\"" if p == path else ""}>{label}</a>' for label, p in nav)
@@ -520,7 +521,7 @@ def build() -> None:
     write("handcraft-shop", page("澤本家 手しごと商店", "まだ存在しない、家族のお店。手しごと市への架空の出店を想像し、少しずつ試作する創作プロジェクト。", "handcraft-shop/", render_handcraft(CONTENT, e, local, image_url)))
 
     works_list = "".join(card(x, "works") for x in sorted(WORKS, key=lambda x: x.get("sort", ""), reverse=True)) if WORKS else '<p class="empty">公開できる制作物を準備中です。作品を確認後、ここに追加します。</p>'
-    write("works", page("Works", "澤本優哉の制作物。", "works/", f'<div class="page-heading"><p class="kicker">Works</p><h1>制作物</h1><p>形式や時期を問わず、公開できる作品を掲載します。</p></div><section class="writing-series" aria-labelledby="craft-project-title"><h2 id="craft-project-title">構想中の創作企画</h2><p><a href="{local("handcraft-shop/")}">澤本家 手しごと商店 →</a></p><p>まだ存在しない、家族のお店。まずは想像するところから。</p></section><div class="card-grid listing">{works_list}</div>'))
+    write("works", page("Works", "澤本優哉の制作物。", "works/", f'<div class="page-heading"><p class="kicker">Works</p><h1>制作物</h1><p><a href="{local("gallery/children/")}">子どもの制作ギャラリー</a> · <a href="{local("gallery/handwork/")}">手仕事・実物作品ギャラリー</a></p><p>形式や時期を問わず、公開できる作品を掲載します。</p></div><section class="writing-series" aria-labelledby="craft-project-title"><h2 id="craft-project-title">構想中の創作企画</h2><p><a href="{local("handcraft-shop/")}">澤本家 手しごと商店 →</a></p><p>まだ存在しない、家族のお店。まずは想像するところから。</p></section><div class="card-grid listing">{works_list}</div>'))
     for item in WORKS:
         youtube_id = item.get("youtube_id")
         if item.get("videos"):
@@ -601,6 +602,8 @@ def build() -> None:
 
     write("timeline", page("History", "人生の節目や経験をたどる人生年表。アニメ・映画・読書・ゲームはカテゴリー別に閲覧できます。", "timeline/", render_timeline(unified, local, e, external, image_url)))
     write_migration_artifacts(OUT / "timeline", unified)
+
+    render_galleries(CONTENT, write, page, local, e, external)
 
     # Use pages actually written to dist, so the sitemap cannot list missing pages.
     paths = []

@@ -6,6 +6,7 @@ on:
       - README.md
       - scripts/check_writing.py
       - build.py
+      - gallery.py
       - kigo.py
       - life_timeline.py
       - game_history.py
