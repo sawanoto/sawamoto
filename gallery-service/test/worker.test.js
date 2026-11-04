@@ -28,6 +28,14 @@ class MockRepo extends Repository {
  async item(){return this.old;}
  async api(path,method,body){this.calls.push({path,method,body});return {sha:'new-sha'};}
 }
+test('repository calls fetch without a Repository receiver',async()=>{
+ const repo=new Repository({REPO:'sawanoto/sawamoto',GITHUB_TOKEN:'dummy'},function(url){
+  assert.equal(this,undefined);
+  assert.equal(url,'https://api.github.com/repos/sawanoto/sawamoto/git/ref/heads/main');
+  return Response.json({object:{sha:'head'}});
+ });
+ assert.deepEqual(await repo.api('/git/ref/heads/main'),{object:{sha:'head'}});
+});
 function form(value=item,version=''){const data=new FormData();data.set('item',JSON.stringify(value));data.set('version',version);data.set('paths','[]');return data;}
 test('multiple photos and JSON are committed atomically, never force-pushed',async()=>{
  const repo=new MockRepo();const photo2=photo.replace(id,'12345678-1234-4234-8234-123456789abd');

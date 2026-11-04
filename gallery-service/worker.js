@@ -77,7 +77,9 @@ export class Repository {
     const stage = /^\/git\/ref\//.test(path) ? 'ref' : /^\/git\/commits\//.test(path) ? 'commit' : /^\/git\/trees\//.test(path) ? 'tree' : /^\/git\/blobs\//.test(path) ? 'blob' : 'write';
     let response;
     try {
-      response = await this.fetcher(`https://api.github.com/repos/${this.env.REPO}${path}`, {method, headers:{Authorization:`Bearer ${this.env.GITHUB_TOKEN}`, Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','User-Agent':'sawamoto-gallery','Content-Type':'application/json'}, ...(body ? {body:JSON.stringify(body)} : {})});
+      // Workers' native fetch must be called as a function, not as a method of Repository.
+      const fetcher = this.fetcher;
+      response = await fetcher(`https://api.github.com/repos/${this.env.REPO}${path}`, {method, headers:{Authorization:`Bearer ${this.env.GITHUB_TOKEN}`, Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','User-Agent':'sawamoto-gallery','Content-Type':'application/json'}, ...(body ? {body:JSON.stringify(body)} : {})});
     } catch {
       logFailure('github_network_error',stage,502);
       fail('GitHubへの接続に失敗しました。再試行してください。',502);
