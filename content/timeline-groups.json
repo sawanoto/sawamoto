@@ -630,6 +630,19 @@
       ]
     },
     {
+      "id": "reading-sakebi",
+      "title": "『叫び』を読む",
+      "recordIds": [
+        "reading-book-088"
+      ],
+      "dateFrom": [
+        "reading-book-088"
+      ],
+      "evidenceIds": [
+        "reading-book-088"
+      ]
+    },
+    {
       "id": "other-reading",
       "title": "その他の読書記録",
       "recordIds": [],
