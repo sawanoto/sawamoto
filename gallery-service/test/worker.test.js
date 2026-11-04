@@ -18,7 +18,7 @@ test('unconfigured service and unauthenticated visitor cannot read UI or write',
  for(const method of ['GET','POST']){
   let response=await worker.fetch(new Request('https://admin.test/api/items',{method}),{});
   assert.equal(response.status,503);
-  response=await worker.fetch(new Request('https://admin.test/api/items',{method}),{ACCESS_TEAM:'example',ACCESS_AUD:'aud',OWNER_EMAIL:'owner@example.com',GITHUB_TOKEN:'test'});
+  response=await worker.fetch(new Request('https://admin.test/api/items',{method}),{ACCESS_TEAM:'example',ACCESS_AUD:'aud',OWNER_EMAIL:'owner@example.com',GITHUB_TOKEN:'test',REPO:'sawanoto/sawamoto',BRANCH:'main'});
   assert.equal(response.status,401);
  }
 });
@@ -59,16 +59,44 @@ test('signed owner JWT, wrong owner, expired and forged tokens; cross-origin wri
  const {publicKey,privateKey}=await generateKeyPair('RS256');const jwk=await exportJWK(publicKey);jwk.kid='test-key';
  const original=globalThis.fetch;
  globalThis.fetch=async()=>Response.json({keys:[jwk]});
- const env={ACCESS_TEAM:'test-owner-jwt',ACCESS_AUD:'audience',OWNER_EMAIL:'owner@example.com',GITHUB_TOKEN:'dummy',ASSETS:{fetch:async()=>new Response('private')}};
+ const env={ACCESS_TEAM:'test-owner-jwt',ACCESS_AUD:'audience',OWNER_EMAIL:'owner@example.com',GITHUB_TOKEN:'dummy',REPO:'sawanoto/sawamoto',BRANCH:'main',ASSETS:{fetch:async()=>new Response('private')}};
  const sign=(email,exp='1h')=>new SignJWT({email}).setProtectedHeader({alg:'RS256',kid:'test-key'}).setIssuer('https://test-owner-jwt.cloudflareaccess.com').setAudience('audience').setSubject('owner-id').setExpirationTime(exp).sign(privateKey);
  try{
   const token=await sign(env.OWNER_EMAIL);
   let response=await worker.fetch(new Request('https://admin.test/',{headers:{'Cf-Access-Jwt-Assertion':token}}),env);assert.equal(response.status,200);
   response=await worker.fetch(new Request('https://admin.test/api/items',{method:'POST',headers:{'Cf-Access-Jwt-Assertion':token,Origin:'https://evil.test','X-Gallery-Request':'1'}}),env);assert.equal(response.status,403);
-  for(const bad of [await sign('other@example.com'),await sign(env.OWNER_EMAIL,'-1h'),token.slice(0,-8)+'forgedxx']){
-   response=await worker.fetch(new Request('https://admin.test/',{headers:{'Cf-Access-Jwt-Assertion':bad}}),env);assert.equal(response.status,401);
+  for(const [bad,status] of [[await sign('other@example.com'),403],[await sign(env.OWNER_EMAIL,'-1h'),401],[token.slice(0,-8)+'forgedxx',401]]){
+   response=await worker.fetch(new Request('https://admin.test/',{headers:{'Cf-Access-Jwt-Assertion':bad}}),env);assert.equal(response.status,status);
   }
  }finally{globalThis.fetch=original;}
+});
+test('authenticated items read follows GitHub ref, commit and tree; failures have safe diagnostics',async()=>{
+ const {generateKeyPair,exportJWK,SignJWT}=await import('jose');
+ const {publicKey,privateKey}=await generateKeyPair('RS256');const jwk=await exportJWK(publicKey);jwk.kid='list-key';
+ const env={ACCESS_TEAM:'test-gallery-list',ACCESS_AUD:'audience',OWNER_EMAIL:'owner@example.com',GITHUB_TOKEN:'private-token',REPO:'sawanoto/sawamoto',BRANCH:'main'};
+ const token=await new SignJWT({email:env.OWNER_EMAIL}).setProtectedHeader({alg:'RS256',kid:'list-key'}).setIssuer('https://test-gallery-list.cloudflareaccess.com').setAudience(env.ACCESS_AUD).setSubject('owner-id').setExpirationTime('1h').sign(privateKey);
+ const request=new Request('https://admin.test/api/items',{headers:{'Cf-Access-Jwt-Assertion':token}});
+ const originalFetch=globalThis.fetch,originalError=console.error;
+ const calls=[],logs=[];
+ console.error=(message)=>logs.push(message);
+ globalThis.fetch=async(url,options)=>{
+  if (String(url).endsWith('/cdn-cgi/access/certs')) return Response.json({keys:[jwk]});
+  calls.push({url:String(url),authorization:options.headers.Authorization});
+  if (String(url).endsWith('/git/ref/heads/main')) return Response.json({object:{sha:'head'}});
+  if (String(url).endsWith('/git/commits/head')) return Response.json({tree:{sha:'tree'}});
+  if (String(url).endsWith('/git/trees/tree?recursive=1')) return Response.json({tree:[]});
+  throw Error('unexpected request');
+ };
+ try {
+  let response=await worker.fetch(request,env);
+  assert.equal(response.status,200);assert.deepEqual(await response.json(),[]);
+  assert.equal(calls.length,3);assert(calls.every(x=>x.authorization==='Bearer private-token'));
+  globalThis.fetch=async(url)=>String(url).includes('/git/ref/') ? Promise.reject(Error('private-token owner@example.com')) : Response.json({keys:[jwk]});
+  response=await worker.fetch(request,env);
+  assert.equal(response.status,502);
+  assert.equal(logs.at(-1),JSON.stringify({service:'gallery',code:'github_network_error',stage:'ref',status:502}));
+  assert(!logs.join('').includes('private-token'));assert(!logs.join('').includes('owner@example.com'));
+ } finally { globalThis.fetch=originalFetch;console.error=originalError; }
 });
 test('deleting with pending image selections never publishes new images',async()=>{
  const repo=new MockRepo(validate(item));const photo2=photo.replace(id,'12345678-1234-4234-8234-123456789abd');
