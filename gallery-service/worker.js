@@ -6,9 +6,22 @@ const fields = ['title','place','materials','description','article_url','sale_ur
 const json = (data, status = 200) => Response.json(data, {status, headers:{'Cache-Control':'no-store'}});
 const fail = (message, status = 400) => { throw Object.assign(new Error(message), {status}); };
 const keys = new Map();
+function logFailure(code, stage, status) {
+  // Fixed labels only: never log request headers, URLs, response bodies or errors.
+  console.error(JSON.stringify({service:'gallery', code, stage, status}));
+}
 export async function authorize(request, env) {
-  if (!env.ACCESS_TEAM || !env.ACCESS_AUD || !env.OWNER_EMAIL || !env.GITHUB_TOKEN) fail('投稿サービスは初期設定待ちです。', 503);
+  for (const name of ['ACCESS_TEAM','ACCESS_AUD','OWNER_EMAIL','GITHUB_TOKEN','REPO','BRANCH']) {
+    if (typeof env[name] !== 'string' || !env[name].trim()) {
+      logFailure('missing_configuration',name,503);
+      fail('投稿サービスは初期設定待ちです。', 503);
+    }
+  }
   if (!/^[a-z0-9-]+$/.test(env.ACCESS_TEAM)) fail('認証設定が正しくありません。', 503);
+  if (!/^[A-Za-z0-9_-]+$/.test(env.ACCESS_AUD) || !/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(env.REPO) || !/^[A-Za-z0-9._/-]+$/.test(env.BRANCH)) {
+    logFailure('invalid_configuration','worker_vars',503);
+    fail('投稿サービスの設定が正しくありません。',503);
+  }
   const issuer = `https://${env.ACCESS_TEAM}.cloudflareaccess.com`;
   if (!keys.has(issuer)) keys.set(issuer, createRemoteJWKSet(new URL(`${issuer}/cdn-cgi/access/certs`)));
   try {
@@ -16,7 +29,10 @@ export async function authorize(request, env) {
     if (!token) fail('本人認証が必要です。', 401);
     const {payload} = await jwtVerify(token, keys.get(issuer), {issuer, audience:env.ACCESS_AUD, algorithms:['RS256']});
     if (!payload.exp || !payload.sub || payload.email !== env.OWNER_EMAIL) fail('本人のみ利用できます。', 403);
-  } catch { fail('本人認証が必要です。再ログインしてください。', 401); }
+  } catch (error) {
+    if (error.status === 403) throw error;
+    fail('本人認証が必要です。再ログインしてください。', 401);
+  }
 }
 
 export function validate(input) {
@@ -58,20 +74,41 @@ function base64(bytes) { let text=''; for(let i=0;i<bytes.length;i+=8192) text+=
 export class Repository {
   constructor(env, fetcher = fetch) { this.env=env; this.fetcher=fetcher; }
   async api(path, method='GET', body) {
-    const response = await this.fetcher(`https://api.github.com/repos/${this.env.REPO}${path}`, {method, headers:{Authorization:`Bearer ${this.env.GITHUB_TOKEN}`, Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','User-Agent':'sawamoto-gallery','Content-Type':'application/json'}, ...(body ? {body:JSON.stringify(body)} : {})});
-    if (!response.ok) fail(response.status === 409 || response.status === 422 ? '同時に更新されました。一覧を読み直して再試行してください。' : `GitHubへの保存に失敗しました (${response.status})。権限・有効期限・通信を確認し再試行してください。`, response.status === 409 || response.status === 422 ? 409 : 502);
-    return response.status === 204 ? null : response.json();
+    const stage = /^\/git\/ref\//.test(path) ? 'ref' : /^\/git\/commits\//.test(path) ? 'commit' : /^\/git\/trees\//.test(path) ? 'tree' : /^\/git\/blobs\//.test(path) ? 'blob' : 'write';
+    let response;
+    try {
+      // Workers' native fetch must be called as a function, not as a method of Repository.
+      const fetcher = this.fetcher;
+      response = await fetcher(`https://api.github.com/repos/${this.env.REPO}${path}`, {method, headers:{Authorization:`Bearer ${this.env.GITHUB_TOKEN}`, Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','User-Agent':'sawamoto-gallery','Content-Type':'application/json'}, ...(body ? {body:JSON.stringify(body)} : {})});
+    } catch {
+      logFailure('github_network_error',stage,502);
+      fail('GitHubへの接続に失敗しました。再試行してください。',502);
+    }
+    if (!response.ok) {
+      logFailure('github_http_error',stage,response.status);
+      fail(response.status === 409 || response.status === 422 ? '同時に更新されました。一覧を読み直して再試行してください。' : `GitHubへの保存に失敗しました (${response.status})。権限・有効期限・通信を確認し再試行してください。`, response.status === 409 || response.status === 422 ? 409 : 502);
+    }
+    if (response.status === 204) return null;
+    try { return await response.json(); }
+    catch {
+      logFailure('github_invalid_json',stage,502);
+      fail('GitHubからの応答を読み取れませんでした。',502);
+    }
   }
   async snapshot() {
     const ref = await this.api(`/git/ref/heads/${this.env.BRANCH}`);
+    if (typeof ref?.object?.sha !== 'string') { logFailure('github_invalid_shape','ref',502); fail('GitHubからの応答を読み取れませんでした。',502); }
     const commit = await this.api(`/git/commits/${ref.object.sha}`);
+    if (typeof commit?.tree?.sha !== 'string') { logFailure('github_invalid_shape','commit',502); fail('GitHubからの応答を読み取れませんでした。',502); }
     const tree = await this.api(`/git/trees/${commit.tree.sha}?recursive=1`);
+    if (!Array.isArray(tree?.tree)) { logFailure('github_invalid_shape','tree',502); fail('GitHubからの応答を読み取れませんでした。',502); }
     if (tree.truncated) fail('リポジトリが大きいため一覧を取得できません。管理者に連絡してください。', 503);
     return {head:ref.object.sha, tree:commit.tree.sha, files:tree.tree};
   }
   async item(file) {
     const blob = await this.api(`/git/blobs/${file.sha}`);
-    return JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(blob.content.replace(/\s/g,'')), c=>c.charCodeAt(0))));
+    try { return JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(blob.content.replace(/\s/g,'')), c=>c.charCodeAt(0)))); }
+    catch { logFailure('gallery_invalid_item','blob',502); fail('保存済み作品を読み取れませんでした。',502); }
   }
   async save(form, remove=false) {
     let input; try {input=JSON.parse(form.get('item'));} catch {fail('投稿内容が不正です。');}
@@ -131,7 +168,10 @@ export default {
       } else if (url.pathname.startsWith('/api/')) response=json({error:'見つかりません。'},404);
       else if (request.method !== 'GET') response=json({error:'操作できません。'},405);
       else response=await env.ASSETS.fetch(request);
-    } catch (error) { response=json({error:error.status ? error.message : '処理に失敗しました。通信状態を確認し再試行してください。'},error.status || 500); }
+    } catch (error) {
+      if (!error.status) logFailure('unexpected_error','worker',500);
+      response=json({error:error.status ? error.message : '処理に失敗しました。通信状態を確認し再試行してください。'},error.status || 500);
+    }
     const headers = new Headers(response.headers);
     headers.set('Cache-Control','no-store'); headers.set('X-Content-Type-Options','nosniff'); headers.set('Referrer-Policy','no-referrer');
     headers.set('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: https://sawanoto.github.io; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");
