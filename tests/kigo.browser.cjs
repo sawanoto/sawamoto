@@ -23,7 +23,7 @@ async function routeLocal(context) {
   fs.mkdirSync(shots, {recursive:true});
   const browser = await chromium.launch(process.env.CHROMIUM_PATH ? {executablePath:process.env.CHROMIUM_PATH} : {});
   try {
-    const context = await browser.newContext({timezoneId:'America/Los_Angeles',reducedMotion:'reduce'});
+    const context = await browser.newContext({locale:'ja-JP',timezoneId:'America/Los_Angeles',reducedMotion:'reduce'});
     await routeLocal(context);
     const page = await context.newPage();
     const errors = [];
@@ -124,7 +124,7 @@ async function routeLocal(context) {
     assert.equal(await widget.count(),0);
     assert.equal(await page.locator('script[src$="/kigo.js"],link[href$="/kigo.css"],#kigo-data').count(),0);
     assert.deepEqual(errors,[]);
-    const touchContext = await browser.newContext({hasTouch:true,isMobile:true,viewport:{width:390,height:844}});
+    const touchContext = await browser.newContext({locale:'ja-JP',hasTouch:true,isMobile:true,viewport:{width:390,height:844}});
     await routeLocal(touchContext);
     const touch = await touchContext.newPage();
     await touch.goto(`${origin}/sawamoto/`);
@@ -132,7 +132,7 @@ async function routeLocal(context) {
     assert.equal(await touch.locator('.daily-kigo details').getAttribute('open'),'');
     await touch.getByRole('button',{name:'閉じる',exact:true}).tap();
     assert.equal(await touch.locator('.daily-kigo details').getAttribute('open'),null);
-    const noJsContext = await browser.newContext({javaScriptEnabled:false,viewport:{width:320,height:900}});
+    const noJsContext = await browser.newContext({locale:'ja-JP',javaScriptEnabled:false,viewport:{width:320,height:900}});
     await routeLocal(noJsContext);
     const noJs = await noJsContext.newPage();
     await noJs.goto(`${origin}/sawamoto/`);
