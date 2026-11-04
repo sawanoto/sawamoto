@@ -390,3 +390,15 @@ Codex Cloud を含むエージェント向けの記事作成ルールは、リ�
 子どもの作品は `/gallery/children/`、本人の手仕事・実物作品は `/gallery/handwork/` に独立して表示します。既存Works・記事・年表とは別の記録です。写真と任意の作品情報を `content/galleries/<UUID>.json` と `assets/images/galleries/` に保存します。公開用の架空作品や既存記事からの無断転載は追加していません。
 
 本人専用のスマホ投稿サービスは `gallery-service/`。Cloudflare AccessとWorker Secretの設定が完了するまでは投稿できません。初回設定から日常操作まで、[スマホ投稿の設定手順](docs/gallery-setup.md)を参照してください。GitHub Pagesの `/gallery-admin/` は設定待ちの案内で、実際の管理画面は本人認証が必要なWorkerのURLです。既存のmain → Pages公開方法は維持しています。
+
+### トップページの日英切り替え
+
+トップは単一URLのまま、`assets/home-i18n.js` により再読み込みなしで日本語・英語を切り替えます。初回はブラウザの第一優先言語が日本語なら日本語、それ以外は英語。手動選択は `localStorage` の `sawamoto.language` に保存し、次回から優先します。保存が禁止されていてもその場の切り替えは可能です。JavaScript無効時は日本語HTMLと既存リンクを利用でき、切り替えボタンは表示しません。
+
+翻訳は `content/home-i18n.json` に一元管理します。`strings` は日本語原文と英訳の対応、`title` は日英のページタイトルです。トップのUI文言変更時は日本語原文と対応する英語の両方を更新してください。記事本文の英訳は必須ではなく、作品名・記事名は原則そのまま、翻訳がない説明やカテゴリも日本語のまま表示します。英語表示では日本語ページへの案内とカードの「Japanese」を表示します。季語の内容も日本語で維持します。
+
+`build.py` の `page()` がトップだけに辞書・JS・専用CSSを読み込みます。他のページを英語対応する場合は、そのページに必要な辞書と読み込み対象を追加し、対象DOMと日本語の言語指定を確認してください。大規模なフレームワークは不要です。既存URLと記事の `YYYY-MM-DD-slug.md` 命名規則、本文・公開状態は維持します。
+
+表示言語に合わせてHTMLの `lang`、タイトル、description、OGメタ情報を更新します。canonicalとサイトマップは既存の単一URLを維持し、独立英語ページを示すhreflangは付けません。検索エンジンやSNSが取得する初期HTMLは日本語のため、英語の検索登録・共有カードには制約があります。
+
+検証：通常のPythonチェックとビルド後、`node tests/home-i18n.browser.cjs`（PlaywrightとChromiumが必要、`CHROMIUM_PATH` 指定可）。日本語・英語・その他言語、保存と切り替え、保存禁止、JS無効、320/375/768/1280px、リンク・アセットを確認します。

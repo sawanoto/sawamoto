@@ -143,6 +143,17 @@ def page(title: str, description: str, path: str, body: str) -> str:
     seasonal_mark = '<span class="seasonal-mark" hidden aria-hidden="true"></span>'
     if path == "":
         seasonal_mark = f'<div class="brand-seasonal">{seasonal_mark}{kigo_widget()}</div>'
+    language_assets = ""
+    language_switch = ""
+    if path == "":
+        translations = (CONTENT / "home-i18n.json").read_text(encoding="utf-8")
+        translations = translations.replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
+        language_assets = (f'<script id="home-i18n" type="application/json">{translations}</script>'
+                           f'<link rel="stylesheet" href="{local("assets/home-i18n.css")}">'
+                           f'<script src="{local("assets/home-i18n.js")}" defer></script>')
+        language_switch = ('<div class="language-switch" role="group" aria-label="Language / 言語" hidden>'
+                           '<button type="button" data-language="ja" lang="ja" aria-pressed="true">日本語</button>'
+                           '<button type="button" data-language="en" lang="en" aria-pressed="false">English</button></div>')
     return f'''<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <!-- Google tag (gtag.js): config sends one page_view per document load. -->
@@ -158,9 +169,9 @@ def page(title: str, description: str, path: str, body: str) -> str:
 <meta property="og:title" content="{e(full_title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{url}">
 <meta property="og:site_name" content="{e(SITE['name'])}"><link rel="stylesheet" href="{local('assets/style.css')}?v={STYLE_VERSION}">
 <link rel="stylesheet" href="{local('assets/seasonal.css')}"><script src="{local('assets/seasonal.js')}" defer></script>
-{kigo_assets}{timeline_script}{reading_assets}{life_assets}{f'<link rel="stylesheet" href="{local("assets/daily-schedule.css")}">' if path == "writing/childcare-daily-schedule/" else ""}{f'<link rel="stylesheet" href="{local("assets/handcraft-shop.css")}">' if path == "handcraft-shop/" else ""}</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
+{language_assets}{kigo_assets}{timeline_script}{reading_assets}{life_assets}{f'<link rel="stylesheet" href="{local("assets/daily-schedule.css")}">' if path == "writing/childcare-daily-schedule/" else ""}{f'<link rel="stylesheet" href="{local("assets/handcraft-shop.css")}">' if path == "handcraft-shop/" else ""}</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
 <div class="brand-lockup"><a class="brand" href="{local('')}">{e(SITE['name'])}<small>{e(SITE['name_en'])}</small></a>{seasonal_mark}</div>
-<nav aria-label="メインナビゲーション">{nav_html}</nav></header><main id="main">{body}</main>
+<nav aria-label="メインナビゲーション">{nav_html}</nav>{language_switch}</header><main id="main">{body}</main>
 <footer class="footer"><span>{e(SITE['name'])} / {e(SITE['name_en'])}</span><a href="#main">上へ戻る ↑</a></footer></div></body></html>'''
 
 

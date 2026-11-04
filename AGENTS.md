@@ -35,3 +35,11 @@ Windows では既存テストの文字コードのため `PYTHONUTF8=1` を設�
 - 認証情報は公開HTML・JS・JSONに含めません。投稿サービスは `gallery-service/` のAccess JWT検証を必須にし、初期設定未完了時の拒否を維持します。
 - ギャラリー変更時は上のPython確認に加え、`cd gallery-service && npm ci && npm test && npx wrangler deploy --dry-run`、直下で `node tests/gallery.browser.cjs` を実行します（Playwright/Chromium必要）。
 - `docs/gallery-setup.md` の本人設定・公開写真の注意点と、実際に検証した範囲を維持してください。
+
+## トップページの日英対応
+
+- トップのUI文言を変更するときは `content/home-i18n.json` の日英対応も更新します。日本語は生成HTMLの原文、英語は `strings` の対応値です。紹介文の原文は `content/site.json`、その他は `build.py` にあります。
+- 記事本文の英訳は必須ではありません。新規記事・作品は翻訳なしでも追加でき、未翻訳の文言は日本語を維持します。作者名・作品名・記事名は原則として維持します。
+- 既存URL、記事の `YYYY-MM-DD-slug.md` 命名規則、本文、公開状態、並び順を維持します。
+- 単一URLでの軽量な表示切り替えを保ち、不必要に多言語対応を複雑化させません。日本語HTMLを残してJavaScript無効時も閲覧可能にします。
+- 変更後は通常の検証に加え `node tests/home-i18n.browser.cjs` を実行します（Playwright / Chromium、`CHROMIUM_PATH` 指定可）。
