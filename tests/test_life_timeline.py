@@ -296,8 +296,8 @@ class LifeTimelineTests(unittest.TestCase):
         self.assertEqual(groups['hobby-games-with-wife']['date']['startYear'], 2018)
         self.assertEqual(self.records['game-minecraft']['date']['startYear'], 2008)
         self.assertEqual(self.records['game-minecraft']['metadata']['playedPeriod'], '中学生時代から／社会人時代にもプレイ')
-        self.assertEqual(self.data['stats']['fallbackRecords'], 27)
-        self.assertEqual(sum(len(g['recordIds']) for g in self.data['groups'] if g['isFallback'] and g['genres'] != ['music']), 26)
+        self.assertEqual(self.data['stats']['fallbackRecords'], 28)
+        self.assertEqual(sum(len(g['recordIds']) for g in self.data['groups'] if g['isFallback'] and g['genres'] != ['music']), 27)
         self.assertEqual(self.data['stats']['unassignedRecords'], 0)
         entries = self.data['entries']
         starts = [entry['date']['startYear'] or 9999 for entry in entries]
