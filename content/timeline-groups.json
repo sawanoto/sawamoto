@@ -630,6 +630,20 @@
       ]
     },
     {
+      "id": "zombie-kaishufu-reading",
+      "title": "『ゾンビ回収婦』を読み、私が本に求めるものを考える",
+      "recordIds": [
+        "reading-book-088"
+      ],
+      "noteIds": [],
+      "dateFrom": [
+        "reading-book-088"
+      ],
+      "evidenceIds": [
+        "reading-book-088"
+      ]
+    },
+    {
       "id": "other-reading",
       "title": "その他の読書記録",
       "recordIds": [],
