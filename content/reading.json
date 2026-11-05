@@ -1472,5 +1472,33 @@
     "impression": "",
     "featured": false,
     "related_ids": []
+  },
+  {
+    "id": "book-088",
+    "title": "ゾンビ回収婦",
+    "author": "小砂川チト",
+    "period": "社会人",
+    "period_note": "2026年11月5日読了。",
+    "genres": [
+      "日本文学",
+      "SF"
+    ],
+    "medium": "",
+    "status": "読了",
+    "reviews": [
+      "AIを不幸の原因と捉えながら、同じAIに救いを求める物語だと感じました。人間らしくあれという規範からの逃避や、現実とAIと幻想の曖昧な境界について考えました。",
+      "率直に言って、それほど面白いとは感じませんでした。新しい発見や価値観の転換は少なく、余韻もあまり残りませんでした。ただ、作品を理解できることと、作品から新しい発見を得ることは違うのだと、自分の読書観を整理できました。"
+    ],
+    "impression": "",
+    "featured": false,
+    "related_ids": [],
+    "timelineDate": {
+      "startYear": 2026,
+      "endYear": 2026,
+      "month": 11,
+      "confidence": "confirmed",
+      "label": "2026年11月5日読了",
+      "basis": "本人が指定した読了日。"
+    }
   }
 ]
