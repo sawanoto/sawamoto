@@ -24,7 +24,7 @@ def load_entries(content):
     return sorted(entries, key=lambda x: (x['date'], x.get('created_at', ''), x['id']), reverse=True)
 
 
-def render_galleries(content, write, page, local, e, external):
+def render_galleries(content, write, page, local, e, external, digital_galleries=""):
     entries = load_entries(content)
     for kind, title in KINDS.items():
         selected = [x for x in entries if x['kind'] == kind]
@@ -38,6 +38,6 @@ def render_galleries(content, write, page, local, e, external):
                 cards.append(f'<article class="gallery-card" id="work-{item["id"]}"><div class="gallery-photos">{photos}</div><time datetime="{item["date"]}">{item["date"]}</time><h2>{e(item.get("title") or "無題")}</h2>{text}<p>{links}</p></article>')
             path = f'gallery/{kind}/' + (f'page/{index+1}/' if index else '')
             jumps = ''.join(f'<a href="{local(f"gallery/{kind}/" + (f"page/{n+1}/" if n else ""))}" {"aria-current=page" if n == index else ""}>{n+1}</a> ' for n in range(len(chunks)))
-            body = f'<div class="page-heading"><p class="kicker">Gallery</p><h1>{title}</h1><p>制作した日をたどる、写真の記録。新しい制作日から並べています。</p><p><a href="{local("gallery/children/")}">子どもの作品</a> · <a href="{local("gallery/handwork/")}">手仕事・実物作品</a></p></div><div class="gallery-grid">{"".join(cards) or "<p>作品の記録を、少しずつ。</p>"}</div><nav aria-label="ギャラリーのページ">{jumps}</nav><dialog id="photo-view"><button type="button" autofocus>閉じる</button><img alt="作品写真の拡大"></dialog><link rel="stylesheet" href="{local("assets/gallery.css")}"><script src="{local("assets/gallery.js")}" defer></script>'
+            body = f'<div class="page-heading"><p class="kicker">Gallery</p><h1>{title}</h1><p>制作した日をたどる、写真の記録。新しい制作日から並べています。</p><p><a href="{local("gallery/children/")}">子どもの作品</a> · <a href="{local("gallery/handwork/")}">手仕事・実物作品</a></p></div>{digital_galleries}<div class="gallery-grid">{"".join(cards) or "<p>作品の記録を、少しずつ。</p>"}</div><nav aria-label="ギャラリーのページ">{jumps}</nav><dialog id="photo-view"><button type="button" autofocus>閉じる</button><img alt="作品写真の拡大"></dialog><link rel="stylesheet" href="{local("assets/gallery.css")}"><script src="{local("assets/gallery.js")}" defer></script>'
             write(path.rstrip('/'), page(title, '作品写真と制作の記録。', path, body))
     write('gallery-admin', page('作品の投稿', '本人専用の投稿画面について。', 'gallery-admin/', '<div class="page-heading"><h1>作品の投稿</h1><p>投稿画面は本人認証で保護された別の専用URLで利用します。現在は初期設定待ちです。</p><p>設定手順は<a href="https://github.com/sawanoto/sawamoto/blob/main/docs/gallery-setup.md">スマホ投稿の初期設定ガイド</a>を確認してください。</p></div>'))
