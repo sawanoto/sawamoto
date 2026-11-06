@@ -44,14 +44,28 @@ const root=path.resolve(__dirname,'..');
     assert.equal(await page.locator('h1').textContent(),'Gallery');
     for(const [id,label] of [['physical-gallery','実物作品'],['digital-gallery','デジタル作品'],['life-gallery','生活']]){
      assert.equal(await page.locator(`#${id} h2`).first().textContent(),label);
-     await page.locator(`a[href="#${id}"]`).click();
-     assert.equal(new URL(page.url()).hash,`#${id}`);
+     const category=id.replace('-gallery','');
+     const button=page.locator(`[data-gallery-category="${category}"]`);
+     await button.focus();await page.keyboard.press('Enter');
+     assert.equal(await button.getAttribute('aria-pressed'),'true');
+     assert.equal(await page.locator('.gallery-category:visible').count(),1);
+     assert(await page.locator(`#${id}`).isVisible());
+     assert.equal(new URL(page.url()).searchParams.get('category'),category);
+     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
     }
     assert.equal(await page.locator('#physical-gallery .link-list a[aria-current=page]').count(),1);
     assert.equal(await page.locator('#digital-gallery-title').textContent(),'デジタル作品');
     for(const url of digitalUrls)assert.equal(await page.locator(`.gallery-links a[href="${url}"]`).count(),1);
    }
   }
+  await page.goto('https://gallery.test/sawamoto/gallery/handwork/?category=digital');
+  assert(await page.locator('#digital-gallery').isVisible());await page.reload();assert(await page.locator('#digital-gallery').isVisible());
+  await page.goto('https://gallery.test/sawamoto/gallery/handwork/#life-gallery');assert(await page.locator('#life-gallery').isVisible());
+  await page.goto('https://gallery.test/sawamoto/gallery/handwork/?category=unknown');assert(await page.locator('#physical-gallery').isVisible());
+  const noScript=await browser.newContext({javaScriptEnabled:false});
+  await noScript.route('**/*',route=>{const url=new URL(route.request().url());if(url.origin!=='https://gallery.test')return route.abort();let file=path.join(root,'dist',url.pathname.replace(/^\/sawamoto\//,''));if(url.pathname.endsWith('/'))file=path.join(file,'index.html');return route.fulfill({body:fs.readFileSync(file),contentType:file.endsWith('.css')?'text/css':'text/html'});});
+  const fallback=await noScript.newPage();await fallback.goto('https://gallery.test/sawamoto/gallery/handwork/');
+  assert.equal(await fallback.locator('.gallery-category:visible').count(),3);assert.equal(await fallback.locator('.gallery-filters').isVisible(),false);await noScript.close();
   await page.goto('https://gallery.test/sawamoto/gallery/children/');await page.locator('.gallery-photo').first().click();assert(await page.locator('#photo-view').evaluate(x=>x.open));await page.keyboard.press('Escape');assert.equal(await page.locator('#photo-view').evaluate(x=>x.open),false);
   await page.setViewportSize({width:375,height:812});await page.goto('https://admin.test/');await page.waitForFunction(()=>!document.querySelector('#controls').disabled);
   // Real JPEG, with EXIF orientation 6 injected. The browser must rotate it before resizing.
