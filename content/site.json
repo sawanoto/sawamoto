@@ -19,6 +19,11 @@
   ],
   "about_links": [
     {
+      "label": "itch.io",
+      "url": "https://yuyasaw.itch.io/",
+      "description": ""
+    },
+    {
       "label": "X（旧Twitter）",
       "url": "https://x.com/yuyasaw",
       "description": "日々の発見や制作、暮らしの記録"
