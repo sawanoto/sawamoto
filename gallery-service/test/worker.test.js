@@ -112,3 +112,19 @@ test('deleting with pending image selections never publishes new images',async()
  assert.equal(repo.calls.filter(c=>c.path==='/git/blobs').length,0);
  assert(repo.calls.find(c=>c.path==='/git/trees').body.tree.every(x=>x.sha===null));
 });
+
+for (const kind of ['children','handwork','life']) {
+ test(`${kind}: photo-only save, edit and delete use the same repository format`,async()=>{
+  const value={...item,kind};
+  const repo=new MockRepo();const data=form(value);
+  data.set('paths',JSON.stringify([photo]));data.append('images',new Blob([jpeg]));
+  await repo.save(data);
+  const saved=JSON.parse(repo.calls.find(c=>c.path==='/git/trees').body.tree.at(-1).content);
+  assert.equal(saved.kind,kind);assert.equal(saved.title,'');assert.deepEqual(saved.photos,[photo]);
+  const edit=new MockRepo(saved);await edit.save(form({...value,title:'変更'},'version'));
+  const changed=JSON.parse(edit.calls.find(c=>c.path==='/git/trees').body.tree[0].content);
+  assert.equal(changed.kind,kind);assert.equal(changed.title,'変更');assert.equal(changed.created_at,saved.created_at);
+  const del=new MockRepo(changed);await del.save(form(changed,'version'),true);
+  assert.deepEqual(del.calls.find(c=>c.path==='/git/trees').body.tree.map(x=>[x.path,x.sha]),[[`content/galleries/${id}.json`,null],[photo,null]]);
+ });
+}

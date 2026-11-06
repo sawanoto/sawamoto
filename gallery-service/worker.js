@@ -36,8 +36,8 @@ export async function authorize(request, env) {
 }
 
 export function validate(input) {
-  if (!input || !uuid.test(input.id) || !['children','handwork'].includes(input.kind)) fail('作品の種類またはIDが不正です。');
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(input.date) || !Number.isFinite(Date.parse(input.date)) || new Date(input.date).toISOString().slice(0,10) !== input.date) fail('制作日を確認してください。');
+  if (!input || !uuid.test(input.id) || !['children','handwork','life'].includes(input.kind)) fail('作品の種類またはIDが不正です。');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(input.date) || !Number.isFinite(Date.parse(input.date)) || new Date(input.date).toISOString().slice(0,10) !== input.date) fail(input.kind === 'life' ? '撮影日を確認してください。' : '制作日を確認してください。');
   const item = {id:input.id, kind:input.kind, date:input.date};
   for (const field of fields) {
     const value = input[field] ?? '';

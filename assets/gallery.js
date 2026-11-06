@@ -22,7 +22,7 @@ if (galleryFilters) {
   function readCategory() {
     const url = new URL(location.href);
     const legacyCategory = url.hash.match(/^#(physical|digital|life)-gallery$/)?.[1];
-    selectCategory(legacyCategory || url.searchParams.get('category'));
+    selectCategory(legacyCategory || url.searchParams.get('category') || (/\/gallery\/life\//.test(url.pathname) ? 'life' : 'physical'));
   }
   buttons.forEach(button => button.addEventListener('click', () => {
     const category = button.dataset.galleryCategory;

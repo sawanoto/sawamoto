@@ -4,6 +4,7 @@
 
 - 子どもの制作: https://sawanoto.github.io/sawamoto/gallery/children/
 - 手仕事・実物作品: https://sawanoto.github.io/sawamoto/gallery/handwork/
+- 生活: https://sawanoto.github.io/sawamoto/gallery/life/
 - 案内ページ: https://sawanoto.github.io/sawamoto/gallery-admin/
 - 実際の投稿画面: 初期設定で作られる `https://sawamoto-gallery.<あなたのWorkersサブドメイン>.workers.dev/`
 
@@ -44,11 +45,11 @@ CloudflareとGitHubのアカウントは本人が管理してください。こ�
 ## 毎回の投稿
 
 1. ホーム画面の投稿画面を開く（セッションが切れたときだけメール認証）。
-2. 「子どもの作品」か「自分の作品」を選ぶ。
+2. 「子どもの作品」「自分の作品」「生活」から選ぶ。
 3. 「写真を選ぶ」で複数枚選択、または「カメラで撮影」。
 4. プレビューを確認して **投稿する**。名前・説明は空のままで構いません。
 
-日付はスマホの今日の日付です。過去の制作物は任意項目を開いて制作日を変更してください。複数写真は1つの作品になります。別作品として並べたいときは分けて投稿してください。画像は順番に処理し、最大12枚、長辺1920px・JPEG品質85%を目安に容量に応じて圧縮（1枚1.5MB以下）。EXIFの向きを反映してCanvasで描画し直し、EXIF/GPSなどの元メタデータを引き継ぎません。WorkerでもJPEGのAPP/COMメタデータを除去します。ファイル名はUUIDなので元の写真名を公開しません。
+生活も同じ画面から編集・削除できます。生活を選ぶと「制作日」は「撮影日」と表示されます。日付はスマホの今日の日付です。過去の制作物は任意項目を開いて制作日を変更してください。複数写真は1つの作品になります。別作品として並べたいときは分けて投稿してください。画像は順番に処理し、最大12枚、長辺1920px・JPEG品質85%を目安に容量に応じて圧縮（1枚1.5MB以下）。EXIFの向きを反映してCanvasで描画し直し、EXIF/GPSなどの元メタデータを引き継ぎません。WorkerでもJPEGのAPP/COMメタデータを除去します。ファイル名はUUIDなので元の写真名を公開しません。
 
 HEICなどブラウザで読み込めない画像はエラーになります。写真アプリでJPEGに書き出すか、端末のカメラ設定で互換性優先/JPEGを利用してください。実機のiOS/AndroidやHEICの直接変換は未検証です。位置情報の削除は、写真に写り込んだ顔・名札・背景の除去ではありません。本人がプレビューで確認してください。
 
@@ -86,3 +87,11 @@ node tests/gallery.browser.cjs
 `gallery-service/.dev.vars`、Cloudflare Secret、GitHub Secret以外にトークンを書かないでください。`.dev.vars`はgitignore対象です。Workerの本体には設定未完了の拒否・Access JWT署名/issuer/audience/有効期限/本人メール確認・同一Origin確認・パス固定・入力検証・保存時の競合確認を実装しています。
 
 実装時に確認した項目と未検証項目は [gallery-verification.md](gallery-verification.md) を参照してください。
+
+## 生活カテゴリ追加後の反映
+
+カテゴリ識別子は `children`（子ども）、`handwork`（自分）、`life`（生活）。生活も既存のJSON・画像パスと `date` フィールドを使います。公開ページの「生活」枠にも表示され、`gallery/life/` では24件ずつページ分けします。
+
+PRを確認してmainへマージした後、まず **Deploy GitHub Pages** の成功を確認してください。その後 [Deploy private gallery service](https://github.com/sawanoto/sawamoto/actions/workflows/gallery-service.yml) → **Run workflow** → **main** を選んで手動実行します。このWorkflowは `workflow_dispatch` のみで、マージだけではWorkerは更新されません。既存のSecrets・Variablesを使用し、通常は設定変更不要です。
+
+成功後、スマートフォンの投稿画面を再読み込みし、3種類の選択肢、生活の撮影日、写真だけの投稿、公開Galleryの生活表示、編集・削除を確認してください。公開反映は各保存後のPagesデプロイ完了を待ちます。

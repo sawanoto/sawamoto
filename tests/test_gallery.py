@@ -27,6 +27,20 @@ class GalleryTests(unittest.TestCase):
             self.assertIn('&lt;script&gt;', pages['gallery/children'])
             self.assertIn('https://example.com/article', pages['gallery/children'])
             self.assertIn('作品の記録を', pages['gallery/handwork'])
+            for n in range(25):
+                id_ = f'22345678-1234-4234-8234-{n:012x}'
+                item = {'id': id_, 'kind': 'life', 'date': '2026-11-04', 'photos': [photo]}
+                (content / 'galleries' / f'{id_}.json').write_text(json.dumps(item))
+            pages = {}
+            render_galleries(content, lambda path, text: pages.update({path: text}), lambda title, desc, path, body: body, lambda path: '/sawamoto/' + path, html.escape, lambda label, url: '')
+            self.assertEqual(pages['gallery/life'].count('class="gallery-card"'), 24)
+            self.assertEqual(pages['gallery/life/page/2'].count('class="gallery-card"'), 1)
+            self.assertIn('撮影日', pages['gallery/life'])
+            physical, life = pages['gallery/children'].split('<section id="life-gallery"')
+            self.assertNotIn('work-22345678', physical)
+            self.assertIn('work-22345678', life)
+            self.assertNotIn('work-12345678', life)
+            self.assertIn('/sawamoto/' + photo, life)
             (root / photo).unlink()
             with self.assertRaises(ValueError):
                 load_entries(content)

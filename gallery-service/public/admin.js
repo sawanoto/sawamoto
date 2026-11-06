@@ -17,7 +17,7 @@ async function api(path, options={}) {
 async function load() {
   try {
     items=await api('/api/items'); const list=$('#items');list.replaceChildren();
-    for(const item of items){const button=document.createElement('button');button.type='button';button.textContent=`${item.date} · ${item.kind==='children'?'子ども':'自分'} · ${item.title||'無題'} (${item.photos.length}枚)`;button.onclick=()=>edit(item);list.append(button);}
+    for(const item of items){const button=document.createElement('button');button.type='button';button.textContent=`${item.date} · ${{children:'子ども',handwork:'自分',life:'生活'}[item.kind]} · ${item.title||'無題'} (${item.photos.length}枚)`;button.onclick=()=>edit(item);list.append(button);}
     controls.disabled=false; say('写真を選んで投稿できます。');
   } catch(error){say(error.message,true);}
 }
@@ -28,7 +28,7 @@ function edit(item) {
   updateKind(); images=item.photos.map(path=>({path,url:`https://sawanoto.github.io/sawamoto/${path}`}));
   $('#delete').hidden=false;$('#submit').textContent='変更を保存';preview();window.scrollTo({top:0,behavior:'smooth'});
 }
-function updateKind(){document.querySelectorAll('[data-kind]').forEach(label=>{label.hidden=label.dataset.kind!==form.elements.kind.value;});}
+function updateKind(){$('#date-label').textContent=form.elements.kind.value==='life'?'撮影日':'制作日';document.querySelectorAll('[data-kind]').forEach(label=>{label.hidden=label.dataset.kind!==form.elements.kind.value;});}
 form.elements.kind.onchange=updateKind;
 function preview(){
   const list=$('#preview');list.replaceChildren();
