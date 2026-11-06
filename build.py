@@ -251,8 +251,11 @@ def project_videos(videos: list[dict]) -> str:
 def featured_links(links: list[dict]) -> str:
     if not links:
         return ""
-    cards = "".join(f'<li><a href="{safe_url(link["url"])}" target="_blank" rel="noopener noreferrer"><strong>{e(link["label"])}</strong><span>{e(link["description"])}</span><span aria-hidden="true">↗</span></a></li>' for link in links)
-    return '<section class="gallery-links" aria-label="作品ギャラリー"><ul>' + cards + "</ul></section>"
+    cards = []
+    for link in links:
+        type_label = f'<span>{e(link["type"])}</span>' if link.get("type") else ""
+        cards.append(f'<li><a href="{safe_url(link["url"])}" target="_blank" rel="noopener noreferrer">{type_label}<strong>{e(link["label"])}</strong><span>{e(link["description"])}</span><span aria-hidden="true">↗</span></a></li>')
+    return '<section class="gallery-links" aria-label="作品ギャラリー"><ul>' + "".join(cards) + "</ul></section>"
 
 
 def highlights(items: list[dict]) -> str:
@@ -483,7 +486,8 @@ def build() -> None:
     writing_home = "".join(card(x, "writing") for x in recent_articles) if recent_articles else '<p class="empty">記事を準備中です。</p>'
     sketch_links = work_by_id["sketches-of-sound-and-movement"].get("featured_links", [])
     life_links = work_by_id["lifesketch-doremi-pipes"].get("featured_links", [])
-    digital_galleries = '<section id="digital-gallery" class="gallery-links gallery-category" aria-labelledby="digital-gallery-title"><div class="section-head"><h2 id="digital-gallery-title">デジタル作品</h2></div>' + featured_links(sketch_links + life_links) + "</section>"
+    website_links = json.loads((CONTENT / "gallery-websites.json").read_text(encoding="utf-8"))
+    digital_galleries = '<section id="digital-gallery" class="gallery-links gallery-category" aria-labelledby="digital-gallery-title"><div class="section-head"><h2 id="digital-gallery-title">デジタル作品</h2></div>' + featured_links(sketch_links + life_links + website_links) + "</section>"
     about_galleries = featured_links(sketch_links + life_links)
     support = SITE.get("support")
     support_html = f'''<section class="support-section" aria-labelledby="support-title"><h2 id="support-title">{e(support["title"])}</h2>
