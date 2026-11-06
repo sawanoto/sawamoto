@@ -483,8 +483,7 @@ def build() -> None:
     writing_home = "".join(card(x, "writing") for x in recent_articles) if recent_articles else '<p class="empty">記事を準備中です。</p>'
     sketch_links = work_by_id["sketches-of-sound-and-movement"].get("featured_links", [])
     life_links = work_by_id["lifesketch-doremi-pipes"].get("featured_links", [])
-    home_links = [link for link in sketch_links if "MovingSketch" in link["label"]] + life_links
-    home_galleries = featured_links(home_links)
+    digital_galleries = '<section class="gallery-links" aria-labelledby="digital-gallery-title"><div class="section-head"><h2 id="digital-gallery-title">デジタル作品</h2></div>' + featured_links(sketch_links + life_links) + "</section>"
     about_galleries = featured_links(sketch_links + life_links)
     support = SITE.get("support")
     support_html = f'''<section class="support-section" aria-labelledby="support-title"><h2 id="support-title">{e(support["title"])}</h2>
@@ -493,7 +492,6 @@ def build() -> None:
     <p class="support-external">外部サイトを新しいタブで開きます。</p></section>''' if support else ""
     home = f'''<section class="hero"><p class="kicker">Personal site</p><h1>{e(SITE['name'])}<span>{e(SITE['name_en'])}</span></h1>
     <p class="lead">{e(SITE['description'])}</p><p class="intro">{e(SITE['intro'])}</p>
-    {home_galleries}
     <a class="button" href="{local('about/')}">澤本優哉について <span aria-hidden="true">→</span></a></section>
     <section class="home-section">{section_head('01 / Writing', '文章・考察', 'writing/')}<div class="card-grid">{writing_home}</div></section>
     <section class="home-section">{section_head('02 / Works', '制作物', 'works/')}<div class="card-grid">{works_home}</div></section>
@@ -614,7 +612,7 @@ def build() -> None:
     write("timeline", page("History", "人生の節目や経験をたどる人生年表。アニメ・映画・読書・ゲームはカテゴリー別に閲覧できます。", "timeline/", render_timeline(unified, local, e, external, image_url)))
     write_migration_artifacts(OUT / "timeline", unified)
 
-    render_galleries(CONTENT, write, page, local, e, external)
+    render_galleries(CONTENT, write, page, local, e, external, digital_galleries)
 
     # Use pages actually written to dist, so the sitemap cannot list missing pages.
     paths = []
