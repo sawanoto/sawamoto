@@ -37,3 +37,17 @@ if (galleryFilters) {
   readCategory();
   galleryFilters.hidden = false;
 }
+
+const physicalFilters = document.querySelector('.physical-filters');
+if (physicalFilters) {
+  const buttons = [...physicalFilters.querySelectorAll('[data-physical-filter]')];
+  const cards = [...document.querySelectorAll('#physical-gallery [data-physical-kind]')];
+  const empty = document.querySelector('.physical-empty');
+  buttons.forEach(button => button.addEventListener('click', () => {
+    const kind = button.dataset.physicalFilter;
+    buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    cards.forEach(card => { card.hidden = kind !== 'all' && card.dataset.physicalKind !== kind; });
+    empty.hidden = kind === 'all' || cards.some(card => !card.hidden);
+  }));
+  physicalFilters.hidden = false;
+}

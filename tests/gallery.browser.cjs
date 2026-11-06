@@ -35,7 +35,7 @@ const root=path.resolve(__dirname,'..');
   const digitalUrls=['https://sawanoto.github.io/p5js/','https://sawanoto.github.io/MovingSketch/','https://sawanoto.github.io/LifeSketch/'];
   for(const width of [320,375,768,1280]){
    await page.setViewportSize({width,height:900});await page.goto('https://admin.test/');await page.waitForFunction(()=>!document.querySelector('#controls').disabled);
-   assert.deepEqual(await page.locator('[name=kind] option').allTextContents(),['子どもの作品','自分の作品','生活']);
+   assert.deepEqual(await page.locator('[name=kind] option').allTextContents(),['子どもの作品','大人の作品','生活']);
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`admin overflow ${width}`);
    await page.goto('https://gallery.test/sawamoto/');
    for(const url of digitalUrls)assert.equal(await page.locator(`a[href="${url}"]`).count(),0);
@@ -54,7 +54,22 @@ const root=path.resolve(__dirname,'..');
      assert.equal(new URL(page.url()).searchParams.get('category'),category);
      assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
     }
-    assert.equal(await page.locator('#physical-gallery .link-list a[aria-current=page]').count(),1);
+    await page.locator('[data-gallery-category="physical"]').click();
+    const allCards=page.locator('#physical-gallery [data-physical-kind]');
+    const ids=await allCards.evaluateAll(cards=>cards.map(card=>card.id));
+    const dates=await allCards.locator('time').evaluateAll(times=>times.map(time=>time.dateTime));
+    assert.deepEqual(dates,[...dates].sort().reverse());
+    assert.deepEqual(new Set(await allCards.evaluateAll(cards=>cards.map(card=>card.dataset.physicalKind))),new Set(['children','handwork']));
+    const before=page.url();await page.evaluate(()=>window.filterTestMarker=true);
+    for(const filter of ['children','handwork','all']){
+     await page.locator(`[data-physical-filter="${filter}"]`).click();
+     assert.equal(await page.locator(`[data-physical-filter="${filter}"]`).getAttribute('aria-pressed'),'true');
+     const expected=await allCards.evaluateAll((cards,filter)=>cards.filter(card=>filter==='all'||card.dataset.physicalKind===filter).map(card=>card.id),filter);
+     assert.deepEqual(await page.locator('#physical-gallery [data-physical-kind]:visible').evaluateAll(cards=>cards.map(card=>card.id)),expected);
+     assert.equal(page.url(),before);assert(await page.evaluate(()=>window.filterTestMarker));
+     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+    }
+    assert.deepEqual(await allCards.evaluateAll(cards=>cards.map(card=>card.id)),ids);
     assert.equal(await page.locator('#digital-gallery-title').textContent(),'デジタル作品');
     for(const url of digitalUrls)assert.equal(await page.locator(`.gallery-links a[href="${url}"]`).count(),1);
    }
@@ -66,7 +81,7 @@ const root=path.resolve(__dirname,'..');
   const noScript=await browser.newContext({javaScriptEnabled:false});
   await noScript.route('**/*',route=>{const url=new URL(route.request().url());if(url.origin!=='https://gallery.test')return route.abort();let file=path.join(root,'dist',url.pathname.replace(/^\/sawamoto\//,''));if(url.pathname.endsWith('/'))file=path.join(file,'index.html');return route.fulfill({body:fs.readFileSync(file),contentType:file.endsWith('.css')?'text/css':'text/html'});});
   const fallback=await noScript.newPage();await fallback.goto('https://gallery.test/sawamoto/gallery/handwork/');
-  assert.equal(await fallback.locator('.gallery-category:visible').count(),3);assert.equal(await fallback.locator('.gallery-filters').isVisible(),false);await noScript.close();
+  assert.equal(await fallback.locator('.gallery-category:visible').count(),3);assert.equal(await fallback.locator('.gallery-filters:visible').count(),0);await noScript.close();
   await page.goto('https://gallery.test/sawamoto/gallery/children/');await page.locator('.gallery-photo').first().click();assert(await page.locator('#photo-view').evaluate(x=>x.open));await page.keyboard.press('Escape');assert.equal(await page.locator('#photo-view').evaluate(x=>x.open),false);
   await page.setViewportSize({width:375,height:812});await page.goto('https://admin.test/');await page.waitForFunction(()=>!document.querySelector('#controls').disabled);
   // Real JPEG, with EXIF orientation 6 injected. The browser must rotate it before resizing.

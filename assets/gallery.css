@@ -3,3 +3,5 @@
 .gallery-category{margin-bottom:3.5rem;scroll-margin-top:2rem}.gallery-category>.link-list{margin:0 0 1.5rem}.gallery-category>.kicker{margin-top:1.5rem}.gallery-category>nav{margin-top:1.5rem}
 
 .gallery-filters{display:flex;flex-wrap:wrap;gap:.5rem}.gallery-filters[hidden],.gallery-category[hidden]{display:none!important}.gallery-filters button{font:inherit;font-size:.88rem;min-height:44px;padding:.4rem 1rem;border:1px solid var(--line);border-radius:2rem;background:transparent;color:var(--ink);cursor:pointer}.gallery-filters button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}.gallery-filters button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+.gallery-card[hidden],.physical-empty[hidden]{display:none!important}.gallery-kind{font-size:.75rem;color:var(--muted);margin:.5rem 0}
