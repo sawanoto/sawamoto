@@ -483,7 +483,7 @@ def build() -> None:
     writing_home = "".join(card(x, "writing") for x in recent_articles) if recent_articles else '<p class="empty">記事を準備中です。</p>'
     sketch_links = work_by_id["sketches-of-sound-and-movement"].get("featured_links", [])
     life_links = work_by_id["lifesketch-doremi-pipes"].get("featured_links", [])
-    digital_galleries = '<section class="gallery-links" aria-labelledby="digital-gallery-title"><div class="section-head"><h2 id="digital-gallery-title">デジタル作品</h2></div>' + featured_links(sketch_links + life_links) + "</section>"
+    digital_galleries = '<section id="digital-gallery" class="gallery-links gallery-category" aria-labelledby="digital-gallery-title"><div class="section-head"><h2 id="digital-gallery-title">デジタル作品</h2></div>' + featured_links(sketch_links + life_links) + "</section>"
     about_galleries = featured_links(sketch_links + life_links)
     support = SITE.get("support")
     support_html = f'''<section class="support-section" aria-labelledby="support-title"><h2 id="support-title">{e(support["title"])}</h2>
