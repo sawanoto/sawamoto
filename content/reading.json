@@ -1472,5 +1472,27 @@
     "impression": "",
     "featured": false,
     "related_ids": []
+  },
+  {
+    "id": "book-088",
+    "title": "叫び",
+    "author": "畠山丑雄",
+    "period": "時期不明",
+    "period_note": "読了日未確認。長文読書エッセイを2026年11月5日に掲載。",
+    "genres": [
+      "日本文学"
+    ],
+    "medium": "",
+    "status": "読了",
+    "reviews": [],
+    "impression": "",
+    "featured": false,
+    "related_ids": [],
+    "links": [
+      {
+        "label": "長文読書エッセイ（ネタバレあり）",
+        "url": "https://sawanoto.github.io/sawamoto/writing/sakebi/"
+      }
+    ]
   }
 ]
