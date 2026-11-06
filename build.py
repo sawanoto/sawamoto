@@ -220,7 +220,7 @@ def interactive_work(url: str, title: str) -> str:
         raise ValueError(f"LifeSketch embed must use the public LifeSketch URL: {url}")
     return (
         '<div class="interactive-placeholder" data-interactive-url="' + e(url) + '" data-interactive-title="' + e(title) + '">'
-        '<p>作品をページ内で遊べます。読み込み後、作品内のパイプをタップすると音が鳴ります。</p>'
+        '<p>作品をページ内で遊べます。読み込み後、作品にふれてください。</p>'
         '<button class="interactive-activate" type="button">作品を読み込む</button>'
         '</div><script src="' + local("assets/interactive-embed.js") + '" defer></script>'
     )
