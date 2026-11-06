@@ -17,7 +17,7 @@ async function api(path, options={}) {
 async function load() {
   try {
     items=await api('/api/items'); const list=$('#items');list.replaceChildren();
-    for(const item of items){const button=document.createElement('button');button.type='button';button.textContent=`${item.date} · ${{children:'子ども',handwork:'自分',life:'生活'}[item.kind]} · ${item.title||'無題'} (${item.photos.length}枚)`;button.onclick=()=>edit(item);list.append(button);}
+    for(const item of items){const button=document.createElement('button');button.type='button';button.textContent=`${item.date} · ${{children:'子どもの作品',handwork:'大人の作品',life:'生活'}[item.kind]} · ${item.title||'無題'} (${item.photos.length}枚)`;button.onclick=()=>edit(item);list.append(button);}
     controls.disabled=false; say('写真を選んで投稿できます。');
   } catch(error){say(error.message,true);}
 }
