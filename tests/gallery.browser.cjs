@@ -35,6 +35,7 @@ const root=path.resolve(__dirname,'..');
   const digitalUrls=['https://sawanoto.github.io/p5js/','https://sawanoto.github.io/MovingSketch/','https://sawanoto.github.io/LifeSketch/'];
   for(const width of [320,375,768,1280]){
    await page.setViewportSize({width,height:900});await page.goto('https://admin.test/');await page.waitForFunction(()=>!document.querySelector('#controls').disabled);
+   assert.deepEqual(await page.locator('[name=kind] option').allTextContents(),['子どもの作品','自分の作品','生活']);
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`admin overflow ${width}`);
    await page.goto('https://gallery.test/sawamoto/');
    for(const url of digitalUrls)assert.equal(await page.locator(`a[href="${url}"]`).count(),0);
@@ -84,6 +85,17 @@ const root=path.resolve(__dirname,'..');
   await page.locator('#items button').first().click();await page.locator('#camera').setInputFiles(fixture);await page.waitForFunction(()=>document.querySelectorAll('#preview img').length===3 && !document.querySelector('#controls').disabled);await page.locator('#submit').click();await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('保存しました'));assert.equal(stored[0].photos.length,3);
   await page.locator('#items button').first().click();page.once('dialog',dialog=>dialog.accept());await page.locator('#delete').click();await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('保存しました'));assert.equal(stored.length,0);
   await page.locator('[name=kind]').selectOption('handwork');await page.locator('#photos').setInputFiles(fixture);await page.waitForFunction(()=>document.querySelectorAll('#preview img').length===1 && !document.querySelector('#controls').disabled);await page.locator('#submit').click();await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('保存しました'));assert.equal(stored[0].kind,'handwork');assert.equal(stored[0].photos.length,1);
+  await page.goto('https://gallery.test/sawamoto/gallery/life/');assert(await page.locator('#life-gallery').isVisible());await page.reload();assert(await page.locator('#life-gallery').isVisible());
+  await page.goto('https://admin.test/');await page.waitForFunction(()=>!document.querySelector('#controls').disabled);
+  await page.locator('[name=kind]').selectOption('life');assert.equal(await page.locator('#date-label').textContent(),'撮影日');
+  await page.locator('#photos').setInputFiles(fixture);await page.waitForFunction(()=>document.querySelectorAll('#preview img').length===1 && !document.querySelector('#controls').disabled);
+  await page.locator('#submit').click();await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('保存しました'));
+  assert.equal(stored[0].kind,'life');assert.equal(stored[0].title,'');assert.equal(stored[0].photos.length,1);assert.match(await page.locator('#items button').first().textContent(),/生活/);
+  await page.locator('#items button').first().click();assert.equal(await page.locator('[name=kind]').inputValue(),'life');assert.equal(await page.locator('#date-label').textContent(),'撮影日');
+  await page.locator('summary').click();await page.locator('[name=title]').fill('日常の写真');await page.locator('[name=date]').fill('2026-01-02');
+  await page.locator('#submit').click();await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('保存しました'));assert.equal(stored[0].title,'日常の写真');assert.equal(stored[0].date,'2026-01-02');assert.equal(stored[0].kind,'life');
+  await page.locator('#items button').first().click();page.once('dialog',dialog=>dialog.accept());await page.locator('#delete').click();await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('保存しました'));assert.equal(stored.length,0);
+  assert.equal(await page.locator('#date-label').textContent(),'制作日');
   await fs.promises.mkdir(path.join(root,'.private'),{recursive:true});await page.screenshot({path:path.join(root,'.private/gallery-admin-mobile.png'),fullPage:true});
   console.log('PASS: 320/375/768/1280px; enlargement; photo-only/multiple; EXIF orientation; compression; retry; edit/article link; append/delete (mock API).');
  }finally{await browser.close();}
