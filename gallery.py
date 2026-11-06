@@ -3,7 +3,7 @@ import json
 import re
 from datetime import date
 
-KINDS = {'children': '子どもの制作ギャラリー', 'handwork': '手仕事・実物作品ギャラリー'}
+KINDS = {'children': '子どもの作品', 'handwork': '手仕事'}
 
 
 def load_entries(content):
@@ -38,6 +38,11 @@ def render_galleries(content, write, page, local, e, external, digital_galleries
                 cards.append(f'<article class="gallery-card" id="work-{item["id"]}"><div class="gallery-photos">{photos}</div><time datetime="{item["date"]}">{item["date"]}</time><h2>{e(item.get("title") or "無題")}</h2>{text}<p>{links}</p></article>')
             path = f'gallery/{kind}/' + (f'page/{index+1}/' if index else '')
             jumps = ''.join(f'<a href="{local(f"gallery/{kind}/" + (f"page/{n+1}/" if n else ""))}" {"aria-current=page" if n == index else ""}>{n+1}</a> ' for n in range(len(chunks)))
-            body = f'<div class="page-heading"><p class="kicker">Gallery</p><h1>{title}</h1><p>制作した日をたどる、写真の記録。新しい制作日から並べています。</p><p><a href="{local("gallery/children/")}">子どもの作品</a> · <a href="{local("gallery/handwork/")}">手仕事・実物作品</a></p></div>{digital_galleries}<div class="gallery-grid">{"".join(cards) or "<p>作品の記録を、少しずつ。</p>"}</div><nav aria-label="ギャラリーのページ">{jumps}</nav><dialog id="photo-view"><button type="button" autofocus>閉じる</button><img alt="作品写真の拡大"></dialog><link rel="stylesheet" href="{local("assets/gallery.css")}"><script src="{local("assets/gallery.js")}" defer></script>'
-            write(path.rstrip('/'), page(title, '作品写真と制作の記録。', path, body))
+            description = '実物作品とデジタル作品、日々の暮らしの記録。'
+            heading = f'<div class="page-heading"><p class="kicker">Gallery</p><h1>Gallery</h1><p>{description}</p><nav aria-label="Galleryのカテゴリ"><ul class="link-list"><li><a href="#physical-gallery">実物作品</a></li><li><a href="#digital-gallery">デジタル作品</a></li><li><a href="#life-gallery">生活</a></li></ul></nav></div>'
+            subcategories = ''.join(f'<li><a href="{local(f"gallery/{key}/")}"' + (' aria-current="page"' if key == kind else '') + f'>{label}</a></li>' for key, label in [('children', '子どもの作品'), ('handwork', '手仕事（編み物・革細工など）')])
+            physical = f'<section id="physical-gallery" class="gallery-category" aria-labelledby="physical-gallery-title"><div class="section-head"><h2 id="physical-gallery-title">実物作品</h2></div><ul class="link-list" aria-label="実物作品の分類">{subcategories}</ul><p class="kicker">{e(title)}</p><p>制作した日をたどる、写真の記録。新しい制作日から並べています。</p><div class="gallery-grid">{"".join(cards) or "<p>作品の記録を、少しずつ。</p>"}</div><nav aria-label="ギャラリーのページ">{jumps}</nav></section>'
+            life = '<section id="life-gallery" class="gallery-category" aria-labelledby="life-gallery-title"><div class="section-head"><h2 id="life-gallery-title">生活</h2></div><p>日常の風景や出来事の写真。写真はまだ掲載していません。</p></section>'
+            body = heading + physical + digital_galleries + life + f'<dialog id="photo-view"><button type="button" autofocus>閉じる</button><img alt="作品写真の拡大"></dialog><link rel="stylesheet" href="{local("assets/gallery.css")}"><script src="{local("assets/gallery.js")}" defer></script>'
+            write(path.rstrip('/'), page('Gallery', description, path, body))
     write('gallery-admin', page('作品の投稿', '本人専用の投稿画面について。', 'gallery-admin/', '<div class="page-heading"><h1>作品の投稿</h1><p>投稿画面は本人認証で保護された別の専用URLで利用します。現在は初期設定待ちです。</p><p>設定手順は<a href="https://github.com/sawanoto/sawamoto/blob/main/docs/gallery-setup.md">スマホ投稿の初期設定ガイド</a>を確認してください。</p></div>'))

@@ -41,6 +41,13 @@ const root=path.resolve(__dirname,'..');
    assert.equal(await page.locator('header a[href="/sawamoto/gallery/handwork/"]').count(),1);
    for(const kind of ['children','handwork']){
     await page.goto(`https://gallery.test/sawamoto/gallery/${kind}/`);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`gallery overflow ${width}`);
+    assert.equal(await page.locator('h1').textContent(),'Gallery');
+    for(const [id,label] of [['physical-gallery','実物作品'],['digital-gallery','デジタル作品'],['life-gallery','生活']]){
+     assert.equal(await page.locator(`#${id} h2`).first().textContent(),label);
+     await page.locator(`a[href="#${id}"]`).click();
+     assert.equal(new URL(page.url()).hash,`#${id}`);
+    }
+    assert.equal(await page.locator('#physical-gallery .link-list a[aria-current=page]').count(),1);
     assert.equal(await page.locator('#digital-gallery-title').textContent(),'デジタル作品');
     for(const url of digitalUrls)assert.equal(await page.locator(`.gallery-links a[href="${url}"]`).count(),1);
    }
