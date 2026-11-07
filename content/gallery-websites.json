@@ -10,5 +10,10 @@
     "type": "Webサイト",
     "description": "福島の親子向け情報をまとめたWebサイト。",
     "url": "https://fukushima-oyako-navi.sawasour.chatgpt.site/"
+  },
+  {
+    "label": "itch.io",
+    "description": "公開中のゲームやインタラクティブ作品",
+    "url": "https://yuyasaw.itch.io/"
   }
 ]
