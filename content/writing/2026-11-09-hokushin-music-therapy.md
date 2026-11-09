@@ -1,5 +1,5 @@
 ---
-{"slug":"hokushin-music-therapy","id":"hokushin-music-therapy","title":"北信学習センターのミュージックセラピー","written":"2026-11-07","draft":true,"period":"2026年11月6日（金）","category":"支援センター巡り","author":"澤本優哉","tags":["子育て","支援センター巡り","ミュージックセラピー","北信学習センター"],"summary":"北信学習センターで、約20組の親子と音楽遊び。知っている赤ちゃんや曾祖父のもとへ向かう2歳の娘と、後方で手遊びをする父。顔なじみの参加者と楽しく過ごした一日の記録です。","series_id":"support-center-visits","visit_date":"2026-11-06","center":"北信学習センター","activity":"北信地域の合同ミュージックセラピー","play_type":"音楽遊び","work_ids":[],"article_ids":[]}
+{"slug":"hokushin-music-therapy","id":"hokushin-music-therapy","title":"北信学習センターのミュージックセラピー","written":"2026-11-07","draft":false,"published":"2026-11-09","period":"2026年11月6日（金）","category":"支援センター巡り","author":"澤本優哉","tags":["子育て","支援センター巡り","ミュージックセラピー","北信学習センター"],"summary":"北信学習センターで、約20組の親子と音楽遊び。知っている赤ちゃんや曾祖父のもとへ向かう2歳の娘と、後方で手遊びをする父。顔なじみの参加者と楽しく過ごした一日の記録です。","series_id":"support-center-visits","visit_date":"2026-11-06","center":"北信学習センター","activity":"北信地域の合同ミュージックセラピー","play_type":"音楽遊び","work_ids":[],"article_ids":[]}
 ---
 2026年11月6日（金）、福島市の北信学習センターで開かれた、北信地域の合同ミュージックセラピーに参加しました。
 
