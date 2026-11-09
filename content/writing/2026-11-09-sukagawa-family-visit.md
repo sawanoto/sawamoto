@@ -1,5 +1,5 @@
 ---
-{"id":"sukagawa-family-visit","slug":"sukagawa-family-visit","title":"生後3か月の娘と、1時間半のドライブ","written":"2026-11-07","visit_date":"2026-11-07","period":"2026年11月7日","draft":true,"category":"育児記録","author":"澤本優哉","tags":["育児記録","育休生活","家族のお出かけ","須賀川"],"summary":"生後3か月の次女を連れて初めて須賀川のおじいちゃんの家へ。赤ちゃんを抱くおじいちゃんの表情、縁側で遊ぶ長女。帰宅後に家族6人で鍋を囲むまでの一日を記録します。","work_ids":[],"article_ids":[]}
+{"id":"sukagawa-family-visit","slug":"sukagawa-family-visit","title":"生後3か月の娘と、1時間半のドライブ","written":"2026-11-07","visit_date":"2026-11-07","period":"2026年11月7日","draft":false,"published":"2026-11-09","category":"育児記録","author":"澤本優哉","tags":["育児記録","育休生活","家族のお出かけ","須賀川"],"summary":"生後3か月の次女を連れて初めて須賀川のおじいちゃんの家へ。赤ちゃんを抱くおじいちゃんの表情、縁側で遊ぶ長女。帰宅後に家族6人で鍋を囲むまでの一日を記録します。","work_ids":[],"article_ids":[]}
 ---
 
 2026年11月7日、土曜日。生後3か月の次女を連れて、須賀川市に住むおじいちゃんの家へ行ってきました。
