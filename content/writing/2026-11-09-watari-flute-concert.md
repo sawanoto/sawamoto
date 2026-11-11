@@ -1,5 +1,5 @@
 ---
-{"slug":"watari-flute-concert","id":"watari-flute-concert","title":"渡利のさくら支援センターで、親子で楽しむフルート","written":"2026-11-09","draft":false,"period":"2026年11月9日（月）","category":"支援センター巡り","author":"澤本優哉","tags":["子育て","支援センター巡り","フルート","制作遊び"],"summary":"娘二人と、渡利の支援センターのフルート演奏会へ。次女を抱っこしていただき、３人で生のフルート演奏を聴きました。テープやビーズで自由に遊ぶ長女の姿と、先生方への感謝を綴ります。","series_id":"support-center-visits","visit_date":"2026-11-09","center":"渡利の支援センター","activity":"学習センターと連携したフルート演奏会と制作遊び","play_type":"音楽鑑賞・制作遊び","work_ids":[],"article_ids":["support-center-watching-over-2026","hokushin-music-therapy"]}
+{"slug":"watari-flute-concert","id":"watari-flute-concert","title":"渡利のさくら支援センターで、親子で楽しむフルート","written":"2026-11-09","published":"2026-11-09","draft":false,"period":"2026年11月9日（月）","category":"支援センター巡り","author":"澤本優哉","tags":["子育て","支援センター巡り","フルート","制作遊び"],"summary":"娘二人と、渡利の支援センターのフルート演奏会へ。次女を抱っこしていただき、３人で生のフルート演奏を聴きました。テープやビーズで自由に遊ぶ長女の姿と、先生方への感謝を綴ります。","series_id":"support-center-visits","visit_date":"2026-11-09","center":"渡利の支援センター","activity":"学習センターと連携したフルート演奏会と制作遊び","play_type":"音楽鑑賞・制作遊び","work_ids":[],"article_ids":["support-center-watching-over-2026","hokushin-music-therapy"]}
 ---
 2026年11月9日（月）、2歳の長女と生後3か月の次女を連れて、福島市渡利地区のさくら支援センターで開かれたフルートの演奏会に参加しました。
 
