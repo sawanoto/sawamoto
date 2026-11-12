@@ -1,5 +1,5 @@
 ---
-{"slug":"support-center-ayumi-gentle-teacher","id":"support-center-ayumi-gentle-teacher","title":"初めて利用したあゆみ支援センター","written":"2026-11-11","draft":true,"period":"2026年11月11日訪問","category":"子育て","author":"澤本優哉","tags":["子育て","支援センター巡り","制作遊び"],"summary":"あゆみ支援センターで「いないいないばあ」のおもちゃを作りました。娘と一緒に遊んでくださった先生の穏やかな物腰や、保護者への丁寧な声かけが印象に残った一日でした。","series_id":"support-center-visits","visit_date":"2026-11-11","center":"あゆみ支援センター（あゆみ保育園）","activity":"いないいないばあのおもちゃ作り・ホール遊び","play_type":"制作遊び","work_ids":[],"article_ids":[]}
+{"slug":"support-center-ayumi-gentle-teacher","id":"support-center-ayumi-gentle-teacher","title":"初めて利用したあゆみ支援センター","written":"2026-11-11","draft":false,"period":"2026年11月11日訪問","category":"子育て","author":"澤本優哉","tags":["子育て","支援センター巡り","制作遊び"],"summary":"あゆみ支援センターで「いないいないばあ」のおもちゃを作りました。娘と一緒に遊んでくださった先生の穏やかな物腰や、保護者への丁寧な声かけが印象に残った一日でした。","series_id":"support-center-visits","visit_date":"2026-11-11","center":"あゆみ支援センター（あゆみ保育園）","activity":"いないいないばあのおもちゃ作り・ホール遊び","play_type":"制作遊び","work_ids":[],"article_ids":[]}
 ---
 11月11日、あゆみ支援センターを訪れました。
 
