@@ -1323,7 +1323,13 @@
     ],
     "impression": "",
     "featured": false,
-    "related_ids": []
+    "related_ids": [],
+    "links": [
+      {
+        "label": "『ガダラの豚』に見る、現実世界という宗教",
+        "url": "https://sawanoto.github.io/sawamoto/writing/gadara-no-buta-religion/"
+      }
+    ]
   },
   {
     "id": "book-079",
