@@ -1,5 +1,5 @@
 ---
-{"slug":"before-meeting-leonardo","id":"before-meeting-leonardo","title":"レオナルド・ダ・ヴィンチに会いに行く【前編】","published":"2026-11-11","category":"エッセイ","tags":["レオナルド・ダ・ヴィンチ","美術","読書"],"summary":"明日、東京へ行く。今回は手稿ではなく、レオナルドが描いた女性に会いに行く。","work_ids":[]}
+{"slug":"before-meeting-leonardo","id":"before-meeting-leonardo","title":"レオナルド・ダ・ヴィンチに会いに行く【前日】","published":"2026-11-11","category":"エッセイ","tags":["レオナルド・ダ・ヴィンチ","美術","読書"],"summary":"明日、東京へ行く。今回は手稿ではなく、レオナルドが描いた女性に会いに行く。","work_ids":[]}
 ---
 2025年、大阪・関西万博のイタリア館で、レオナルド・ダ・ヴィンチの手稿を見た。
 
