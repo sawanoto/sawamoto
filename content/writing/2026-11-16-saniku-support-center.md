@@ -1,5 +1,5 @@
 ---
-{"slug":"saniku-support-center","id":"saniku-support-center","title":"初めてでも安心できる場所――三育子育て支援センター","written":"2026-11-13","draft":FALSE,"period":"2026年11月13日訪問","category":"支援センター巡り","author":"澤本優哉","tags":["子育て","支援センター巡り","制作遊び"],"summary":"三育子育て支援センターを初めて訪れ、娘と「おべんとうバス」の制作遊びを楽しみました。清潔で広々とした施設と先生方の温かい対応のおかげで、安心して過ごせた一日でした。","series_id":"support-center-visits","visit_date":"2026-11-13","center":"三育子育て支援センター","activity":"自由開放・秋の制作「おべんとうバス」","play_type":"制作遊び・自由遊び","work_ids":[],"article_ids":["support-center-ayumi-gentle-teacher","support-center-watching-over-2026"]}
+{"slug":"saniku-support-center","id":"saniku-support-center","title":"初めてでも安心できる場所――三育子育て支援センター","written":"2026-11-13","draft":false,"published":"2026-11-16","period":"2026年11月13日訪問","category":"支援センター巡り","author":"澤本優哉","tags":["子育て","支援センター巡り","制作遊び"],"summary":"三育子育て支援センターを初めて訪れ、娘と「おべんとうバス」の制作遊びを楽しみました。清潔で広々とした施設と先生方の温かい対応のおかげで、安心して過ごせた一日でした。","series_id":"support-center-visits","visit_date":"2026-11-13","center":"三育子育て支援センター","activity":"自由開放・秋の制作「おべんとうバス」","play_type":"制作遊び・自由遊び","work_ids":[],"article_ids":["support-center-ayumi-gentle-teacher","support-center-watching-over-2026"]}
 ---
 11月13日、福島市笹谷にある三育子育て支援センターを初めて訪問しました。
 
