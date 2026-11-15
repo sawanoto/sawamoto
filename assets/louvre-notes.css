@@ -1,0 +1,9 @@
+.louvre-notes { max-width: 100%; }
+.louvre-notes table { width: 100%; table-layout: fixed; border-collapse: collapse; line-height: 1.85; }
+.louvre-notes th, .louvre-notes td { border: 1px solid var(--line); padding: .8rem; text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+.louvre-notes th { background: #e9ece5; }
+.louvre-notes th:first-child { width: 36%; }
+@media (max-width: 600px) {
+  .louvre-notes th, .louvre-notes td { padding: .6rem .45rem; font-size: .9rem; }
+  .louvre-notes th:first-child { width: 38%; }
+}
