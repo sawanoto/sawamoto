@@ -73,6 +73,16 @@ LifeSketchの記事内にも作品を埋め込むときは、記事のメタデ�
 
 外部 URL は `http` / `https` のみ許可します。Markdown 本文は自分で確認した文章とリンクだけを入れてください。画像は公開を許可されたものだけを `assets/` などに配置してください。
 
+## マージと同時に記事を公開するには
+
+公開する記事のPRでは、マージ前に次を揃えてください。
+
+- 冒頭のJSONに `"draft": false` を設定する。JSONの真偽値は小文字で、`FALSE` や文字列の `"false"` は使わない。
+- `"published": "YYYY-MM-DD"` に初回公開日を設定し、原稿ファイル名の日付も合わせる。`written` と `visit_date` はそのまま保持する。
+- 本文を確認し、PRの「Check content build」が成功してからmainへマージする。
+
+mainへのマージで「Deploy GitHub Pages」が自動実行されます。Actionsで成功したことを確認してください。`draft: true` の記事はマージしても掲載されません。今後Codexに依頼するときは「本文は確認後にマージする。マージしたら公開される状態（draft: false・公開日設定済み）でPRを作成し、今回はマージしない」と指定できます。
+
 ## GitHub Pages で公開
 
 1. 公開内容を確認して `main` ブランチに push します。
