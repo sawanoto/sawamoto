@@ -199,11 +199,20 @@ def write(path: str, content: str) -> None:
     file.write_text(content, encoding="utf-8")
 
 
+def writing_sort_key(item: dict) -> tuple[str, str, str]:
+    """Newest publication first; use visit date to order same-day articles."""
+    return (item.get("published", ""), item.get("visit_date", ""), item["slug"])
+
+
 def card(item: dict, section: str) -> str:
     href = local(f"{section}/{item['slug']}/")
     image = f'<a class="card-image" href="{href}"><img src="{image_url(item["thumbnail"])}" alt="{e(item.get("thumbnail_alt", ""))}" loading="lazy"></a>' if item.get("thumbnail") else ""
     card_class = ("card card-writing-image" if section == "writing" else "card") if image else "card card-text"
     meta = " · ".join(e(value) for value in [item.get("period", item.get("date", "")), item.get("category", "")] if value)
+    if section == "writing":
+        meta = " · ".join(e(value) for value in [
+            item["published"], "公開", item.get("period", ""), item.get("category", "")
+        ] if value)
     count = f'<p class="meta">作品数：{e(item["work_count"])}</p>' if item.get("work_count") else ""
     return f'<article class="{card_class}">{image}<div class="card-body"><p class="meta">{meta}</p><h3><a href="{href}">{e(item["title"])}</a></h3><p>{e(item.get("list_summary", item.get("summary", "")))}</p>{count}</div></article>'
 
@@ -481,7 +490,7 @@ def build() -> None:
     shutil.copyfile(ROOT / verification_file, OUT / verification_file)
 
     recent_works = sorted(WORKS, key=lambda x: x.get("sort", x.get("date", "")), reverse=True)[:3]
-    recent_articles = sorted(WRITING, key=lambda x: x.get("published", ""), reverse=True)[:3]
+    recent_articles = sorted(WRITING, key=writing_sort_key, reverse=True)[:3]
     works_home = "".join(card(x, "works") for x in recent_works) if recent_works else '<p class="empty">公開できる制作物を準備中です。</p>'
     writing_home = "".join(card(x, "writing") for x in recent_articles) if recent_articles else '<p class="empty">記事を準備中です。</p>'
     sketch_links = work_by_id["sketches-of-sound-and-movement"].get("featured_links", [])
@@ -563,7 +572,7 @@ def build() -> None:
         detail = f'<div class="detail-heading"><a class="back" href="{local("works/")}">← Works</a><p class="meta">{heading_meta}</p><h1>{e(item["title"])}</h1><p class="lead">{e(item.get("summary", ""))}</p></div>{gallery_links}{media}{link}{info}{video_gallery}<article class="prose">{body}</article>{work_highlights}{related_html}'
         write(f'works/{item["slug"]}', page(item["title"], item.get("summary", ""), f'works/{item["slug"]}/', detail))
 
-    writing_list = "".join(card(x, "writing") for x in sorted(WRITING, key=lambda x: x.get("published", ""), reverse=True)) if WRITING else '<p class="empty">公開する記事を準備中です。</p>'
+    writing_list = "".join(card(x, "writing") for x in sorted(WRITING, key=writing_sort_key, reverse=True)) if WRITING else '<p class="empty">公開する記事を準備中です。</p>'
     series_links = "".join(f'<li><a href="{local(f"writing/{series["slug"]}/")}"><strong>{e(series["title"])}</strong><span>{e(series["description"])}</span><span aria-hidden="true">→</span></a></li>' for series in SERIES if any(x.get("series_id") == series["id"] for x in WRITING))
     series_html = f'<section class="writing-series"><h2>連載</h2><ul>{series_links}</ul></section>' if series_links else ""
     write("writing", page("Writing", "澤本優哉の文章と考察。", "writing/", f'<div class="page-heading"><p class="kicker">Writing</p><h1>文章・考察</h1><p>制作の記録や、日々考えたことを文章で残します。</p></div>{series_html}<div class="card-grid listing">{writing_list}</div>'))
