@@ -72,6 +72,27 @@ class DraftBuildTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assert_hidden()
 
+    def test_writing_cards_use_publication_then_visit_date(self):
+        # An older visit published later must precede a newer visit published earlier.
+        fixtures = [
+            ("zzz-old-visit", "9999-12-30", "2000-01-01"),
+            ("aaa-new-visit", "9999-12-30", "2000-01-02"),
+            ("latest-publication", "9999-12-31", "1999-01-01"),
+        ]
+        for slug, published, visit in fixtures:
+            metadata = dict(slug=slug, id=slug, title=slug, published=published,
+                            visit_date=visit, period=f"{visit}訪問")
+            (self.root / "content/writing" / f"{published}-{slug}.md").write_text(
+                "---\n" + json.dumps(metadata) + "\n---\n本文\n")
+        result = self.build()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        for path in ("index.html", "writing/index.html"):
+            html = (self.root / "dist" / path).read_text()
+            positions = [html.index(f'writing/{slug}/') for slug in
+                         ("latest-publication", "aaa-new-visit", "zzz-old-visit")]
+            self.assertEqual(positions, sorted(positions))
+            self.assertIn("9999-12-31 · 公開 · 1999-01-01訪問", html)
+
     def test_non_boolean_draft_fails_closed(self):
         for value in ("true", "false", "", 0, 1, None):
             with self.subTest(value=value):
