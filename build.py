@@ -7,6 +7,7 @@ import json
 import os
 import re
 import shutil
+from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse
 from xml.sax.saxutils import escape as xml_escape
@@ -123,7 +124,7 @@ def related(ids: list[str], collection: dict, section: str) -> str:
     return '<ul class="link-list">' + "".join(links) + "</ul>" if links else ""
 
 
-def page(title: str, description: str, path: str, body: str) -> str:
+def page(title: str, description: str, path: str, body: str, *, indexable: bool = True) -> str:
     full_title = f"{title} | {SITE['name']}" if title else f"{SITE['name']} / {SITE['name_en']}"
     url = ORIGIN + local(path)
     nav = [("Home", ""), ("About", "about/"), ("History", "timeline/"), ("Works", "works/"), ("Writing", "writing/"), ("Gallery", "gallery/handwork/")]
@@ -165,6 +166,7 @@ def page(title: str, description: str, path: str, body: str) -> str:
   gtag('config', 'G-V2C8N1DQLS');
 </script>
 <meta name="theme-color" content="#f8f7f3"><title>{e(full_title)}</title><meta name="description" content="{e(description)}">
+{'' if indexable else '<meta name="robots" content="noindex,follow">'}
 <link rel="canonical" href="{url}"><meta property="og:type" content="website"><meta property="og:locale" content="ja_JP">
 <meta property="og:title" content="{e(full_title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{url}">
 <meta property="og:site_name" content="{e(SITE['name'])}"><link rel="stylesheet" href="{local('assets/style.css')}?v={STYLE_VERSION}">
@@ -627,14 +629,22 @@ def build() -> None:
 
     render_galleries(CONTENT, write, page, local, e, external, digital_galleries)
 
-    # Use pages actually written to dist, so the sitemap cannot list missing pages.
+    # Use published, indexable pages actually written to dist.
+    article_dates = {}
+    for item in WRITING:
+        modified = item.get("updated") or item.get("published")
+        if modified:
+            date.fromisoformat(modified)
+            article_dates[f'writing/{item["slug"]}/'] = modified
     paths = []
     for file in sorted(OUT.rglob("index.html")):
         if file.relative_to(OUT).parent.as_posix() in REDIRECTS:
             continue
+        if '<meta name="robots" content="noindex' in file.read_text(encoding="utf-8"):
+            continue
         folder = file.relative_to(OUT).parent.as_posix()
         paths.append("" if folder == "." else f"{folder}/")
-    urls = "".join(f'<url><loc>{xml_escape(ORIGIN + local(x))}</loc></url>' for x in paths)
+    urls = "".join(f'<url><loc>{xml_escape(ORIGIN + local(x))}</loc>' + (f'<lastmod>{article_dates[x]}</lastmod>' if x in article_dates else '') + '</url>' for x in paths)
     (OUT / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>', encoding="utf-8")
     (OUT / "robots.txt").write_text(f'User-agent: *\nAllow: /\nSitemap: {ORIGIN + local("sitemap.xml")}\n', encoding="utf-8")
 
