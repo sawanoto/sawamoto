@@ -21,7 +21,7 @@ class GalleryTests(unittest.TestCase):
             self.assertEqual(len(load_entries(content)), 25)
             import html
             pages = {}
-            render_galleries(content, lambda path, text: pages.update({path: text}), lambda title, desc, path, body: body, lambda path: '/sawamoto/' + path, html.escape, lambda label, url: f'<a href="{html.escape(url)}">{label}</a>')
+            render_galleries(content, lambda path, text: pages.update({path: text}), lambda title, desc, path, body, **kwargs: body, lambda path: '/sawamoto/' + path, html.escape, lambda label, url: f'<a href="{html.escape(url)}">{label}</a>')
             self.assertIn('gallery/children/page/2', pages)
             self.assertEqual(pages['gallery/children'].count('class="gallery-card"'), 25)
             self.assertIn('&lt;script&gt;', pages['gallery/children'])
@@ -32,7 +32,7 @@ class GalleryTests(unittest.TestCase):
                 item = {'id': id_, 'kind': 'life', 'date': '2026-11-04', 'photos': [photo]}
                 (content / 'galleries' / f'{id_}.json').write_text(json.dumps(item))
             pages = {}
-            render_galleries(content, lambda path, text: pages.update({path: text}), lambda title, desc, path, body: body, lambda path: '/sawamoto/' + path, html.escape, lambda label, url: '')
+            render_galleries(content, lambda path, text: pages.update({path: text}), lambda title, desc, path, body, **kwargs: body, lambda path: '/sawamoto/' + path, html.escape, lambda label, url: '')
             self.assertEqual(pages['gallery/life'].split('<section id="life-gallery"')[1].count('class="gallery-card"'), 24)
             self.assertEqual(pages['gallery/life/page/2'].split('<section id="life-gallery"')[1].count('class="gallery-card"'), 1)
             self.assertIn('撮影日', pages['gallery/life'])
@@ -65,7 +65,7 @@ class GalleryTests(unittest.TestCase):
                 item = {'id': id_, 'kind': 'children' if n % 2 else 'handwork', 'date': f'2026-11-{n+1:02d}', 'photos': [photo]}
                 (content / 'galleries' / f'{id_}.json').write_text(json.dumps(item))
             pages = {}
-            render_galleries(content, lambda path, text: pages.update({path: text}), lambda t, d, p, b: b, lambda p: '/' + p, html.escape, lambda l, u: '')
+            render_galleries(content, lambda path, text: pages.update({path: text}), lambda t, d, p, b, **kwargs: b, lambda p: '/' + p, html.escape, lambda l, u: '')
             for route in ['gallery/children', 'gallery/handwork', 'gallery/life']:
                 parser = Cards(); parser.feed(pages[route])
                 self.assertEqual(len(parser.ids), 30)

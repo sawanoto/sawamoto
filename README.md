@@ -96,6 +96,7 @@ Codex Cloud での変更は検証ブランチと PR で確認し、本人が承�
 ## 構成
 
 - `build.py`：ページ、SEO メタデータ、サイトマップを生成
+- `scripts/check_seo.py`：生成後のサイトマップ、正規URL、検索対象ページへのHTMLリンクを検査。Search Consoleでの確認手順は [検索での発見とサイトマップ](docs/seo-search-console.md) を参照
 - `content/site.json`：共通文言
 - `content/timeline.json`：年表
 - `content/works/*.md`：作品

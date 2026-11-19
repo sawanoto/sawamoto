@@ -5,6 +5,7 @@ on:
       - AGENTS.md
       - README.md
       - scripts/check_writing.py
+      - scripts/check_seo.py
       - build.py
       - gallery.py
       - kigo.py
@@ -28,3 +29,4 @@ jobs:
       - run: python scripts/check_writing.py
       - run: python -m unittest discover -s tests -p 'test_*.py'
       - run: python build.py
+      - run: python scripts/check_seo.py
