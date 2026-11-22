@@ -20,14 +20,32 @@ const url = 'https://home.test/sawamoto/';
       });
       return ctx;
     }
+    async function checkHome(page, language) {
+      const japanese = language === 'ja';
+      const title = japanese ? '澤本優哉 | 創作と日々の記録' : 'Yuya Sawamoto | Creative work & everyday life';
+      const description = japanese
+        ? '澤本優哉の個人サイト。創作活動、執筆、プログラミング、育児や日々の暮らしを記録しています。'
+        : 'Creative work, writing, programming, and everyday life.';
+      assert.equal(await page.locator('html').getAttribute('lang'), language);
+      assert.equal(await page.title(), title);
+      assert.equal(await page.locator('meta[name="description"]').getAttribute('content'), description);
+      assert.equal(await page.locator('meta[property="og:title"]').getAttribute('content'), title);
+      assert.equal(await page.locator('meta[property="og:description"]').getAttribute('content'), description);
+      assert.equal(await page.locator('meta[property="og:locale"]').getAttribute('content'), japanese ? 'ja_JP' : 'en_US');
+      assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://sawanoto.github.io/sawamoto/');
+      assert.equal(await page.locator('link[hreflang]').count(), 0);
+      assert.equal(await page.locator('nav a[href="/sawamoto/writing/"]').textContent(), japanese ? '文章' : 'Writing');
+      assert.equal(await page.locator('.home-section h2').last().textContent(), japanese ? '活動の記録' : 'History');
+    }
     let originalLinks;
-    for (const [locale, expected] of [['ja-JP','ja'], ['en-US','en'], ['fr-FR','en']]) {
+    for (const locale of ['ja-JP', 'en-US', 'fr-FR']) {
       const ctx = await context({locale});
       const page = await ctx.newPage();
       const errors = [];
       page.on('pageerror', err => errors.push(err.message));
       await page.goto(url);
-      assert.equal(await page.locator('html').getAttribute('lang'), expected);
+      await checkHome(page, 'ja');
+      assert.equal(await page.evaluate(() => localStorage.getItem('sawamoto.language')), null);
       const links = await page.locator('a').evaluateAll(nodes => nodes.map(n => n.getAttribute('href')));
       if (!originalLinks) originalLinks = links;
       else assert.deepEqual(links, originalLinks);
@@ -36,13 +54,12 @@ const url = 'https://home.test/sawamoto/';
         for (const language of ['en','ja']) {
           const button = page.locator(`[data-language="${language}"]`);
           await button.click();
-          assert.equal(await page.locator('html').getAttribute('lang'),language);
+          await checkHome(page, language);
           assert.equal(await button.getAttribute('aria-pressed'),'true');
           assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),false, `Overflow ${width}/${language}`);
           assert.equal(await page.locator('.lead').textContent(), language === 'ja' ? '制作、執筆、プログラミング、日々の活動の記録。' : 'Creative work, writing, programming, and everyday life.');
           assert.equal(await page.locator('.content-language:visible').count(),language === 'en' ? 6 : 0);
           assert.equal(await page.locator('.card h3').first().getAttribute('lang'),'ja');
-          assert.equal(await page.locator('meta[property="og:locale"]').getAttribute('content'),language === 'en' ? 'en_US' : 'ja_JP');
           fs.mkdirSync(path.resolve(__dirname, '../.private/home-screenshots'), {recursive:true});
           await page.screenshot({path:path.resolve(__dirname, `../.private/home-screenshots/${width}-${language}.png`),fullPage:true});
         }
@@ -73,6 +90,7 @@ const url = 'https://home.test/sawamoto/';
     assert.equal(await fallback.locator('html').getAttribute('lang'),'ja');
     assert.equal(await fallback.locator('.language-switch').isVisible(),false);
     assert.match(await fallback.locator('.lead').textContent(),/制作/);
+    await checkHome(fallback, 'ja');
     await noJS.close();
     const blocked = await context({locale:'en-US'});
     await blocked.addInitScript(() => {
@@ -80,15 +98,18 @@ const url = 'https://home.test/sawamoto/';
     });
     const page = await blocked.newPage();
     await page.goto(url);
+    await checkHome(page, 'ja');
+    await page.locator('[data-language="en"]').click();
+    await checkHome(page, 'en');
     await page.locator('[data-language="ja"]').click();
-    assert.equal(await page.locator('html').getAttribute('lang'),'ja');
+    await checkHome(page, 'ja');
     await blocked.close();
-    // An invalid saved value falls back to the browser language.
+    // An invalid saved value falls back to Japanese.
     const future = await context({locale:'en-US'});
     await future.addInitScript(() => localStorage.setItem('sawamoto.language','invalid'));
     const futurePage = await future.newPage();
     await futurePage.goto(url);
-    assert.equal(await futurePage.locator('html').getAttribute('lang'),'en');
+    await checkHome(futurePage, 'ja');
     await future.close();
     console.log('Home i18n: locales, switch, keyboard, persistence, no JS, blocked storage, responsive layout, and links passed.');
   } finally { await browser.close(); }

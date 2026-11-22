@@ -3,7 +3,7 @@
   'use strict';
   const data = document.getElementById('home-i18n');
   if (!data) return;
-  const { strings, title } = JSON.parse(data.textContent);
+  const { strings, title, description } = JSON.parse(data.textContent);
   const storageKey = 'sawamoto.language';
   const controls = document.querySelector('.language-switch');
   const hasJapanese = text => /[\u3000-\u9fff\uff00-\uffef]/u.test(text);
@@ -44,7 +44,6 @@
   guide.textContent = 'Articles and other pages are in Japanese. You can use your browser’s translation feature to read them.';
   guide.hidden = true;
   document.querySelector('.hero .intro').after(guide);
-  const description = document.querySelector('meta[name="description"]').content;
   function apply(language) {
     document.documentElement.lang = language;
     texts.forEach(({node, original, trimmed}) => {
@@ -55,7 +54,7 @@
       node.lang = hasJapanese(node.textContent) ? 'ja' : language;
     });
     document.title = title[language];
-    const summary = language === 'en' ? strings[description] || description : description;
+    const summary = description[language];
     document.querySelector('meta[name="description"]').content = summary;
     document.querySelector('meta[property="og:title"]').content = title[language];
     document.querySelector('meta[property="og:description"]').content = summary;
@@ -66,8 +65,7 @@
   }
   let saved;
   try { saved = localStorage.getItem(storageKey); } catch { /* Storage may be disabled. */ }
-  const browserLanguage = navigator.languages?.[0] || navigator.language || 'en';
-  apply(['ja', 'en'].includes(saved) ? saved : /^ja(?:-|$)/i.test(browserLanguage) ? 'ja' : 'en');
+  apply(saved === 'en' ? 'en' : 'ja');
   controls.hidden = false;
   controls.addEventListener('click', event => {
     const button = event.target.closest('button[data-language]');

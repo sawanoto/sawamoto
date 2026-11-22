@@ -1,9 +1,25 @@
 {
   "title": {
-    "ja": "澤本優哉 / Yuya Sawamoto",
+    "ja": "澤本優哉 | 創作と日々の記録",
     "en": "Yuya Sawamoto | Creative work & everyday life"
   },
+  "description": {
+    "ja": "澤本優哉の個人サイト。創作活動、執筆、プログラミング、育児や日々の暮らしを記録しています。",
+    "en": "Creative work, writing, programming, and everyday life."
+  },
   "strings": {
+    "ホーム": "Home",
+    "自己紹介": "About",
+    "活動年表": "History",
+    "作品": "Works",
+    "文章": "Writing",
+    "ギャラリー": "Gallery",
+    "本": "Books",
+    "個人サイト": "Personal site",
+    "01 / 文章": "01 / Writing",
+    "02 / 作品": "02 / Works",
+    "03 / 年表": "03 / Timeline",
+    "活動の記録": "History",
     "公開": "Published",
     "制作、執筆、プログラミング、日々の活動の記録。": "Creative work, writing, programming, and everyday life.",
     "澤本優哉の個人サイトです。制作物や文章、これまでの活動を少しずつ記録していきます。": "The personal site of Yuya Sawamoto: a growing collection of creative projects, essays, and observations from everyday life.",
