@@ -127,10 +127,20 @@ def related(ids: list[str], collection: dict, section: str) -> str:
 def page(title: str, description: str, path: str, body: str, *, indexable: bool = True) -> str:
     full_title = f"{title} | {SITE['name']}" if title else f"{SITE['name']} / {SITE['name_en']}"
     url = ORIGIN + local(path)
-    nav = [("Home", ""), ("About", "about/"), ("History", "timeline/"), ("Works", "works/"), ("Writing", "writing/"), ("Gallery", "gallery/handwork/")]
+    nav = [
+        ("Home", "ホーム", ""),
+        ("About", "自己紹介", "about/"),
+        ("History", "活動年表", "timeline/"),
+        ("Works", "作品", "works/"),
+        ("Writing", "文章", "writing/"),
+        ("Gallery", "ギャラリー", "gallery/handwork/"),
+    ]
     if BOOKS:
-        nav.append(("Books", "books/"))
-    nav_html = "".join(f'<a href="{local(p)}" {"aria-current=\"page\"" if p == path else ""}>{label}</a>' for label, p in nav)
+        nav.append(("Books", "本", "books/"))
+    nav_html = "".join(
+        f'<a href="{local(p)}" {"aria-current=\"page\"" if p == path else ""}>{ja if path == "" else en}</a>'
+        for en, ja, p in nav
+    )
     kigo_assets = (f'<link rel="stylesheet" href="{local("assets/kigo.css")}">'
                    f'<script src="{local("assets/kigo.js")}" defer></script>') if path == "" else ""
     timeline_script = ""
@@ -147,8 +157,10 @@ def page(title: str, description: str, path: str, body: str, *, indexable: bool 
     language_assets = ""
     language_switch = ""
     if path == "":
-        translations = (CONTENT / "home-i18n.json").read_text(encoding="utf-8")
-        translations = translations.replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
+        translations = json.loads((CONTENT / "home-i18n.json").read_text(encoding="utf-8"))
+        full_title = translations["title"]["ja"]
+        description = translations["description"]["ja"]
+        translations = json.dumps(translations, ensure_ascii=False).replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
         language_assets = (f'<script id="home-i18n" type="application/json">{translations}</script>'
                            f'<link rel="stylesheet" href="{local("assets/home-i18n.css")}">'
                            f'<script src="{local("assets/home-i18n.js")}" defer></script>')
@@ -505,12 +517,12 @@ def build() -> None:
     <p>{e(support["description"])}</p><p>{e(support["note"])}</p>
     <a class="button" href="{safe_url(support["url"])}" target="_blank" rel="noopener noreferrer">{e(support["label"])} <span aria-hidden="true">↗</span></a>
     <p class="support-external">外部サイトを新しいタブで開きます。</p></section>''' if support else ""
-    home = f'''<section class="hero"><p class="kicker">Personal site</p><h1>{e(SITE['name'])}<span>{e(SITE['name_en'])}</span></h1>
+    home = f'''<section class="hero"><p class="kicker">個人サイト</p><h1>{e(SITE['name'])}<span>{e(SITE['name_en'])}</span></h1>
     <p class="lead">{e(SITE['description'])}</p><p class="intro">{e(SITE['intro'])}</p>
     <a class="button" href="{local('about/')}">澤本優哉について <span aria-hidden="true">→</span></a></section>
-    <section class="home-section">{section_head('01 / Writing', '文章・考察', 'writing/')}<div class="card-grid">{writing_home}</div></section>
-    <section class="home-section">{section_head('02 / Works', '制作物', 'works/')}<div class="card-grid">{works_home}</div></section>
-    <section class="home-section">{section_head('03 / Timeline', 'History', 'timeline/')}<p class="section-copy">活動の記録は、時期や公開範囲を確認しながら年表に加えていきます。</p></section>{support_html}'''
+    <section class="home-section">{section_head('01 / 文章', '文章・考察', 'writing/')}<div class="card-grid">{writing_home}</div></section>
+    <section class="home-section">{section_head('02 / 作品', '制作物', 'works/')}<div class="card-grid">{works_home}</div></section>
+    <section class="home-section">{section_head('03 / 年表', '活動の記録', 'timeline/')}<p class="section-copy">活動の記録は、時期や公開範囲を確認しながら年表に加えていきます。</p></section>{support_html}'''
     write("", page("", SITE["description"], "", home))
 
     social = '<ul class="link-list">' + "".join(f'<li>{external(x["label"], x["url"])}</li>' for x in SITE.get("links", [])) + "</ul>" if SITE.get("links") else '<p class="empty">公開中の外部リンクはありません。</p>'
