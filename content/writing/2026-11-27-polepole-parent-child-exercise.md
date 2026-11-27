@@ -1,5 +1,5 @@
 ---
-{"slug":"2026-11-26-polepole-parent-child-exercise","id":"polepole-parent-child-gymnastics","title":"親子体操と、同世代の挑戦 ― ポレポレ訪問記","draft":true,"written":"2026-11-27","category":"支援センター巡り","tags":["福島市","子育て支援センター","親子体操","育児","2歳児"],"summary":"長女とポレポレの親子体操へ。イベントへの参加意欲が日によって異なる長女の姿と、パーソナルジムの仕事を続けてきた同世代の講師との出会いを振り返ります。","series_id":"support-center-visits","visit_date":"2026-11-26","center":"ポレポレ","activity":"親子体操","period":"2026年11月26日訪問","author":"澤本優哉","meta_description":"2026年11月26日、長女と子育て支援センターのポレポレで親子体操に参加。手遊びやストレッチを体験し、同世代の講師が独立して起業した話を聞きました。","play_type":"手遊び・ストレッチ・ボール遊び","gallery_images":[],"work_ids":[],"article_ids":[]}
+{"slug":"2026-11-26-polepole-parent-child-exercise","id":"polepole-parent-child-gymnastics","title":"親子体操と、同世代の挑戦 ― ポレポレ訪問記","draft":false,"published":"2026-11-27","category":"支援センター巡り","tags":["福島市","子育て支援センター","親子体操","育児","2歳児"],"summary":"長女とポレポレの親子体操へ。イベントへの参加意欲が日によって異なる長女の姿と、パーソナルジムの仕事を続けてきた同世代の講師との出会いを振り返ります。","series_id":"support-center-visits","visit_date":"2026-11-26","center":"ポレポレ","activity":"親子体操","period":"2026年11月26日訪問","author":"澤本優哉","meta_description":"2026年11月26日、長女と子育て支援センターのポレポレで親子体操に参加。手遊びやストレッチを体験し、同世代の講師が独立して起業した話を聞きました。","play_type":"手遊び・ストレッチ・ボール遊び","gallery_images":[],"work_ids":[],"article_ids":[]}
 ---
 
 2026年11月26日、子育て支援センターのポレポレを訪れ、長女と親子体操に参加しました。
