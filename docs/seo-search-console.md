@@ -6,4 +6,4 @@
 
 Google Search Console では `https://sawanoto.github.io/sawamoto/` の URL プレフィックス プロパティを選び、サイトマップに `https://sawanoto.github.io/sawamoto/sitemap.xml` を送信します。以前の送信が「取得できませんでした」のままなら、詳細画面で最終取得日時とエラーを確認し、現行の URL を再送信してください。代表的な記事は URL 検査のライブテストで、クロール可・ページ取得成功・canonical を確認します。送信はクロールや登録を保証しません。
 
-`/sawamoto/robots.txt` は公開されていますが、robots.txt の効力がある場所はホストのルートです。現在の `https://sawanoto.github.io/robots.txt` は 404 であり、このリポジトリからルートの robots.txt を設置することはできません。サイトマップは Search Console に直接送信してください。
+Google が参照するホスト直下の [robots.txt](https://sawanoto.github.io/robots.txt) は、ユーザーサイトの [sawanoto/sawanoto.github.io](https://github.com/sawanoto/sawanoto.github.io) で管理しています。同じホストの全プロジェクトのクロールを許可し、澤本公式サイトのサイトマップを案内します。`/sawamoto/robots.txt` は直接取得できますが、Google のクロール規則はホスト直下のファイルが決めます。
