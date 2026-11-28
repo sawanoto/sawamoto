@@ -62,6 +62,117 @@ def image_url(value: str) -> str:
     raise ValueError(f"Use a public assets/ path or HTTP(S) image URL: {value}")
 
 
+ABOUT_PATH = "about/"
+ABOUT_URL = ORIGIN + local(ABOUT_PATH)
+PERSON_ID = ABOUT_URL + "#person"
+WEBSITE_ID = ORIGIN + local("") + "#website"
+LANGUAGE = "ja"
+
+
+def person_reference() -> dict:
+    return {"@type": "Person", "@id": PERSON_ID, "name": SITE["name"], "url": ABOUT_URL}
+
+
+def absolute_image(value: str) -> str:
+    url = html.unescape(image_url(value))
+    return ORIGIN + url if url.startswith("/") else url
+
+
+def json_script_data(value: object) -> str:
+    return json.dumps(value, ensure_ascii=False).replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
+
+
+def article_schema(item: dict, url: str) -> dict:
+    author = item.get("author")
+    if author and author not in {SITE["name"], SITE["name_en"]}:
+        raise ValueError(f"Unrecognized article author: {item['slug']}")
+    article = {
+        "@type": "BlogPosting", "@id": url + "#article", "url": url,
+        "headline": item["title"], "author": person_reference(),
+        "mainEntityOfPage": {"@id": url}, "inLanguage": LANGUAGE,
+        "isPartOf": {"@id": WEBSITE_ID},
+    }
+    for key, prop in (("summary", "description"), ("published", "datePublished"), ("updated", "dateModified")):
+        if item.get(key):
+            article[prop] = item[key]
+    image = item.get("hero_image") or next((x["src"] for x in item.get("gallery_images", [])), None) or item.get("thumbnail")
+    if image:
+        article["image"] = absolute_image(image)
+    if item.get("featured_work"):
+        article["about"] = {
+            "@type": "CreativeWork", "@id": url + "#work",
+            "name": item["featured_work"], "creator": {"@id": PERSON_ID},
+        }
+    return article
+
+
+def work_schema(item: dict, url: str) -> dict:
+    creator = {"@id": PERSON_ID}
+    work = {
+        "@type": "CreativeWork", "@id": url + "#work", "url": url,
+        "name": item["title"], "creator": creator, "mainEntityOfPage": {"@id": url},
+    }
+    if item.get("summary"):
+        work["description"] = item["summary"]
+    if item.get("thumbnail"):
+        work["image"] = absolute_image(item["thumbnail"])
+    if item.get("youtube_id"):
+        work.update({
+            "@type": "VideoObject",
+            "embedUrl": f'https://www.youtube-nocookie.com/embed/{item["youtube_id"]}',
+        })
+        if "image" in work:
+            work["thumbnailUrl"] = work["image"]
+    if item.get("url"):
+        work["sameAs"] = item["url"]
+    if item.get("schema_type") == "SoftwareApplication":
+        work["@type"] = "SoftwareApplication"
+    parts = [
+        {"@type": "Collection",
+         "creator": creator, **part}
+        for part in item.get("collection_parts", [])
+    ]
+    for video in item.get("videos", []):
+        if video.get("availability_note"):
+            continue
+        video_id = video["youtube_id"]
+        parts.append({
+            "@type": "VideoObject", "@id": f"{url}#video-{video_id}", "creator": creator,
+            "name": video["title"], "description": video["description"], "url": video["url"],
+            "embedUrl": f"https://www.youtube-nocookie.com/embed/{video_id}",
+            "thumbnailUrl": f"https://img.youtube.com/vi/{video_id}/hqdefault.jpg",
+        })
+    if parts:
+        work["hasPart"] = parts
+    return work
+
+
+def page_schema(path: str, url: str, title: str, description: str, entity: dict | None) -> list[dict]:
+    page_data = {
+        "@type": "WebPage", "@id": url, "url": url, "name": title,
+        "description": description, "inLanguage": LANGUAGE, "isPartOf": {"@id": WEBSITE_ID},
+    }
+    if path == "":
+        return [page_data, {
+            "@type": "WebSite", "@id": WEBSITE_ID, "url": url, "name": SITE["name"],
+            "alternateName": SITE["name_en"], "description": description,
+            "inLanguage": LANGUAGE, "publisher": person_reference(),
+        }]
+    if path == ABOUT_PATH:
+        page_data.update({"@type": "ProfilePage", "mainEntity": {"@id": PERSON_ID}})
+        profiles = [link["url"] for group in ("links", "about_links")
+                    for link in SITE.get(group, []) if link.get("profile")]
+        return [page_data, {
+            **person_reference(), "alternateName": SITE["name_en"],
+            "description": SITE["profile_description"], "sameAs": profiles,
+            "mainEntityOfPage": {"@id": url},
+        }]
+    if entity:
+        page_data["mainEntity"] = {"@id": entity["@id"]}
+        return [page_data, entity]
+    return []
+
+
 def data_files(folder: str) -> list[dict]:
     items = []
     for file in sorted((CONTENT / folder).glob("*.md")):
@@ -124,7 +235,7 @@ def related(ids: list[str], collection: dict, section: str) -> str:
     return '<ul class="link-list">' + "".join(links) + "</ul>" if links else ""
 
 
-def page(title: str, description: str, path: str, body: str, *, indexable: bool = True) -> str:
+def page(title: str, description: str, path: str, body: str, *, indexable: bool = True, entity: dict | None = None) -> str:
     full_title = f"{title} | {SITE['name']}" if title else f"{SITE['name']} / {SITE['name_en']}"
     url = ORIGIN + local(path)
     nav = [
@@ -148,7 +259,7 @@ def page(title: str, description: str, path: str, body: str, *, indexable: bool 
                       f'<script src="{local("assets/reading.js")}" defer></script>') if path == "reading/" else ""
     life_assets = (f'<link rel="stylesheet" href="{local("assets/life-timeline.css")}">'
                    f'<script src="{local("assets/life-timeline.js")}" defer></script>') if path == "timeline/" else ""
-    if path == "about/":
+    if path == ABOUT_PATH:
         anchors = {f"timeline-{x['id']}": f"timeline/#life-{x['id']}" for x in TIMELINE}
         timeline_script = f'<script id="timeline-redirect-data" type="application/json">{redirect_data(None, anchors, local)}</script><script src="{local("assets/timeline-redirect.js")}" defer></script>'
     seasonal_mark = '<span class="seasonal-mark" hidden aria-hidden="true"></span>'
@@ -160,15 +271,20 @@ def page(title: str, description: str, path: str, body: str, *, indexable: bool 
         translations = json.loads((CONTENT / "home-i18n.json").read_text(encoding="utf-8"))
         full_title = translations["title"]["ja"]
         description = translations["description"]["ja"]
-        translations = json.dumps(translations, ensure_ascii=False).replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
+        translations = json_script_data(translations)
         language_assets = (f'<script id="home-i18n" type="application/json">{translations}</script>'
                            f'<link rel="stylesheet" href="{local("assets/home-i18n.css")}">'
                            f'<script src="{local("assets/home-i18n.js")}" defer></script>')
         language_switch = ('<div class="language-switch" role="group" aria-label="Language / 言語" hidden>'
                            '<button type="button" data-language="ja" lang="ja" aria-pressed="true">日本語</button>'
                            '<button type="button" data-language="en" lang="en" aria-pressed="false">English</button></div>')
+    graph = page_schema(path, url, full_title, description, entity) if indexable else []
+    structured = f'<script type="application/ld+json">{json_script_data({"@context": "https://schema.org", "@graph": graph})}</script>' if graph else ""
+    is_article = entity and entity["@type"] == "BlogPosting"
+    og_type = "article" if is_article else "website"
+    og_image = f'<meta property="og:image" content="{e(entity["image"])}">' if entity and entity.get("image") else ""
     return f'''<!doctype html>
-<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="{LANGUAGE}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <!-- Google tag (gtag.js): config sends one page_view per document load. -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2C8N1DQLS"></script>
 <script>
@@ -179,11 +295,11 @@ def page(title: str, description: str, path: str, body: str, *, indexable: bool 
 </script>
 <meta name="theme-color" content="#f8f7f3"><title>{e(full_title)}</title><meta name="description" content="{e(description)}">
 {'' if indexable else '<meta name="robots" content="noindex,follow">'}
-<link rel="canonical" href="{url}"><meta property="og:type" content="website"><meta property="og:locale" content="ja_JP">
+<link rel="canonical" href="{url}"><meta property="og:type" content="{og_type}"><meta property="og:locale" content="ja_JP">
 <meta property="og:title" content="{e(full_title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{url}">
 <meta property="og:site_name" content="{e(SITE['name'])}"><link rel="stylesheet" href="{local('assets/style.css')}?v={STYLE_VERSION}">
 <link rel="stylesheet" href="{local('assets/seasonal.css')}"><script src="{local('assets/seasonal.js')}" defer></script>
-{language_assets}{kigo_assets}{timeline_script}{reading_assets}{life_assets}{f'<link rel="stylesheet" href="{local("assets/daily-schedule.css")}">' if path == "writing/childcare-daily-schedule/" else ""}{f'<link rel="stylesheet" href="{local("assets/handcraft-shop.css")}">' if path == "handcraft-shop/" else ""}</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
+{og_image}{structured}{language_assets}{kigo_assets}{timeline_script}{reading_assets}{life_assets}{f'<link rel="stylesheet" href="{local("assets/daily-schedule.css")}">' if path == "writing/childcare-daily-schedule/" else ""}{f'<link rel="stylesheet" href="{local("assets/handcraft-shop.css")}">' if path == "handcraft-shop/" else ""}</head><body><a class="skip" href="#main">本文へ移動</a><div class="shell"><header class="header">
 <div class="brand-lockup"><a class="brand" href="{local('')}">{e(SITE['name'])}<small>{e(SITE['name_en'])}</small></a>{seasonal_mark}</div>
 <nav aria-label="メインナビゲーション">{nav_html}</nav>{language_switch}</header><main id="main">{body}</main>
 <footer class="footer"><span>{e(SITE['name'])} / {e(SITE['name_en'])}</span><a href="#main">上へ戻る ↑</a></footer></div></body></html>'''
@@ -519,7 +635,7 @@ def build() -> None:
     <p class="support-external">外部サイトを新しいタブで開きます。</p></section>''' if support else ""
     home = f'''<section class="hero"><p class="kicker">個人サイト</p><h1>{e(SITE['name'])}<span>{e(SITE['name_en'])}</span></h1>
     <p class="lead">{e(SITE['description'])}</p><p class="intro">{e(SITE['intro'])}</p>
-    <a class="button" href="{local('about/')}">澤本優哉について <span aria-hidden="true">→</span></a></section>
+    <a class="button" href="{local(ABOUT_PATH)}">{e(SITE['name'])}について <span aria-hidden="true">→</span></a></section>
     <section class="home-section">{section_head('01 / 文章', '文章・考察', 'writing/')}<div class="card-grid">{writing_home}</div></section>
     <section class="home-section">{section_head('02 / 作品', '制作物', 'works/')}<div class="card-grid">{works_home}</div></section>
     <section class="home-section">{section_head('03 / 年表', '活動の記録', 'timeline/')}<p class="section-copy">活動の記録は、時期や公開範囲を確認しながら年表に加えていきます。</p></section>{support_html}'''
@@ -543,7 +659,13 @@ def build() -> None:
         items = "".join(f'<li>{e(item)}</li>' for item in group["items"])
         qualification_groups.append(f'<div class="hobby-group"><h3>{e(group["category"])}</h3><ul class="chips">{items}</ul></div>')
     qualifications = f'<section class="content-section" id="qualifications">{section_head("Qualifications", "資格・検定")}<div class="hobby-grid">{"".join(qualification_groups)}</div></section>' if qualification_groups else ""
-    about = f'''<div class="page-heading"><p class="kicker">About</p><h1>澤本優哉について</h1><p>{e(SITE['about'])}</p></div>
+    profile_title = f"{SITE['name']}について"
+    about = f'''<div class="page-heading" id="person"><p class="kicker">About</p><h1>{e(profile_title)}</h1><p lang="en">{e(SITE['name_en'])}</p><p>{e(SITE['profile_description'])}</p><p>{e(SITE['about'])}</p></div>
+    <section class="content-section" aria-labelledby="profile-activities"><h2 id="profile-activities">創作活動</h2><ul class="link-list">
+    <li><a href="{local('writing/')}">文章・考察</a></li>
+    <li><a href="{local('works/')}">制作物</a></li>
+    <li><a href="{local('gallery/handwork/')}">作品ギャラリー</a></li>
+    <li><a href="{local('timeline/')}">活動年表</a></li></ul></section>
     <section class="content-section" id="likes">{section_head('Favorites', '好きなもの')}<ul class="chips">{likes}</ul>
     <div class="hobby-group about-daily-life" id="daily-life"><h3>普段の過ごし方</h3><p class="section-copy">{e(SITE.get('daily_life', ''))}</p></div></section>
     <section class="content-section" id="interests">{section_head('Interests', '最近気になっていること')}<ul class="chips">{interests}</ul></section>
@@ -552,7 +674,7 @@ def build() -> None:
     <section class="content-section">{section_head('Elsewhere', '外部リンク')}{about_galleries}{social}</section>
     {qualifications}
     <section class="content-section" id="external-links">{section_head('Links', '外部リンク')}<div class="hobby-grid">{about_links}</div></section>'''
-    write("about", page("About", "澤本優哉のプロフィールと活動の記録。", "about/", about))
+    write(ABOUT_PATH.rstrip("/"), page(profile_title, SITE["profile_description"], ABOUT_PATH, about))
 
     write("handcraft-shop", page("澤本家 手しごと商店", "まだ存在しない、家族のお店。手しごと市への架空の出店を想像し、少しずつ試作する創作プロジェクト。", "handcraft-shop/", render_handcraft(CONTENT, e, local, image_url)))
 
@@ -584,7 +706,9 @@ def build() -> None:
         body = markdown.markdown(item["body"], extensions=["extra", "sane_lists"])
         heading_meta = " · ".join(e(value) for value in [item.get("period", ""), item.get("category", "")] if value)
         detail = f'<div class="detail-heading"><a class="back" href="{local("works/")}">← Works</a><p class="meta">{heading_meta}</p><h1>{e(item["title"])}</h1><p class="lead">{e(item.get("summary", ""))}</p></div>{gallery_links}{media}{link}{info}{video_gallery}<article class="prose">{body}</article>{work_highlights}{related_html}'
-        write(f'works/{item["slug"]}', page(item["title"], item.get("summary", ""), f'works/{item["slug"]}/', detail))
+        path = f'works/{item["slug"]}/'
+        write(path.rstrip("/"), page(item["title"], item.get("summary", ""), path, detail,
+                                     entity=work_schema(item, ORIGIN + local(path))))
 
     writing_list = "".join(card(x, "writing") for x in sorted(WRITING, key=writing_sort_key, reverse=True)) if WRITING else '<p class="empty">公開する記事を準備中です。</p>'
     series_links = "".join(f'<li><a href="{local(f"writing/{series["slug"]}/")}"><strong>{e(series["title"])}</strong><span>{e(series["description"])}</span><span aria-hidden="true">→</span></a></li>' for series in SERIES if any(x.get("series_id") == series["id"] for x in WRITING))
@@ -611,7 +735,9 @@ def build() -> None:
                 raise ValueError(f"Place one image-gallery marker in: {item['slug']}")
             body = body.replace("<!-- image-gallery -->", gallery_html)
         tags = "".join(f'<li>{e(t)}</li>' for t in item.get("tags", []))
-        updated = f' · 更新 {e(item["updated"])}' if item.get("updated") else ""
+        published = f'<time datetime="{e(item["published"])}">{e(item["published"])}</time>'
+        updated = f' · 更新 <time datetime="{e(item["updated"])}">{e(item["updated"])}</time>' if item.get("updated") else ""
+        author = f'<p class="meta">著者 <a rel="author" href="{local(ABOUT_PATH)}">{e(SITE["name"])}</a></p>'
         related_works = related(item.get("work_ids", []), work_by_id, "works")
         related_articles = related(item.get("article_ids", []), article_by_id, "writing")
         hero = f'<figure class="article-hero"><img src="{image_url(item["hero_image"])}" alt="{e(item.get("hero_image_alt", ""))}"><figcaption>{e(item.get("hero_caption", ""))}</figcaption></figure>' if item.get("hero_image") else ""
@@ -620,8 +746,11 @@ def build() -> None:
         back_path = f'writing/{series["slug"]}/' if series else 'writing/'
         back_label = series["title"] if series else 'Writing'
         visit_facts = f'<dl class="work-facts visit-facts"><div><dt>訪問日</dt><dd>{e(item["visit_date"])}</dd></div><div><dt>場所</dt><dd>{e(item["center"])}</dd></div><div><dt>活動</dt><dd>{e(item["activity"])}</dd></div></dl>' if series and all(item.get(x) for x in ("visit_date", "center", "activity")) else ""
-        detail = f'<div class="detail-heading"><a class="back" href="{local(back_path)}">← {e(back_label)}</a><p class="meta">{e(item.get("published", ""))}{updated} · {e(item.get("category", ""))} · {e(item.get("period", ""))}</p><h1>{e(item["title"])}</h1><p class="lead">{e(item.get("summary", ""))}</p><ul class="chips">{tags}</ul></div>{hero}{visit_facts}<article class="prose">{body}</article>{related_html}'
-        write(f'writing/{item["slug"]}', page(item.get("seo_title", item["title"]), item.get("meta_description", item.get("summary", "")), f'writing/{item["slug"]}/', detail))
+        detail = f'<div class="detail-heading"><a class="back" href="{local(back_path)}">← {e(back_label)}</a><p class="meta">{published}{updated} · {e(item.get("category", ""))} · {e(item.get("period", ""))}</p><h1>{e(item["title"])}</h1>{author}<p class="lead">{e(item.get("summary", ""))}</p><ul class="chips">{tags}</ul></div>{hero}{visit_facts}<article class="prose">{body}</article>{related_html}'
+        path = f'writing/{item["slug"]}/'
+        write(path.rstrip("/"), page(item.get("seo_title", item["title"]),
+                                     item.get("meta_description", item.get("summary", "")),
+                                     path, detail, entity=article_schema(item, ORIGIN + local(path))))
 
     write("reading", page("読書遍歴", "読んできた本と、そのときの感想。年代別・ジャンル別に振り返る読書の記録。", "reading/", reading_page()))
 
