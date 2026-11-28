@@ -137,7 +137,7 @@ async function routeLocal(context) {
     const noJs = await noJsContext.newPage();
     await noJs.goto(`${origin}/sawamoto/`);
     assert.equal(await noJs.locator('.daily-kigo').isVisible(),false);
-    await noJs.getByRole('link',{name:'About',exact:true}).click();
+    await noJs.getByRole('link',{name:'自己紹介',exact:true}).click();
     assert.equal(new URL(noJs.url()).pathname,'/sawamoto/about/');
     console.log('366 dates; JST midnight, leap/year rollovers; resume; reload; keyboard/touch; 5 widths × 12 months; home-only; no-JS: passed.');
   } finally { await browser.close(); }
