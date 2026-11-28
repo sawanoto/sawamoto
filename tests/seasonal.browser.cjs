@@ -82,7 +82,7 @@ async function routeLocal(context) {
   assert.equal(await fallback.locator('html').getAttribute('data-theme-month'), null);
   assert.equal(await fallback.locator('.seasonal-mark').isVisible(), false);
   assert.equal(await fallback.evaluate(() => getComputedStyle(document.body).backgroundColor), 'rgb(248, 247, 243)');
-  await fallback.getByRole('link',{name:'Writing',exact:true}).click();
+  await fallback.getByRole('link',{name:'文章',exact:true}).click();
   assert.equal(new URL(fallback.url()).pathname, '/sawamoto/writing/');
   await browser.close();
   console.log('All 12 themes at desktop / 390px / 320px, articles, no-JS fallback, canonical and live JST rollover passed.');

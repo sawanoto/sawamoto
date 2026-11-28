@@ -34,6 +34,9 @@ const url = 'https://home.test/sawamoto/';
       assert.equal(await page.locator('meta[property="og:locale"]').getAttribute('content'), japanese ? 'ja_JP' : 'en_US');
       assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://sawanoto.github.io/sawamoto/');
       assert.equal(await page.locator('link[hreflang]').count(), 0);
+      const graph = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent())['@graph'];
+      for (const node of graph) assert.equal(node.inLanguage, 'ja');
+      assert.equal(graph.find(node => node['@type'] === 'WebPage').name, '澤本優哉 | 創作と日々の記録');
       assert.equal(await page.locator('nav a[href="/sawamoto/writing/"]').textContent(), japanese ? '文章' : 'Writing');
       assert.equal(await page.locator('.home-section h2').last().textContent(), japanese ? '活動の記録' : 'History');
     }
